@@ -46,14 +46,20 @@ public class Entity : MonoBehaviour
     
     }
 
-    public virtual void CheckWall()
+    public virtual bool CheckWall()
     {
-
+        return Physics2D.Raycast(wallCheck.position, aliveGO.transform.right, entityData.wallCheckDistance, entityData.whatIsGrpund);
     }
 
-    public virtual void CheckLedge() 
+    public virtual bool CheckLedge() 
     { 
-    
+        return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGrpund);
+    }
+
+    public virtual void Flip()
+    {
+        facingDirection *= -1;
+        aliveGO.transform.Rotate(0.0f,180.0f,0.0f);
     }
 
 
