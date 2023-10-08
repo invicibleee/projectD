@@ -2,17 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class D_MoveState : MonoBehaviour
+public class D_MoveState : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float movementSpeed = 3f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
