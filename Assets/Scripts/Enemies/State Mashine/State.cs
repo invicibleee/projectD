@@ -23,7 +23,6 @@ public class State
     {
         startTime = Time.time;
         entity.anim.SetBool(animBoolName, true);
-
     }
 
     public virtual void LogicUpdate()

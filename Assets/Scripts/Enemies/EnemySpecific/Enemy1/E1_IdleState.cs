@@ -15,14 +15,19 @@ public class E1_IdleState : IdleState
         base.Enter();
     }
 
-    public override void Exit() { base.Exit();
-    
+    public override void Exit() 
+    {      
+        base.Exit();
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(isIdleTimeOver)
+        if (isPlayerInMinAgroRange)
+        {
+            stateMashine.ChangeState(enemy.playerDetectedState);
+        }
+        else if (isIdleTimeOver)
         {
             stateMashine.ChangeState(enemy.moveState);
         }
