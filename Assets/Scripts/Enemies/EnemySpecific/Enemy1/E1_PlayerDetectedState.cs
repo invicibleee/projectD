@@ -23,10 +23,13 @@ public class E1_PlayerDetectedState : PlayerDetectedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (!isPlayerInMaxAgroRange)
+        if (performLongRangeAction)
+        {            
+            stateMashine.ChangeState(enemy.chageState);
+        }
+        else if (!isPlayerInMaxAgroRange) 
         {
-            enemy.idleState.SetFlipAfterIdle(false);
-            stateMashine.ChangeState(enemy.idleState);
+            stateMashine.ChangeState(enemy.lookForPlayerState);
         }
     }
 
