@@ -23,7 +23,11 @@ public class E1_PlayerDetectedState : PlayerDetectedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (performLongRangeAction)
+        if (performCloseRangeAction)
+        {
+            stateMashine.ChangeState(enemy.meleeAttackState);
+        }
+        else if (performLongRangeAction)
         {            
             stateMashine.ChangeState(enemy.chageState);
         }
@@ -31,6 +35,8 @@ public class E1_PlayerDetectedState : PlayerDetectedState
         {
             stateMashine.ChangeState(enemy.lookForPlayerState);
         }
+
+
     }
 
     public override void PhysicsUpdate()

@@ -13,6 +13,8 @@ public class Enemy1 : Entity
     public E1_ChargeState chageState { get; private set; }
 
     public E1_LookForPlayer lookForPlayerState { get; private set; }
+
+    public E1_MeleeAttack meleeAttackState { get; private set; }
  
     [SerializeField]
     private D_IdleState idleStateData;
@@ -24,6 +26,11 @@ public class Enemy1 : Entity
     private D_ChargeState chageStateData;
     [SerializeField]
     private D_LookForPlayer lookForPlayerStateData;
+    [SerializeField]
+    private D_MeleeAttack meleeAttackStateData;
+
+    [SerializeField]
+    private Transform meleeAttackPosition;
 
     public override void Start()
     {
@@ -38,8 +45,14 @@ public class Enemy1 : Entity
 
         lookForPlayerState = new E1_LookForPlayer(stateMashine, this, "lookForPlayer", lookForPlayerStateData, this);
 
-
+        meleeAttackState = new E1_MeleeAttack(stateMashine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
 
         stateMashine.Initialize(moveState);
+    }
+    public override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+
+        Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
     }
 }

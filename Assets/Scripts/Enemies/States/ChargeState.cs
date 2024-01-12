@@ -14,6 +14,7 @@ public class ChargeState : State
 
     protected bool isChargeTimeOver;
 
+    protected bool performCloseRangeAction;
     public ChargeState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_ChargeState stateData) : base(stateMashine, entity, animBoolName)
     {
         this.stateData = stateData;
@@ -26,13 +27,13 @@ public class ChargeState : State
         isDetectingLedge = entity.CheckLedge();
         isDetectingWall = entity.CheckWall();
 
+        performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
     }
 
     public override void Enter()
     {
         base.Enter();
         isChargeTimeOver = false;
-
         entity.SetVelosity(stateData.chargeSpeed);
     }
 

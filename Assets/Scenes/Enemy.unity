@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 534348585}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.215, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -175,6 +175,41 @@ MonoBehaviour:
   idleStateData: {fileID: 11400000, guid: f7a81a2972b5428408eb8be33be86ee5, type: 2}
   moveStateData: {fileID: 11400000, guid: 2fbd438f56f9ff2498926ec8fc6f0731, type: 2}
   playerDetectedData: {fileID: 11400000, guid: a082fe9a5094ed645a9d358143dc484a, type: 2}
+  chageStateData: {fileID: 11400000, guid: d51118d43abb542439af24a7ac06c331, type: 2}
+  lookForPlayerStateData: {fileID: 11400000, guid: 7c9679a6882bf754483f29139958a930, type: 2}
+  meleeAttackStateData: {fileID: 11400000, guid: af963466532686647b6eb0650e911d79, type: 2}
+  meleeAttackPosition: {fileID: 584863832}
+--- !u!1 &584863831
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 584863832}
+  m_Layer: 0
+  m_Name: MeleeAttackPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &584863832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 584863831}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.933, y: -0.208, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 835372715}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &652012105
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,6 +346,7 @@ GameObject:
   - component: {fileID: 835372718}
   - component: {fileID: 835372721}
   - component: {fileID: 835372720}
+  - component: {fileID: 835372722}
   m_Layer: 0
   m_Name: Alive
   m_TagString: Untagged
@@ -335,6 +371,7 @@ Transform:
   - {fileID: 1338164097}
   - {fileID: 784002117}
   - {fileID: 1031098933}
+  - {fileID: 584863832}
   m_Father: {fileID: 534348586}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &835372718
@@ -482,6 +519,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &835372722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835372714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d71dde1e8b2e46488c32cff2057ba94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &851358191
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +847,7 @@ Transform:
   m_GameObject: {fileID: 1308964556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.29, y: 4.01, z: 0}
+  m_LocalPosition: {x: 10.38, y: 0.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
