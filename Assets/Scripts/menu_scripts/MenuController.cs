@@ -6,6 +6,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[System.Serializable]
+public struct Achivement
+{
+    public Image image;
+    public bool isOwned;
+    public string description;
+    public string name;
+}
+
 public class MenuController : MonoBehaviour
 {
     public GameObject gameMenu; 
@@ -27,11 +36,18 @@ public class MenuController : MonoBehaviour
     public Toggle highQualityToggle;
 
     public Slider volumeSlider;
+    public Achivement[] achivements =  new Achivement[9];
+    public Text descriptionText;
+    public Text nameText;
+    private int selectedAchivementIndex = -1;
 
     void Start()
     {
         Screen.fullScreen = isFullScreen;
         volumeSlider.value = 0.5f;
+        descriptionText.text = "";
+        nameText.text = "";
+        UpdateAchivementImages();
     }
 
     public void StartGame()
@@ -105,7 +121,6 @@ public class MenuController : MonoBehaviour
         }
         else if (!lowQualityToggle.isOn && !mediumQualityToggle.isOn && !highQualityToggle.isOn)
         {
-            // Если все Toggle выключены, включаем средний уровень (medium)
             mediumQualityToggle.isOn = true;
             currentQualityLevel = 2;
             QualitySettings.SetQualityLevel(currentQualityLevel);
@@ -142,8 +157,45 @@ public class MenuController : MonoBehaviour
         optionsMenu.SetActive(false);
         achievementsMenu.SetActive(false);
         gameMenu.SetActive(true);
-    }
 
+        descriptionText.text = "";
+        nameText.text = "";
+    }
+    void UpdateDescriptionText(int achivementIndex)
+    {
+        if (achivementIndex >= 0 && achivementIndex < achivements.Length && achivements[achivementIndex].isOwned)
+        {
+            Debug.Log(achivements[achivementIndex].description);
+            descriptionText.text = achivements[achivementIndex].description;
+        }
+        else
+        {
+            //  Debug.LogError("Invalid description index: " + talantIndex);
+        }
+    }
+    public void OnAchivementImageClick(int achivementIndex)
+    {
+        UpdateDescriptionText(achivementIndex);
+
+        if (selectedAchivementIndex != -1)
+        {
+            achivements[selectedAchivementIndex].image.transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        if (achivements[achivementIndex].isOwned)
+        {
+            achivements[achivementIndex].image.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+            selectedAchivementIndex = achivementIndex;
+            nameText.text = achivements[achivementIndex].name;
+        }
+    }
+    void UpdateAchivementImages()
+    {
+        for (int i = 0; i < achivements.Length; i++)
+        {
+            // Set image color based on whether the charm is purchased or not
+            achivements[i].image.color = achivements[i].isOwned ? Color.white : Color.gray;
+        }
+    }
     public void ExitGame()
     {
         Application.Quit();

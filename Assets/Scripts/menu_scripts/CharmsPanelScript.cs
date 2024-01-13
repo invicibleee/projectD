@@ -12,6 +12,7 @@ public struct Charm
     public bool isUnique;
     public bool isEquiped;
     public string description;
+    public string name;
 }
 
 public class CharmsPanelScript : MonoBehaviour
@@ -20,7 +21,9 @@ public class CharmsPanelScript : MonoBehaviour
     public Charm[] charms;
     public Charm[] equippedCharms = new Charm[3];
     public Text descriptionText;
+    public Text nameText;
     public Text Prompt;
+
 
     private int currentCharm;
     private int selectedCharmIndex = -1;
@@ -38,6 +41,7 @@ public class CharmsPanelScript : MonoBehaviour
         currentCharm = 1;
         descriptionText.text = "select skill";
         Prompt.text = "";
+        nameText.text = "";
         UpdateCharmImages();
     }
 
@@ -48,6 +52,7 @@ public class CharmsPanelScript : MonoBehaviour
         {
             descriptionText.text = "select skill";
             Prompt.text = "";
+            nameText.text = "";
             UpdateCharmImages();
         }
     }
@@ -56,6 +61,7 @@ public class CharmsPanelScript : MonoBehaviour
     public void OnCharmImageClick(int charmIndex)
     {
         UpdateDescriptionText(charmIndex);
+        nameText.text = charms[charmIndex].name;
 
         if (selectedCharmIndex != -1)
         {
@@ -207,6 +213,7 @@ public class CharmsPanelScript : MonoBehaviour
             charms[charmIndex].isEquiped = true;
             SetColorForSlot(freeSlot);
             UpdateDescription(freeSlot);
+            
         }
         else
         {
@@ -219,7 +226,7 @@ public class CharmsPanelScript : MonoBehaviour
                 charms[charmIndex].isEquiped = true;
                 SetColorForSlot(lastClickedIndex);
                 UpdateDescription(lastClickedIndex);
-
+               
                 lastClickedIndex = -1;
             }
             else
@@ -231,6 +238,7 @@ public class CharmsPanelScript : MonoBehaviour
                 charms[charmIndex].isEquiped = true;
                 SetColorForSlot(0);
                 UpdateDescription(0);
+               
             }
         }
     }
@@ -329,6 +337,7 @@ public class CharmsPanelScript : MonoBehaviour
         }
         else {
             Prompt.text = "";
+            nameText.text = "";
             descriptionText.text = "select skill";
         }
 
@@ -341,6 +350,7 @@ public class CharmsPanelScript : MonoBehaviour
         if (descriptionIndex >= 0 && descriptionIndex < equippedCharms.Length)
         {
             descriptionText.text = equippedCharms[descriptionIndex].description;
+            nameText.text = equippedCharms[descriptionIndex].name;
         }
         else
         {
