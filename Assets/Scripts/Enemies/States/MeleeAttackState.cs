@@ -11,6 +11,7 @@ public class MeleeAttackState : AttackState
     public MeleeAttackState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, Transform attackPosition,D_MeleeAttack stateData ) : base(stateMashine, entity, animBoolName, attackPosition)
     {
         this.stateData = stateData;
+        
     }
 
     public override void DoChecks()
@@ -50,7 +51,7 @@ public class MeleeAttackState : AttackState
         base.TriggerAttack();
         Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
 
-        foreach  (Collider2D collider in detectedObjects)
+        foreach (Collider2D collider in detectedObjects)
         {
             collider.transform.SendMessage("Damage", attackDetails);
         }

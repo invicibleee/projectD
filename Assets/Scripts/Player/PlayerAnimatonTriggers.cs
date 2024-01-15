@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationToStatemashine : MonoBehaviour
+public class PlayerAnimatonTriggers : MonoBehaviour
 {
-    public AttackState attackState;
+    private Player player => GetComponentInParent<Player>();
+    private void AnimationTrigger()
+    {
+        player.AnimationTrigger();
+    }
+    public PlayerPrimaryAttackState attackState;
     private void TriggerAttack()
     {
         attackState.TriggerAttack();
