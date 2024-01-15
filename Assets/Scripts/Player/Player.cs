@@ -14,8 +14,6 @@ public class Player : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpForce;
     [Header("Dash info")]
-    [SerializeField] private float dashCooldown;
-    private float dashUsageTimer;
     public float dashSpeed;
     public float dashDuration;
     public float dashDirection { get; private set; }
@@ -32,6 +30,7 @@ public class Player : MonoBehaviour
     #region Components
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
+    public SkillManager skill { get; private set; }
     #endregion
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
@@ -66,6 +65,8 @@ public class Player : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
+        skill = SkillManager.instance;
+
         stateMachine.Initialize(idleState);
     }
 
@@ -86,11 +87,9 @@ public class Player : MonoBehaviour
     {
         if(IsWallDetected())
             return;
-        dashUsageTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0) 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()) 
         {
-            dashUsageTimer = dashCooldown;
             dashDirection = Input.GetAxisRaw("Horizontal");
 
             if (dashDirection == 0)
