@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 30
   damageHopSpeed: 10
-  wallCheckDistance: 0.5
-  ledgeCheckDistance: 1
+  wallCheckDistance: 1
+  ledgeCheckDistance: 1.5
   maxAgroDistance: 10
   minAgroDistance: 7
   closeRangeActionDistance: 1.8
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  whatIsGrpund:
+  whatIsGround:
     serializedVersion: 2
     m_Bits: 8

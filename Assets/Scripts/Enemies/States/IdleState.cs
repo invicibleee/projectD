@@ -28,7 +28,7 @@ public class IdleState : State
     {
         base.Enter();
 
-        enemy.SetVelosity(0f);
+        enemy.SetVelocityEnemy(0f);
         isIdleTimeOver = false;
         SetRandomIdleTime();
     }

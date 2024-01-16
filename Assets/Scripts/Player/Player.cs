@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class Player : Entity
 {
+
     [Header("Attack details")]
     public Vector2[] attackMovement;
     public bool isBusy { get; private set; }
@@ -69,10 +70,10 @@ public class Player : Entity
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     private void CheckForDashInput()
     {
-        if(IsWallDetected())
+        if (IsWallDetected())
             return;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()) 
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
         {
             dashDirection = Input.GetAxisRaw("Horizontal");
 
@@ -82,6 +83,7 @@ public class Player : Entity
             stateMachine.ChangeState(dashState);
 
         }
-            
+
     }
+
 }

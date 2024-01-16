@@ -34,7 +34,7 @@ public class ChargeState : State
     {
         base.Enter();
         isChargeTimeOver = false;
-        enemy.SetVelosity(stateData.chargeSpeed);
+        enemy.SetVelocityEnemy(stateData.chargeSpeed);
     }
 
     public override void Exit()
