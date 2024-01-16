@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ public class CharacterPanelScript : MonoBehaviour
     public Skill[] skills;
     public Text descriptionText;
     public Text Prompt;
+    public Image style;
 
     private int currentStyle;
     private int selectedSkillIndex = -1;
@@ -180,6 +182,7 @@ public class CharacterPanelScript : MonoBehaviour
                 {
                     Debug.Log("Skill Index: " + skillIndex + " is already purchased.");
                     EquipSkill(skillIndex);
+                    SetStyle(skillIndex);
                 }
             }
             else
@@ -190,6 +193,23 @@ public class CharacterPanelScript : MonoBehaviour
         }
     }
 
+    public void SetStyle(int skillIndex) {
+
+        switch (skillIndex) {
+            case 0:
+                style.color = Color.green;
+                break;
+            case 3:
+                style.color = Color.blue;
+                break;
+            case 6:
+                style.color = Color.red;
+                break;
+            default:
+                style.color = Color.white;
+                break;
+        }
+    }
 
     private void SetSkillPurchased(int skillIndex, bool value)
     {

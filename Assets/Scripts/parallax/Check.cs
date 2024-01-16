@@ -5,8 +5,8 @@ using UnityEngine;
 public class Check : MonoBehaviour
 {
 
-    public float speed = 5f;
-    public float cameraFollowSpeed = 5f;
+    public float speed = 15f;
+    public float cameraFollowSpeed = 15f;
     private Rigidbody2D rb;
 
 

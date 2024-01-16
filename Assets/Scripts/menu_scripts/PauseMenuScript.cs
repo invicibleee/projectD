@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PauseMenuScript : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject gui;
 
     public Button closeButton;
 
@@ -22,6 +23,7 @@ public class PauseMenuScript : MonoBehaviour
         // Initial state: menu is hidden
         if (pauseMenu != null)
             pauseMenu.SetActive(false);
+            gui.SetActive(true);
 
         // Ensure the arrays are of the same length
         if (menuButtons.Length == menuPanels.Length && navigationButtons.Length == 2)
@@ -83,8 +85,9 @@ public class PauseMenuScript : MonoBehaviour
         if (pauseMenu != null)
         {
             bool isMenuActive = pauseMenu.activeSelf;
+            bool isGuiActive = gui.activeSelf;
             pauseMenu.SetActive(!isMenuActive);
-
+            gui.SetActive(!isGuiActive);
             // Pause or resume the game based on the menu's visibility
             Time.timeScale = isMenuActive ? 1f : 0f;
         }
