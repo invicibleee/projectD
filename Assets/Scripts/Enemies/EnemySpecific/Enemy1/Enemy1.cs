@@ -32,7 +32,7 @@ public class Enemy1 : Enemy
     [SerializeField]
     private Transform meleeAttackPosition;
 
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
         moveState = new E1_MoveState(stateMashine, this, "move", moveStateData, this);
@@ -49,10 +49,9 @@ public class Enemy1 : Enemy
 
         stateMashine.Initialize(moveState);
     }
-    public override void OnDrawGizmos()
+    protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
-
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
 
     }

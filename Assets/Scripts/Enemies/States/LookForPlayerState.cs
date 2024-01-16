@@ -32,7 +32,7 @@ public class LookForPlayerState : State
         isAllTurnsTimeDone = false;
         lastTurnTime = startTime;
         amountOfTurnsDone = 0;
-        enemy.SetVelosity(0);
+        enemy.SetVelocityEnemy(0);
     }
 
     public override void Exit()

@@ -25,7 +25,7 @@ public class MoveState : State
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelosity(stateData.movementSpeed);
+        enemy.SetVelocityEnemy(stateData.movementSpeed);
     }
     public override void Exit() 
     { 

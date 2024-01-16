@@ -2,22 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : Entity
 {
     public FiniteStateMashine stateMashine;
 
     public D_Enemy enemyData;
-
-    public int facingDirection { get; private set; }
-    public Rigidbody2D rb { get; private set; }
-    public Animator anim { get; private set; }
-    public GameObject aliveGO { get; private set; }
-
     public AnimationToStatemashine atsm { get; private set; }
-    [SerializeField]
-    private Transform wallCheck;
-    [SerializeField]
-    private Transform ledgeCheck;
+
+
+
     [SerializeField]
     private Transform playerCheck;
 
@@ -27,26 +20,24 @@ public class Enemy : MonoBehaviour
 
     private Vector2 velocityWokrSpace;
 
-    public virtual void Start()
+    protected override void Start()
     {
-        facingDirection = 1;
+        base.Start();
         currentHealth = enemyData.maxHealth;
-
-        aliveGO = transform.Find("Alive").gameObject;
-        rb = aliveGO.GetComponent<Rigidbody2D>();
-        anim = aliveGO.GetComponent<Animator>();
-        atsm = aliveGO.GetComponent <AnimationToStatemashine>();
-        
+        atsm = GetComponentInChildren<AnimationToStatemashine>();
+    
         stateMashine = new FiniteStateMashine();
     }
 
-    public virtual void Update()
+    protected override void Update()
     {
+        base.Update();
         stateMashine.currentState.LogicUpdate();
     }
 
-    public virtual void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         stateMashine.currentState.PhysicsUpdate();
     }
 
@@ -62,7 +53,7 @@ public class Enemy : MonoBehaviour
 
         DamageHop(enemyData.damageHopSpeed);
 
-        if (attackDetails.position.x > aliveGO.transform.position.x)
+        if (attackDetails.position.x > rb.transform.position.x)
         {
             lastDamageDirection = -1;
         }
@@ -71,49 +62,46 @@ public class Enemy : MonoBehaviour
             lastDamageDirection = 1;
         }
     }
-    public virtual void SetVelosity(float velocity) 
+    public virtual void SetVelocityEnemy(float velocity)
     {
         velocityWokrSpace.Set(facingDirection * velocity, rb.velocity.y);
         rb.velocity = velocityWokrSpace;
-    
+
     }
 
     public virtual bool CheckWall()
     {
-        return Physics2D.Raycast(wallCheck.position, aliveGO.transform.right, enemyData.wallCheckDistance, enemyData.whatIsGrpund);
+        return Physics2D.Raycast(wallCheck.position, rb.transform.right, wallCheckDistance, whatIsGround);
     }
 
     public virtual bool CheckLedge() 
     { 
-        return Physics2D.Raycast(ledgeCheck.position, Vector2.down, enemyData.ledgeCheckDistance, enemyData.whatIsGrpund);
+        return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
     }
 
     public virtual bool CheckPlayerInMinAgroRange()
     {
-        return Physics2D.Raycast(playerCheck.position, aliveGO.transform.right, enemyData.minAgroDistance, enemyData.whatIsPlayer);
+        return Physics2D.Raycast(playerCheck.position, rb.transform.right, enemyData.minAgroDistance, enemyData.whatIsPlayer);
     }
     public virtual bool CheckPlayerInMaxAgroRange()
     {
-        return Physics2D.Raycast(playerCheck.position, aliveGO.transform.right, enemyData.maxAgroDistance, enemyData.whatIsPlayer);
+        return Physics2D.Raycast(playerCheck.position, rb.transform.right, enemyData.maxAgroDistance, enemyData.whatIsPlayer);
 
     }
-
     public virtual bool CheckPlayerInCloseRangeAction()
     {
-        return Physics2D.Raycast(playerCheck.position,aliveGO.transform.right,enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
+        return Physics2D.Raycast(playerCheck.position,rb.transform.right,enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
     }
 
-    public virtual void Flip()
+    public override void Flip()
     {
-        facingDirection *= -1;
-        aliveGO.transform.Rotate(0.0f,180.0f,0.0f);
+        base.Flip();
     }
 
-    public virtual void OnDrawGizmos()
+    protected override void OnDrawGizmos()
     {
-        Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * enemyData.wallCheckDistance));
-        Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * enemyData.ledgeCheckDistance));
-
+        Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * wallCheckDistance));
+        Gizmos.DrawLine(groundCheck.position, groundCheck.position + (Vector3)(Vector2.down * groundCheckDistance));
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * enemyData.closeRangeActionDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * enemyData.minAgroDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * enemyData.maxAgroDistance), 0.2f);
