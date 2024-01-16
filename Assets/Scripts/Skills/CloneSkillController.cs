@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
 
@@ -11,7 +12,10 @@ public class CloneSkillController : MonoBehaviour
 
     private float cloneTimer;
     [SerializeField] private Transform attackCheck;
-    [SerializeField] private float attackCheckRadius;
+    [SerializeField] private float attackCheckRadius = .8f;
+    private Transform closestEnemy;
+
+    protected AttackDetails attackDetails;
 
     private void Awake()
     {
@@ -26,22 +30,31 @@ public class CloneSkillController : MonoBehaviour
         if (cloneTimer < 0)
         {
             sr.color = new Color(1, 1, 1, sr.color.a - (Time.deltaTime * colorLoosingSpeed));
+            if (sr.color.a <= 0)
+            {
+                Destroy(gameObject);
+            }
         }
+        
     }
 
     public void SetupClone(Transform newTransform, float cloneDuration, bool canAttack)
     {
         if (canAttack)
         {
-            anim.SetInteger("AttackNumber", Random.RandomRange(1, 3));
+            anim.SetInteger("AttackNumber", Random.Range(1, 4));
         }
         transform.position = newTransform.position;
         cloneTimer = cloneDuration;
+
+
+
+        FaceClosestTarget();
     }
 
     private void AnimationTrigger()
     {
-
+        cloneTimer = -.1f;
     }
     private void AttackTrigger()
     {
@@ -49,7 +62,36 @@ public class CloneSkillController : MonoBehaviour
 
         foreach(var hit in colliders)
         {
+            if (hit.GetComponent<Enemy>() != null)
+                hit.GetComponent<Enemy>().Damage(attackDetails);
+        }
+    }
+    private void FaceClosestTarget()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 25);
 
+        float closestDistance = Mathf.Infinity;
+
+        foreach(var hit in colliders)
+        {
+            if(hit.GetComponent<Enemy>() != null)
+            {
+                float distanceToEnemy = Vector2.Distance(transform.position, hit.transform.position);
+
+                if(distanceToEnemy < closestDistance)
+                {
+                    closestDistance = distanceToEnemy;
+                    closestEnemy = hit.transform;
+                }
+            }
+        }
+        
+        if(closestEnemy != null)
+        {
+            if(transform.position.x > closestEnemy.position.x)
+            {
+                transform.Rotate(0, 180, 0);
+            }
         }
     }
 }
