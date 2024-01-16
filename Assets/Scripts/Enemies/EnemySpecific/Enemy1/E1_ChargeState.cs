@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class E1_ChargeState : ChargeState
 {
-    private Enemy1 enemy;
+    private Enemy1 enemy1;
 
-    public E1_ChargeState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_ChargeState stateData, Enemy1 enemy) : base(stateMashine, entity, animBoolName, stateData)
+    public E1_ChargeState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_ChargeState stateData, Enemy1 enemy1) : base(stateMashine, enemy1, animBoolName, stateData)
     {
-        this.enemy = enemy;
+        this.enemy1 = enemy1;
     }
 
     public override void DoChecks()
@@ -31,21 +31,21 @@ public class E1_ChargeState : ChargeState
         base.LogicUpdate();
         if (performCloseRangeAction)
         {
-            stateMashine.ChangeState(enemy.meleeAttackState);
+            stateMashine.ChangeState(enemy1.meleeAttackState);
         }
         else if (!isDetectingLedge || isDetectingWall)
         {
-            stateMashine.ChangeState(enemy.lookForPlayerState);
+            stateMashine.ChangeState(enemy1.lookForPlayerState);
         }
         else if (isChargeTimeOver)
         {
             if(isPlayerInMinAgroRange)
             {
-                stateMashine.ChangeState(enemy.playerDetectedState);
+                stateMashine.ChangeState(enemy1.playerDetectedState);
             }
             else
             {
-                stateMashine.ChangeState(enemy.lookForPlayerState);
+                stateMashine.ChangeState(enemy1.lookForPlayerState);
             }
         }
     }

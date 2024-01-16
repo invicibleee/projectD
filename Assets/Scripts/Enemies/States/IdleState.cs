@@ -12,7 +12,7 @@ public class IdleState : State
     protected bool isIdleTimeOver;
     protected bool isPlayerInMinAgroRange;
 
-    public IdleState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_IdleState stateData) : base(stateMashine, entity, animBoolName)
+    public IdleState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_IdleState stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -20,7 +20,7 @@ public class IdleState : State
     public override void DoChecks()
     {
         base.DoChecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
 
     }
 
@@ -28,7 +28,7 @@ public class IdleState : State
     {
         base.Enter();
 
-        entity.SetVelosity(0f);
+        enemy.SetVelosity(0f);
         isIdleTimeOver = false;
         SetRandomIdleTime();
     }
@@ -38,7 +38,7 @@ public class IdleState : State
 
         if (flipAfterIdle)
         {
-            entity.Flip();
+            enemy.Flip();
         }
     
     }

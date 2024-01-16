@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class E1_LookForPlayer : LookForPlayerState
 {
-    private Enemy1 enemy;
-    public E1_LookForPlayer(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_LookForPlayer stateData, Enemy1 enemy) : base(stateMashine, entity, animBoolName, stateData)
+    private Enemy1 enemy1;
+    public E1_LookForPlayer(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_LookForPlayer stateData, Enemy1 enemy1) : base(stateMashine, enemy1, animBoolName, stateData)
     {
-        this.enemy = enemy;
+        this.enemy1 = enemy1;
     }
 
     public override void DoChecks()
@@ -30,11 +30,11 @@ public class E1_LookForPlayer : LookForPlayerState
         base.LogicUpdate();
         if (isPlayerInMinAgroRange)
         {
-            stateMashine.ChangeState(enemy.playerDetectedState);
+            stateMashine.ChangeState(enemy1.playerDetectedState);
         }
         else if (isAllTurnsTimeDone)
         {
-            stateMashine.ChangeState(enemy.moveState);
+            stateMashine.ChangeState(enemy1.moveState);
         }
     }
 

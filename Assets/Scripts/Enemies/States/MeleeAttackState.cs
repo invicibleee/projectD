@@ -8,7 +8,7 @@ public class MeleeAttackState : AttackState
 
     protected AttackDetails attackDetails;
 
-    public MeleeAttackState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, Transform attackPosition,D_MeleeAttack stateData ) : base(stateMashine, entity, animBoolName, attackPosition)
+    public MeleeAttackState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition,D_MeleeAttack stateData ) : base(stateMashine, enemy, animBoolName, attackPosition)
     {
         this.stateData = stateData;
     }
@@ -22,7 +22,7 @@ public class MeleeAttackState : AttackState
     {
         base.Enter();
         attackDetails.damageAmount = stateData.attackDamage;
-        attackDetails.position = entity.aliveGO.transform.position;
+        attackDetails.position = enemy.aliveGO.transform.position;
     }
 
     public override void Exit()

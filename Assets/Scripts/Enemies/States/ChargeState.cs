@@ -15,7 +15,7 @@ public class ChargeState : State
     protected bool isChargeTimeOver;
 
     protected bool performCloseRangeAction;
-    public ChargeState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_ChargeState stateData) : base(stateMashine, entity, animBoolName)
+    public ChargeState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_ChargeState stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -23,18 +23,18 @@ public class ChargeState : State
     public override void DoChecks()
     {
         base.DoChecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
-        isDetectingLedge = entity.CheckLedge();
-        isDetectingWall = entity.CheckWall();
+        isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
+        isDetectingLedge = enemy.CheckLedge();
+        isDetectingWall = enemy.CheckWall();
 
-        performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
+        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
     }
 
     public override void Enter()
     {
         base.Enter();
         isChargeTimeOver = false;
-        entity.SetVelosity(stateData.chargeSpeed);
+        enemy.SetVelosity(stateData.chargeSpeed);
     }
 
     public override void Exit()

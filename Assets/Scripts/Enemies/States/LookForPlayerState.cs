@@ -14,7 +14,7 @@ public class LookForPlayerState : State
     protected float lastTurnTime;
 
     protected int amountOfTurnsDone;
-    public LookForPlayerState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_LookForPlayer stateData) : base(stateMashine, entity, animBoolName)
+    public LookForPlayerState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_LookForPlayer stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -22,7 +22,7 @@ public class LookForPlayerState : State
     public override void DoChecks()
     {
         base.DoChecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
     }
 
     public override void Enter()
@@ -32,7 +32,7 @@ public class LookForPlayerState : State
         isAllTurnsTimeDone = false;
         lastTurnTime = startTime;
         amountOfTurnsDone = 0;
-        entity.SetVelosity(0);
+        enemy.SetVelosity(0);
     }
 
     public override void Exit()
@@ -45,13 +45,13 @@ public class LookForPlayerState : State
         base.LogicUpdate();
         if(turnImmediately)
         {
-            entity.Flip();
+            enemy.Flip();
             lastTurnTime = Time.time;
             amountOfTurnsDone++;
             turnImmediately = false;
         }else if (Time.time > lastTurnTime + stateData.timeBetweenTunrs && !isAllTurnsDone)
         {
-            entity.Flip();
+            enemy.Flip();
             lastTurnTime = Time.time;
             amountOfTurnsDone++;
         }

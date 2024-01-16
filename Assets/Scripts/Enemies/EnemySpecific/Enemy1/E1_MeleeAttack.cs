@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class E1_MeleeAttack : MeleeAttackState
 {
-    Enemy1 enemy;
-    public E1_MeleeAttack(FiniteStateMashine stateMashine, Entity entity, string animBoolName, Transform attackPosition, D_MeleeAttack stateData, Enemy1 enemy) : base(stateMashine, entity, animBoolName, attackPosition, stateData)
+    Enemy1 enemy1;
+    public E1_MeleeAttack(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_MeleeAttack stateData, Enemy1 enemy1) : base(stateMashine, enemy1, animBoolName, attackPosition, stateData)
     {
-        this.enemy = enemy;
+        this.enemy1 = enemy1;
     }
 
     public override void DoChecks()
@@ -37,11 +37,11 @@ public class E1_MeleeAttack : MeleeAttackState
         {
             if(isPlayerInMinAgroRange)
             {
-                stateMashine.ChangeState(enemy.playerDetectedState);
+                stateMashine.ChangeState(enemy1.playerDetectedState);
             }
             else
             {
-                stateMashine.ChangeState(enemy.lookForPlayerState);
+                stateMashine.ChangeState(enemy1.lookForPlayerState);
             }
         }
     }

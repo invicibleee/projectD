@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1 : Entity
+public class Enemy1 : Enemy
 {
     public E1_IdleState idleState { get; private set; }
 

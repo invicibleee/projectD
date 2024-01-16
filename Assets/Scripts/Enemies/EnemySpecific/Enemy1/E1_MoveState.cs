@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class E1_MoveState : MoveState
 {
-    private Enemy1 enemy;
-    public E1_MoveState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_MoveState stateData, Enemy1 enemy) : base(stateMashine, entity, animBoolName, stateData)
+    private Enemy1 enemy1;
+    public E1_MoveState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_MoveState stateData, Enemy1 enemy1) : base(stateMashine, enemy1, animBoolName, stateData)
     {
-        this.enemy = enemy;
+        this.enemy1 = enemy1;
     }
 
     public override void Enter()
@@ -27,12 +27,12 @@ public class E1_MoveState : MoveState
 
         if (isPlayerInMinAgroRange)
         {
-            stateMashine.ChangeState(enemy.playerDetectedState);
+            stateMashine.ChangeState(enemy1.playerDetectedState);
         }
         else if (isDetectingWall || !isDetectingLedge)
         {
-            enemy.idleState.SetFlipAfterIdle(true);
-            stateMashine.ChangeState(enemy.idleState);
+            enemy1.idleState.SetFlipAfterIdle(true);
+            stateMashine.ChangeState(enemy1.idleState);
         }
     }
 

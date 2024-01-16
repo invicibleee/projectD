@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class E1_PlayerDetectedState : PlayerDetectedState
 {
-    private Enemy1 enemy;
-    public E1_PlayerDetectedState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_PlayerDetected stateData, Enemy1 enemy) : base(stateMashine, entity, animBoolName, stateData)
+    private Enemy1 enemy1;
+    public E1_PlayerDetectedState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_PlayerDetected stateData, Enemy1 enemy1) : base(stateMashine, enemy1, animBoolName, stateData)
     {
-        this.enemy = enemy;
+        this.enemy1 = enemy1;
     }
 
     public override void Enter()
@@ -25,15 +25,15 @@ public class E1_PlayerDetectedState : PlayerDetectedState
         base.LogicUpdate();
         if (performCloseRangeAction)
         {
-            stateMashine.ChangeState(enemy.meleeAttackState);
+            stateMashine.ChangeState(enemy1.meleeAttackState);
         }
         else if (performLongRangeAction)
         {            
-            stateMashine.ChangeState(enemy.chageState);
+            stateMashine.ChangeState(enemy1.chageState);
         }
         else if (!isPlayerInMaxAgroRange) 
         {
-            stateMashine.ChangeState(enemy.lookForPlayerState);
+            stateMashine.ChangeState(enemy1.lookForPlayerState);
         }
 
 

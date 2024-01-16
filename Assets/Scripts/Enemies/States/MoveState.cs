@@ -9,7 +9,7 @@ public class MoveState : State
     protected bool isDetectingWall;
     protected bool isDetectingLedge;
     protected bool isPlayerInMinAgroRange;
-    public MoveState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_MoveState stateData) : base(stateMashine, entity, animBoolName)
+    public MoveState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_MoveState stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -17,15 +17,15 @@ public class MoveState : State
     public override void DoChecks()
     {
         base.DoChecks();
-        isDetectingLedge = entity.CheckLedge();
-        isDetectingWall = entity.CheckWall();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isDetectingLedge = enemy.CheckLedge();
+        isDetectingWall = enemy.CheckWall();
+        isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
     }
 
     public override void Enter()
     {
         base.Enter();
-        entity.SetVelosity(stateData.movementSpeed);
+        enemy.SetVelosity(stateData.movementSpeed);
     }
     public override void Exit() 
     { 

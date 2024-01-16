@@ -5,24 +5,24 @@ using UnityEngine;
 public class State 
 {
     protected FiniteStateMashine stateMashine;
-    protected Entity entity;
+    protected Enemy enemy;
 
     protected float startTime;
 
     protected string animBoolName;
 
 
-    public State(FiniteStateMashine stateMashine, Entity entity, string animBoolName)
+    public State(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName)
     {
         this.stateMashine = stateMashine;
-        this.entity = entity;
+        this.enemy = enemy;
         this.animBoolName = animBoolName;
     }
 
     public virtual void Enter()
     {
         startTime = Time.time;
-        entity.anim.SetBool(animBoolName, true);
+        enemy.anim.SetBool(animBoolName, true);
         DoChecks();
     }
 
@@ -33,7 +33,7 @@ public class State
 
     public virtual void Exit()
     {
-        entity.anim.SetBool(animBoolName, false);
+        enemy.anim.SetBool(animBoolName, false);
 
     }
 

@@ -10,7 +10,7 @@ public class PlayerDetectedState : State
     protected bool performLongRangeAction;
     protected bool performCloseRangeAction;
 
-    public PlayerDetectedState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_PlayerDetected stateData) : base(stateMashine, entity, animBoolName)
+    public PlayerDetectedState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_PlayerDetected stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -18,16 +18,16 @@ public class PlayerDetectedState : State
     public override void DoChecks()
     {
         base.DoChecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
-        isPlayerInMaxAgroRange = entity.CheckPlayerInMaxAgroRange();
+        isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
+        isPlayerInMaxAgroRange = enemy.CheckPlayerInMaxAgroRange();
 
-        performCloseRangeAction = entity.CheckPlayerInCloseRangeAction();
+        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
     }
 
     public override void Enter()
     {
         base.Enter();
-        entity.SetVelosity(0f);
+        enemy.SetVelosity(0f);
         performLongRangeAction = false;
 
     }

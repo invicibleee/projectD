@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class E1_IdleState : IdleState
 {
-    private Enemy1 enemy;
-    public E1_IdleState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, D_IdleState stateData, Enemy1 enemy) : base(stateMashine, entity, animBoolName, stateData)
+    private Enemy1 enemy1;
+    public E1_IdleState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_IdleState stateData, Enemy1 enemy1) : base(stateMashine, enemy1, animBoolName, stateData)
     {
-        this.enemy = enemy;
+        this.enemy1 = enemy1;
     }
 
     public override void Enter()
@@ -25,11 +25,11 @@ public class E1_IdleState : IdleState
         base.LogicUpdate();
         if (isPlayerInMinAgroRange)
         {
-            stateMashine.ChangeState(enemy.playerDetectedState);
+            stateMashine.ChangeState(enemy1.playerDetectedState);
         }
         else if (isIdleTimeOver)
         {
-            stateMashine.ChangeState(enemy.moveState);
+            stateMashine.ChangeState(enemy1.moveState);
         }
     }
 

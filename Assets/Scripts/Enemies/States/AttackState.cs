@@ -11,7 +11,7 @@ public class AttackState : State
     protected bool isPlayerInMinAgroRange;
 
 
-    public AttackState(FiniteStateMashine stateMashine, Entity entity, string animBoolName, Transform attackPosition) : base(stateMashine, entity, animBoolName)
+    public AttackState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition) : base(stateMashine, enemy, animBoolName)
     {
         this.attackPosition = attackPosition;
     }
@@ -19,15 +19,15 @@ public class AttackState : State
     public override void DoChecks()
     {
         base.DoChecks();
-        isPlayerInMinAgroRange = entity.CheckPlayerInMinAgroRange();
+        isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
     }
 
     public override void Enter()
     {
         base.Enter();
-        entity.atsm.attackState = this;
+        enemy.atsm.attackState = this;
         isAnimationFinished = false;
-        entity.SetVelosity(0f);
+        enemy.SetVelosity(0f);
     }
 
     public override void Exit()
