@@ -23,13 +23,9 @@ public class Enemy : Entity
     protected override void Start()
     {
         base.Start();
-
-
-        atsm = GetComponentInChildren<AnimationToStatemashine>();
-
         currentHealth = enemyData.maxHealth;
-
-        
+        atsm = GetComponentInChildren<AnimationToStatemashine>();
+    
         stateMashine = new FiniteStateMashine();
     }
 
@@ -102,7 +98,7 @@ public class Enemy : Entity
         base.Flip();
     }
 
-    protected virtual void OnDrawGizmos()
+    protected override void OnDrawGizmos()
     {
         Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * facingDirection * wallCheckDistance));
         Gizmos.DrawLine(groundCheck.position, groundCheck.position + (Vector3)(Vector2.down * groundCheckDistance));
