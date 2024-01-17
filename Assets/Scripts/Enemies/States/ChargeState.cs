@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChargeState : State
+public class ChargeState : EnemyState
 {
     protected D_ChargeState stateData;
 
@@ -15,7 +15,7 @@ public class ChargeState : State
     protected bool isChargeTimeOver;
 
     protected bool performCloseRangeAction;
-    public ChargeState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_ChargeState stateData) : base(stateMashine, enemy, animBoolName)
+    public ChargeState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_ChargeState stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }

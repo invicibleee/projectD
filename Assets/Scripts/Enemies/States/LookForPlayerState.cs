@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LookForPlayerState : State
+public class LookForPlayerState : EnemyState
 {
     protected D_LookForPlayer stateData;
 
@@ -14,7 +14,7 @@ public class LookForPlayerState : State
     protected float lastTurnTime;
 
     protected int amountOfTurnsDone;
-    public LookForPlayerState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_LookForPlayer stateData) : base(stateMashine, enemy, animBoolName)
+    public LookForPlayerState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_LookForPlayer stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }

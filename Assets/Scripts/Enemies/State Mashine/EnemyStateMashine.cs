@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FiniteStateMashine 
+public class EnemyStateMashine 
 {
-    public State currentState {  get; private set; }
+    public EnemyState currentState {  get; private set; }
 
-    public void Initialize(State startingState)
+    public void Initialize(EnemyState startingState)
     {
         currentState = startingState;
         currentState.Enter();
 
     }
     
-    public void ChangeState(State newState)
+    public void ChangeState(EnemyState newState)
     {
         currentState.Exit();
         currentState = newState;

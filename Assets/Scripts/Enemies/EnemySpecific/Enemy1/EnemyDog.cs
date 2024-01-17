@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy1 : Enemy
+public class EnemyDog : Enemy
 {
     public E1_IdleState idleState { get; private set; }
 
@@ -15,7 +15,8 @@ public class Enemy1 : Enemy
     public E1_LookForPlayer lookForPlayerState { get; private set; }
 
     public E1_MeleeAttack meleeAttackState { get; private set; }
- 
+    
+    public E1_StunState stunState { get; private set; }
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField]
@@ -28,6 +29,8 @@ public class Enemy1 : Enemy
     private D_LookForPlayer lookForPlayerStateData;
     [SerializeField]
     private D_MeleeAttack meleeAttackStateData;
+    [SerializeField]
+    private D_StunState stunStateData;
 
     [SerializeField]
     private Transform meleeAttackPosition;
@@ -47,6 +50,8 @@ public class Enemy1 : Enemy
 
         meleeAttackState = new E1_MeleeAttack(stateMashine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
 
+        stunState = new E1_StunState(stateMashine, this, "stun", stunStateData, this);
+
         stateMashine.Initialize(moveState);
     }
     protected override void OnDrawGizmos()
@@ -54,5 +59,14 @@ public class Enemy1 : Enemy
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
 
+    }
+
+    public override void Damage(AttackDetails attackDetails)
+    {
+        base.Damage(attackDetails);
+        if(isStunned && stateMashine.currentState != stunState)
+        {
+            stateMashine.ChangeState(stunState);
+        }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDetectedState : State
+public class PlayerDetectedState : EnemyState
 {
     protected D_PlayerDetected stateData;
     protected bool isPlayerInMinAgroRange;
@@ -10,7 +10,7 @@ public class PlayerDetectedState : State
     protected bool performLongRangeAction;
     protected bool performCloseRangeAction;
 
-    public PlayerDetectedState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_PlayerDetected stateData) : base(stateMashine, enemy, animBoolName)
+    public PlayerDetectedState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_PlayerDetected stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }

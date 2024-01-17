@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State 
+public class EnemyState 
 {
-    protected FiniteStateMashine stateMashine;
+    protected EnemyStateMashine stateMashine;
     protected Enemy enemy;
 
     protected float startTime;
@@ -12,7 +12,7 @@ public class State
     protected string animBoolName;
 
 
-    public State(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName)
+    public EnemyState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName)
     {
         this.stateMashine = stateMashine;
         this.enemy = enemy;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AttackState : State
+public class AttackState : EnemyState
 {
     protected Transform attackPosition;
 
@@ -11,7 +11,7 @@ public class AttackState : State
     protected bool isPlayerInMinAgroRange;
 
 
-    public AttackState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition) : base(stateMashine, enemy, animBoolName)
+    public AttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition) : base(stateMashine, enemy, animBoolName)
     {
         this.attackPosition = attackPosition;
     }

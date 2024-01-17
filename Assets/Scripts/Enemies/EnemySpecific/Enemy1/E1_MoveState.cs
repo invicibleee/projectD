@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class E1_MoveState : MoveState
 {
-    private Enemy1 enemy1;
-    public E1_MoveState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_MoveState stateData, Enemy1 enemy1) : base(stateMashine, enemy1, animBoolName, stateData)
+    private EnemyDog enemy1;
+    public E1_MoveState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_MoveState stateData, EnemyDog enemy1) : base(stateMashine, enemy1, animBoolName, stateData)
     {
         this.enemy1 = enemy1;
     }

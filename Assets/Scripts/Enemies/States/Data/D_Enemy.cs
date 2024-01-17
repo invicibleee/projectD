@@ -10,6 +10,10 @@ public class D_Enemy : ScriptableObject
 
     public float maxAgroDistance = 4f;
     public float minAgroDistance = 2f;
+    public float groundCheckRadius = 0.3f;
+
+    public float stunResistance = 3f;
+    public float stunRecoveryTime = 2f;
 
     public float closeRangeActionDistance = 1f;
 

@@ -4,35 +4,43 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    public FiniteStateMashine stateMashine;
+    public EnemyStateMashine stateMashine;
 
     public D_Enemy enemyData;
     public AnimationToStatemashine atsm { get; private set; }
-
+    public int lastDamageDirection { get; private set; }
 
 
     [SerializeField]
     private Transform playerCheck;
-
+    [SerializeField] 
+    private Transform groundCheckStun;
     private float currentHealth;
-
-    private int lastDamageDirection;
+    private float currentStunResistence =0;
+    private float lastDamageTime;
 
     private Vector2 velocityWokrSpace;
 
+    protected bool isStunned;
     protected override void Start()
     {
         base.Start();
         currentHealth = enemyData.maxHealth;
+        currentStunResistence = enemyData.stunResistance;
+        
         atsm = GetComponentInChildren<AnimationToStatemashine>();
     
-        stateMashine = new FiniteStateMashine();
+        stateMashine = new EnemyStateMashine();
     }
 
     protected override void Update()
     {
         base.Update();
         stateMashine.currentState.LogicUpdate();
+        if (Time.time >= lastDamageTime + enemyData.stunRecoveryTime)
+        {
+            ResetStunResistance();
+        }
     }
 
     protected override void FixedUpdate()
@@ -47,10 +55,17 @@ public class Enemy : Entity
         rb.velocity = velocityWokrSpace;
     }
 
+    public virtual void ResetStunResistance()
+    {
+        isStunned = false;
+        currentStunResistence = enemyData.stunResistance;
+    }
+
     public virtual void Damage(AttackDetails attackDetails)
     {
+        lastDamageTime = Time.time;
         currentHealth -= attackDetails.damageAmount;
-
+        currentStunResistence -= attackDetails.stunDamageAmount;
         DamageHop(enemyData.damageHopSpeed);
 
         if (attackDetails.position.x > rb.transform.position.x)
@@ -61,12 +76,23 @@ public class Enemy : Entity
         {
             lastDamageDirection = 1;
         }
+
+        if(currentStunResistence <= 0)
+        {
+            isStunned= true;
+        }
     }
     public virtual void SetVelocityEnemy(float velocity)
     {
         velocityWokrSpace.Set(facingDirection * velocity, rb.velocity.y);
         rb.velocity = velocityWokrSpace;
 
+    }
+    public virtual void SetVelocityEnemy(float velocity, Vector2 angle, int direction)
+    {
+        angle.Normalize();
+        velocityWokrSpace.Set(angle.x * velocity * direction, angle.y * velocity);
+        rb.velocity = velocityWokrSpace;
     }
 
     public virtual bool CheckWall()
@@ -77,6 +103,10 @@ public class Enemy : Entity
     public virtual bool CheckLedge() 
     { 
         return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+    }
+    public virtual bool CheckGourndAround()
+    {
+        return Physics2D.OverlapCircle(groundCheckStun.position, enemyData.groundCheckRadius, whatIsGround);
     }
 
     public virtual bool CheckPlayerInMinAgroRange()

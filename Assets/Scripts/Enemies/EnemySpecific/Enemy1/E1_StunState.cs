@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E1_ChargeState : ChargeState
+public class E1_StunState : StunState
 {
     private EnemyDog enemy1;
-
-    public E1_ChargeState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_ChargeState stateData, EnemyDog enemy1) : base(stateMashine, enemy1, animBoolName, stateData)
+    public E1_StunState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_StunState stateData, EnemyDog enemy1) : base(stateMashine, enemy, animBoolName, stateData)
     {
         this.enemy1 = enemy1;
     }
@@ -29,23 +28,21 @@ public class E1_ChargeState : ChargeState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (performCloseRangeAction)
+        if(isStunTimeOver)
         {
-            stateMashine.ChangeState(enemy1.meleeAttackState);
-        }
-        else if (!isDetectingLedge || isDetectingWall)
-        {
-            stateMashine.ChangeState(enemy1.lookForPlayerState);
-        }
-        else if (isChargeTimeOver)
-        {
-            if(isPlayerInMinAgroRange)
+            if(preformCloseRangeAction)
             {
-                stateMashine.ChangeState(enemy1.playerDetectedState);
+                stateMashine.ChangeState(enemy1.meleeAttackState);
+            }
+            else if (isPlayerInMinAgroRange)
+            {
+                stateMashine.ChangeState(enemy1.chageState);
             }
             else
             {
+                enemy1.lookForPlayerState.SetTunrImmediatly(true);
                 stateMashine.ChangeState(enemy1.lookForPlayerState);
+
             }
         }
     }

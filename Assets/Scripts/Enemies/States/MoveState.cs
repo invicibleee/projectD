@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveState : State
+public class MoveState : EnemyState
 {
     protected D_MoveState stateData;
 
     protected bool isDetectingWall;
     protected bool isDetectingLedge;
     protected bool isPlayerInMinAgroRange;
-    public MoveState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_MoveState stateData) : base(stateMashine, enemy, animBoolName)
+    public MoveState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_MoveState stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }

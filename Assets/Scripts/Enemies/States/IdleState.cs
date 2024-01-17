@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleState : State
+public class IdleState : EnemyState
 {
     protected D_IdleState stateData;
 
@@ -12,7 +12,7 @@ public class IdleState : State
     protected bool isIdleTimeOver;
     protected bool isPlayerInMinAgroRange;
 
-    public IdleState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_IdleState stateData) : base(stateMashine, enemy, animBoolName)
+    public IdleState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_IdleState stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }

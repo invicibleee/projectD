@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class E1_MeleeAttack : MeleeAttackState
 {
-    Enemy1 enemy1;
-    public E1_MeleeAttack(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_MeleeAttack stateData, Enemy1 enemy1) : base(stateMashine, enemy1, animBoolName, attackPosition, stateData)
+    EnemyDog enemy1;
+    public E1_MeleeAttack(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_MeleeAttack stateData, EnemyDog enemy1) : base(stateMashine, enemy1, animBoolName, attackPosition, stateData)
     {
         this.enemy1 = enemy1;
     }

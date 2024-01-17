@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class E1_PlayerDetectedState : PlayerDetectedState
 {
-    private Enemy1 enemy1;
-    public E1_PlayerDetectedState(FiniteStateMashine stateMashine, Enemy enemy, string animBoolName, D_PlayerDetected stateData, Enemy1 enemy1) : base(stateMashine, enemy1, animBoolName, stateData)
+    private EnemyDog enemy1;
+    public E1_PlayerDetectedState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_PlayerDetected stateData, EnemyDog enemy1) : base(stateMashine, enemy1, animBoolName, stateData)
     {
         this.enemy1 = enemy1;
     }
