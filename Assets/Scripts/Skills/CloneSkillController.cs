@@ -63,7 +63,7 @@ public class CloneSkillController : MonoBehaviour
         foreach(var hit in colliders)
         {
             if (hit.GetComponent<Enemy>() != null)
-                hit.GetComponent<Enemy>().Damage(attackDetails);
+                hit.GetComponent<Enemy>().Damage();
         }
     }
     private void FaceClosestTarget()
