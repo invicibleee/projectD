@@ -41,42 +41,16 @@ public class Enemy : Entity
         stateMashine.currentState.PhysicsUpdate();
     }
 
-    public virtual void DamageHop(float velosity)
+    public virtual void DamageHop(float velocity)
     {
-        velocityWokrSpace.Set(rb.velocity.x, velosity);
+        velocityWokrSpace.Set(rb.velocity.x, velocity);
         rb.velocity = velocityWokrSpace;
-    }
-
-    public virtual void Damage(AttackDetails attackDetails)
-    {
-        currentHealth -= attackDetails.damageAmount;
-
-        DamageHop(enemyData.damageHopSpeed);
-
-        if (attackDetails.position.x > rb.transform.position.x)
-        {
-            lastDamageDirection = -1;
-        }
-        else
-        {
-            lastDamageDirection = 1;
-        }
     }
     public virtual void SetVelocityEnemy(float velocity)
     {
         velocityWokrSpace.Set(facingDirection * velocity, rb.velocity.y);
         rb.velocity = velocityWokrSpace;
 
-    }
-
-    public virtual bool CheckWall()
-    {
-        return Physics2D.Raycast(wallCheck.position, rb.transform.right, wallCheckDistance, whatIsGround);
-    }
-
-    public virtual bool CheckLedge() 
-    { 
-        return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
     }
 
     public virtual bool CheckPlayerInMinAgroRange()
@@ -91,11 +65,6 @@ public class Enemy : Entity
     public virtual bool CheckPlayerInCloseRangeAction()
     {
         return Physics2D.Raycast(playerCheck.position,rb.transform.right,enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
-    }
-
-    public override void Flip()
-    {
-        base.Flip();
     }
 
     protected override void OnDrawGizmos()
