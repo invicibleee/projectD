@@ -17,8 +17,8 @@ public class MoveState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
-        isDetectingLedge = enemy.CheckLedge();
-        isDetectingWall = enemy.CheckWall();
+        isDetectingLedge = enemy.IsGroundDetected();
+        isDetectingWall = enemy.IsWallDetected();
         isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
     }
 

@@ -24,8 +24,8 @@ public class ChargeState : EnemyState
     {
         base.DoChecks();
         isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
-        isDetectingLedge = enemy.CheckLedge();
-        isDetectingWall = enemy.CheckWall();
+        isDetectingLedge = enemy.IsGroundDetected();
+        isDetectingWall = enemy.IsWallDetected();
 
         performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
     }
