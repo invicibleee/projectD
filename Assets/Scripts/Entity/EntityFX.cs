@@ -24,4 +24,5 @@ public class EntityFX : MonoBehaviour
 
         sr.material = originalMaterial;
     }
+
 }

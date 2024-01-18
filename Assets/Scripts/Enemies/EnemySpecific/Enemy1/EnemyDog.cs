@@ -16,6 +16,8 @@ public class EnemyDog : Enemy
 
     public E1_MeleeAttack meleeAttackState { get; private set; }
     
+    public E1_DeathState deathState { get; private set; }
+
     public E1_StunState stunState { get; private set; }
     [SerializeField]
     private D_IdleState idleStateData;
@@ -31,6 +33,8 @@ public class EnemyDog : Enemy
     private D_MeleeAttack meleeAttackStateData;
     [SerializeField]
     private D_StunState stunStateData;
+    [SerializeField]
+    private D_DeathState deathStateData;
 
     protected override void Start()
     {
@@ -49,6 +53,8 @@ public class EnemyDog : Enemy
 
         stunState = new E1_StunState(stateMashine, this, "stun", stunStateData, this);
 
+        deathState = new E1_DeathState(stateMashine, this,"death", deathStateData, this);
+
         stateMashine.Initialize(moveState);
     }
     protected override void OnDrawGizmos()
@@ -58,12 +64,17 @@ public class EnemyDog : Enemy
 
     }
 
-    public override void Damage(AttackDetails attackDetails)
+    public override void Damage()
     {
-        base.Damage(attackDetails);
-        if(isStunned && stateMashine.currentState != stunState)
+        base.Damage();
+        if (isDead)
+        {
+            stateMashine.ChangeState(deathState);
+        }
+        else if (isStunned && stateMashine.currentState != stunState)
         {
             stateMashine.ChangeState(stunState);
         }
+
     }
 }

@@ -17,5 +17,7 @@ public class D_Enemy : ScriptableObject
 
     public float closeRangeActionDistance = 1f;
 
+    public GameObject hitParticle;
+
     public LayerMask whatIsPlayer;
 }

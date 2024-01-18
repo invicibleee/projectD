@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class E1_StunState : StunState
 {
-    private EnemyDog enemy1;
+    private EnemyDog enemyDog;
     public E1_StunState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_StunState stateData, EnemyDog enemy1) : base(stateMashine, enemy, animBoolName, stateData)
     {
-        this.enemy1 = enemy1;
+        this.enemyDog = enemy1;
     }
 
     public override void DoChecks()
@@ -32,16 +32,16 @@ public class E1_StunState : StunState
         {
             if(preformCloseRangeAction)
             {
-                stateMashine.ChangeState(enemy1.meleeAttackState);
+                stateMashine.ChangeState(enemyDog.meleeAttackState);
             }
             else if (isPlayerInMinAgroRange)
             {
-                stateMashine.ChangeState(enemy1.chageState);
+                stateMashine.ChangeState(enemyDog.chageState);
             }
             else
             {
-                enemy1.lookForPlayerState.SetTunrImmediatly(true);
-                stateMashine.ChangeState(enemy1.lookForPlayerState);
+                enemyDog.lookForPlayerState.SetTunrImmediatly(true);
+                stateMashine.ChangeState(enemyDog.lookForPlayerState);
 
             }
         }

@@ -22,6 +22,7 @@ public class Enemy : Entity
     private Vector2 velocityWokrSpace;
 
     protected bool isStunned;
+    protected bool isDead;
     protected override void Start()
     {
         base.Start();
@@ -61,25 +62,34 @@ public class Enemy : Entity
         currentStunResistence = enemyData.stunResistance;
     }
 
-    public virtual void Damage(AttackDetails attackDetails)
+    //public virtual void Damage(AttackDetails attackDetails)
+    //{
+    //    lastDamageTime = Time.time;
+    //    currentHealth -= attackDetails.damageAmount;
+    //    currentStunResistence -= attackDetails.stunDamageAmount;
+    //    DamageHop(enemyData.damageHopSpeed);
+
+    //    if (attackDetails.position.x > rb.transform.position.x)
+    //    {
+    //        lastDamageDirection = -1;
+    //    }
+    //    else
+    //    {
+    //        lastDamageDirection = 1;
+    //    }
+
+    //    if(currentStunResistence <= 0)
+    //    {
+    //        isStunned= true;
+    //    }
+    //}
+    public override void Damage()
     {
-        lastDamageTime = Time.time;
-        currentHealth -= attackDetails.damageAmount;
-        currentStunResistence -= attackDetails.stunDamageAmount;
-        DamageHop(enemyData.damageHopSpeed);
-
-        if (attackDetails.position.x > rb.transform.position.x)
+        base.Damage();
+        Instantiate(enemyData.hitParticle,rb.transform.position, Quaternion.Euler(0f,0f,Random.Range(0f,360f)));
+        if(currentHealth <= 0)
         {
-            lastDamageDirection = -1;
-        }
-        else
-        {
-            lastDamageDirection = 1;
-        }
-
-        if(currentStunResistence <= 0)
-        {
-            isStunned= true;
+            isDead = true;
         }
     }
     public virtual void SetVelocityEnemy(float velocity)
