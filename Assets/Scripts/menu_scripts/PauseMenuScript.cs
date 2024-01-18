@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PauseMenuScript : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject gui;
+    public GameObject postProcessing;
 
     public Button closeButton;
 
@@ -24,6 +26,7 @@ public class PauseMenuScript : MonoBehaviour
         if (pauseMenu != null)
             pauseMenu.SetActive(false);
             gui.SetActive(true);
+            postProcessing.SetActive(true);
 
         // Ensure the arrays are of the same length
         if (menuButtons.Length == menuPanels.Length && navigationButtons.Length == 2)
@@ -37,6 +40,7 @@ public class PauseMenuScript : MonoBehaviour
 
             navigationButtons[0].onClick.AddListener(ShowPreviousPanel);
             navigationButtons[1].onClick.AddListener(ShowNextPanel);
+
         }
         else
         {
@@ -44,7 +48,9 @@ public class PauseMenuScript : MonoBehaviour
         }
         Currency = SetCurrency(1000);
         currency.text = $"{Currency}$";
+
     }
+
 
     private void Update()
     {
@@ -63,6 +69,7 @@ public class PauseMenuScript : MonoBehaviour
             closeButton.onClick.AddListener(TogglePauseMenu);
         }
     }
+
     int SetCurrency(int value) {
        int currency = value;
        return currency;
@@ -86,8 +93,10 @@ public class PauseMenuScript : MonoBehaviour
         {
             bool isMenuActive = pauseMenu.activeSelf;
             bool isGuiActive = gui.activeSelf;
+            bool isPostActive = postProcessing.activeSelf;
             pauseMenu.SetActive(!isMenuActive);
             gui.SetActive(!isGuiActive);
+            postProcessing.SetActive(!isPostActive);
             // Pause or resume the game based on the menu's visibility
             Time.timeScale = isMenuActive ? 1f : 0f;
         }
