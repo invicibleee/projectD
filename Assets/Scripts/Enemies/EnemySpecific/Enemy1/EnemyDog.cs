@@ -32,9 +32,6 @@ public class EnemyDog : Enemy
     [SerializeField]
     private D_StunState stunStateData;
 
-    [SerializeField]
-    private Transform meleeAttackPosition;
-
     protected override void Start()
     {
         base.Start();
@@ -48,7 +45,7 @@ public class EnemyDog : Enemy
 
         lookForPlayerState = new E1_LookForPlayer(stateMashine, this, "lookForPlayer", lookForPlayerStateData, this);
 
-        meleeAttackState = new E1_MeleeAttack(stateMashine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+        meleeAttackState = new E1_MeleeAttack(stateMashine, this, "meleeAttack", attackCheck, meleeAttackStateData, this);
 
         stunState = new E1_StunState(stateMashine, this, "stun", stunStateData, this);
 
@@ -57,7 +54,7 @@ public class EnemyDog : Enemy
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
-        Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
+        Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
 
     }
 

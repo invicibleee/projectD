@@ -94,16 +94,6 @@ public class Enemy : Entity
         velocityWokrSpace.Set(angle.x * velocity * direction, angle.y * velocity);
         rb.velocity = velocityWokrSpace;
     }
-
-    public virtual bool CheckWall()
-    {
-        return Physics2D.Raycast(wallCheck.position, rb.transform.right, wallCheckDistance, whatIsGround);
-    }
-
-    public virtual bool CheckLedge() 
-    { 
-        return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
-    }
     public virtual bool CheckGourndAround()
     {
         return Physics2D.OverlapCircle(groundCheckStun.position, enemyData.groundCheckRadius, whatIsGround);
