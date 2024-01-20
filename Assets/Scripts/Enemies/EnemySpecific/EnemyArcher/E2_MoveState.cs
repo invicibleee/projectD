@@ -29,8 +29,11 @@ public class E2_MoveState : MoveState
     {
         base.LogicUpdate();
 
-
-        if (isDetectingWall || !isDetectingLedge)
+        if (isPlayerInMinAgroRange)
+        {
+            stateMashine.ChangeState(enemyArcher.playerDetectedState);
+        }
+        else if (isDetectingWall || !isDetectingLedge)
         {
             enemyArcher.idleState.SetFlipAfterIdle(true);
             stateMashine.ChangeState(enemyArcher.idleState);

@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E2_IdleState : IdleState
+public class E2_PlayerDetectedState : PlayerDetectedState
 {
     private EnemyArcher enemyArcher;
-    public E2_IdleState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_IdleState stateData, EnemyArcher enemyArcher) : base(stateMashine, enemy, animBoolName, stateData)
+    public E2_PlayerDetectedState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_PlayerDetected stateData, EnemyArcher enemyArcher) : base(stateMashine, enemy, animBoolName, stateData)
     {
         this.enemyArcher = enemyArcher;
     }
@@ -28,14 +28,16 @@ public class E2_IdleState : IdleState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (isPlayerInMinAgroRange)
+        if (!isPlayerInMaxAgroRange)
         {
-            stateMashine.ChangeState(enemyArcher.playerDetectedState);
+            stateMashine.ChangeState(enemyArcher.lookForPlayerState);
         }
-        else if (isIdleTimeOver)
+        else if (!isDetectingLedge)
         {
+            enemy.Flip();
             stateMashine.ChangeState(enemyArcher.moveState);
         }
+
     }
 
     public override void PhysicsUpdate()

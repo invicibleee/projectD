@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E2_IdleState : IdleState
+public class E2_LookForPlayerState : LookForPlayerState
 {
     private EnemyArcher enemyArcher;
-    public E2_IdleState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_IdleState stateData, EnemyArcher enemyArcher) : base(stateMashine, enemy, animBoolName, stateData)
+    public E2_LookForPlayerState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_LookForPlayer stateData, EnemyArcher enemyArcher) : base(stateMashine, enemy, animBoolName, stateData)
     {
         this.enemyArcher = enemyArcher;
     }
@@ -32,7 +32,7 @@ public class E2_IdleState : IdleState
         {
             stateMashine.ChangeState(enemyArcher.playerDetectedState);
         }
-        else if (isIdleTimeOver)
+        else if (isAllTurnsTimeDone)
         {
             stateMashine.ChangeState(enemyArcher.moveState);
         }
