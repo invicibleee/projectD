@@ -67,6 +67,7 @@ public class EnemyDog : Enemy
     public override void Damage()
     {
         base.Damage();
+        
         if (isDead)
         {
             stateMashine.ChangeState(deathState);
@@ -75,6 +76,7 @@ public class EnemyDog : Enemy
         {
             stateMashine.ChangeState(stunState);
         }
+        
 
     }
 }

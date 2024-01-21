@@ -86,6 +86,8 @@ public class Enemy : Entity
     public override void Damage()
     {
         base.Damage();
+        currentHealth = enemyData.maxHealth;
+        
         Instantiate(enemyData.hitParticle,rb.transform.position, Quaternion.Euler(0f,0f,Random.Range(0f,360f)));
         if(currentHealth <= 0)
         {

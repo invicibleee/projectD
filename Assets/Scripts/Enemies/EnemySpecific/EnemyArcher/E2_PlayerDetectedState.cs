@@ -28,7 +28,11 @@ public class E2_PlayerDetectedState : PlayerDetectedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (!isPlayerInMaxAgroRange)
+        if(performCloseRangeAction)
+        {
+            stateMashine.ChangeState(enemyArcher.meleeAttackState);
+        }
+        else if (!isPlayerInMaxAgroRange)
         {
             stateMashine.ChangeState(enemyArcher.lookForPlayerState);
         }

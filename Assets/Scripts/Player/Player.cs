@@ -20,6 +20,8 @@ public class Player : Entity
     public float dashDuration;
     public float dashDirection { get; private set; }
 
+    private float currentDamageplayer;
+
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
 

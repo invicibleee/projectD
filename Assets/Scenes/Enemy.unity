@@ -709,6 +709,11 @@ MonoBehaviour:
   groundCheckStun: {fileID: 1773928799}
   idleStateData: {fileID: 11400000, guid: c0b928b908b173549a064452ee837f92, type: 2}
   moveStateData: {fileID: 11400000, guid: 6616388d43a129649aa03b1e02902ce7, type: 2}
+  playerDetectedData: {fileID: 11400000, guid: 437f61337d21fcb47b91d70e7c1e3db7, type: 2}
+  lookForPlayerData: {fileID: 11400000, guid: ba8f01f4db6c06f4fbd898fdf15b9248, type: 2}
+  meleeAttackData: {fileID: 11400000, guid: 19524f7586629534a98f2b8e3a90f2db, type: 2}
+  stunStateData: {fileID: 11400000, guid: 3c44d9b4e3762594faca9b667b64cc79, type: 2}
+  deathStateData: {fileID: 11400000, guid: d7a38bd83087f4046b824659bd6e47cd, type: 2}
 --- !u!4 &1252598201
 Transform:
   m_ObjectHideFlags: 0
@@ -921,7 +926,7 @@ Transform:
   m_GameObject: {fileID: 1308964556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.38, y: 0.81, z: 0}
+  m_LocalPosition: {x: -4.8, y: 7.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -952,7 +957,7 @@ Transform:
   m_GameObject: {fileID: 1341472722}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.49, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1098,7 +1103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1619947452}
   m_Layer: 7
-  m_Name: AttackCheck
+  m_Name: MeleeAttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1113,7 +1118,7 @@ Transform:
   m_GameObject: {fileID: 1619947451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.528, y: -0.251, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1191,6 +1196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1904150667}
   - component: {fileID: 1904150669}
+  - component: {fileID: 1904150670}
   - component: {fileID: 1904150668}
   m_Layer: 7
   m_Name: Alive
@@ -1291,6 +1297,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1904150670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1904150666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d71dde1e8b2e46488c32cff2057ba94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2055432992
 GameObject:
   m_ObjectHideFlags: 0
