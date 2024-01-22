@@ -714,6 +714,7 @@ MonoBehaviour:
   meleeAttackData: {fileID: 11400000, guid: 19524f7586629534a98f2b8e3a90f2db, type: 2}
   stunStateData: {fileID: 11400000, guid: 3c44d9b4e3762594faca9b667b64cc79, type: 2}
   deathStateData: {fileID: 11400000, guid: d7a38bd83087f4046b824659bd6e47cd, type: 2}
+  dodgeStateData: {fileID: 11400000, guid: 81839a013486e4b48841363c06c616e5, type: 2}
 --- !u!4 &1252598201
 Transform:
   m_ObjectHideFlags: 0

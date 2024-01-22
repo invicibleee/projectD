@@ -7,7 +7,7 @@ public class EnemyState
     protected EnemyStateMashine stateMashine;
     protected Enemy enemy;
 
-    protected float startTime;
+    public float startTime { get; protected set; }
 
     protected string animBoolName;
 

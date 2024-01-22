@@ -30,17 +30,20 @@ public class E2_PlayerDetectedState : PlayerDetectedState
         base.LogicUpdate();
         if(performCloseRangeAction)
         {
-            stateMashine.ChangeState(enemyArcher.meleeAttackState);
+            if(Time.time >= enemyArcher.dodgeState.startTime + enemyArcher.dodgeStateData.dodgeCooldown)
+            {
+                stateMashine.ChangeState(enemyArcher.dodgeState);
+            }
+            else
+            {
+                stateMashine.ChangeState(enemyArcher.meleeAttackState);
+            }            
         }
         else if (!isPlayerInMaxAgroRange)
         {
             stateMashine.ChangeState(enemyArcher.lookForPlayerState);
         }
-        else if (!isDetectingLedge)
-        {
-            enemy.Flip();
-            stateMashine.ChangeState(enemyArcher.moveState);
-        }
+
 
     }
 

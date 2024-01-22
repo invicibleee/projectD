@@ -38,6 +38,9 @@ public class Enemy : Entity
     {
         base.Update();
         stateMashine.currentState.LogicUpdate();
+
+        anim.SetFloat("yVelocity", rb.velocity.y);
+
         if (Time.time >= lastDamageTime + enemyData.stunRecoveryTime)
         {
             ResetStunResistance();

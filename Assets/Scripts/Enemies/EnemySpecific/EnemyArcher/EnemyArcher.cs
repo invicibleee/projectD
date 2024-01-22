@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -19,6 +20,8 @@ public class EnemyArcher : Enemy
 
     public E2_DeathState deathState { get; private set; }
 
+    public E2_DodgeState dodgeState { get; private set;}
+
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField] 
@@ -31,7 +34,10 @@ public class EnemyArcher : Enemy
     private D_MeleeAttack meleeAttackData;
     [SerializeField]
     private D_StunState stunStateData;
-    [SerializeField] private D_DeathState deathStateData;
+    [SerializeField] 
+    private D_DeathState deathStateData;
+    [SerializeField]
+    public D_DodgeState dodgeStateData;
 
     protected override void Start()
     {
@@ -47,7 +53,10 @@ public class EnemyArcher : Enemy
         lookForPlayerState = new E2_LookForPlayerState(stateMashine, this,"lookForPlayer", lookForPlayerData, this);
 
         stunState = new E2_StunState(stateMashine, this,"stun",stunStateData, this);
+        
         deathState = new E2_DeathState(stateMashine, this,"death",deathStateData, this);
+
+        dodgeState = new E2_DodgeState(stateMashine, this,"dodge", dodgeStateData, this);
 
         stateMashine.Initialize(moveState);
     }
