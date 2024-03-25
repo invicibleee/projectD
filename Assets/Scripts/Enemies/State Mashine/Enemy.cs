@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : Entity
@@ -7,6 +9,8 @@ public class Enemy : Entity
     public FiniteStateMashine stateMashine;
 
     public D_Enemy enemyData;
+    public D_MoveState stateData;
+
     public AnimationToStatemashine atsm { get; private set; }
 
 
@@ -18,6 +22,8 @@ public class Enemy : Entity
 
     private int lastDamageDirection;
 
+    private float defaultMoveSpeed;
+
     private Vector2 velocityWokrSpace;
 
     protected override void Start()
@@ -25,7 +31,9 @@ public class Enemy : Entity
         base.Start();
         currentHealth = enemyData.maxHealth;
         atsm = GetComponentInChildren<AnimationToStatemashine>();
-    
+
+        defaultMoveSpeed = stateData.movementSpeed;
+
         stateMashine = new FiniteStateMashine();
     }
 
@@ -76,5 +84,28 @@ public class Enemy : Entity
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * enemyData.maxAgroDistance), 0.2f);
 
 
+    }
+
+    public virtual void FreezeTime(bool _timeFrozen)
+    {
+        if (_timeFrozen)
+        {
+            stateData.movementSpeed = 0;
+            anim.speed = 0;
+        }
+        else
+        {
+            stateData.movementSpeed = defaultMoveSpeed;
+            anim.speed = 1;
+        }
+    }
+
+    protected virtual IEnumerator FreezeTimer(float _seconds)
+    {
+        FreezeTime(true);
+
+        yield return new WaitForSeconds(_seconds);
+
+        FreezeTime(false);
     }
 }
