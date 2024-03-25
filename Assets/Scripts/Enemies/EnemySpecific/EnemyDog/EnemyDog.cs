@@ -51,8 +51,6 @@ public class EnemyDog : Enemy
 
         meleeAttackState = new E1_MeleeAttack(stateMashine, this, "meleeAttack", attackCheck, meleeAttackStateData, this);
 
-        stunState = new E1_StunState(stateMashine, this, "stun", stunStateData, this);
-
         deathState = new E1_DeathState(stateMashine, this,"death", deathStateData, this);
 
         stateMashine.Initialize(moveState);

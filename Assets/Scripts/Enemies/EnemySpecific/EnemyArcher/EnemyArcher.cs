@@ -52,7 +52,7 @@ public class EnemyArcher : Enemy
 
         lookForPlayerState = new E2_LookForPlayerState(stateMashine, this,"lookForPlayer", lookForPlayerData, this);
 
-        stunState = new E2_StunState(stateMashine, this,"stun",stunStateData, this);
+        
         
         deathState = new E2_DeathState(stateMashine, this,"death",deathStateData, this);
 
