@@ -22,6 +22,8 @@ public class EnemyArcher : Enemy
 
     public E2_DodgeState dodgeState { get; private set;}
 
+    public E2_RangeAttackState rangeAttackState { get; private set; }
+
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField] 
@@ -38,7 +40,10 @@ public class EnemyArcher : Enemy
     private D_DeathState deathStateData;
     [SerializeField]
     public D_DodgeState dodgeStateData;
-
+    [SerializeField]
+    private D_RangeAttackState rangeAttackStateData;
+    [SerializeField]
+    private Transform rangeAttackPosition;
     protected override void Start()
     {
         base.Start();
@@ -52,7 +57,7 @@ public class EnemyArcher : Enemy
 
         lookForPlayerState = new E2_LookForPlayerState(stateMashine, this,"lookForPlayer", lookForPlayerData, this);
 
-        
+        rangeAttackState = new E2_RangeAttackState(stateMashine, this,"rangeAttack",rangeAttackPosition,rangeAttackStateData, this);
         
         deathState = new E2_DeathState(stateMashine, this,"death",deathStateData, this);
 
@@ -77,7 +82,12 @@ public class EnemyArcher : Enemy
         else if (isStunned && stateMashine.currentState != stunState)
         {
             stateMashine.ChangeState(stunState);
-        }else if (!CheckPlayerInMinAgroRange())
+        }
+        else if (CheckPlayerInMinAgroRange())
+        {
+            stateMashine.ChangeState(rangeAttackState);
+        }
+        else if (!CheckPlayerInMinAgroRange())
         {
             lookForPlayerState.SetTunrImmediatly(true);
             stateMashine.ChangeState(lookForPlayerState);

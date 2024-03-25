@@ -39,6 +39,10 @@ public class E2_PlayerDetectedState : PlayerDetectedState
                 stateMashine.ChangeState(enemyArcher.meleeAttackState);
             }            
         }
+        else if (performLongRangeAction)
+        {
+            stateMashine.ChangeState(enemyArcher.rangeAttackState);
+        }
         else if (!isPlayerInMaxAgroRange)
         {
             stateMashine.ChangeState(enemyArcher.lookForPlayerState);

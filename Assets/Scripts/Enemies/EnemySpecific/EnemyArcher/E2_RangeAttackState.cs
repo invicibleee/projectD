@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E2_DodgeState : DodgeState
+public class E2_RangeAttackState : RangeAttackState
 {
     private EnemyArcher enemyArcher;
-    public E2_DodgeState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_DodgeState stateData, EnemyArcher enemyArcher) : base(stateMashine, enemy, animBoolName, stateData)
+
+    public E2_RangeAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_RangeAttackState stateData, EnemyArcher enemyArcher) : base(stateMashine, enemy, animBoolName, attackPosition, stateData)
     {
         this.enemyArcher = enemyArcher;
     }
@@ -25,20 +26,21 @@ public class E2_DodgeState : DodgeState
         base.Exit();
     }
 
+    public override void FinishAttack()
+    {
+        base.FinishAttack();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(isDodgeOver)
+        if(isAnimationFinished)
         {
-            if (isPLayerInMaxArgroRange && performCloseRangeAction)
+            if(isPlayerInMinAgroRange)
             {
-                stateMashine.ChangeState(enemyArcher.meleeAttackState);
+                stateMashine.ChangeState(enemyArcher.playerDetectedState);
             }
-            else if (isPLayerInMaxArgroRange && !performCloseRangeAction)
-            {
-                stateMashine.ChangeState(enemyArcher.rangeAttackState);
-            }
-            else if (!isPLayerInMaxArgroRange)
+            else
             {
                 stateMashine.ChangeState(enemyArcher.lookForPlayerState);
             }
@@ -48,5 +50,10 @@ public class E2_DodgeState : DodgeState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    public override void TriggerAttack()
+    {
+        base.TriggerAttack();
     }
 }
