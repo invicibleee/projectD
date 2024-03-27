@@ -8,6 +8,8 @@ public class RangeAttackState : AttackState
 
     protected GameObject projectile;
     protected Projectile projectileScript;
+    protected bool isPlayerInMaxAgroRange;
+
     public RangeAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_RangeAttackState stateData) : base(stateMashine, enemy, animBoolName, attackPosition)
     {
         this.stateData = stateData;
@@ -16,6 +18,8 @@ public class RangeAttackState : AttackState
     public override void DoChecks()
     {
         base.DoChecks();
+        isPlayerInMaxAgroRange = enemy.CheckPlayerInMaxAgroRange();
+
     }
 
     public override void Enter()

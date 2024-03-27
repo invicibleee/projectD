@@ -9,6 +9,7 @@ public class MoveState : EnemyState
     protected bool isDetectingWall;
     protected bool isDetectingLedge;
     protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInMaxAgroRange;
     public MoveState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_MoveState stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
@@ -17,6 +18,8 @@ public class MoveState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
+        isPlayerInMaxAgroRange = enemy.CheckPlayerInMaxAgroRange();
+
         isDetectingLedge = enemy.IsGroundDetected();
         isDetectingWall = enemy.IsWallDetected();
         isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();

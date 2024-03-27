@@ -28,8 +28,12 @@ public class E2_MoveState : MoveState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (isPlayerInMaxAgroRange)
+        {
+            stateMashine.ChangeState(enemyArcher.rangeAttackState);
 
-        if (isPlayerInMinAgroRange)
+        }
+        else if (isPlayerInMinAgroRange)
         {
             stateMashine.ChangeState(enemyArcher.playerDetectedState);
         }
