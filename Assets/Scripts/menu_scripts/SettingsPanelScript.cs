@@ -60,7 +60,7 @@ public class SettingsPanelScript : MonoBehaviour
     }
     public void QuitGame()
     {
-        SceneManager.LoadScene("MainMenu");
+        Application.Quit();
     }
 
     public void OnResolutionChanged(int resolutionIndex)

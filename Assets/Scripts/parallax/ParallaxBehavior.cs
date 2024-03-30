@@ -6,27 +6,24 @@ public class ParallaxBehavior : MonoBehaviour
 {
 
     [SerializeField] Transform followingTarget;
-    [SerializeField, Range(0f, 1f)] float parallaxStrength = 0.1f;
+    [SerializeField, Range(-1f, 1f)] float parallaxStrength = 0.1f;
     [SerializeField] bool disableVerticalParallax;
     Vector3 targetPreviousPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
-        if (!followingTarget) { 
-        followingTarget = Camera.main.transform;
+        if (!followingTarget)
+            followingTarget = Camera.main.transform;
 
-            targetPreviousPosition = followingTarget.position;
-        }
+        targetPreviousPosition = followingTarget.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         UpdateCameraPosition();
-
     }
-    public void UpdateCameraPosition()
+
+    void UpdateCameraPosition()
     {
         var delta = followingTarget.position - targetPreviousPosition;
 

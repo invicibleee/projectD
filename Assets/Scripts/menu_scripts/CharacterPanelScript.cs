@@ -60,13 +60,9 @@ public class CharacterPanelScript : MonoBehaviour
         {
             if (skill.image != null)
             {
-                if (skill.isPurchased && !skill.isBasicSkill)
+                 if (skill.isPurchased)
                 {
-                    skill.image.color = Color.blue; 
-                }
-                else if (skill.isPurchased)
-                {
-                    skill.image.color = Color.green; 
+                    skill.image.color = Color.white; 
                 }
                 else
                 {
@@ -196,13 +192,13 @@ public class CharacterPanelScript : MonoBehaviour
 
         switch (skillIndex) {
             case 0:
-                style.color = Color.green;
+                style.color = Color.red;
                 break;
             case 3:
                 style.color = Color.blue;
                 break;
             case 6:
-                style.color = Color.red;
+                style.color = Color.green;
                 break;
             default:
                 style.color = Color.white;

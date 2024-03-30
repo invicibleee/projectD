@@ -5,8 +5,7 @@ using UnityEngine;
 public class Check : MonoBehaviour
 {
 
-    public float speed = 15f;
-    public float cameraFollowSpeed = 15f;
+    public float speed = 30f;
     private Rigidbody2D rb;
 
 
@@ -25,17 +24,8 @@ public class Check : MonoBehaviour
         Vector2 movement = new Vector2(horizontalInput,verticalInput) * speed * Time.deltaTime;
         rb.MovePosition(rb.position + movement);
 
-        CameraFollowPlayer();
+   
     }
 
-    void CameraFollowPlayer()
-    {
 
-
-        // ѕолучаем текущую позицию игрока
-        Vector3 playerPosition = transform.position;
-
-        // ”станавливаем новую позицию камеры без использовани€ Lerp дл€ более пр€мого следовани€
-        Camera.main.transform.position = new Vector2(playerPosition.x, playerPosition.y);
-    }
 }

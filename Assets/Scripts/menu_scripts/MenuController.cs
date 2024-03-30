@@ -168,10 +168,6 @@ public class MenuController : MonoBehaviour
             Debug.Log(achivements[achivementIndex].description);
             descriptionText.text = achivements[achivementIndex].description;
         }
-        else
-        {
-            //  Debug.LogError("Invalid description index: " + talantIndex);
-        }
     }
     public void OnAchivementImageClick(int achivementIndex)
     {

@@ -31,6 +31,7 @@ public class CharmsPanelScript : MonoBehaviour
     public Image Image_one;
     public Image Image_two;
     public Image Image_three;
+    public Sprite none;
     private int lastClickedIndex = -1;
 
     private int equipedUnique = 0;
@@ -96,7 +97,7 @@ public class CharmsPanelScript : MonoBehaviour
         for (int i = 0; i < charms.Length; i++)
         {
             // Set image color based on whether the charm is purchased or not
-            charms[i].image.color = charms[i].isOwned ? Color.white : Color.gray;
+            charms[i].image.color = charms[i].isOwned ? Color.white : Color.black;
         }
     }
     private void UnequipeCharm(int charmIndex)
@@ -316,13 +317,13 @@ public class CharmsPanelScript : MonoBehaviour
             switch (slotIndex)
             {
                 case 0:
-                    Image_one.sprite = null;
+                    Image_one.sprite = none;
                     break;
                 case 1:
-                    Image_two.sprite = null;
+                    Image_two.sprite = none;
                     break;
                 case 2:
-                    Image_three.sprite = null;
+                    Image_three.sprite = none;
                     break;
             }
         }
