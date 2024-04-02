@@ -21,6 +21,7 @@ public class MeleeAttackState : AttackState
     public override void Enter()
     {
         base.Enter();
+
         attackDetails.damageAmount = stateData.attackDamage;
         attackDetails.position = enemy.rb.transform.position;
     }

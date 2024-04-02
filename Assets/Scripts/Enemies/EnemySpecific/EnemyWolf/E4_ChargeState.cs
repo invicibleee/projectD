@@ -30,7 +30,7 @@ public class E4_ChargeState : ChargeState
         base.LogicUpdate();
         if (performCloseRangeAction)
         {
-            stateMashine.ChangeState(enemyWolf.meleeAttackState);
+            stateMashine.ChangeState(enemyWolf.strongAttackState);
         }
         else if (!isDetectingLedge || isDetectingWall)
         {

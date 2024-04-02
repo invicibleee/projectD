@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class D_StrongAttackState : ScriptableObject
 {
-    public float attackcooldown = 3f;
     public float attackRadius = 0.8f;
     public float attackDamage = 10f;
+    public float strongAttackCooldown = 3;
     public LayerMask whatIsPlayer;
 }

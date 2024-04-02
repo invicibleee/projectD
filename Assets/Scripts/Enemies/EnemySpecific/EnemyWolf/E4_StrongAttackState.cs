@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;
-public class E4_MeleeAttackState : MeleeAttackState
+
+public class E4_StrongAttackState : StrongMeleeAttack
 {
     private EnemyWolf enemyWolf;
-    public E4_MeleeAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_MeleeAttack stateData, EnemyWolf enemyWolf) : base(stateMashine, enemy, animBoolName, attackPosition, stateData)
+    public E4_StrongAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_StrongAttackState stateData, EnemyWolf enemyWolf) : base(stateMashine, enemy, animBoolName, attackPosition, stateData)
     {
         this.enemyWolf = enemyWolf;
     }
@@ -30,9 +30,10 @@ public class E4_MeleeAttackState : MeleeAttackState
         base.FinishAttack();
     }
 
-    public override  void LogicUpdate()
+    public override void LogicUpdate()
     {
         base.LogicUpdate();
+
         if (isAnimationFinished)
         {
             if (isPlayerInMinAgroRange)
@@ -43,11 +44,8 @@ public class E4_MeleeAttackState : MeleeAttackState
             {
                 stateMashine.ChangeState(enemyWolf.lookForPlayerState);
             }
-
-
         }
     }
-
 
     public override void PhysicsUpdate()
     {

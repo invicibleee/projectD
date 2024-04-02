@@ -7,8 +7,8 @@ public class StrongMeleeAttack : AttackState
     protected D_StrongAttackState stateData;
 
     protected AttackDetails attackDetails;
-
-    protected bool isStrongAttackOver;
+    protected bool isGrounded;
+    protected bool isAttackOver;
     public StrongMeleeAttack(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_StrongAttackState stateData) : base(stateMashine, enemy, animBoolName, attackPosition)
     {
         this.stateData = stateData;
@@ -22,6 +22,7 @@ public class StrongMeleeAttack : AttackState
     public override void Enter()
     {
         base.Enter();
+        isAttackOver = false;
         attackDetails.damageAmount = stateData.attackDamage;
         attackDetails.position = enemy.rb.transform.position;
     }
@@ -39,6 +40,10 @@ public class StrongMeleeAttack : AttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (Time.time >= startTime + stateData.strongAttackCooldown && isGrounded)
+        {
+            isAttackOver = true;
+        }
     }
 
     public override void PhysicsUpdate()
@@ -49,5 +54,11 @@ public class StrongMeleeAttack : AttackState
     public override void TriggerAttack()
     {
         base.TriggerAttack();
+        Collider2D[] detectedObjects = Physics2D.OverlapCircleAll(attackPosition.position, stateData.attackRadius, stateData.whatIsPlayer);
+
+        foreach (Collider2D collider in detectedObjects)
+        {
+            collider.transform.SendMessage("Damage", attackDetails);
+        }
     }
 }

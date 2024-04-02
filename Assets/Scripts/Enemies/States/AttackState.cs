@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class AttackState : EnemyState
 {
-    protected Transform attackPosition;
 
+    protected Transform attackPosition;
     protected bool isAnimationFinished;
     protected bool isPlayerInMinAgroRange;
+    protected bool strongAttackCoolwodn;
+    protected bool performCloseRangeAction;
 
 
     public AttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition) : base(stateMashine, enemy, animBoolName)
@@ -19,6 +21,8 @@ public class AttackState : EnemyState
     public override void DoChecks()
     {
         base.DoChecks();
+
+        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
         isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
     }
 
@@ -39,6 +43,7 @@ public class AttackState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
     }
 
     public override void PhysicsUpdate()

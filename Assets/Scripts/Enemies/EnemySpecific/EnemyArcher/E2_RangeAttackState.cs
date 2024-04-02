@@ -36,11 +36,7 @@ public class E2_RangeAttackState : RangeAttackState
         base.LogicUpdate();
         if(isAnimationFinished)
         {
-            if (isPlayerInMaxAgroRange)
-            {
-                stateMashine.ChangeState(enemyArcher.rangeAttackState);
-            }
-            else if(isPlayerInMinAgroRange)
+            if(isPlayerInMinAgroRange)
             {
                 stateMashine.ChangeState(enemyArcher.playerDetectedState);
             }

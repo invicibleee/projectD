@@ -23,12 +23,13 @@ public class Enemy : Entity
 
     protected bool isStunned;
     protected bool isDead;
+    protected bool strongAttackCoolwodn;
     protected override void Start()
     {
         base.Start();
         currentHealth = enemyData.maxHealth;
         currentStunResistence = enemyData.stunResistance;
-        
+        strongAttackCoolwodn = false;
         atsm = GetComponentInChildren<AnimationToStatemashine>();
     
         stateMashine = new EnemyStateMashine();
@@ -45,8 +46,18 @@ public class Enemy : Entity
         {
             ResetStunResistance();
         }
-    }
+        //StrongAttackCooldown();
 
+    }
+    //public bool StrongAttackCooldown()
+    //{
+    //    if (Time.time >= Time.time + enemyData.strongAttackCooldown)
+    //    {
+    //        strongAttackCoolwodn = true;
+    //    }
+    //    else strongAttackCoolwodn = false;        
+    //    return strongAttackCoolwodn;
+    //}
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
@@ -127,6 +138,7 @@ public class Enemy : Entity
     {
         return Physics2D.Raycast(playerCheck.position,rb.transform.right,enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
     }
+
 
     public override void Flip()
     {

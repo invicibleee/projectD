@@ -9,6 +9,7 @@ public class PlayerDetectedState : EnemyState
     protected bool isPlayerInMaxAgroRange;
     protected bool performLongRangeAction;
     protected bool performCloseRangeAction;
+    protected bool performStrongAttackRangeAction;
     protected bool isDetectingLedge;
 
     public PlayerDetectedState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_PlayerDetected stateData) : base(stateMashine, enemy, animBoolName)
