@@ -2,13 +2,14 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossEnter : MonoBehaviour
 {
     public CinemachineVirtualCamera forestFollowCamera;
     public GameObject alternativeCamera;
-
-
+    
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -17,7 +18,7 @@ public class BossEnter : MonoBehaviour
         }
     }
 
-
+   
     private void ToggleCameras()
     {
         forestFollowCamera.enabled = !forestFollowCamera.enabled;
@@ -32,4 +33,5 @@ public class BossEnter : MonoBehaviour
             Debug.Log("Alternative camera enabled");
         }
     }
+
 }

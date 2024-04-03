@@ -36,7 +36,7 @@ public class MenuController : MonoBehaviour
     public Toggle highQualityToggle;
 
     public Slider volumeSlider;
-    public Achivement[] achivements =  new Achivement[9];
+    public Achivement[] achivements =  new Achivement[14];
     public Text descriptionText;
     public Text nameText;
     private int selectedAchivementIndex = -1;

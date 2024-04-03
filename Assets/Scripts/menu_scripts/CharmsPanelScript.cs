@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 [System.Serializable]
 public struct Charm
@@ -17,7 +18,7 @@ public struct Charm
 
 public class CharmsPanelScript : MonoBehaviour
 {
-
+    PauseMenuScript pauseMenuScript;
     public Charm[] charms;
     public Charm[] equippedCharms = new Charm[3];
     public Text descriptionText;
@@ -39,6 +40,7 @@ public class CharmsPanelScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pauseMenuScript = GetComponent<PauseMenuScript>();
         currentCharm = 1;
         descriptionText.text = "select skill";
         Prompt.text = "";
@@ -137,8 +139,25 @@ public class CharmsPanelScript : MonoBehaviour
             }
             else if (!currentCharm.isOwned)
             {
-                Prompt.text = "Charm unowned";
-                descriptionText.text = "This charm is not available for purchase.";
+                if (currentCharm.cost == 0)
+                {
+                    Prompt.text = "Charm unowned";
+                    descriptionText.text = "This charm is not available for purchase.";
+                }
+                else if (pauseMenuScript.GetCurrency(0) >= currentCharm.cost)
+                {
+                    pauseMenuScript.UseCurrency(currentCharm.cost);
+                    Prompt.text = "charm purshcased";
+                    charms[charmIndex].isOwned = true;
+                    Debug.Log(currentCharm.isOwned);
+                    UpdateCharmImages();
+                    
+                }
+                else {
+                    Prompt.text = "Charm unowned";
+                    descriptionText.text = "Not enough money.";
+                }
+               
             }
             else if (currentCharm.isOwned && currentCharm.isEquiped)
             {
