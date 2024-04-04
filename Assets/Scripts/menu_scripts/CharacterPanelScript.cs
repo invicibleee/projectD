@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [System.Serializable]
-public struct Skill
+public struct WeaponSkill
 {
     public Image image;
     public int cost;
@@ -19,7 +19,7 @@ public class CharacterPanelScript : MonoBehaviour
     PauseMenuScript pauseMenuScript;
     public Text[] statTextsFloat; // Array of texts for displaying float statistics
 
-    public Skill[] skills;
+    public WeaponSkill[] skills;
     public Text descriptionText;
     public Text Prompt;
     public Image style;
@@ -75,7 +75,7 @@ public class CharacterPanelScript : MonoBehaviour
 
     void EquipSkill(int skillIndex)
     {
-        Skill selectedSkill = skills[skillIndex];
+        WeaponSkill selectedSkill = skills[skillIndex];
    
         if (selectedSkill.isBasicSkill)
         {
@@ -135,7 +135,7 @@ public class CharacterPanelScript : MonoBehaviour
         int skillIndex = selectedSkillIndex;
         if (skillIndex < skills.Length)
         {
-            Skill currentSkill = skills[skillIndex];
+            WeaponSkill currentSkill = skills[skillIndex];
 
             bool allRequiredSkillsPurchased = true;
             foreach (int requiredSkillIndex in currentSkill.requiredSkill)
@@ -208,7 +208,7 @@ public class CharacterPanelScript : MonoBehaviour
 
     private void SetSkillPurchased(int skillIndex, bool value)
     {
-        Skill[] updatedSkills = skills;
+        WeaponSkill[] updatedSkills = skills;
         updatedSkills[skillIndex].isPurchased = value;
         skills = updatedSkills;
     }
@@ -249,7 +249,7 @@ public class CharacterPanelScript : MonoBehaviour
 
     private void UpdateSkillImageScale(int skillIndex, float scale)
     {
-        Skill currentSkill = skills[skillIndex];
+        WeaponSkill currentSkill = skills[skillIndex];
         for (int i = 0; i < skills.Length; i++)
         {
             // Reduce the scale of all skill images except the clicked one
