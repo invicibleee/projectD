@@ -146,7 +146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85293b284fc85064295841013f9f97f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 3
+  maxGravity: 0.18
+  rotationSpeed: 11.35
   damageRadius: 0.12
   whatIsGround:
     serializedVersion: 2
@@ -155,3 +156,4 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damagePosition: {fileID: 7837635996775421906}
+  destroyOnWallHit: 1

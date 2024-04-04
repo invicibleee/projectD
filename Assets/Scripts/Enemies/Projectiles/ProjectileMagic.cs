@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class ProjectileMagic : MonoBehaviour
 {
     private AttackDetails attackDetails;
 
@@ -10,17 +10,13 @@ public class Projectile : MonoBehaviour
     private float travelDistance;
     private float xStartPosition;
 
-
     [SerializeField]
-    private float maxGravity;
-
-    [SerializeField]
-    private float rotationSpeed; // Кутова швидкість обертання по осі Z
-
+    private float gravity;
     [SerializeField]
     private float damageRadius;
 
     private Rigidbody2D rb;
+    private bool isGravitiOn;
     private bool hasHitGround;
 
     [SerializeField]
@@ -30,15 +26,14 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private Transform damagePosition;
 
-    [SerializeField]
-    private bool destroyOnWallHit = true; // Whether to destroy on wall hit
-
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
         rb.gravityScale = 0.0f;
         rb.velocity = transform.right * speed;
+
+        isGravitiOn = false;
 
         xStartPosition = transform.position.x;
     }
@@ -47,16 +42,14 @@ public class Projectile : MonoBehaviour
     {
         if (!hasHitGround)
         {
+
             attackDetails.position = transform.position;
 
-            // Calculate current gravity scale
-            float currentGravity = Mathf.Lerp(0f, maxGravity, rb.velocity.magnitude / speed);
-
-            // Set gravity scale
-            rb.gravityScale = currentGravity;
-
-            // Rotate the object slightly around Z axis
-            transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime);
+            if (isGravitiOn)
+            {
+                float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
         }
     }
 
@@ -72,24 +65,22 @@ public class Projectile : MonoBehaviour
                 damageHit.transform.SendMessage("Damage", attackDetails);
                 Destroy(gameObject);
             }
-            // Check for wall hit if destroyOnWallHit is enabled
-            if (destroyOnWallHit)
+            if (groundHit)
             {
-                if (groundHit)
-                {
-                    hasHitGround = true;
-                    rb.gravityScale = 0f;
-                    rb.velocity = Vector2.zero;
-                }
+                hasHitGround = true;
+                rb.gravityScale = 0f;
+                rb.velocity = Vector2.zero;
             }
-            else
+
+            if (Mathf.Abs(xStartPosition - transform.position.x) >= travelDistance && !isGravitiOn)
             {
-                if (groundHit)
-                {
-                    Destroy(gameObject);
-                }
+                isGravitiOn = true;
+                rb.gravityScale = gravity;
             }
         }
+
+
+
     }
 
     public void FireProjectile(float speed, float travelDistance, float damage)
