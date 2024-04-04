@@ -31,8 +31,7 @@ public class Player : Entity
     public PlayerWallSlideState wallSlideState { get; private set; }
     public PlayerWallJumpState wallJumpState { get; private set; }
     public PlayerCounterAttackState counterAttackState { get; private set; }
-
-
+    public PlayerChronoState chronoState { get; private set; }
     public PlayerPrimaryAttackState primaryAttackState { get; private set; }
     #endregion
 
@@ -51,7 +50,7 @@ public class Player : Entity
         
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
-        
+        chronoState = new PlayerChronoState(this, stateMachine, "Jump");
     }
 
     protected override void Start()
