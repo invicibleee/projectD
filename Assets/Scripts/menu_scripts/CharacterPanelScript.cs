@@ -21,6 +21,8 @@ public class CharacterPanelScript : MonoBehaviour
 
     public WeaponSkill[] skills;
     public Text descriptionText;
+    public GameObject confrim;
+    public Text confrimText;
     public Text Prompt;
     public Image style;
 
@@ -167,6 +169,11 @@ public class CharacterPanelScript : MonoBehaviour
                         Prompt.text = "skill purshcased";
                         SetSkillPurchased(skillIndex, true);
                         Debug.Log("Purchased Skill Index: " + skillIndex);
+                        confrimText.text = "Confrim";
+                        if (!skills[skillIndex].isBasicSkill)
+                        {
+                            confrim.SetActive(false);
+                        }
                     }
                     else
                     {
@@ -240,10 +247,20 @@ public class CharacterPanelScript : MonoBehaviour
 
         if (!skills[skillIndex].isPurchased)
         {
+            confrimText.text = "Upgrade";
             Prompt.text = "Do you wish to buy this skill?";
+            confrim.SetActive(true);
+
         }
-        else {
+        else if (skills[skillIndex].isPurchased && skills[skillIndex].isBasicSkill)
+        {
+            confrimText.text = "Confrim";
             Prompt.text = "Do you wish to equip this skill?";
+            confrim.SetActive(true);
+        }
+        else if (skills[skillIndex].isPurchased && !skills[skillIndex].isBasicSkill) {
+            confrim.SetActive(false);
+            Prompt.text = "";
         }
     }
 
@@ -297,19 +314,15 @@ public class CharacterPanelScript : MonoBehaviour
 
     // Method to set health, stamina, and mana values
     public void SetStats(float currentHealth, float maxHealth, float currentStamina, float maxStamina, float currentMana, 
-        float maxMana, int collectedSkills, int maxSkills, int collectedCollectibles, int maxCollectibles, int completionPercentage)
+        float maxMana, int collectedCollectibles, int maxCollectibles, int completionPercentage)
     {
         SetStatTextFloat(0, currentHealth, maxHealth); // Health
         SetStatTextFloat(1, currentStamina, maxStamina); // Stamina
         SetStatTextFloat(2, currentMana, maxMana); // Mana
-
-        SetStatTextInt(3, collectedSkills, maxSkills); // Collected Skills
-        SetStatTextInt(4, collectedCollectibles, maxCollectibles); // Collected Collectibles
-        SetStatTextInt(5, completionPercentage, 100); // Completion Percentage
+        SetStatTextInt(4, completionPercentage, 100); // Completion Percentage
     }
 
     // Method to set the text of a specific float statistic
-    // Метод для установки текста конкретной статистики типа float
     void SetStatTextFloat(int index, float currentValue, float maxValue)
     {
         if (index >= 0 && index < statTextsFloat.Length)
@@ -325,7 +338,7 @@ public class CharacterPanelScript : MonoBehaviour
         if (index >= 0 && index < statTextsFloat.Length)
         {
           
-            if (index == 5)
+            if (index == 4)
             {
                 statTextsFloat[index].text = $"{value}%";
             }
@@ -347,13 +360,11 @@ public class CharacterPanelScript : MonoBehaviour
         float currentMana = 25f;
         float maxMana = 50f;
 
-        int collectedSkills = 10;
-        int maxSkills = 10;
         int collectedCollectibles = 20;
         int maxCollectibles = 20;
         int completionPercentage = 75; 
 
-        SetStats(currentHealth, maxHealth, currentStamina, maxStamina, currentMana, maxMana, collectedSkills,
-            maxSkills, collectedCollectibles, maxCollectibles, completionPercentage);
+        SetStats(currentHealth, maxHealth, currentStamina, maxStamina, currentMana, maxMana, collectedCollectibles,
+            maxCollectibles, completionPercentage);
     }
 }

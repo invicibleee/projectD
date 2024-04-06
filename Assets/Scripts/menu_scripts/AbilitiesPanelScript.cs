@@ -19,6 +19,7 @@ public class AbilitiesPanelScript : MonoBehaviour
     public Text descriptionText;
     public Text nameText;
     public Text promptText;
+    public Text equipedText;
     private int selectedAbilityIndex = -1;
     private bool equiped = false;
 
@@ -63,11 +64,11 @@ public class AbilitiesPanelScript : MonoBehaviour
             nameText.text = abilities[abilityIndex].name;
         }
 
-        if (!abilities[abilityIndex].isEquiped)
+        if (!abilities[abilityIndex].isEquiped && abilities[abilityIndex].isOwned)
         {
             promptText.text = "equip this ability?";
         }
-        else promptText.text = "unequip this ability?";
+        else if (abilities[abilityIndex].isEquiped && abilities[abilityIndex].isOwned) promptText.text = "unequip this ability?";
     }
 
     void UpdateDescriptionText(int abilityIndex)
@@ -87,7 +88,7 @@ public class AbilitiesPanelScript : MonoBehaviour
         for (int i = 0; i < abilities.Length; i++)
         {
             // Set image color based on whether the charm is purchased or not
-            abilities[i].image.color = abilities[i].isOwned ? Color.white : Color.gray;
+            abilities[i].image.color = abilities[i].isOwned ? Color.white : Color.black;
         }
     }
 
@@ -102,6 +103,7 @@ public class AbilitiesPanelScript : MonoBehaviour
             UpdateDescriptionText(abilityIndex);
             nameText.text = abilities[abilityIndex].name;
             promptText.text = "equiped " + nameText.text;
+            equipedText.text = "Equiped: " + nameText.text;
         }
         else {
             if (abilities[abilityIndex].isOwned && !abilities[abilityIndex].isEquiped)
@@ -111,12 +113,14 @@ public class AbilitiesPanelScript : MonoBehaviour
                 UpdateDescriptionText(abilityIndex);
                 nameText.text = abilities[abilityIndex].name;
                 promptText.text = "replaced with " + nameText.text;
+                equipedText.text = "Equiped: " + nameText.text;
             }
             else if (abilities[abilityIndex].isOwned && abilities[abilityIndex].isEquiped)
             {
                 abilities[abilityIndex].isEquiped = false;
                 equiped = false;
                 promptText.text = "unequiped " + nameText.text;
+                equipedText.text = "Equiped: " ;
             }
             else
             {

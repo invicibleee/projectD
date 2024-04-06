@@ -24,7 +24,7 @@ public class CharmsPanelScript : MonoBehaviour
     public Text descriptionText;
     public Text nameText;
     public Text Prompt;
-
+    public GameObject confirm;
 
     private int currentCharm;
     private int selectedCharmIndex = -1;
@@ -32,6 +32,7 @@ public class CharmsPanelScript : MonoBehaviour
     public Image Image_one;
     public Image Image_two;
     public Image Image_three;
+    public Sprite basic;
     public Sprite none;
     private int lastClickedIndex = -1;
 
@@ -60,9 +61,15 @@ public class CharmsPanelScript : MonoBehaviour
         }
     }
 
+    public void OnEquipedCharmImageClick(int charmIndex) { 
+        confirm.SetActive(false);
+        Prompt.text = "";
+        UpdateDescriptionText(charmIndex);
+    }
 
     public void OnCharmImageClick(int charmIndex)
     {
+        confirm.SetActive(true);
         UpdateDescriptionText(charmIndex);
         nameText.text = charms[charmIndex].name;
 
@@ -336,13 +343,13 @@ public class CharmsPanelScript : MonoBehaviour
             switch (slotIndex)
             {
                 case 0:
-                    Image_one.sprite = none;
+                    Image_one.sprite = basic;
                     break;
                 case 1:
-                    Image_two.sprite = none;
+                    Image_two.sprite = basic;
                     break;
                 case 2:
-                    Image_three.sprite = none;
+                    Image_three.sprite = basic;
                     break;
             }
         }
