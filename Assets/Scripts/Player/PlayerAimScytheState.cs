@@ -11,6 +11,8 @@ public class PlayerAimScytheState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        player.skill.scytheThrow.DotsActive(true);
     }
 
     public override void Exit()

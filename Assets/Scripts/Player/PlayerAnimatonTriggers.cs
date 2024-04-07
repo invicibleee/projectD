@@ -20,4 +20,9 @@ public class PlayerAnimatonTriggers : MonoBehaviour
                 hit.GetComponent<Enemy>().Damage();
         }
     }
+
+    private void ThrowScythe()
+    {
+        SkillManager.instance.scytheThrow.CreateScythe();
+    }
 }
