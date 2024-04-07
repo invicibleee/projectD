@@ -39,10 +39,11 @@ public class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
+        sr = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFX>();
-        sr = GetComponentInChildren<SpriteRenderer>();
+        
 
         skill = SkillManager.instance;
     }
@@ -118,6 +119,7 @@ public class Entity : MonoBehaviour
 
     public void MakeTransparent(bool _transparent)
     {
+        Debug.Log(_transparent);
         if (_transparent)
             sr.color = Color.clear;
         else

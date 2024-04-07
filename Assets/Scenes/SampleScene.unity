@@ -817,6 +817,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1485019578107172287, guid: b172ebe76825c5a47acd20b457479386, type: 3}
+      propertyPath: counterAttackDuration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2165205865250181261, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.11
@@ -962,6 +966,17 @@ MonoBehaviour:
   maxSize: 15
   growSpeed: 3
   shrinkSpeed: 6
+--- !u!114 &1927248018 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1485019578107172287, guid: b172ebe76825c5a47acd20b457479386, type: 3}
+  m_PrefabInstance: {fileID: 1694531768}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c6e380263ee56844afcf791f4190630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1965720472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,6 +1245,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6235878284073776277, guid: 0829c5338ea07834c8db446e89ff4c36, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1927248018}
     - target: {fileID: 7653436739916460628, guid: 0829c5338ea07834c8db446e89ff4c36, type: 3}
       propertyPath: m_Name
       value: PlayerManager

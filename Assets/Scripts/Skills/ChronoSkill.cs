@@ -28,7 +28,7 @@ public class ChronoSkill : Skill
     {
         base.UseSkill();
 
-        GameObject newChrono = Instantiate(chronoPrefab);/////////////////////////////////
+        GameObject newChrono = Instantiate(chronoPrefab, PlayerManager.instance.player.transform.position, Quaternion.identity);/////////////////////////////////
 
         currentChrono = newChrono.GetComponent<ChronofistSkillController>();
 
