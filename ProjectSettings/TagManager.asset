@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - BossForest
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - postproc
@@ -41,4 +42,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Decorations
+    uniqueID: 260336039
     locked: 0
