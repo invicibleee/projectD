@@ -1,0 +1,345 @@
+fileFormatVersion: 2
+guid: 3742a29937a22194a8328094bf9d9a34
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 44
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: tile_forest_51
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 264
+        width: 45
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f15473c2c946b57408cdba02ad1824d6
+      internalID: -178409411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile_forest_61
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 177
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc0179103cb73bc418f99ec6dabc6b64
+      internalID: 1356309344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile_forest_62
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 177
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 438e5214a2db88a44a5419ab7ff1b0fc
+      internalID: -1155111523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile_forest_64
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 177
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2b33212d086d99489571454ad6d9b41
+      internalID: -540587675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile_forest_66
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 177
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d15eaf5f8565c5c4ca4a57d7b44da171
+      internalID: -789014074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile_forest_67
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 177
+        width: 45
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bef18dc5db347e74fb2476814b0e249d
+      internalID: -1779009755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      tile_forest_0: -734327551
+      tile_forest_1: 448846808
+      tile_forest_10: -991609972
+      tile_forest_11: -91208449
+      tile_forest_12: 1649059531
+      tile_forest_13: -125432513
+      tile_forest_14: 150790940
+      tile_forest_15: 1911590094
+      tile_forest_16: -261231255
+      tile_forest_17: 1370188044
+      tile_forest_18: -1070752
+      tile_forest_19: -64108899
+      tile_forest_2: -470614659
+      tile_forest_20: -1234096086
+      tile_forest_21: 1521562005
+      tile_forest_22: -1917588957
+      tile_forest_23: 2052906728
+      tile_forest_24: 1572908169
+      tile_forest_25: 476558401
+      tile_forest_26: 331839468
+      tile_forest_27: -980952437
+      tile_forest_28: 838917366
+      tile_forest_29: 622493948
+      tile_forest_3: 1615463192
+      tile_forest_30: 1110392153
+      tile_forest_31: 1338441666
+      tile_forest_32: 396985806
+      tile_forest_33: -808891483
+      tile_forest_34: -511162248
+      tile_forest_35: -687214379
+      tile_forest_36: -496846282
+      tile_forest_37: 1072647607
+      tile_forest_38: 410015523
+      tile_forest_39: -888550217
+      tile_forest_4: 1534322084
+      tile_forest_40: 1056044361
+      tile_forest_41: 2022333451
+      tile_forest_42: -1261068884
+      tile_forest_43: 2064419491
+      tile_forest_44: 1771046907
+      tile_forest_45: 352120203
+      tile_forest_46: 1907157859
+      tile_forest_47: -88333806
+      tile_forest_48: 261869035
+      tile_forest_49: 1411259582
+      tile_forest_5: -1369828293
+      tile_forest_50: -1214246180
+      tile_forest_51: -178409411
+      tile_forest_52: 45907785
+      tile_forest_53: -1106300691
+      tile_forest_54: -1857721142
+      tile_forest_55: 2069170797
+      tile_forest_56: 557419851
+      tile_forest_57: 1951370323
+      tile_forest_58: -1306527586
+      tile_forest_59: -230555659
+      tile_forest_6: -1840435471
+      tile_forest_60: -416965272
+      tile_forest_61: 1356309344
+      tile_forest_62: -1155111523
+      tile_forest_63: 1165084512
+      tile_forest_64: -540587675
+      tile_forest_65: 2002066522
+      tile_forest_66: -789014074
+      tile_forest_67: -1779009755
+      tile_forest_68: 1280197644
+      tile_forest_69: -1809352112
+      tile_forest_7: 2017895081
+      tile_forest_70: -155734643
+      tile_forest_71: -1801249532
+      tile_forest_72: -786531368
+      tile_forest_73: 1402812212
+      tile_forest_74: 291231535
+      tile_forest_75: -1189751795
+      tile_forest_76: 1928589342
+      tile_forest_77: -1741948758
+      tile_forest_78: -2029183035
+      tile_forest_8: 470759326
+      tile_forest_9: 1443232603
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
