@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E6_RangeAttackState : RangeAttackState
+public class E6_LazerAttackState : LazerAttackState
 {
     private EnemyEye enemyEye;
-    public E6_RangeAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_RangeAttackState stateData, EnemyEye enemyEye) : base(stateMashine, enemy, animBoolName, attackPosition, stateData)
+    public E6_LazerAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_LazerAttackState stateData, EnemyEye enemyEye) : base(stateMashine, enemy, animBoolName, attackPosition, stateData)
     {
         this.enemyEye = enemyEye;
     }

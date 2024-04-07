@@ -30,7 +30,7 @@ public class E6_PlayerDetected : PlayerDetectedState
         base.LogicUpdate();
         if (performLongRangeAction)
         {
-            stateMashine.ChangeState(enemyEye.rangeAttackState);
+            stateMashine.ChangeState(enemyEye.lazerAttackState);
         }
         else if (!isPlayerInMaxAgroRange)
         {

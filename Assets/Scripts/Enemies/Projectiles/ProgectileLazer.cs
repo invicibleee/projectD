@@ -1,46 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ProgectileLazer : MonoBehaviour
+public class ProjectileLazer : MonoBehaviour
 {
     private AttackDetails attackDetails;
 
     private float speed;
-    private float travelDistance;
-    private float xStartPosition;
+    private float initialScaleX; // Початковий розмір по осі x
+    private float startTime;
 
 
-    [SerializeField]
-    private float maxGravity;
-
-    [SerializeField]
-    private float rotationSpeed; // Кутова швидкість обертання по осі Z
-
-    [SerializeField]
+    [SerializeField] 
+    private float rotationSpeed;
+    [SerializeField] 
     private float damageRadius;
 
-    private Rigidbody2D rb;
     private bool hasHitGround;
-
-    [SerializeField]
+    [SerializeField] 
     private LayerMask whatIsGround;
-    [SerializeField]
+    [SerializeField] 
     private LayerMask whatIsPlayer;
-    [SerializeField]
+    [SerializeField] 
     private Transform damagePosition;
-
-    [SerializeField]
-    private bool destroyOnWallHit = true; // Whether to destroy on wall hit
+    [SerializeField] 
+    private bool destroyOnWallHit = true;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
-        rb.gravityScale = 0.0f;
-        rb.velocity = transform.right * speed;
-
-        xStartPosition = transform.position.x;
+        initialScaleX = transform.localScale.x;
+        attackDetails = new AttackDetails();
+        startTime = Time.time; // Запам'ятовуємо час початку руху проектіля
     }
 
     private void Update()
@@ -49,42 +37,31 @@ public class ProgectileLazer : MonoBehaviour
         {
             attackDetails.position = transform.position;
 
-            // Calculate current gravity scale
-            float currentGravity = Mathf.Lerp(0f, maxGravity, rb.velocity.magnitude / speed);
-
-            // Set gravity scale
-            rb.gravityScale = currentGravity;
-
             // Rotate the object slightly around Z axis
             transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime);
-        }
-    }
 
-    private void FixedUpdate()
-    {
-        if (!hasHitGround)
-        {
-            Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsPlayer);
-            Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);
+            // Scale the object along x-axis until it reaches damageRadius
+            float elapsedTime = Time.time - startTime; // Визначаємо, скільки часу пройшло з моменту початку руху
+            float scaleX = Mathf.Lerp(initialScaleX, damageRadius, elapsedTime * speed);
+            transform.localScale = new Vector3(scaleX, transform.localScale.y, transform.localScale.z);
 
-            if (damageHit)
+            // Check if the object has reached the damage radius
+            if (scaleX >= damageRadius)
             {
-                damageHit.transform.SendMessage("Damage", attackDetails);
-                Destroy(gameObject);
-            }
-            // Check for wall hit if destroyOnWallHit is enabled
-            if (destroyOnWallHit)
-            {
-                if (groundHit)
+                Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsPlayer);
+                Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);
+
+                if (damageHit)
+                {
+                    damageHit.transform.SendMessage("Damage", attackDetails);
+                    Destroy(gameObject);
+                }
+
+                if (destroyOnWallHit && groundHit)
                 {
                     hasHitGround = true;
-                    rb.gravityScale = 0f;
-                    rb.velocity = Vector2.zero;
                 }
-            }
-            else
-            {
-                if (groundHit)
+                else if (!destroyOnWallHit && groundHit)
                 {
                     Destroy(gameObject);
                 }
@@ -92,10 +69,9 @@ public class ProgectileLazer : MonoBehaviour
         }
     }
 
-    public void FireProjectile(float speed, float travelDistance, float damage)
+    public void FireProjectile(float speed, float damage)
     {
         this.speed = speed;
-        this.travelDistance = travelDistance;
         attackDetails.damageAmount = damage;
     }
 

@@ -12,7 +12,7 @@ public class EnemyEye : Enemy
 
     public E6_PlayerDetected playerDetectedState { get; private set; }
 
-    public E6_RangeAttackState rangeAttackState { get; private set; }
+    public E6_LazerAttackState lazerAttackState { get; private set; }
 
     [SerializeField]
     private D_MoveState moveStateData;
@@ -21,11 +21,11 @@ public class EnemyEye : Enemy
     [SerializeField]
     private D_LookForPlayer lookForPlayerStateData;
     [SerializeField]
-    private D_RangeAttackState rangeAttackStateData;
+    private D_LazerAttackState lazerAttackStateData;
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField]
-    private Transform rangeAttackPosition;
+    private Transform lazerAttackPosition;
 
 
     protected override void Start()
@@ -34,7 +34,7 @@ public class EnemyEye : Enemy
         idleState = new E6_IdleState(stateMashine, this, "idle", idleStateData, this);
         moveState = new E6_MoveState(stateMashine,this,"move",moveStateData, this);
         playerDetectedState = new E6_PlayerDetected(stateMashine, this, "playerDetected", playerDetectedStateData, this);
-        rangeAttackState = new E6_RangeAttackState(stateMashine, this, "rangeAttack", rangeAttackPosition, rangeAttackStateData, this);
+        lazerAttackState = new E6_LazerAttackState(stateMashine, this, "rangeAttack", lazerAttackPosition, lazerAttackStateData, this);
         lookForPlayerState = new E6_LookForPlayer(stateMashine, this,"lookForPlayer",lookForPlayerStateData, this);
         stateMashine.Initialize(moveState);
     }

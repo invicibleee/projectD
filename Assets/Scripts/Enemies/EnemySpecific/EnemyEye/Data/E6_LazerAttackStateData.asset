@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bbedf25e496b743af6c077c0abaaa4, type: 3}
-  m_Name: E6_RangeAttackStateData
+  m_Script: {fileID: 11500000, guid: 8dd016d8619436247848abad07278f70, type: 3}
+  m_Name: E6_LazerAttackStateData
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
+  projectile: {fileID: 7873195119452576166, guid: d83d3a574e9845643979d23ccd7dab40, type: 3}
   projectileDamage: 10
   projectileSpeed: 10
-  projectileTravelDistance: 10

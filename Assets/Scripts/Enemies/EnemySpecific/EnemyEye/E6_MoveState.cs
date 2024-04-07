@@ -30,7 +30,7 @@ public class E6_MoveState : MoveState
         base.LogicUpdate();
         if (isPlayerInMaxAgroRange)
         {
-            stateMashine.ChangeState(enemyEye.rangeAttackState);
+            stateMashine.ChangeState(enemyEye.lazerAttackState);
 
         }
         else if (isPlayerInMinAgroRange)
