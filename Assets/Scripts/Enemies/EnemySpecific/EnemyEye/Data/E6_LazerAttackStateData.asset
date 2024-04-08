@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dd016d8619436247848abad07278f70, type: 3}
   m_Name: E6_LazerAttackStateData
   m_EditorClassIdentifier: 
-  projectile: {fileID: 7873195119452576166, guid: d83d3a574e9845643979d23ccd7dab40, type: 3}
+  projectile: {fileID: 872593288655824666, guid: f182c5a5eb9584e4fbf374bcdeb770eb, type: 3}
   projectileDamage: 10
   projectileSpeed: 10

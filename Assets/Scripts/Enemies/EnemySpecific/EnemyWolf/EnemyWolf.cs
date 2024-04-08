@@ -55,7 +55,7 @@ public class EnemyWolf : Enemy
     protected override void Update()
     {
         base.Update();
-        Debug.Log(stateMashine.currentState);
+        //Debug.Log(stateMashine.currentState);
 
     }
 }

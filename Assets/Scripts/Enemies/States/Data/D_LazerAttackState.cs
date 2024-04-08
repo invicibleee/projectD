@@ -6,5 +6,5 @@ public class D_LazerAttackState : ScriptableObject
 {
     public GameObject projectile;
     public float projectileDamage = 10.0f;
-    public float projectileSpeed = 10.0f;
+
 }

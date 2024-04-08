@@ -24,14 +24,16 @@ public class Laser : MonoBehaviour
             }
             else
             {
-                // Якщо зіткнення не відбулося, встановлюємо кінцеву точку лазера на максимальній дистанції
-                endPosition = (Vector2)startPoint.position + ((Vector2)Vector3.right * maxDistance);
+                // Встановлюємо кінцеву точку лазера на максимальній дистанції, слідкуючи за зміною позиції початкової точки
+                endPosition = startPoint.position + startPoint.right * maxDistance;
             }
 
-            // Встановлюємо початкову та кінцеву точки лінії
+            // Переміщаємо кінцеву точку лазера в напрямку його напрямку
             lineRenderer.SetPosition(0, startPoint.position);
             lineRenderer.SetPosition(1, endPosition);
-
         }
     }
+
+
+
 }

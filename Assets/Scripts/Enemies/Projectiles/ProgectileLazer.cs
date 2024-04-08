@@ -5,78 +5,85 @@ public class ProjectileLazer : MonoBehaviour
     private AttackDetails attackDetails;
 
     private float speed;
-    private float initialScaleX; // Початковий розмір по осі x
     private float startTime;
-
-
-    [SerializeField] 
+    private Transform projectileRotation;
+    [SerializeField]
     private float rotationSpeed;
-    [SerializeField] 
+    [SerializeField]
+    private float maxAccelerationTime = 2f; // Час для досягнення максимального прискорення
+    [SerializeField]
     private float damageRadius;
+    [SerializeField]
+    private float destroyDelay = 2f; // Затримка перед знищенням об'єкта
 
-    private bool hasHitGround;
-    [SerializeField] 
-    private LayerMask whatIsGround;
-    [SerializeField] 
-    private LayerMask whatIsPlayer;
-    [SerializeField] 
-    private Transform damagePosition;
-    [SerializeField] 
-    private bool destroyOnWallHit = true;
+    public Transform startPoint; // Початкова точка лазера
+    public float maxDistance = 10f; // Максимальна дистанція лазера
+    public LayerMask layerMask; // Шари для виявлення колайдерів
+    public LineRenderer lineRenderer; // Компонент для відображення лінії лазера
+
+    private EnemyEye enemyEye;
 
     private void Start()
     {
-        initialScaleX = transform.localScale.x;
-        attackDetails = new AttackDetails();
-        startTime = Time.time; // Запам'ятовуємо час початку руху проектіля
+        // Початковий поворот об'єкта
+        transform.rotation = Quaternion.Euler(0, 0, -45);
+        startTime = Time.time;
+        enemyEye = GetComponent<EnemyEye>();
     }
 
     private void Update()
     {
-        if (!hasHitGround)
+        if (startPoint != null && lineRenderer != null)
         {
-            attackDetails.position = transform.position;
+            // Виконуємо виявлення першого зіткнення з колайдером на шарах "Player" або "Ground"
+            RaycastHit2D hit = Physics2D.Raycast(startPoint.position, Quaternion.Euler(0, projectileRotation.rotation.eulerAngles.y, transform.rotation.eulerAngles.z) * Vector2.right, maxDistance, layerMask);
+            Vector2 endPosition; // Позиція кінця лазера
 
-            // Rotate the object slightly around Z axis
-            transform.Rotate(0f, 0f, -rotationSpeed * Time.deltaTime);
-
-            // Scale the object along x-axis until it reaches damageRadius
-            float elapsedTime = Time.time - startTime; // Визначаємо, скільки часу пройшло з моменту початку руху
-            float scaleX = Mathf.Lerp(initialScaleX, damageRadius, elapsedTime * speed);
-            transform.localScale = new Vector3(scaleX, transform.localScale.y, transform.localScale.z);
-
-            // Check if the object has reached the damage radius
-            if (scaleX >= damageRadius)
+            if (hit.collider != null)
             {
-                Collider2D damageHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsPlayer);
-                Collider2D groundHit = Physics2D.OverlapCircle(damagePosition.position, damageRadius, whatIsGround);
+                // Якщо зіткнення відбулося, встановлюємо кінцеву точку лазера на місці зіткнення
+                endPosition = hit.point;
 
-                if (damageHit)
+                // Перевіряємо, чи зіткнення відбулося з об'єктом на заданому шарі
+                if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
-                    damageHit.transform.SendMessage("Damage", attackDetails);
-                    Destroy(gameObject);
-                }
-
-                if (destroyOnWallHit && groundHit)
-                {
-                    hasHitGround = true;
-                }
-                else if (!destroyOnWallHit && groundHit)
-                {
-                    Destroy(gameObject);
+                    // Викликаємо метод Damage на об'єкті, з яким зіткнувся лазер
+                    hit.collider.gameObject.SendMessage("Damage", attackDetails);
                 }
             }
+            else
+            {
+                // Встановлюємо кінцеву точку лазера на максимальній дистанції, слідкуючи за зміною позиції початкової точки
+                endPosition = startPoint.position + Quaternion.Euler(0, projectileRotation.rotation.eulerAngles.y, transform.rotation.eulerAngles.z) * Vector2.right * maxDistance;
+
+            }
+
+            // Переміщаємо кінцеву точку лазера в напрямку його напрямку
+            lineRenderer.SetPosition(0, startPoint.position);
+            lineRenderer.SetPosition(1, endPosition);
+        }
+
+        // Визначаємо поточний час, що пройшов з моменту початку вогневої дії
+        float timeElapsed = Time.time - startTime;
+
+        // Розраховуємо поточну швидкість обертання залежно від часу
+        float currentRotationSpeed = Mathf.Lerp(0f, rotationSpeed * 10f, Mathf.Clamp01(timeElapsed / maxAccelerationTime));
+
+        // Обертаємо об'єкт
+        transform.Rotate(Vector3.forward * currentRotationSpeed * Time.deltaTime);
+
+        // Перевіряємо, чи час знищення об'єкта вже настав
+        if (Time.time >= startTime + destroyDelay)
+        {
+            // Знищуємо об'єкт
+            Debug.Log("Лазер знищено");
+            Destroy(gameObject);
         }
     }
 
-    public void FireProjectile(float speed, float damage)
+    public void FireProjectile(float damage, Transform transform)
     {
-        this.speed = speed;
         attackDetails.damageAmount = damage;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(damagePosition.position, damageRadius);
+        projectileRotation = transform;
     }
 }

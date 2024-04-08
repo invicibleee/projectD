@@ -32,10 +32,15 @@ public class EnemyEye : Enemy
     {
         base.Start();
         idleState = new E6_IdleState(stateMashine, this, "idle", idleStateData, this);
+
         moveState = new E6_MoveState(stateMashine,this,"move",moveStateData, this);
+
         playerDetectedState = new E6_PlayerDetected(stateMashine, this, "playerDetected", playerDetectedStateData, this);
+
         lazerAttackState = new E6_LazerAttackState(stateMashine, this, "rangeAttack", lazerAttackPosition, lazerAttackStateData, this);
+
         lookForPlayerState = new E6_LookForPlayer(stateMashine, this,"lookForPlayer",lookForPlayerStateData, this);
+
         stateMashine.Initialize(moveState);
     }
 
@@ -45,7 +50,6 @@ public class EnemyEye : Enemy
         base.OnDrawGizmos();
 
     }
-
 
 
 }

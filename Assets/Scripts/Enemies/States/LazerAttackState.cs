@@ -50,6 +50,6 @@ public class LazerAttackState : AttackState
         base.TriggerAttack();
         projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
         projectileLazerScript = projectile.GetComponent<ProjectileLazer>();
-        projectileLazerScript.FireProjectile(stateData.projectileSpeed,  stateData.projectileDamage);
+        projectileLazerScript.FireProjectile(stateData.projectileDamage, attackPosition);
     }
 }
