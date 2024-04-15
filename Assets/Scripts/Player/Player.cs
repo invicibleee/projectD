@@ -15,11 +15,13 @@ public class Player : Entity
     [Header("Move Info")]
     public float moveSpeed = 5f;
     public float jumpForce;
+    public float scytheReturnImpact;
     [Header("Dash info")]
     public float dashSpeed;
     public float dashDuration;
     public float dashDirection { get; private set; }
 
+    public GameObject scythe { get; private set; }
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
 
@@ -69,6 +71,15 @@ public class Player : Entity
         stateMachine.currentState.Update();
 
         CheckForDashInput();
+    }
+    public void AssingNewScythe(GameObject _newScythe)
+    {
+        scythe = _newScythe;
+    }
+    public void CatchTheScythe()
+    {
+        stateMachine.ChangeState(catchScytheState);
+        Destroy(scythe);
     }
     public IEnumerator BusyFor(float seconds)
     {

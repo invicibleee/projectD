@@ -1,9 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum ScytheType
+{
+    Regular,
+    Bounce,
+    Pierce,
+    Spin
+}
 public class ScytheThrowSkill : Skill
 {
+    public ScytheType scytheType = ScytheType.Regular;
+
+    [Header("Bounce info")]
+    [SerializeField] private int amountOfBounce;
+    [SerializeField] private float bounceGravity;
+
     [Header("Skill info")]
     [SerializeField] private GameObject scythePrefab;
     [SerializeField] private Vector2 launchForce;
@@ -18,7 +30,7 @@ public class ScytheThrowSkill : Skill
     [SerializeField] private GameObject dotsPrefab;
     [SerializeField] private Transform dotsParent;
 
-    private GameObject []dots;
+    private GameObject[] dots;
 
     protected override void Start()
     {
@@ -28,10 +40,10 @@ public class ScytheThrowSkill : Skill
     }
     protected override void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Mouse1))
-            finalDirection = new Vector2(AimDirection().normalized.x * launchForce.x , AimDirection().normalized.y * launchForce.y);
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+            finalDirection = new Vector2(AimDirection().normalized.x * launchForce.x, AimDirection().normalized.y * launchForce.y);
 
-        if(Input.GetKey(KeyCode.Mouse1))
+        if (Input.GetKey(KeyCode.Mouse1))
         {
             for (int i = 0; i < dots.Length; i++)
             {
@@ -45,11 +57,19 @@ public class ScytheThrowSkill : Skill
         GameObject newScythe = Instantiate(scythePrefab, player.transform.position, transform.rotation);
         ScytheSkillController newScytheScript = newScythe.GetComponent<ScytheSkillController>();
 
-        newScytheScript.SetupScythe(finalDirection, scytheGravity);
+        if(scytheType == ScytheType.Bounce)
+        {
+            scytheGravity = bounceGravity;
+            newScytheScript.SetupBounce(true, amountOfBounce);
+        }
+
+        newScytheScript.SetupScythe(finalDirection, scytheGravity, player);
+
+        player.AssingNewScythe(newScythe);
 
         DotsActive(false);
     }
-
+    #region Aim region
     public Vector2 AimDirection()
     {
         Vector2 playerPosition = player.transform.position;
@@ -85,4 +105,5 @@ public class ScytheThrowSkill : Skill
         return position;
 
     }
+    #endregion
 }

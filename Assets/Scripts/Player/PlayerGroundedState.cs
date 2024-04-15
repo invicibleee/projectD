@@ -24,7 +24,7 @@ public class PlayerGroundedState : PlayerState
         //if (Input.GetKeyDown(KeyCode.E))
         //    stateMachine.ChangeState(player.counterAttackState);
 
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoScythe())
             stateMachine.ChangeState(player.aimScytheState);
 
         if (!player.IsGroundDetected())
@@ -38,5 +38,13 @@ public class PlayerGroundedState : PlayerState
 
         if (Input.GetKeyDown(KeyCode.R))
             stateMachine.ChangeState(player.chronoState);
+    }
+
+    private bool HasNoScythe()
+    {
+        if (!player.scythe) return true;
+
+        player.scythe.GetComponent<ScytheSkillController>().ReturnScythe();
+        return false;
     }
 }
