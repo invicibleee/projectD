@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -13,8 +14,12 @@ public class ScytheThrowSkill : Skill
     public ScytheType scytheType = ScytheType.Regular;
 
     [Header("Bounce info")]
-    [SerializeField] private int amountOfBounce;
+    [SerializeField] private int BounceAmount;
     [SerializeField] private float bounceGravity;
+
+    [Header("Pierce info")]
+    [SerializeField] private int pierceAmount;
+    [SerializeField] private float pierceGravity;
 
     [Header("Skill info")]
     [SerializeField] private GameObject scythePrefab;
@@ -37,7 +42,18 @@ public class ScytheThrowSkill : Skill
         base.Start();
 
         GenerateDots();
+
+        SetupGravity();
     }
+
+    private void SetupGravity()
+    {
+        if (scytheType == ScytheType.Bounce)
+            scytheGravity = bounceGravity;
+        else if(scytheType == ScytheType.Pierce)
+            scytheGravity = pierceGravity;
+    }
+
     protected override void Update()
     {
         if (Input.GetKeyUp(KeyCode.Mouse1))
@@ -57,11 +73,10 @@ public class ScytheThrowSkill : Skill
         GameObject newScythe = Instantiate(scythePrefab, player.transform.position, transform.rotation);
         ScytheSkillController newScytheScript = newScythe.GetComponent<ScytheSkillController>();
 
-        if(scytheType == ScytheType.Bounce)
-        {
-            scytheGravity = bounceGravity;
-            newScytheScript.SetupBounce(true, amountOfBounce);
-        }
+        if (scytheType == ScytheType.Bounce)
+            newScytheScript.SetupBounce(true, BounceAmount);
+        else if (scytheType == ScytheType.Pierce)
+            newScytheScript.SetupPierce(pierceAmount);
 
         newScytheScript.SetupScythe(finalDirection, scytheGravity, player);
 

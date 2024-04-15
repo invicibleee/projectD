@@ -14,10 +14,14 @@ public class ScytheSkillController : MonoBehaviour
     private bool canRotate = true;
     private bool isReturning;
 
+
+    [Header("Pierce info")]
+    [SerializeField] private float pierceAmount;
+
     [Header("Bounce info")]
     [SerializeField] private float bounceSpeed;
     private bool isBouncing;
-    private int amountOfBounce;
+    private int BounceAmount;
     private List<Transform> enemyTarget;
     private int targetIndex;
 
@@ -39,9 +43,14 @@ public class ScytheSkillController : MonoBehaviour
     public void SetupBounce(bool _isBouncing, int _amountOfBounce)
     {
         isBouncing = _isBouncing;
-        amountOfBounce = _amountOfBounce;
+        BounceAmount = _amountOfBounce;
 
         enemyTarget = new List<Transform>();
+    }
+
+    public void SetupPierce(int _pierceAmount)
+    {
+        pierceAmount = _pierceAmount;
     }
 
     public void ReturnScythe()
@@ -76,9 +85,9 @@ public class ScytheSkillController : MonoBehaviour
             if (Vector2.Distance(transform.position, enemyTarget[targetIndex].position) < .1f)
             {
                 targetIndex++;
-                amountOfBounce--;
+                BounceAmount--;
 
-                if (amountOfBounce <= 0)
+                if (BounceAmount <= 0)
                 {
                     isBouncing = false;
                     isReturning = true;
@@ -116,6 +125,12 @@ public class ScytheSkillController : MonoBehaviour
 
     private void StuckInto(Collider2D collision)
     {
+        if(pierceAmount > 0 && collision.GetComponent<Enemy>() != null)
+        {
+            pierceAmount--;
+            return;
+        }
+
         canRotate = false;
         bc.enabled = false;
 
