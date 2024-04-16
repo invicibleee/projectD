@@ -16,15 +16,25 @@ public class ScytheThrowSkill : Skill
     [Header("Bounce info")]
     [SerializeField] private int BounceAmount;
     [SerializeField] private float bounceGravity;
+    [SerializeField] private float bounceSpeed;
 
     [Header("Pierce info")]
     [SerializeField] private int pierceAmount;
     [SerializeField] private float pierceGravity;
 
+    [Header("Spin info")]
+    [SerializeField] private float hitCooldown = 0.2f;
+    [SerializeField] private float maxTravelDistance = 5;
+    [SerializeField] private float spinDuration = 2;
+    [SerializeField] private float spinGravity = 1;
+
+
     [Header("Skill info")]
     [SerializeField] private GameObject scythePrefab;
     [SerializeField] private Vector2 launchForce;
     [SerializeField] private float scytheGravity;
+    [SerializeField] private float freezeTimeDuration;
+    [SerializeField] private float returnSpeed;
 
 
     private Vector2 finalDirection;
@@ -52,6 +62,8 @@ public class ScytheThrowSkill : Skill
             scytheGravity = bounceGravity;
         else if(scytheType == ScytheType.Pierce)
             scytheGravity = pierceGravity;
+        else if(scytheType == ScytheType.Spin)
+            scytheGravity = spinGravity;
     }
 
     protected override void Update()
@@ -74,11 +86,13 @@ public class ScytheThrowSkill : Skill
         ScytheSkillController newScytheScript = newScythe.GetComponent<ScytheSkillController>();
 
         if (scytheType == ScytheType.Bounce)
-            newScytheScript.SetupBounce(true, BounceAmount);
+            newScytheScript.SetupBounce(true, BounceAmount, bounceSpeed);
         else if (scytheType == ScytheType.Pierce)
             newScytheScript.SetupPierce(pierceAmount);
+        else if (scytheType == ScytheType.Spin)
+            newScytheScript.SetupSpin(true, maxTravelDistance, spinDuration, hitCooldown);
 
-        newScytheScript.SetupScythe(finalDirection, scytheGravity, player);
+        newScytheScript.SetupScythe(finalDirection, scytheGravity, player, freezeTimeDuration, returnSpeed);
 
         player.AssingNewScythe(newScythe);
 

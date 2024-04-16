@@ -375,6 +375,7 @@ MonoBehaviour:
   counterAttackDuration: 1
   moveSpeed: 10
   jumpForce: 10
+  scytheReturnImpact: 2
   dashSpeed: 25
   dashDuration: 0.2
 --- !u!114 &4379914219021130065

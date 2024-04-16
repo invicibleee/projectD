@@ -74,11 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 824769fc36502334b88651a83431aae0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  returnSpeed: 15
+  returnSpeed: 25
+  pierceAmount: 0
   bounceSpeed: 20
-  isBouncing: 1
-  amountOfBounce: 4
-  enemyTarget: []
 --- !u!61 &7780118727788826963
 BoxCollider2D:
   m_ObjectHideFlags: 0
