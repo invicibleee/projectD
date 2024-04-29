@@ -18,6 +18,7 @@ public class Entity : MonoBehaviour
     public EntityFX fx { get; private set; }
     public SkillManager skill { get; private set; }
     public SpriteRenderer sr { get; private set; }
+    public CharacterStats stats { get; private set; }
 
 
     #endregion
@@ -43,7 +44,7 @@ public class Entity : MonoBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFX>();
-        
+        stats = GetComponent<CharacterStats>();
 
         skill = SkillManager.instance;
     }
@@ -58,11 +59,20 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual void Damage()
+    public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+
+    }
+
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
+    }
+    public virtual void DamageEffect()
     {
         fx.StartCoroutine("FlashFX");
         StartCoroutine("HitKnockback");
-        //Debug.Log(gameObject.name + "was Damaged");
+        
     }
     
     protected virtual IEnumerator HitKnockback()
@@ -124,5 +134,9 @@ public class Entity : MonoBehaviour
             sr.color = Color.clear;
         else
             sr.color = Color.white;
+    }
+    public virtual void Die()
+    {
+
     }
 }
