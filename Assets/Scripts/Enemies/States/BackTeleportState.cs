@@ -1,0 +1,82 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BackTeleportState : EnemyState
+{
+    protected D_BackTeleportState stateData;
+    
+    protected bool performCloseRangeAction;
+    protected Player player;
+    protected bool isPLayerInMaxArgroRange;
+    protected bool isGrounded;
+    protected bool isTeleportOver;
+    
+    public BackTeleportState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_BackTeleportState stateData, Player player) : base(stateMashine, enemy, animBoolName)
+    {
+        this.stateData = stateData;
+        this.player = player;
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
+        isPLayerInMaxArgroRange = enemy.CheckPlayerInMaxAgroRange();
+        isGrounded = enemy.IsGroundDetected();
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        isTeleportOver = false;
+
+        
+    }
+
+
+
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        if (Time.time >= startTime + stateData.teleportTime && isGrounded)
+        {
+            isTeleportOver = true;
+            // Перевіряємо, чи всі необхідні дані встановлені
+            if (enemy != null && player != null)
+            {
+                // Отримуємо позицію гравця та його напрямок
+                Vector3 playerPosition = player.transform.position;
+                Vector3 playerDirection = player.transform.right; // Використовуємо transform.right для 2D проєкту
+
+                // Отримуємо вектор, що вказує у протилежному напрямку від напрямку гравця
+                Vector3 oppositeDirection = -playerDirection;
+
+                // Розраховуємо позицію для ворога, яка буде за гравцем
+                Vector3 enemyPosition = playerPosition + oppositeDirection * stateData.distanceBehindPlayer;
+
+                // Встановлюємо позицію ворога
+                enemy.transform.position = enemyPosition;
+
+                // Позначаємо телепортацію як завершену
+                isTeleportOver = true;
+            }
+            else
+            {
+                Debug.LogError("Enemy or player is not set.");
+            }
+        }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+        
+    }
+}

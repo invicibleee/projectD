@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E7_BackTeleportState : BackTeleportState
+public class E7_ChargeState : ChargeState
 {
     private EnemyGhost enemyGhost;
-    public E7_BackTeleportState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_BackTeleportState stateData, EnemyGhost enemyGhost, Player player) : base(stateMashine, enemy, animBoolName, stateData, player)
+    public E7_ChargeState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_ChargeState stateData, EnemyGhost enemyGhost) : base(stateMashine, enemy, animBoolName, stateData)
     {
         this.enemyGhost = enemyGhost;
     }
@@ -28,15 +28,25 @@ public class E7_BackTeleportState : BackTeleportState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (isPLayerInMaxArgroRange && performCloseRangeAction)
+        if (performCloseRangeAction)
         {
             stateMashine.ChangeState(enemyGhost.meleeAttackState);
         }
-        else if (!isPLayerInMaxArgroRange)
+        else if (!isDetectingLedge || isDetectingWall)
         {
             stateMashine.ChangeState(enemyGhost.lookForPlayerState);
         }
-      
+        else if (isChargeTimeOver)
+        {
+            if (isPlayerInMinAgroRange)
+            {
+                stateMashine.ChangeState(enemyGhost.playerDetectedState);
+            }
+            else
+            {
+                stateMashine.ChangeState(enemyGhost.lookForPlayerState);
+            }
+        }
     }
 
     public override void PhysicsUpdate()

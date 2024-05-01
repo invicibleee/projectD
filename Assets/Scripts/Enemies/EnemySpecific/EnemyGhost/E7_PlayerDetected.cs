@@ -24,19 +24,29 @@ public class E7_PlayerDetected : PlayerDetectedState
     public override void Exit()
     {
         base.Exit();
+
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (performCloseRangeAction)
+        if (performLongRangeAction)
+        {
+            if (Time.time >= enemyGhost.backTeleportState.startTime + enemyGhost.backTeleportStateData.teleportCooldown)
+            {
+                stateMashine.ChangeState(enemyGhost.backTeleportState);
+            }
+            else 
+            {
+                stateMashine.ChangeState(enemyGhost.chargeState);
+            
+            }
+
+        }
+        else if (performCloseRangeAction)
         {
             stateMashine.ChangeState(enemyGhost.meleeAttackState);
         }
-        //else if (performLongRangeAction)
-        //{
-        //    //TODO : TeleportState
-        //}
         else if (!isPlayerInMaxAgroRange)
         {
             stateMashine.ChangeState(enemyGhost.lookForPlayerState);
