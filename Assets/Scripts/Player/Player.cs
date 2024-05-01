@@ -25,6 +25,7 @@ public class Player : Entity
     public float dashDirection { get; private set; }
 
     public GameObject scythe { get; private set; }
+
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
 

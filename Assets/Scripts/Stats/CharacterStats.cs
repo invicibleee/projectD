@@ -74,7 +74,7 @@ public class CharacterStats : MonoBehaviour
         if (shockedTimer < 0)
             isShocked = false;
 
-        if(isIgnited)
+        if (isIgnited)
             ApplyIgniteDamageEffect();
     }
 
@@ -97,9 +97,6 @@ public class CharacterStats : MonoBehaviour
         totalDamage = CheckTargetArmor(_targetStats, totalDamage);
         _targetStats.TakeDamage(totalDamage);
         
-
-        //if invnteroy current weapon has fire effect
-        // then DoMagicalDamage(_targetStats);
 
     }
 
@@ -245,7 +242,7 @@ public class CharacterStats : MonoBehaviour
                 }
             }
 
-            if (closestEnemy == null)            // delete if you don't want shocked target to be hit by shock strike
+            if (closestEnemy == null)            
                 closestEnemy = transform;
         }
 
@@ -278,7 +275,7 @@ public class CharacterStats : MonoBehaviour
     {
         DecreaseHealthBy(_damage);
 
-        //GetComponent<Entity>().DamageImpact();
+        GetComponent<Entity>().DamageImpact();
         fx.StartCoroutine("FlashFX");
 
         if (currentHealth < 0 && !isDead)

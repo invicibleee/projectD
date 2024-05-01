@@ -200,7 +200,7 @@ public class ScytheSkillController : MonoBehaviour
 
     private void ScytheThrowSkillDamage(Enemy enemy)
     {
-        enemy.DamageEffect();
+        player.stats.DoDamage(enemy.GetComponent<CharacterStats>());
         enemy.StartCoroutine("FreezeTimer", freezeTimeDuration);
     }
 

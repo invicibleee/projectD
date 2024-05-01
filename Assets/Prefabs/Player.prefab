@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 360739427503104652}
   - component: {fileID: 1485019578107172287}
   - component: {fileID: 4379914219021130065}
+  - component: {fileID: 383409272858027507}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -390,5 +391,74 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashDuration: 0.15
+  flashDuration: 0.2
   hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor:
+  - {r: 0, g: 0.9233861, b: 1, a: 0}
+  - {r: 0.504717, g: 0.9611543, b: 1, a: 0}
+  igniteColor:
+  - {r: 1, g: 0, b: 0.10815287, a: 0}
+  - {r: 1, g: 0.4198113, b: 0.48351842, a: 0}
+  shockColor:
+  - {r: 0.9830502, g: 1, b: 0, a: 0}
+  - {r: 0.9474016, g: 0.9528302, b: 0.6067551, a: 0}
+--- !u!114 &383409272858027507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074423769926948372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8644747f87df48439c1cd045dcfa586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 11
+    modifiers: 
+  agility:
+    baseValue: 11
+    modifiers: 
+  intelligence:
+    baseValue: 11
+    modifiers: 
+  vitality:
+    baseValue: 11
+    modifiers: 
+  damage:
+    baseValue: 11
+    modifiers: 
+  critChance:
+    baseValue: 11
+    modifiers: 
+  critPower:
+    baseValue: 11
+    modifiers: 
+  maxHealth:
+    baseValue: 11
+    modifiers: 
+  armor:
+    baseValue: 0
+    modifiers: 
+  evasion:
+    baseValue: 1
+    modifiers: 
+  magicResistance:
+    baseValue: 1
+    modifiers: 
+  fireDamage:
+    baseValue: 0
+    modifiers: 
+  iceDamage:
+    baseValue: 0
+    modifiers: 
+  lightingDamage:
+    baseValue: 1
+    modifiers: 
+  isIgnited: 0
+  isChilled: 0
+  isShocked: 0
+  ailmentsDuration: 4
+  shockStrikePrefab: {fileID: 6428285152831848507, guid: e725ef91825553d4989faae8a1226104, type: 3}
+  currentHealth: 11

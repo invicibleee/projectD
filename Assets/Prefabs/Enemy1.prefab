@@ -74,6 +74,8 @@ GameObject:
   - component: {fileID: 7226415795352628883}
   - component: {fileID: 3724012693397084787}
   - component: {fileID: 5752763598108980220}
+  - component: {fileID: 1948471445691519931}
+  - component: {fileID: 5969506298709402470}
   m_Layer: 7
   m_Name: Enemy1
   m_TagString: Untagged
@@ -109,6 +111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5868726ef4be2f5429ea97a7cc5e13e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackCheck: {fileID: 0}
+  attackCheckRadius: 0
   groundCheck: {fileID: 1305916208489747587}
   groundCheckDistance: 1
   wallCheck: {fileID: 5336058231227312574}
@@ -116,7 +120,10 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  knockbackDirection: {x: 1, y: 1}
+  knockbackDuration: 0.1
   enemyData: {fileID: 11400000, guid: 4d043ad287f22c94ab148f504ab4ffb5, type: 2}
+  stateData: {fileID: 11400000, guid: 2fbd438f56f9ff2498926ec8fc6f0731, type: 2}
   playerCheck: {fileID: 1509546273717907669}
   idleStateData: {fileID: 11400000, guid: f7a81a2972b5428408eb8be33be86ee5, type: 2}
   moveStateData: {fileID: 11400000, guid: 2fbd438f56f9ff2498926ec8fc6f0731, type: 2}
@@ -197,6 +204,89 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7771225, y: 0.920303}
   m_EdgeRadius: 0
+--- !u!114 &1948471445691519931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779760739883694053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor:
+  - {r: 0, g: 0.9233861, b: 1, a: 0}
+  - {r: 0.504717, g: 0.9611543, b: 1, a: 0}
+  igniteColor:
+  - {r: 1, g: 0, b: 0.10815287, a: 0}
+  - {r: 1, g: 0.4198113, b: 0.48351842, a: 0}
+  shockColor:
+  - {r: 0.9830502, g: 1, b: 0, a: 0}
+  - {r: 0.9474016, g: 0.9528302, b: 0.6067551, a: 0}
+--- !u!114 &5969506298709402470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779760739883694053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 1
+    modifiers: 
+  agility:
+    baseValue: 1
+    modifiers: 
+  intelligence:
+    baseValue: 1
+    modifiers: 
+  vitality:
+    baseValue: 1
+    modifiers: 
+  damage:
+    baseValue: 1
+    modifiers: 
+  critChance:
+    baseValue: 1
+    modifiers: 
+  critPower:
+    baseValue: 1
+    modifiers: 
+  maxHealth:
+    baseValue: 1
+    modifiers: 
+  armor:
+    baseValue: 1
+    modifiers: 
+  evasion:
+    baseValue: 1
+    modifiers: 
+  magicResistance:
+    baseValue: 1
+    modifiers: 
+  fireDamage:
+    baseValue: 0
+    modifiers: 
+  iceDamage:
+    baseValue: 0
+    modifiers: 
+  lightingDamage:
+    baseValue: 1
+    modifiers: 
+  isIgnited: 0
+  isChilled: 0
+  isShocked: 0
+  ailmentsDuration: 4
+  shockStrikePrefab: {fileID: 6428285152831848507, guid: e725ef91825553d4989faae8a1226104, type: 3}
+  currentHealth: 1
 --- !u!1 &7212125882450112087
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +452,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7002486876633853598}
   m_Layer: 7
-  m_Name: MeleeAttackPosition
+  m_Name: AttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
