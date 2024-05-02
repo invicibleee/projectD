@@ -1,0 +1,58 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Enemy1 : Enemy
+{
+    public E1_IdleState idleState { get; private set; }
+
+    public E1_MoveState moveState { get; private set; }
+
+    public E1_PlayerDetectedState playerDetectedState { get; private set; }
+
+    public E1_ChargeState chageState { get; private set; }
+
+    public E1_LookForPlayer lookForPlayerState { get; private set; }
+
+    public E1_MeleeAttack meleeAttackState { get; private set; }
+ 
+    [SerializeField]
+    private D_IdleState idleStateData;
+    [SerializeField]
+    private D_MoveState moveStateData;
+    [SerializeField]
+    private D_PlayerDetected playerDetectedData;
+    [SerializeField]
+    private D_ChargeState chageStateData;
+    [SerializeField]
+    private D_LookForPlayer lookForPlayerStateData;
+    [SerializeField]
+    private D_MeleeAttack meleeAttackStateData;
+
+    [SerializeField]
+    private Transform meleeAttackPosition;
+
+    protected override void Start()
+    {
+        base.Start();
+        moveState = new E1_MoveState(stateMashine, this, "move", moveStateData, this);
+
+        idleState = new E1_IdleState(stateMashine, this, "idle", idleStateData, this);
+
+        playerDetectedState = new E1_PlayerDetectedState(stateMashine, this,"playerDetected", playerDetectedData, this);
+
+        chageState = new E1_ChargeState(stateMashine, this,"charge",chageStateData, this);
+
+        lookForPlayerState = new E1_LookForPlayer(stateMashine, this, "lookForPlayer", lookForPlayerStateData, this);
+
+        meleeAttackState = new E1_MeleeAttack(stateMashine, this, "meleeAttack", meleeAttackPosition, meleeAttackStateData, this);
+
+        stateMashine.Initialize(moveState);
+    }
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        Gizmos.DrawWireSphere(meleeAttackPosition.position, meleeAttackStateData.attackRadius);
+
+    }
+}
