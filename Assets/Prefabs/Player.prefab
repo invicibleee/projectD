@@ -175,7 +175,7 @@ Transform:
   m_GameObject: {fileID: 1635197214397630333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -1.66, z: 0}
+  m_LocalPosition: {x: 0.05, y: -1.626, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -436,13 +436,13 @@ MonoBehaviour:
     baseValue: 11
     modifiers: 
   maxHealth:
-    baseValue: 10
+    baseValue: 100
     modifiers: 
   armor:
-    baseValue: 1
+    baseValue: 0
     modifiers: 
   evasion:
-    baseValue: 1
+    baseValue: 0
     modifiers: 
   magicResistance:
     baseValue: 1
@@ -461,4 +461,5 @@ MonoBehaviour:
   isShocked: 0
   ailmentsDuration: 4
   shockStrikePrefab: {fileID: 6428285152831848507, guid: e725ef91825553d4989faae8a1226104, type: 3}
-  currentHealth: 1
+  currentHealth: 0
+  allBars: {fileID: 0}
