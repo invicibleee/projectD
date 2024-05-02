@@ -37,7 +37,9 @@ public class EnemyGhost : Enemy
     protected override void Start()
     {
         base.Start();
+
         player = Transform.FindAnyObjectByType<Player>();
+
         moveState = new E7_MoveState(stateMashine, this, "move", moveStateData, this);
 
         idleState = new E7_IdleState(stateMashine, this, "idle", idleStateData, this);
