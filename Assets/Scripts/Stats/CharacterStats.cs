@@ -48,6 +48,8 @@ public class CharacterStats : MonoBehaviour
     public System.Action onHealthChanged;
     protected bool isDead;
 
+ 
+
     protected virtual void Start()
     {
         critPower.SetDefaultValue(150);
@@ -78,7 +80,7 @@ public class CharacterStats : MonoBehaviour
             ApplyIgniteDamageEffect();
     }
 
-    
+
 
     public virtual void DoDamage(CharacterStats _targetStats)
     {
@@ -96,10 +98,7 @@ public class CharacterStats : MonoBehaviour
 
         totalDamage = CheckTargetArmor(_targetStats, totalDamage);
         _targetStats.TakeDamage(totalDamage);
-        
-
     }
-
     #region Magical damage and ailemnts
 
     public virtual void DoMagicalDamage(CharacterStats _targetStats)

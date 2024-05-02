@@ -17,6 +17,8 @@ public struct WeaponSkill
 public class CharacterPanelScript : MonoBehaviour
 {
     PauseMenuScript pauseMenuScript;
+    [SerializeField] private CharacterStats playerStats;
+
     public Text[] statTextsFloat; // Array of texts for displaying float statistics
 
     public WeaponSkill[] skills;
@@ -40,17 +42,17 @@ public class CharacterPanelScript : MonoBehaviour
             return;
         }
 
-        SetStatsWithHardcodedValues();
-
         currentStyle = 1;
         descriptionText.text = "select weapon";
         Prompt.text = "";
         UpdateSkillImages();
+        SetStats(playerStats.currentHealth, playerStats.GetMaxHealthValue());
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            SetStats(playerStats.currentHealth, playerStats.GetMaxHealthValue());
             descriptionText.text = "select weapon";
             Prompt.text = "";
         }
@@ -313,13 +315,14 @@ public class CharacterPanelScript : MonoBehaviour
     }
 
     // Method to set health, stamina, and mana values
-    public void SetStats(float currentHealth, float maxHealth, float currentStamina, float maxStamina, float currentMana, 
-        float maxMana, int collectedCollectibles, int maxCollectibles, int completionPercentage)
+    public void SetStats(int _currentHealth, int _maxHealth/*/, int _currentMana, 
+        int _maxMana, int _collectedCollectibles, int _maxCollectibles, int _completionPercentage/*/)
     {
-        SetStatTextFloat(0, currentHealth, maxHealth); // Health
-        SetStatTextFloat(1, currentStamina, maxStamina); // Stamina
-        SetStatTextFloat(2, currentMana, maxMana); // Mana
-        SetStatTextInt(4, completionPercentage, 100); // Completion Percentage
+
+        SetStatTextFloat(0, _currentHealth, _maxHealth); // Health
+        //SetStatTextFloat(1, currentMana, maxMana); // Mana
+        //SetStatTextInt(2, collectedCollectibles, maxCollectibles); // Completion Percentage
+        //SetStatTextInt(3, completionPercentage, 100); // Completion Percentage
     }
 
     // Method to set the text of a specific float statistic
@@ -348,23 +351,5 @@ public class CharacterPanelScript : MonoBehaviour
             }
         }
        
-    }
-
-    // Method to set statistics with pre-defined values
-    void SetStatsWithHardcodedValues()
-    {
-        float currentHealth = 75f;
-        float maxHealth = 100f;
-        float currentStamina = 50f;
-        float maxStamina = 75f;
-        float currentMana = 25f;
-        float maxMana = 50f;
-
-        int collectedCollectibles = 20;
-        int maxCollectibles = 20;
-        int completionPercentage = 75; 
-
-        SetStats(currentHealth, maxHealth, currentStamina, maxStamina, currentMana, maxMana, collectedCollectibles,
-            maxCollectibles, completionPercentage);
     }
 }

@@ -1,0 +1,136 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3871854185349584486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410885012026653896}
+  - component: {fileID: 4072676130489516044}
+  - component: {fileID: 4625140714742906632}
+  - component: {fileID: 760385919282730378}
+  - component: {fileID: 4429317816687766414}
+  - component: {fileID: 6188087933920295939}
+  m_Layer: 0
+  m_Name: SkillManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &410885012026653896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3871854185349584486}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.0260077, y: -0.28730553, z: -0.5262642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4072676130489516044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3871854185349584486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71b7672abb8517249be8206d13bc1ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4625140714742906632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3871854185349584486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 818ccf3c9df816d4584a03af4a30a44b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0.7
+--- !u!114 &760385919282730378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3871854185349584486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30fc2c17287b98b478abc7ac4cb9155e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  clonePrefab: {fileID: 1801271866154702345, guid: 2b2e5d3edb4b5954ab2e7ea1da660fa8, type: 3}
+  cloneDuration: 1.5
+  canAttack: 1
+  creatCloneOnDashStart: 1
+  createCloneOnDashOver: 0
+  canCreateCloneOnCounterAttack: 0
+  canDuplicateClone: 1
+  chanceToDuplicate: 25
+--- !u!114 &4429317816687766414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3871854185349584486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ab192bc819d44a45b661b4294e8580d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  cloneCooldown: 0.35
+  amountOfAttacks: 5
+  chronoDuration: 3
+  chronoPrefab: {fileID: 3072276114480753227, guid: 3c31f9a343276c042b33e3057470ab99, type: 3}
+  maxSize: 15
+  growSpeed: 3
+  shrinkSpeed: 6
+--- !u!114 &6188087933920295939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3871854185349584486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b4ea8e704e2644ea842f4d2881e81f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  scytheType: 1
+  BounceAmount: 4
+  bounceGravity: 1
+  bounceSpeed: 25
+  pierceAmount: 2
+  pierceGravity: 1
+  hitCooldown: 0.35
+  maxTravelDistance: 10
+  spinDuration: 1.5
+  spinGravity: 1
+  scythePrefab: {fileID: 5586751181441782224, guid: de15c2a6144294241ad6ba62adfa65ef, type: 3}
+  launchForce: {x: 35, y: 25}
+  scytheGravity: 1
+  freezeTimeDuration: 1
+  returnSpeed: 25
+  numberOfDots: 20
+  spaceBetweenDots: 0.05
+  dotsPrefab: {fileID: 4878849021693907653, guid: c7703eda54b75274698629d8488e46e1, type: 3}
+  dotsParent: {fileID: 0}

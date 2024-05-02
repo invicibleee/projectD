@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStats : CharacterStats
 {
     private Player player;
+    public HealthManaUltBars allBars;
 
     protected override void Start()
     {
@@ -16,6 +17,8 @@ public class PlayerStats : CharacterStats
     public override void TakeDamage(int _damage)
     {
         base.TakeDamage(_damage);
+        allBars.SetHealth(currentHealth - _damage, GetMaxHealthValue());
+        currentHealth = currentHealth - _damage;
     }
 
     protected override void Die()

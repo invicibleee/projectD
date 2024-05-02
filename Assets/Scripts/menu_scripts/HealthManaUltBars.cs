@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthManaUltBars : MonoBehaviour
 {
+    [SerializeField] private CharacterStats stats;
     public Image BarHP;
     public Image BarMana;
     public Image BarUlt;
 
-    public float maxHP = 100f;
-    public float maxMana = 100f;
-    public float maxUlt = 100f;
+    public float maxMana = 100;
+    public float maxUlt = 100;
 
     private float currentHP;
     private float currentMana;
@@ -22,7 +23,8 @@ public class HealthManaUltBars : MonoBehaviour
    // public float currentUlt;
     void Start()
     {
-        currentHP = maxHP;
+        currentHP = stats.GetMaxHealthValue();
+        Debug.Log(currentHP);
         currentMana = maxMana;
         currentUlt = maxUlt;
         UpdateBars();
@@ -30,14 +32,14 @@ public class HealthManaUltBars : MonoBehaviour
 
     void UpdateBars()
     {
-        BarHP.fillAmount = currentHP / maxHP;
+        BarHP.fillAmount = currentHP / stats.GetMaxHealthValue();
         BarMana.fillAmount = currentMana / maxMana;
         BarUlt.fillAmount = currentUlt / maxUlt;
     }
 
-    public void SetHealth(float health)
+    public void SetHealth(float health, float maxHealth)
     {
-        currentHP = Mathf.Clamp(health, 0f, maxHP);
+        currentHP = Mathf.Clamp(health, 0f, maxHealth);
         UpdateBars();
     }
 
