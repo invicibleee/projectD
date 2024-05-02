@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength:
-    baseValue: 1
+    baseValue: 5
     modifiers: 
   agility:
     baseValue: 1
@@ -273,13 +273,13 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   fireDamage:
-    baseValue: 0
+    baseValue: 3
     modifiers: 
   iceDamage:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   lightingDamage:
-    baseValue: 1
+    baseValue: 3
     modifiers: 
   isIgnited: 0
   isChilled: 0

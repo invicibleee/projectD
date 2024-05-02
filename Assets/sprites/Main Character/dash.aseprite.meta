@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a9020bbde1d58de4fb1d27087320ecb2
+guid: a62c75e08d536924ab6d3124ba4a286a
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -75,7 +75,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
@@ -87,7 +87,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638323041171851471
+  platformSettingsDirtyTick: 638502775375369619
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,18 +119,78 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Idle_Frame_0
+  - name: dash_Frame_0
     originalName: 
-    pivot: {x: 0.41860464, y: -0.099999994}
+    pivot: {x: 0.6216216, y: 0.6136364}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 58
+      y: 4
+      width: 37
+      height: 44
+    spriteID: b6c4774f56015b644987ca2b9e28feb2
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 58, y: 4}
+  - name: dash_Frame_1
+    originalName: 
+    pivot: {x: 0.61904764, y: 0.60465115}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 208
+      width: 42
+      height: 43
+    spriteID: 9546fb790696db5488fc91dde273285f
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 208}
+  - name: dash_Frame_2
+    originalName: 
+    pivot: {x: 0.64444447, y: 0.60465115}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 55
+      width: 45
+      height: 43
+    spriteID: 1a601bfc010c3dc4384c5f76cc8de63d
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 55}
+  - name: dash_Frame_3
+    originalName: 
+    pivot: {x: 0.65217394, y: 0.60465115}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 43
-      height: 50
-    spriteID: e7e0637f2bdafa24ca67a5eb58c518bc
+      width: 46
+      height: 43
+    spriteID: 68b121a8d27c79841a9e4a8effd99323
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,18 +199,18 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
-  - name: Idle_Frame_1
+  - name: dash_Frame_4
     originalName: 
-    pivot: {x: 0.41860464, y: -0.099999994}
+    pivot: {x: 0.64444447, y: 0.60465115}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 62
-      width: 43
-      height: 50
-    spriteID: 2ad9b883f1d32364caa059278b38c258
+      y: 106
+      width: 45
+      height: 43
+    spriteID: 74709ec708f65884b81a1329ec4c6f7f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -158,19 +218,19 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 62}
-  - name: Idle_Frame_2
+    uvTransform: {x: 4, y: 106}
+  - name: dash_Frame_5
     originalName: 
-    pivot: {x: 0.41860464, y: -0.10204081}
+    pivot: {x: 0.65909094, y: 0.60465115}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
-      y: 178
-      width: 43
-      height: 49
-    spriteID: c41b1cfc466d1034f885d9d3f26f0f3b
+      y: 157
+      width: 44
+      height: 43
+    spriteID: 2fd1058c1d13b4b49ab3b3ec6b0cf839
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -178,124 +238,64 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 178}
-  - name: Idle_Frame_3
-    originalName: 
-    pivot: {x: 0.41860464, y: -0.10204081}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 55
-      y: 4
-      width: 43
-      height: 49
-    spriteID: 67e80896fce01c44ab800250667c5239
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 55, y: 4}
-  - name: Idle_Frame_4
-    originalName: 
-    pivot: {x: 0.41860464, y: -0.10204081}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 55
-      y: 61
-      width: 43
-      height: 49
-    spriteID: bccecd2788c137541ad0072745238a9b
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 55, y: 61}
-  - name: Idle_Frame_5
-    originalName: 
-    pivot: {x: 0.41860464, y: -0.099999994}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 120
-      width: 43
-      height: 50
-    spriteID: a7a0872eb7b4a3c4eab87f8ed0473d55
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 120}
+    uvTransform: {x: 4, y: 157}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 161112836
-    name: Idle
+    guid: -1909548778
+    name: dash
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Idle_Frame_0
+    - name: dash_Frame_0
       frameIndex: 0
       cellRect:
-        x: 14
+        x: 9
         y: 5
-        width: 43
-        height: 50
-      spriteId: e7e0637f2bdafa24ca67a5eb58c518bc
-    - name: Idle_Frame_1
+        width: 37
+        height: 44
+      spriteId: b6c4774f56015b644987ca2b9e28feb2
+    - name: dash_Frame_1
       frameIndex: 1
       cellRect:
-        x: 14
-        y: 5
-        width: 43
-        height: 50
-      spriteId: 2ad9b883f1d32364caa059278b38c258
-    - name: Idle_Frame_2
+        x: 6
+        y: 6
+        width: 42
+        height: 43
+      spriteId: 9546fb790696db5488fc91dde273285f
+    - name: dash_Frame_2
       frameIndex: 2
       cellRect:
-        x: 14
-        y: 5
-        width: 43
-        height: 49
-      spriteId: c41b1cfc466d1034f885d9d3f26f0f3b
-    - name: Idle_Frame_3
+        x: 3
+        y: 6
+        width: 45
+        height: 43
+      spriteId: 1a601bfc010c3dc4384c5f76cc8de63d
+    - name: dash_Frame_3
       frameIndex: 3
       cellRect:
-        x: 14
-        y: 5
-        width: 43
-        height: 49
-      spriteId: 67e80896fce01c44ab800250667c5239
-    - name: Idle_Frame_4
+        x: 2
+        y: 6
+        width: 46
+        height: 43
+      spriteId: 68b121a8d27c79841a9e4a8effd99323
+    - name: dash_Frame_4
       frameIndex: 4
       cellRect:
-        x: 14
-        y: 5
-        width: 43
-        height: 49
-      spriteId: bccecd2788c137541ad0072745238a9b
-    - name: Idle_Frame_5
+        x: 3
+        y: 6
+        width: 45
+        height: 43
+      spriteId: 74709ec708f65884b81a1329ec4c6f7f
+    - name: dash_Frame_5
       frameIndex: 5
       cellRect:
-        x: 14
-        y: 5
-        width: 43
-        height: 50
-      spriteId: a7a0872eb7b4a3c4eab87f8ed0473d55
+        x: 3
+        y: 6
+        width: 44
+        height: 43
+      spriteId: 2fd1058c1d13b4b49ab3b3ec6b0cf839
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -324,6 +324,18 @@ ScriptedImporter:
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
   - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
     overridden: 0
     ignorePlatformSupport: 0
     maxTextureSize: 2048

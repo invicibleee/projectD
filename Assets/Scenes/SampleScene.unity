@@ -175,22 +175,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1
       objectReference: {fileID: 0}
-    - target: {fileID: 5969506298709402470, guid: 4239a6c95b3a5314aa75d244b086a750, type: 3}
-      propertyPath: strength.baseValue
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5969506298709402470, guid: 4239a6c95b3a5314aa75d244b086a750, type: 3}
-      propertyPath: iceDamage.baseValue
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5969506298709402470, guid: 4239a6c95b3a5314aa75d244b086a750, type: 3}
-      propertyPath: fireDamage.baseValue
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5969506298709402470, guid: 4239a6c95b3a5314aa75d244b086a750, type: 3}
-      propertyPath: lightingDamage.baseValue
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -544,49 +528,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
-      propertyPath: isChilled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
-      propertyPath: isIgnited
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
-      propertyPath: isShocked
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
-      propertyPath: currentHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
-      propertyPath: armor.baseValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
-      propertyPath: iceDamage.baseValue
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
-      propertyPath: maxHealth.baseValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
-      propertyPath: fireDamage.baseValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
-      propertyPath: lightingDamage.baseValue
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 2165205865250181261, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.36
+      value: -3.56
       objectReference: {fileID: 0}
     - target: {fileID: 2165205865250181261, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.8
+      value: 10.43
       objectReference: {fileID: 0}
     - target: {fileID: 2165205865250181261, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: m_LocalPosition.z
@@ -707,7 +655,7 @@ MonoBehaviour:
   cloneDuration: 1.5
   canAttack: 1
   creatCloneOnDashStart: 1
-  createCloneOnDashOver: 1
+  createCloneOnDashOver: 0
   canCreateCloneOnCounterAttack: 0
   canDuplicateClone: 1
   chanceToDuplicate: 25
@@ -1158,7 +1106,7 @@ Transform:
   m_GameObject: {fileID: 2108702603}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.74, y: 2.48, z: 0}
+  m_LocalPosition: {x: -2.95, y: 4.84, z: 0}
   m_LocalScale: {x: 3.6912, y: 5.9592, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

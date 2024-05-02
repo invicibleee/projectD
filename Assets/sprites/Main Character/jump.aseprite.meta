@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f15e904cbc21d5b42a0e6b0f4cf59aae
+guid: 8dc367ddb261b11498b1896b509c5a00
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638502775375319622
+  platformSettingsDirtyTick: 638502775375329621
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,38 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: turn_Frame_0
+  - name: jump_Frame_0
     originalName: 
-    pivot: {x: 0.6666667, y: 0.5510204}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 60
-      width: 27
-      height: 49
-    spriteID: 6f3ac0f3d151083499e35272e8409bae
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 60}
-  - name: turn_Frame_1
-    originalName: 
-    pivot: {x: 0.67857146, y: 0.5625}
+    pivot: {x: 0.6538462, y: 0.5510204}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 28
-      height: 48
-    spriteID: bad8cbd9e4202c942ba6392d551a14e1
+      width: 26
+      height: 49
+    spriteID: d8d06b453ede8054f9ec91ca477cab5d
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -159,31 +139,135 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: jump_Frame_1
+    originalName: 
+    pivot: {x: 0.64, y: 0.53061223}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 72
+      y: 4
+      width: 25
+      height: 49
+    spriteID: 426a6034f72ffc4498c1cde31cb9ab96
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 72, y: 4}
+  - name: jump_Frame_2
+    originalName: 
+    pivot: {x: 0.55, y: 0.5102041}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 34
+      y: 61
+      width: 20
+      height: 49
+    spriteID: a7fc3355bcdb7d64596858466ea1cfa6
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 34, y: 61}
+  - name: jump_Frame_3
+    originalName: 
+    pivot: {x: 0.5909091, y: 0.53061223}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 61
+      width: 22
+      height: 49
+    spriteID: 81423a3f3b8210846912b9db15eb922b
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 61}
+  - name: jump_Frame_4
+    originalName: 
+    pivot: {x: 0.6538462, y: 0.5625}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 38
+      y: 4
+      width: 26
+      height: 48
+    spriteID: afd9233922e21a24eac1831e030b1a77
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 38, y: 4}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1340727643
-    name: turn
+    guid: -357473414
+    name: jump
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: turn_Frame_0
+    - name: jump_Frame_0
       frameIndex: 0
       cellRect:
-        x: 14
+        x: 15
         y: 5
-        width: 27
+        width: 26
         height: 49
-      spriteId: 6f3ac0f3d151083499e35272e8409bae
-    - name: turn_Frame_1
+      spriteId: d8d06b453ede8054f9ec91ca477cab5d
+    - name: jump_Frame_1
       frameIndex: 1
       cellRect:
-        x: 13
+        x: 16
+        y: 6
+        width: 25
+        height: 49
+      spriteId: 426a6034f72ffc4498c1cde31cb9ab96
+    - name: jump_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 21
+        y: 7
+        width: 20
+        height: 49
+      spriteId: a7fc3355bcdb7d64596858466ea1cfa6
+    - name: jump_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 19
+        y: 6
+        width: 22
+        height: 49
+      spriteId: 81423a3f3b8210846912b9db15eb922b
+    - name: jump_Frame_4
+      frameIndex: 4
+      cellRect:
+        x: 15
         y: 5
-        width: 28
+        width: 26
         height: 48
-      spriteId: bad8cbd9e4202c942ba6392d551a14e1
+      spriteId: afd9233922e21a24eac1831e030b1a77
     linkedCells: []
     parentIndex: -1
   platformSettings:

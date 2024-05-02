@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 717699710778416505}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: -1208358755
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: -3318188226485093758, guid: ae72133dacba6ec4eb33ecde48f50e56, type: 3}
+  m_Sprite: {fileID: 2813432372607974487, guid: 85113a81dcfe07a49aad8c7ec8ae0d72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.3125, y: 2.75}
+  m_Size: {x: 2.6875, y: 3.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -144,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 1630040499671387505}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.12, y: -0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -175,7 +175,7 @@ Transform:
   m_GameObject: {fileID: 1635197214397630333}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: -1.31, z: 0}
+  m_LocalPosition: {x: 0.05, y: -1.66, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -206,9 +206,9 @@ Transform:
   m_GameObject: {fileID: 3889321429381558113}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.99, y: -0.27, z: 0}
+  m_LocalPosition: {x: 0.96, y: -0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2165205865250181261}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -237,7 +237,7 @@ Transform:
   m_GameObject: {fileID: 7008151059545644536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.304, y: -0.29, z: 0}
+  m_LocalPosition: {x: 0.477, y: 0.093, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -343,8 +343,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06465244, y: -0.28016067}
-  m_Size: {x: 0.6724067, y: 2.034439}
+  m_Offset: {x: -0.033147097, y: -0.34580612}
+  m_Size: {x: 0.76435184, y: 2.6295223}
   m_Direction: 0
 --- !u!114 &1485019578107172287
 MonoBehaviour:
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCheck: {fileID: 675793158048935205}
-  attackCheckRadius: 0.8
+  attackCheckRadius: 1.3
   groundCheck: {fileID: 8299758024381478932}
   groundCheckDistance: 0.15
   wallCheck: {fileID: 187327905703180771}
@@ -375,7 +375,7 @@ MonoBehaviour:
   - {x: 4, y: 1}
   counterAttackDuration: 1
   moveSpeed: 10
-  jumpForce: 10
+  jumpForce: 15
   scytheReturnImpact: 2
   dashSpeed: 25
   dashDuration: 0.2
@@ -424,7 +424,7 @@ MonoBehaviour:
     baseValue: 11
     modifiers: 
   vitality:
-    baseValue: 11
+    baseValue: 1
     modifiers: 
   damage:
     baseValue: 11
@@ -436,10 +436,10 @@ MonoBehaviour:
     baseValue: 11
     modifiers: 
   maxHealth:
-    baseValue: 11
+    baseValue: 10
     modifiers: 
   armor:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   evasion:
     baseValue: 1
@@ -448,17 +448,17 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   fireDamage:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   iceDamage:
-    baseValue: 0
+    baseValue: 2
     modifiers: 
   lightingDamage:
-    baseValue: 1
+    baseValue: 3
     modifiers: 
   isIgnited: 0
   isChilled: 0
   isShocked: 0
   ailmentsDuration: 4
   shockStrikePrefab: {fileID: 6428285152831848507, guid: e725ef91825553d4989faae8a1226104, type: 3}
-  currentHealth: 11
+  currentHealth: 1

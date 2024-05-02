@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f15e904cbc21d5b42a0e6b0f4cf59aae
+guid: df7268d67c8cf4d40a81c93c99f22eb3
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638502775375319622
+  platformSettingsDirtyTick: 638502800682990620
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,38 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: turn_Frame_0
+  - name: catch_Frame_0
     originalName: 
-    pivot: {x: 0.6666667, y: 0.5510204}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 60
-      width: 27
-      height: 49
-    spriteID: 6f3ac0f3d151083499e35272e8409bae
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 60}
-  - name: turn_Frame_1
-    originalName: 
-    pivot: {x: 0.67857146, y: 0.5625}
+    pivot: {x: 0.4, y: 0.5681818}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 28
-      height: 48
-    spriteID: bad8cbd9e4202c942ba6392d551a14e1
+      width: 35
+      height: 44
+    spriteID: f237d093f37f2b3478a821f614d4b7e8
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -159,31 +139,107 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: catch_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5681818}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 47
+      y: 4
+      width: 28
+      height: 44
+    spriteID: f75f7465203536c47af9325fe03f7360
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 47, y: 4}
+  - name: catch_Frame_2
+    originalName: 
+    pivot: {x: 0.4814815, y: 0.5681818}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 83
+      y: 4
+      width: 27
+      height: 44
+    spriteID: 72be51d8ff335464baa3a6459252b7ee
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 83, y: 4}
+  - name: catch_Frame_3
+    originalName: 
+    pivot: {x: 0.5185185, y: 0.5681818}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 56
+      width: 27
+      height: 44
+    spriteID: c31e6332ae5e7dc418b44c5cc756fd94
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 56}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1340727643
-    name: turn
+    guid: 415352857
+    name: catch
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: turn_Frame_0
+    - name: catch_Frame_0
       frameIndex: 0
       cellRect:
-        x: 14
-        y: 5
-        width: 27
-        height: 49
-      spriteId: 6f3ac0f3d151083499e35272e8409bae
-    - name: turn_Frame_1
+        x: 18
+        y: 15
+        width: 35
+        height: 44
+      spriteId: f237d093f37f2b3478a821f614d4b7e8
+    - name: catch_Frame_1
       frameIndex: 1
       cellRect:
-        x: 13
-        y: 5
+        x: 18
+        y: 15
         width: 28
-        height: 48
-      spriteId: bad8cbd9e4202c942ba6392d551a14e1
+        height: 44
+      spriteId: f75f7465203536c47af9325fe03f7360
+    - name: catch_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 19
+        y: 15
+        width: 27
+        height: 44
+      spriteId: 72be51d8ff335464baa3a6459252b7ee
+    - name: catch_Frame_3
+      frameIndex: 3
+      cellRect:
+        x: 18
+        y: 15
+        width: 27
+        height: 44
+      spriteId: c31e6332ae5e7dc418b44c5cc756fd94
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -237,4 +293,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 64, y: 64}
+  canvasSize: {x: 64, y: 80}
