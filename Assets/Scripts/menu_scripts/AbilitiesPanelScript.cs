@@ -15,6 +15,8 @@ public struct Ability
 
 public class AbilitiesPanelScript : MonoBehaviour
 {
+    public static AbilitiesPanelScript instance;
+
     public Ability[] abilities;
     public Text descriptionText;
     public Text nameText;
@@ -24,6 +26,17 @@ public class AbilitiesPanelScript : MonoBehaviour
     private bool equiped = false;
 
 
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
