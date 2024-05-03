@@ -16,7 +16,7 @@ MonoBehaviour:
   damageHopSpeed: 10
   enemyAttackDamage: 10
   maxAgroDistance: 12
-  minAgroDistance: 6
+  minAgroDistance: 11
   groundCheckRadius: 0.3
   stunResistance: 3
   stunRecoveryTime: 2

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleportSpeed: 10
   teleportTime: 0.5
-  teleportCooldown: 3
+  teleportCooldown: 10
   distanceBehindPlayer: 1
