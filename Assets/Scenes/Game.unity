@@ -6209,6 +6209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6188087933920295939, guid: 6ee2d657ebe43f14fbd07e905d72e8c8, type: 3}
+      propertyPath: scytheType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -76955,6 +76959,10 @@ PrefabInstance:
       propertyPath: allBars
       value: 
       objectReference: {fileID: 1395058759}
+    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
+      propertyPath: maxHealth.modifiers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2165205865250181261, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
