@@ -19,6 +19,8 @@ public class EnemyAsassin : Enemy
 
     public E9_ChargeState chargeState { get; private set; }
 
+    public E9_DashState dashState { get; private set; }
+
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField]
@@ -33,7 +35,8 @@ public class EnemyAsassin : Enemy
     public D_DodgeState dodgeStateData;
     [SerializeField]
     private D_ChargeState chargeStateData;
-
+    [SerializeField]
+    public D_DashState dashStateData;
     protected override void Start()
     {
         base.Start();
@@ -51,6 +54,8 @@ public class EnemyAsassin : Enemy
         dodgeState = new E9_DodgeState(stateMashine, this, "dodge", dodgeStateData, this);
 
         chargeState = new E9_ChargeState(stateMashine, this,"charge",chargeStateData, this);
+
+        dashState = new E9_DashState(stateMashine,this,"dash",attackCheck, dashStateData, this); 
 
         stateMashine.Initialize(moveState);
     }

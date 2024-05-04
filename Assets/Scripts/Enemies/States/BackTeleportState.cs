@@ -46,25 +46,14 @@ public class BackTeleportState : EnemyState
     {
         base.LogicUpdate();
         if (Time.time >= startTime + stateData.teleportTime && isGrounded)
-        {
-            isTeleportOver = true;
-            // Перевіряємо, чи всі необхідні дані встановлені
+        {                     
             if (enemy != null && player != null)
-            {
-                // Отримуємо позицію гравця та його напрямок
+            {               
                 Vector3 playerPosition = player.transform.position;
-                Vector3 playerDirection = player.transform.right; // Використовуємо transform.right для 2D проєкту
-
-                // Отримуємо вектор, що вказує у протилежному напрямку від напрямку гравця
-                Vector3 oppositeDirection = -playerDirection;
-
-                // Розраховуємо позицію для ворога, яка буде за гравцем
-                Vector3 enemyPosition = playerPosition + oppositeDirection * stateData.distanceBehindPlayer;
-
-                // Встановлюємо позицію ворога
-                enemy.transform.position = enemyPosition;
-
-                // Позначаємо телепортацію як завершену
+                Vector3 playerDirection = player.transform.right;                
+                Vector3 oppositeDirection = -playerDirection;               
+                Vector3 enemyPosition = playerPosition + oppositeDirection * stateData.distanceBehindPlayer;                
+                enemy.transform.position = enemyPosition;                
                 isTeleportOver = true;
             }
             else

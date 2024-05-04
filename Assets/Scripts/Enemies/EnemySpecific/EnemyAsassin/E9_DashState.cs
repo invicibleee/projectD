@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E9_DodgeState : DodgeState
+public class E9_DashState : DashState
 {
     private EnemyAsassin enemyAsassin;
-    public E9_DodgeState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_DodgeState stateData, EnemyAsassin enemyAsassin) : base(stateMashine, enemy, animBoolName, stateData)
+    public E9_DashState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition,D_DashState stateData, EnemyAsassin enemyAsassin) : base(stateMashine, enemy, animBoolName, attackPosition,stateData)
     {
         this.enemyAsassin = enemyAsassin;
     }
@@ -25,27 +25,21 @@ public class E9_DodgeState : DodgeState
         base.Exit();
     }
 
+    public override void FinishAttack()
+    {
+        base.FinishAttack();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (isDodgeOver)
+        if (isAnimationFinished)
         {
-            if (isPLayerInMaxArgroRange)
+            if (isPlayerInMinAgroRange)
             {
-                if (Time.time >= enemyAsassin.dashState.startTime + enemyAsassin.dashStateData.dashCooldown)
-                {
-                    stateMashine.ChangeState(enemyAsassin.dashState);
-                }
-                else 
-                { 
                 stateMashine.ChangeState(enemyAsassin.playerDetectedState);
-                }
             }
-            else if (performCloseRangeAction)
-            {
-                stateMashine.ChangeState(enemyAsassin.meleeAttackState);
-            }
-            else if (!isPLayerInMaxArgroRange)
+            else
             {
                 stateMashine.ChangeState(enemyAsassin.lookForPlayerState);
             }
@@ -55,5 +49,10 @@ public class E9_DodgeState : DodgeState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    public override void TriggerAttack()
+    {
+        base.TriggerAttack();
     }
 }
