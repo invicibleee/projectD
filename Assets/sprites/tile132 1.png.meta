@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 16af081b6b28a8b4fb5e61db48b383b7
+guid: 1a6305be3afaf654a91244915d63afff
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,33 +123,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: til54_5
+      name: tile132 1_7
       rect:
         serializedVersion: 2
-        x: 199
-        y: 421
-        width: 44
-        height: 44
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 28910ddcc97795747bf7854bb4332719
-      internalID: 760032366
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: til54_6
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 352
-        width: 46
+        x: 387
+        y: 362
+        width: 48
         height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -158,29 +137,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80c644bd004d6ad4f9d37e7f2393cfb2
-      internalID: 986563673
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: til54_7
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 351
-        width: 45
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5045998, y: 0.48160136}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 93fd628edd6a7c845aa6518ab8801b3c
-      internalID: 19549394
+      spriteID: bc3ec33881fc0754783149ae9c31f7d1
+      internalID: 1598402101
       vertices: []
       indices: 
       edges: []
@@ -196,43 +154,20 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      til54_0: 504100052
-      til54_1: 881374338
-      til54_10: -1173137095
-      til54_11: -1083028410
-      til54_12: -962078791
-      til54_13: -1158893380
-      til54_14: -35306529
-      til54_15: -541987300
-      til54_16: 996389704
-      til54_17: 1301466265
-      til54_18: -794326399
-      til54_19: -1240583400
-      til54_2: 835980152
-      til54_20: -2033568684
-      til54_21: -1938568150
-      til54_22: 1931961277
-      til54_23: -2111829321
-      til54_24: 748529298
-      til54_25: 396747466
-      til54_26: -722335301
-      til54_27: 1858391005
-      til54_28: -1176835084
-      til54_29: 1692930992
-      til54_3: -869733123
-      til54_30: 1225798660
-      til54_31: -1371995750
-      til54_32: -1961892223
-      til54_33: -364793592
-      til54_34: -1672745360
-      til54_35: -1990214624
-      til54_36: -2009283297
-      til54_4: 1827443041
-      til54_5: 760032366
-      til54_6: 986563673
-      til54_7: 19549394
-      til54_8: -2087297866
-      til54_9: -707421398
+      tile132 1_0: 1147891813
+      tile132 1_1: -635421090
+      tile132 1_10: -1458547410
+      tile132 1_11: 2065135235
+      tile132 1_12: 506563228
+      tile132 1_13: -1638873789
+      tile132 1_2: 371732511
+      tile132 1_3: 462296099
+      tile132 1_4: -329373362
+      tile132 1_5: -1052164810
+      tile132 1_6: 1676011534
+      tile132 1_7: 1598402101
+      tile132 1_8: 1244093108
+      tile132 1_9: 340242911
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

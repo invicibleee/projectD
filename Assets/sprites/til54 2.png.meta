@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 16af081b6b28a8b4fb5e61db48b383b7
+guid: 97f7d9a1adcee114eb6234180b8a5529
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,64 +123,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: til54_5
+      name: til54 2_4
       rect:
         serializedVersion: 2
-        x: 199
-        y: 421
-        width: 44
-        height: 44
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 28910ddcc97795747bf7854bb4332719
-      internalID: 760032366
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: til54_6
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 352
-        width: 46
-        height: 46
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 80c644bd004d6ad4f9d37e7f2393cfb2
-      internalID: 986563673
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: til54_7
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 351
+        x: 44
+        y: 403
         width: 45
-        height: 47
+        height: 45
       alignment: 9
-      pivot: {x: 0.5045998, y: 0.48160136}
+      pivot: {x: 0.5000002, y: 0.5353116}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93fd628edd6a7c845aa6518ab8801b3c
-      internalID: 19549394
+      spriteID: d73a0b0b792f90541a274b2493c88a56
+      internalID: -1915161902
       vertices: []
       indices: 
       edges: []
@@ -196,43 +154,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      til54_0: 504100052
-      til54_1: 881374338
-      til54_10: -1173137095
-      til54_11: -1083028410
-      til54_12: -962078791
-      til54_13: -1158893380
-      til54_14: -35306529
-      til54_15: -541987300
-      til54_16: 996389704
-      til54_17: 1301466265
-      til54_18: -794326399
-      til54_19: -1240583400
-      til54_2: 835980152
-      til54_20: -2033568684
-      til54_21: -1938568150
-      til54_22: 1931961277
-      til54_23: -2111829321
-      til54_24: 748529298
-      til54_25: 396747466
-      til54_26: -722335301
-      til54_27: 1858391005
-      til54_28: -1176835084
-      til54_29: 1692930992
-      til54_3: -869733123
-      til54_30: 1225798660
-      til54_31: -1371995750
-      til54_32: -1961892223
-      til54_33: -364793592
-      til54_34: -1672745360
-      til54_35: -1990214624
-      til54_36: -2009283297
-      til54_4: 1827443041
-      til54_5: 760032366
-      til54_6: 986563673
-      til54_7: 19549394
-      til54_8: -2087297866
-      til54_9: -707421398
+      til54 2_0: 167485189
+      til54 2_1: -1482851310
+      til54 2_2: -963956186
+      til54 2_3: -2122972686
+      til54 2_4: -1915161902
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

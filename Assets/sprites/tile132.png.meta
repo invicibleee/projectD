@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 16af081b6b28a8b4fb5e61db48b383b7
+guid: cd0d15fad05a60e40b1c3d1249d2fc6c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,11 +123,32 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: til54_5
+      name: tile132_5
       rect:
         serializedVersion: 2
-        x: 199
-        y: 421
+        x: 295
+        y: 357
+        width: 44
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b01f1ca6cbc75d4b97cce9fbcd5505b
+      internalID: 800209772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tile132_10
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 298
         width: 44
         height: 44
       alignment: 0
@@ -137,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 28910ddcc97795747bf7854bb4332719
-      internalID: 760032366
+      spriteID: 608dc390617908248a72602b120c293e
+      internalID: 1621757873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: til54_6
+      name: tile132_14
       rect:
         serializedVersion: 2
-        x: 200
-        y: 352
+        x: 294
+        y: 240
         width: 46
-        height: 46
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,29 +179,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80c644bd004d6ad4f9d37e7f2393cfb2
-      internalID: 986563673
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: til54_7
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 351
-        width: 45
-        height: 47
-      alignment: 9
-      pivot: {x: 0.5045998, y: 0.48160136}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 93fd628edd6a7c845aa6518ab8801b3c
-      internalID: 19549394
+      spriteID: 0cace7d89b2ba074baff3a6f30d53e8f
+      internalID: 1373312437
       vertices: []
       indices: 
       edges: []
@@ -196,43 +196,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      til54_0: 504100052
-      til54_1: 881374338
-      til54_10: -1173137095
-      til54_11: -1083028410
-      til54_12: -962078791
-      til54_13: -1158893380
-      til54_14: -35306529
-      til54_15: -541987300
-      til54_16: 996389704
-      til54_17: 1301466265
-      til54_18: -794326399
-      til54_19: -1240583400
-      til54_2: 835980152
-      til54_20: -2033568684
-      til54_21: -1938568150
-      til54_22: 1931961277
-      til54_23: -2111829321
-      til54_24: 748529298
-      til54_25: 396747466
-      til54_26: -722335301
-      til54_27: 1858391005
-      til54_28: -1176835084
-      til54_29: 1692930992
-      til54_3: -869733123
-      til54_30: 1225798660
-      til54_31: -1371995750
-      til54_32: -1961892223
-      til54_33: -364793592
-      til54_34: -1672745360
-      til54_35: -1990214624
-      til54_36: -2009283297
-      til54_4: 1827443041
-      til54_5: 760032366
-      til54_6: 986563673
-      til54_7: 19549394
-      til54_8: -2087297866
-      til54_9: -707421398
+      tile132_0: 949368917
+      tile132_1: -1830761024
+      tile132_10: 1621757873
+      tile132_11: -906579251
+      tile132_12: -297264379
+      tile132_13: 185410206
+      tile132_14: 1373312437
+      tile132_15: -1195011659
+      tile132_16: 807678569
+      tile132_17: -938193579
+      tile132_2: -306589075
+      tile132_3: 1703517750
+      tile132_4: -1485827191
+      tile132_5: 800209772
+      tile132_6: -925439105
+      tile132_7: -858301800
+      tile132_8: -1054707854
+      tile132_9: -1823984929
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

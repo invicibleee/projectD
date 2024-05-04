@@ -399,9 +399,9 @@ TextureImporter:
       name: tile3_35
       rect:
         serializedVersion: 2
-        x: 378
+        x: 377
         y: 166
-        width: 44
+        width: 45
         height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
