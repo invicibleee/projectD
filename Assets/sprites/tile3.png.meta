@@ -130,8 +130,8 @@ TextureImporter:
         y: 392
         width: 50
         height: 44
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.79213285, y: 0.6991834}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,9 +168,9 @@ TextureImporter:
       name: tile3_5
       rect:
         serializedVersion: 2
-        x: 352
+        x: 351
         y: 400
-        width: 44
+        width: 45
         height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -211,9 +211,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 277
-        y: 339
+        y: 338
         width: 44
-        height: 44
+        height: 45
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -231,9 +231,9 @@ TextureImporter:
       name: tile3_13
       rect:
         serializedVersion: 2
-        x: 352
+        x: 351
         y: 341
-        width: 44
+        width: 45
         height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -274,9 +274,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 278
-        y: 291
+        y: 290
         width: 44
-        height: 44
+        height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -294,9 +294,9 @@ TextureImporter:
       name: tile3_19
       rect:
         serializedVersion: 2
-        x: 352
+        x: 351
         y: 282
-        width: 44
+        width: 47
         height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -337,9 +337,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 277
-        y: 244
+        y: 243
         width: 44
-        height: 44
+        height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -485,7 +485,7 @@ TextureImporter:
         serializedVersion: 2
         x: 323
         y: 84
-        width: 44
+        width: 43
         height: 44
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

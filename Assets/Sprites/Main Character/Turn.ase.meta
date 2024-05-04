@@ -119,7 +119,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: turn_Frame_0
+  - name: Turn_Frame_0
     originalName: 
     pivot: {x: 0.6666667, y: 0.5510204}
     alignment: 9
@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 60
       width: 27
       height: 49
-    spriteID: 629eb9ec9fde90d40b3863962995f393
+    spriteID: 066b50a7a19e9f944bae11d043017658
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,7 +139,7 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 60}
-  - name: turn_Frame_1
+  - name: Turn_Frame_1
     originalName: 
     pivot: {x: 0.67857146, y: 0.5625}
     alignment: 9
@@ -150,7 +150,7 @@ ScriptedImporter:
       y: 4
       width: 28
       height: 48
-    spriteID: f2ca53b02bd290043a3b742ac42036b2
+    spriteID: 3f0f13fa94f2ad446a07453623f09b14
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,28 +162,28 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -1340727643
-    name: turn
+    guid: -1340232187
+    name: Turn
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: turn_Frame_0
+    - name: Turn_Frame_0
       frameIndex: 0
       cellRect:
         x: 14
         y: 5
         width: 27
         height: 49
-      spriteId: 629eb9ec9fde90d40b3863962995f393
-    - name: turn_Frame_1
+      spriteId: 066b50a7a19e9f944bae11d043017658
+    - name: Turn_Frame_1
       frameIndex: 1
       cellRect:
         x: 13
         y: 5
         width: 28
         height: 48
-      spriteId: f2ca53b02bd290043a3b742ac42036b2
+      spriteId: 3f0f13fa94f2ad446a07453623f09b14
     linkedCells: []
     parentIndex: -1
   platformSettings:
