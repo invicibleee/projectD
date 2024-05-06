@@ -29,17 +29,14 @@ public class BackTeleportState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        isTeleportOver = false;
 
+        isTeleportOver = false;
         
     }
-
-
-
-
     public override void Exit()
     {
         base.Exit();
+
     }
 
     public override void LogicUpdate()
@@ -55,6 +52,9 @@ public class BackTeleportState : EnemyState
                 Vector3 enemyPosition = playerPosition + oppositeDirection * stateData.distanceBehindPlayer;                
                 enemy.transform.position = enemyPosition;                
                 isTeleportOver = true;
+                Debug.Log(enemy.transform.position);
+
+                Debug.Log(enemyPosition);
             }
             else
             {

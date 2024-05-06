@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyGhost : Enemy
 {
-    Player player;
+    protected Player player;
     public E7_IdleState idleState {  get; private set; }
 
     public E7_LookForPlayer lookForPlayerState { get; private set; }

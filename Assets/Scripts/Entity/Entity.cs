@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
     public Transform attackCheck;
     public float attackCheckRadius;
     [SerializeField] protected Transform groundCheck;
+
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected float wallCheckDistance;
@@ -106,6 +107,7 @@ public class Entity : MonoBehaviour
     #endregion
     #region Collision
     public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+
     public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, wallCheckDistance, whatIsGround);
     protected virtual void OnDrawGizmos()
     {

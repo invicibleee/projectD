@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 
 public class EnemyAsassin : Enemy
 {
+    protected Player player;
     public E9_IdleState idleState {  get; private set; }
 
     public E9_DodgeState dodgeState { get; private set; }
@@ -20,6 +21,10 @@ public class EnemyAsassin : Enemy
     public E9_ChargeState chargeState { get; private set; }
 
     public E9_DashState dashState { get; private set; }
+
+    public E9_DangleState dangeState { get; private set; }
+
+    public E9_BackTeleport backTeleportState { get; private set; }
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -37,9 +42,12 @@ public class EnemyAsassin : Enemy
     private D_ChargeState chargeStateData;
     [SerializeField]
     public D_DashState dashStateData;
+    [SerializeField]
+    public D_BackTeleportState backTeleportStateData;
     protected override void Start()
     {
         base.Start();
+        player = Transform.FindAnyObjectByType<Player>();
 
         moveState = new E9_MoveState(stateMashine, this, "move", moveStateData, this);
 
@@ -55,15 +63,19 @@ public class EnemyAsassin : Enemy
 
         chargeState = new E9_ChargeState(stateMashine, this,"charge",chargeStateData, this);
 
-        dashState = new E9_DashState(stateMashine,this,"dash",attackCheck, dashStateData, this); 
+        dashState = new E9_DashState(stateMashine,this,"dash",attackCheck, dashStateData, this);
 
-        stateMashine.Initialize(moveState);
+        backTeleportState = new E9_BackTeleport(stateMashine, this, "backTeleport", backTeleportStateData, player, this);
+
+        dangeState = new E9_DangleState(stateMashine, this, "dangle", this);
+
+        stateMashine.Initialize(dangeState);
     }
 
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
-
+        Gizmos.DrawLine(playerUnderCheck.position, playerUnderCheck.position + (Vector3)(Vector2.down * checkPlayerUnderDistance));
     }
 }

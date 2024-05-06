@@ -29,6 +29,8 @@ public class PlayerDetectedState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.rb.bodyType = RigidbodyType2D.Dynamic;
         enemy.SetVelocityEnemy(0f);
         performLongRangeAction = false;
 

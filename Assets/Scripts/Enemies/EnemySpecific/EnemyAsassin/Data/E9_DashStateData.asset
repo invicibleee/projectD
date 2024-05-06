@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19c5fb505825184da823f1baca0cdbd, type: 3}
   m_Name: E9_DashStateData
   m_EditorClassIdentifier: 
-  dashSpeed: 3
+  dashSpeed: 6
   dashCooldown: 5
-  dashTime: 0.5
+  dashTime: 2
   normalizedTime: 0
   dashDistance: 5
-  attackRadius: 0.8
+  attackRadius: 1
   attackDamage: 10
   dashDirection: {x: 0, y: 0}
   whatIsPlayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64

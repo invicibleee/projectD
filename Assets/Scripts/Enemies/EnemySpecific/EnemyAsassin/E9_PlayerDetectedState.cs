@@ -29,6 +29,7 @@ public class E9_PlayerDetectedState : PlayerDetectedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
         if (performCloseRangeAction)
         {
             if (Time.time >= enemyAsassin.dodgeState.startTime + enemyAsassin.dodgeStateData.dodgeCooldown)
@@ -42,7 +43,16 @@ public class E9_PlayerDetectedState : PlayerDetectedState
         }
         else if (performLongRangeAction)
         {
-            stateMashine.ChangeState(enemyAsassin.chargeState);
+            if (Time.time >= enemyAsassin.backTeleportState.startTime + enemyAsassin.backTeleportStateData.teleportCooldown)
+            {
+                stateMashine.ChangeState(enemyAsassin.backTeleportState);
+            }
+            else
+            {
+                stateMashine.ChangeState(enemyAsassin.chargeState);
+
+            }
+
         }
         else if (!isPlayerInMaxAgroRange)
         {

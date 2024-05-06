@@ -9,8 +9,6 @@ public class DashState : AttackState
     protected AttackDetails attackDetails;
     protected bool isGrounded;
 
-    private float dashSpeedMultiplier = 2f; // Множник швидкості для Dash
-
     public DashState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_DashState stateData) : base(stateMashine, enemy, animBoolName, attackPosition)
     {
         this.stateData = stateData;

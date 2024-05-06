@@ -15,6 +15,10 @@ public class Enemy : Entity
     private Transform playerCheck;
     [SerializeField] 
     private Transform groundCheckStun;
+    [SerializeField] 
+    protected Transform playerUnderCheck;
+    [SerializeField] 
+    protected float checkPlayerUnderDistance;
     private float currentHealth;
     private float currentStunResistence =0;
     private float lastDamageTime;
@@ -139,7 +143,10 @@ public class Enemy : Entity
         return Physics2D.Raycast(playerCheck.position,rb.transform.right,enemyData.closeRangeActionDistance, enemyData.whatIsPlayer);
     }
 
-
+    public virtual bool IsPlayerUnderDetected()
+    {
+        return Physics2D.Raycast(playerUnderCheck.position, Vector2.down, checkPlayerUnderDistance, enemyData.whatIsPlayer);
+    }
     public override void Flip()
     {
         base.Flip();
@@ -152,7 +159,6 @@ public class Enemy : Entity
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * enemyData.closeRangeActionDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * enemyData.minAgroDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * enemyData.maxAgroDistance), 0.2f);
-
 
     }
 }

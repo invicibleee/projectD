@@ -28,6 +28,8 @@ public class LookForPlayerState : EnemyState
     public override void Enter()
     {
         base.Enter();
+
+        enemy.rb.bodyType = RigidbodyType2D.Dynamic;
         isAllTurnsDone = false;
         isAllTurnsTimeDone = false;
         lastTurnTime = startTime;

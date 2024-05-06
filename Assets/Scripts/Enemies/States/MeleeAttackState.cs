@@ -22,6 +22,7 @@ public class MeleeAttackState : AttackState
     {
         base.Enter();
 
+        enemy.rb.bodyType = RigidbodyType2D.Dynamic;
         attackDetails.damageAmount = stateData.attackDamage;
         attackDetails.position = enemy.rb.transform.position;
     }
