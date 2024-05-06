@@ -252,9 +252,9 @@ TextureImporter:
       name: tile4_18
       rect:
         serializedVersion: 2
-        x: 139
+        x: 138
         y: 353
-        width: 45
+        width: 46
         height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
