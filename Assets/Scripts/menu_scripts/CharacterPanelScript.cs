@@ -315,7 +315,7 @@ public class CharacterPanelScript : MonoBehaviour
     }
 
     // Method to set health, stamina, and mana values
-    public void SetStats(int _currentHealth, int _maxHealth/*/, int _currentMana, 
+    public void SetStats(float _currentHealth, float _maxHealth/*/, int _currentMana, 
         int _maxMana, int _collectedCollectibles, int _maxCollectibles, int _completionPercentage/*/)
     {
 

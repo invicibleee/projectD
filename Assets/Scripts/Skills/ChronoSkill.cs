@@ -53,4 +53,12 @@ public class ChronoSkill : Skill
 
         return false;
     }
+    public void SetMaxSize(float _size)
+    {
+        maxSize = _size;
+    }
+    public float  GetMaxSize()
+    {
+        return maxSize;
+    }
 }

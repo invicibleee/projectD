@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
 
 [System.Serializable]
-public struct Charm
+public struct CharmInfo
 {
     public Image image;
     public int cost;
@@ -19,8 +19,9 @@ public struct Charm
 public class CharmsPanelScript : MonoBehaviour
 {
     PauseMenuScript pauseMenuScript;
-    public Charm[] charms;
-    public Charm[] equippedCharms = new Charm[3];
+    public Charm[] charmsArray;
+    public CharmInfo[] charms;
+    public CharmInfo[] equippedCharms = new CharmInfo[3];
     public Text descriptionText;
     public Text nameText;
     public Text Prompt;
@@ -38,7 +39,10 @@ public class CharmsPanelScript : MonoBehaviour
 
     private int equipedUnique = 0;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        charmsArray = FindObjectsOfType<Charm>();
+    }
     void Start()
     {
         pauseMenuScript = GetComponent<PauseMenuScript>();
@@ -47,6 +51,8 @@ public class CharmsPanelScript : MonoBehaviour
         Prompt.text = "";
         nameText.text = "";
         UpdateCharmImages();
+        
+
     }
 
     // Update is called once per frame
@@ -109,33 +115,13 @@ public class CharmsPanelScript : MonoBehaviour
             charms[i].image.color = charms[i].isOwned ? Color.white : Color.black;
         }
     }
-    private void UnequipeCharm(int charmIndex)
-    {
-        Charm currentCharm = charms[charmIndex];
-        charms[charmIndex].isEquiped = false;
-        
-        for (int i = 0; i < equippedCharms.Length; i++)
-        {
-            if (currentCharm.description == equippedCharms[i].description)
-            {
-                equippedCharms[i].image= null;
-                equippedCharms[i].description = "";
-                equippedCharms[i].isEquiped = false;
-                equippedCharms[i].isUnique = false;
-                equippedCharms[i].isOwned = false;
-                equippedCharms[i].cost = 0;
-                DeleteColorForSlot(i);
-            }
-        }
-     
-        
-    }
+    
     public void PurchaseCharm()
     {
         int charmIndex = selectedCharmIndex;
         if (charmIndex >= 0 && charmIndex < charms.Length)
         {
-            Charm currentCharm = charms[charmIndex];
+            CharmInfo currentCharm = charms[charmIndex];
 
             // Check if the charm is available
             if (currentCharm.isOwned && !currentCharm.isEquiped)
@@ -188,7 +174,7 @@ public class CharmsPanelScript : MonoBehaviour
 
     private void SetCharmOwned(int charmIndex, bool value)
     {
-        Charm[] updatedCharms = charms;
+        CharmInfo[] updatedCharms = charms;
 
         if (charmIndex < updatedCharms.Length)
         {
@@ -202,7 +188,31 @@ public class CharmsPanelScript : MonoBehaviour
             }
         }
     }
+    private void UnequipeCharm(int charmIndex)
+    {
+        CharmInfo currentCharm = charms[charmIndex];
+        charms[charmIndex].isEquiped = false;
 
+        for (int i = 0; i < equippedCharms.Length; i++)
+        {
+            if (currentCharm.description == equippedCharms[i].description)
+            {
+                equippedCharms[i].image = null;
+                equippedCharms[i].description = "";
+                equippedCharms[i].isEquiped = false;
+                equippedCharms[i].isUnique = false;
+                equippedCharms[i].isOwned = false;
+                equippedCharms[i].cost = 0;
+                DeleteColorForSlot(i);
+            }
+        }
+        if (!charms[charmIndex].isEquiped && charms != null)
+        {
+            Debug.Log("deactivated " + charmsArray[charmIndex]);
+            charmsArray[charmIndex].DeactivateEffect();
+        }
+
+    }
     private void EquipCharm(int charmIndex)
     {
         // Check if the charm is unique and already equipped
@@ -267,6 +277,11 @@ public class CharmsPanelScript : MonoBehaviour
                 UpdateDescription(0);
                
             }
+        }
+        if (charms[charmIndex].isEquiped)
+        {
+            Debug.Log("activated" + charmsArray[charmIndex]);
+            charmsArray[charmIndex].ActivateEffect();
         }
     }
 

@@ -6,7 +6,7 @@ public class ShockStrike_Controller : MonoBehaviour
 {
     [SerializeField] private CharacterStats targetStats;
     [SerializeField] private float speed;
-    private int damage;
+    private float damage;
 
     private Animator anim;
     private bool triggered;
@@ -17,7 +17,7 @@ public class ShockStrike_Controller : MonoBehaviour
     }
 
 
-    public void Setup(int _damage, CharacterStats _targetStats)
+    public void Setup(float _damage, CharacterStats _targetStats)
     {
         damage = _damage;
         targetStats = _targetStats;

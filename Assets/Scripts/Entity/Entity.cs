@@ -126,7 +126,14 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
     #endregion
-
+    public void SetAttackCheckRadius(float radius)
+    {
+        attackCheckRadius = radius;
+    }
+    public float GetAttackCheckRadius()
+    {
+        return attackCheckRadius;
+    }
     public void MakeTransparent(bool _transparent)
     {
         Debug.Log(_transparent);
