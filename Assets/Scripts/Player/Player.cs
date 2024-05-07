@@ -22,6 +22,10 @@ public class Player : Entity
     [Header("Dash info")]
     public float dashSpeed;
     public float dashDuration;
+    public float dashX;
+    public float dashY;
+    public float dashOffset;
+
     public float dashDirection { get; private set; }
 
     public GameObject scythe { get; private set; }
@@ -130,6 +134,7 @@ public class Player : Entity
 
             stateMachine.ChangeState(dashState);
 
+            CharmManager.instance.blinkstrikeAmulet.PerformBlinkstrike(this);
         }
 
     }
@@ -138,5 +143,11 @@ public class Player : Entity
         base.Die();
         stateMachine.ChangeState(deadState);
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red; // Цвет границы
 
+        // Рисуем прямоугольную область вокруг текущей позиции объекта
+        Gizmos.DrawWireCube(new Vector3(transform.position.x + dashOffset, transform.position.y, 0), new Vector3(dashX, dashY, 0));
+    }
 }

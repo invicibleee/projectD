@@ -11,9 +11,6 @@ public class HealthManaUltBars : MonoBehaviour
     public Image BarMana;
     public Image BarUlt;
 
-    public float maxMana = 100;
-    public float maxUlt = 100;
-
     private float currentHP;
     private float currentMana;
     private float currentUlt;
@@ -24,17 +21,16 @@ public class HealthManaUltBars : MonoBehaviour
     void Start()
     {
         currentHP = stats.GetMaxHealthValue();
-        Debug.Log(currentHP);
-        currentMana = maxMana;
-        currentUlt = maxUlt;
+        currentMana = stats.GetMaxManaValue();
+        //currentUlt = maxUlt;
         UpdateBars();
     }
 
-    void UpdateBars()
+    public void UpdateBars()
     {
         BarHP.fillAmount = currentHP / stats.GetMaxHealthValue();
-        BarMana.fillAmount = currentMana / maxMana;
-        BarUlt.fillAmount = currentUlt / maxUlt;
+        BarMana.fillAmount = currentMana / stats.GetMaxManaValue();
+        //BarUlt.fillAmount = currentUlt / maxUlt;
     }
 
     public void SetHealth(float health, float maxHealth)
@@ -43,7 +39,7 @@ public class HealthManaUltBars : MonoBehaviour
         UpdateBars();
     }
 
-    public void SetMana(float mana)
+    public void SetMana(float mana, float maxMana)
     {
         currentMana = Mathf.Clamp(mana, 0f, maxMana);
         UpdateBars();
@@ -51,14 +47,14 @@ public class HealthManaUltBars : MonoBehaviour
 
     public void SetUlt(float ult)
     {
-        currentUlt = Mathf.Clamp(ult, 0f, maxUlt);
+        //currentUlt = Mathf.Clamp(ult, 0f, maxUlt);
         UpdateBars();
     }
 
     public void IncreaseUltPercent(float percent)
     {
-        float ultIncrease = (percent / 100f) * maxUlt;
-        SetUlt(currentUlt + ultIncrease);
+        //float ultIncrease = (percent / 100f) * maxUlt;
+        //SetUlt(currentUlt + ultIncrease);
     }
 
 #if UNITY_EDITOR

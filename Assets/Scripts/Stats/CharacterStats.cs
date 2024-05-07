@@ -1,5 +1,7 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CharacterStats : MonoBehaviour
 {
@@ -21,6 +23,10 @@ public class CharacterStats : MonoBehaviour
     public Stat armor;
     public Stat evasion;
     public Stat magicResistance;
+
+    [Header("Mana stats")]
+    public Stat maxMana;
+    public Stat manaRegenRate;
 
     [Header("Magic stats")]
     public Stat fireDamage;
@@ -45,9 +51,12 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] private GameObject shockStrikePrefab;
     private float shockDamage;
     public float currentHealth;
+    public float currentMana;
     public float damageReceivedReductionPercentage = 0;
 
     public System.Action onHealthChanged;
+    public event System.Action<float> OnDamageReceived;
+    public event System.Action<float> onDamageDealt;
     protected bool isDead;
 
  
@@ -56,7 +65,7 @@ public class CharacterStats : MonoBehaviour
     {
         critPower.SetDefaultValue(150);
         currentHealth = GetMaxHealthValue();
-        Debug.Log(damageReceivedReductionPercentage);
+        currentMana = GetMaxManaValue();
 
         fx = GetComponent<EntityFX>();
     }
@@ -81,6 +90,8 @@ public class CharacterStats : MonoBehaviour
 
         if (isIgnited)
             ApplyIgniteDamageEffect();
+
+        RegenerateMana();
     }
 
     public virtual void DoDamage(CharacterStats _targetStats)
@@ -95,10 +106,10 @@ public class CharacterStats : MonoBehaviour
             totalDamage = CalculateCriticalDamage(totalDamage);
         }
 
-
-
         totalDamage = CheckTargetArmor(_targetStats, totalDamage);
         _targetStats.TakeDamage(totalDamage);
+        onDamageDealt?.Invoke(totalDamage);
+
     }
     #region Magical damage and ailemnts
 
@@ -271,6 +282,29 @@ public class CharacterStats : MonoBehaviour
 
     #endregion
 
+    #region Mana
+    public virtual void RegenerateMana()
+    {
+        currentMana += manaRegenRate.GetValue() * Time.deltaTime;
+
+        // Убедимся, что значение маны не превышает максимальное
+        currentMana = Mathf.Clamp(currentMana, 0f, maxMana.GetValue());
+    }
+    public virtual void DecreaseMana(float amount)
+    {
+        currentMana -= amount;
+
+        // Убедимся, что значение маны не станет меньше нуля
+        currentMana = Mathf.Max(currentMana, 0f);
+    }
+    public virtual void IncreaseMana(float amount)
+    {
+        currentMana += amount;
+
+        // Убедимся, что значение маны не превышает максимальное
+        currentMana = Mathf.Clamp(currentMana, 0f, maxMana.GetValue());
+    }
+    #endregion
     public virtual void TakeDamage(float _damage)
     {
         float reducedDamage = _damage * (1f - damageReceivedReductionPercentage / 100f);
@@ -281,7 +315,7 @@ public class CharacterStats : MonoBehaviour
 
         if (currentHealth < 0 && !isDead)
             Die();
-
+        OnDamageReceived?.Invoke(_damage);
 
     }
 
@@ -292,6 +326,27 @@ public class CharacterStats : MonoBehaviour
         if (onHealthChanged != null)
             onHealthChanged();
     }
+    public virtual void IncreaseHealthBy(float healAmount)
+    {
+        if (healAmount <= 0)
+        {
+            Debug.LogWarning("Heal amount must be positive.");
+            return;
+        }
+
+        currentHealth += healAmount;
+
+        if (currentHealth > maxHealth.GetValue())
+        {
+            currentHealth = maxHealth.GetValue();
+        }
+
+        if (onHealthChanged != null)
+        {
+            onHealthChanged();
+        }
+    }
+
 
     protected virtual void Die()
     {
@@ -359,6 +414,10 @@ public class CharacterStats : MonoBehaviour
     public float GetMaxHealthValue()
     {
         return maxHealth.GetValue() + vitality.GetValue() * 5;
+    }
+    public float GetMaxManaValue()
+    {
+        return maxMana.GetValue();
     }
     #endregion
 }

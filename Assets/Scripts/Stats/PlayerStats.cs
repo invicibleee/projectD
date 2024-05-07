@@ -18,6 +18,7 @@ public class PlayerStats : CharacterStats
     {
         base.TakeDamage(_damage);
         allBars.SetHealth(currentHealth - _damage, GetMaxHealthValue());
+
     }
 
     protected override void Die()
@@ -25,5 +26,16 @@ public class PlayerStats : CharacterStats
         base.Die();
         player.Die();
 
+    }
+    public override void DoDamage(CharacterStats _targetStats)
+    {
+        base.DoDamage(_targetStats);
+        IncreaseMana(5);
+        allBars.SetMana(currentMana, maxMana.GetValue());
+    }
+    public override void RegenerateMana()
+    {
+        base.RegenerateMana();
+        allBars.SetMana(currentMana, maxMana.GetValue());
     }
 }
