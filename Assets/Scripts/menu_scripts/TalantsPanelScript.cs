@@ -20,7 +20,19 @@ public class TalantsPanelScript : MonoBehaviour
     public Text descriptionText;
     public Text nameText;
     private int selectedTalantIndex = -1;
+    public static TalantsPanelScript Instance { get; private set; }
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject); 
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -81,7 +93,7 @@ public class TalantsPanelScript : MonoBehaviour
         }
     }
 
-    private void SetTalantOwned(int talantIndex)
+    public void SetTalantOwned(int talantIndex)
     {
         talants[talantIndex].isOwned = true;
         Debug.Log("You found Charm Index: " + talantIndex);

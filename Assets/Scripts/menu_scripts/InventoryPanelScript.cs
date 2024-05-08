@@ -23,7 +23,19 @@ public class InventoryPanelScript : MonoBehaviour
     private int selecteditemIndex = -1;
     public Text descriptionText;
     public Text nameText;
+    public static InventoryPanelScript Instance { get; private set; }
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -151,5 +163,13 @@ public class InventoryPanelScript : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public void SetItemOwned(int itemIndex)
+    {
+        items[itemIndex].isOwned = true;
+        Debug.Log("You found item Index: " + itemIndex);
+        FindItems();
+
     }
 }

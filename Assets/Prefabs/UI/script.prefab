@@ -1,0 +1,517 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &382089798182240097
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7428365416751066869}
+  - component: {fileID: 3006384658340063306}
+  - component: {fileID: 4871726928490811028}
+  - component: {fileID: 1776359002123552575}
+  - component: {fileID: 5651016936154960961}
+  - component: {fileID: 2601433597100851217}
+  - component: {fileID: 8698905644036960850}
+  - component: {fileID: 6532800119698280020}
+  - component: {fileID: 504365584222329724}
+  m_Layer: 0
+  m_Name: script
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7428365416751066869
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382089798182240097}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8701338, y: -0.020010654, z: 960.6547}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3006384658340063306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382089798182240097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49e62f0ab9488d74ca3ee2a2197444f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
+  gui: {fileID: 0}
+  postProcessing: {fileID: 0}
+  closeButton: {fileID: 0}
+  menuButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  menuPanels:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  navigationButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  currency: {fileID: 0}
+--- !u!114 &4871726928490811028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382089798182240097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f298e86f779e147b4c7497ee048185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats: {fileID: 0}
+  statTextsFloat:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  skills:
+  - image: {fileID: 0}
+    cost: 0
+    isPurchased: 0
+    description: 'Crimson Carnage: Powerful finishing move. Creates crimson energy
+      shockwave, deals huge damage to nearby enemies.'
+    requiredSkill: 
+    isBasicSkill: 1
+  - image: {fileID: 0}
+    cost: 100
+    isPurchased: 0
+    description: ' Blood Harvest: Boosts max health permanently. Also, regains health
+      from successful attacks.'
+    requiredSkill: 00000000
+    isBasicSkill: 0
+  - image: {fileID: 0}
+    cost: 300
+    isPurchased: 0
+    description: ' Sanguine Embrace: Critical hits cause bleeding, intensifying with
+      "Crimson Carnage" for increased damage over time.'
+    requiredSkill: 0000000001000000
+    isBasicSkill: 0
+  - image: {fileID: 0}
+    cost: 500
+    isPurchased: 0
+    description: ' Miracle Mirage: Summons a temporary copy mimicking your actions,
+      causing chaos. Disappears after a while or if damaged.'
+    requiredSkill: 
+    isBasicSkill: 1
+  - image: {fileID: 0}
+    cost: 200
+    isPurchased: 0
+    description: ' Verdant Swiftness: Boosts movement speed in and out of combat,
+      aiding exploration and agility, while also reducing dash cooldown slightly.'
+    requiredSkill: 03000000
+    isBasicSkill: 0
+  - image: {fileID: 0}
+    cost: 400
+    isPurchased: 0
+    description: ' Illusory Dash: Enhances dash ability with afterimage illusions,
+      confusing enemies. Only one illusion at a time.'
+    requiredSkill: 0400000003000000
+    isBasicSkill: 0
+  - image: {fileID: 0}
+    cost: 600
+    isPurchased: 0
+    description: ' Celestial Nexus: Summons a sphere with dual functions. Heals allies
+      gradually and emits damaging energy pulses near enemies. Can be moved by attacking.'
+    requiredSkill: 
+    isBasicSkill: 1
+  - image: {fileID: 0}
+    cost: 300
+    isPurchased: 0
+    description: ' Mana Infusion: Boosts maximum mana, enlarging your mana pool for
+      spells. Also, enhances mana restoration from successful attacks.'
+    requiredSkill: 06000000
+    isBasicSkill: 0
+  - image: {fileID: 0}
+    cost: 600
+    isPurchased: 0
+    description: ' Aetherial Resonance: Successful attacks generate orbs, temporarily
+      boosting magic. Up to 3 orbs can be active.'
+    requiredSkill: 0700000006000000
+    isBasicSkill: 0
+  descriptionText: {fileID: 0}
+  confrim: {fileID: 0}
+  confrimText: {fileID: 0}
+  Prompt: {fileID: 0}
+  style: {fileID: 0}
+--- !u!114 &1776359002123552575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382089798182240097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcb5a13c024a77945951a12860dc00ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charms:
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: Absorbs a percentage of enemy soul energy upon defeating them, gradually
+      restoring your health.
+    name: Essence Absorber
+  - image: {fileID: 0}
+    cost: 500
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: Reduces incoming damage by a certain percentage, providing extra
+      protection during intense battles. You also reflect small amount of damage
+      back to your enemies. Cost 500.
+    name: Aegis amulet
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: You can reflects incoming projectiles back towards enemies by attacking
+      them.
+    name: Mirrorshade Veil
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: Increases the range of your melee attacks, allowing you to strike
+      enemies from a safer distance.
+    name: Reaper's Grasp
+  - image: {fileID: 0}
+    cost: 1500
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: Passively attracts soul essence from defeated enemies, increasing
+      the rate at which you collect souls for your abilities and enhancements. Cost
+      1500.
+    name: Necrophage Heart
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: When you pass through enemies while dashing, you attack them.
+    name: Blinkstrike Amulet
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: Successfully parrying an enemy attack boosts your movement speed.
+      Increases parry window.
+    name: Swift Parry
+  - image: {fileID: 0}
+    cost: 1000
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: ' Increases damage dealt but also amplifies damage received. Cost
+      1000.'
+    name: Glass Cannon
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: Increases the area of magical abilities.
+    name: Arcane Resonance Orb
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: Your damage increased when not on full HP.
+    name: Berserker's Rage
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 0
+    isEquiped: 0
+    description: '  Increases maximum mana. Successfully hitting enemies with magical
+      attacks restores a small amount of health.'
+    name: Manaflow Medallion
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 1
+    isEquiped: 0
+    description: ' Grants a chance to cast a secondary spell for free after using
+      a magical ability.'
+    name: Multicast
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 1
+    isEquiped: 0
+    description: Your max HP increases significantly. Vampirisim and incoming damage
+      reduction increased. You can't use Flasks.
+    name: Vampiric Embrace
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 1
+    isUnique: 1
+    isEquiped: 0
+    description: ' Grants a chance to evade enemy attacks entirely. '
+    name: Shadowstep Amulet
+  equippedCharms:
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 0
+    isUnique: 0
+    isEquiped: 0
+    description: 
+    name: 
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 0
+    isUnique: 0
+    isEquiped: 0
+    description: 
+    name: 
+  - image: {fileID: 0}
+    cost: 0
+    isOwned: 0
+    isUnique: 0
+    isEquiped: 0
+    description: 
+    name: 
+  descriptionText: {fileID: 0}
+  nameText: {fileID: 0}
+  Prompt: {fileID: 0}
+  confirm: {fileID: 0}
+  Image_one: {fileID: 0}
+  Image_two: {fileID: 0}
+  Image_three: {fileID: 0}
+  basic: {fileID: 21300000, guid: 7e8b43d7bd114b6469599c0e16cf7814, type: 3}
+  none: {fileID: 21300000, guid: eea9b32458a38964bb6638a62532d832, type: 3}
+--- !u!114 &5651016936154960961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382089798182240097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae6465ed6a1b334c9de272bf8bb6cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  talants:
+  - image: {fileID: 0}
+    isOwned: 1
+    description: Allows you to jump one more time.
+    name: Double Jump
+  - image: {fileID: 0}
+    isOwned: 1
+    description: Gain the ability to slide down vertical surfaces and perform a jump
+      from the wall.
+    name: 'Wall slide '
+  - image: {fileID: 0}
+    isOwned: 1
+    description: Empowers the player to execute a powerful downward attack upon landing,
+      creating shockwaves that can damage enemies, break obstacles, or trigger specific
+      environmental interactions.
+    name: Ground Slam
+  - image: {fileID: 0}
+    isOwned: 0
+    description: Enhances perception, revealing hidden platforms or paths that are
+      invisible to the naked eye. Unlocks the potential to see and interact with
+      secret pathways.
+    name: Eagle Vision
+  - image: {fileID: 0}
+    isOwned: 0
+    description: Enables the player to phase through certain barriers or obstacles,
+      uncovering hidden passages and shortcuts in the environment.
+    name: Phase Shift
+  descriptionText: {fileID: 0}
+  nameText: {fileID: 0}
+--- !u!114 &2601433597100851217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382089798182240097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a0eb56677beb94488bfea813590ab48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilities:
+  - image: {fileID: 0}
+    isOwned: 1
+    description: ' Utilize the Chronosphere to control time and halt it, creating
+      temporary copies to assail enemies nearby.'
+    name: Chronosphere
+    isEquiped: 0
+  - image: {fileID: 0}
+    isOwned: 1
+    description: Unleash your scythe with deadly precision. Throw it at your enemies,
+      watching as it bounces off them and returns to your hand, ready to strike again.
+    name: Scythe Throw
+    isEquiped: 0
+  descriptionText: {fileID: 0}
+  nameText: {fileID: 0}
+  promptText: {fileID: 0}
+  equipedText: {fileID: 0}
+--- !u!114 &8698905644036960850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382089798182240097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658bb6497fd503f4f9de3582e120c105, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layoutInventory: {fileID: 0}
+  items:
+  - sprite: {fileID: 21300000, guid: 2d59da2705970f643ac75c59ead38362, type: 3}
+    isOwned: 1
+    description: A weathered scroll containing cryptic writings detailing the origins
+      of the world and the ancient conflict between light and darkness.
+    name: Ancient Manuscript
+  - sprite: {fileID: 21300000, guid: ff4073643026cd1449ab4738fd15fcb8, type: 3}
+    isOwned: 1
+    description: I heard that there is a dungeon in the castle, but no one knows
+      where it leads.
+    name: Strange letter
+  - sprite: {fileID: 21300000, guid: 9f3d717cd9d88b6488db6ba3e7bda78c, type: 3}
+    isOwned: 1
+    description: This place is cursed, even light cannot penetrate there. Therefore,
+      the king ordered it to be hidden from the eyes of the city residents.
+    name: Notes from the hinterlands
+  - sprite: {fileID: 21300000, guid: e4aec4bccc2e3674a8dc2c3fe0c00253, type: 3}
+    isOwned: 1
+    description: ' This aged iron key, worn and rusted, holds great importance, rumored
+      to unlock hidden treasures in an underground passage.'
+    name: Skeleton Key
+  - sprite: {fileID: 21300000, guid: f06c6cfd848e402409603a050e24e28d, type: 3}
+    isOwned: 1
+    description: A lamp that illuminates the path even in magical darkness.
+    name: Ethereal Lantern
+  - sprite: {fileID: 21300000, guid: 7310e77c30b76834ca446f9853630525, type: 3}
+    isOwned: 1
+    description: Opens the way to the tower.
+    name: Beholder's Key
+  - sprite: {fileID: 21300000, guid: 493e6e9b504a04049ae8c73808701cb2, type: 3}
+    isOwned: 1
+    description: Dog collar. Maybe someone got lost.
+    name: Collar
+  - sprite: {fileID: 21300000, guid: 826bc0c6208338d449bf904d62c257d0, type: 3}
+    isOwned: 1
+    description: ' A magical ring that vibrates in the presence of nearby keys and
+      locks, making it easier for the player to locate and unlock hidden doors and
+      chests.'
+    name: Key Finder's Ring
+  - sprite: {fileID: 21300000, guid: 4f1e7f40bc8c6cd46ae0ae275b959c3a, type: 3}
+    isOwned: 1
+    description: ' "Colleagues, After extensive research, I''ve discovered that eclipses
+      signal a cosmic conflict. We must prepare, find ancient relics to combat impending
+      darkness. Regards, [Scholar''s Name]"'
+    name: Note from a Scholar
+  - sprite: {fileID: 21300000, guid: a57ad1d77bbf3544e9429fc64ac179e2, type: 3}
+    isOwned: 1
+    description: ' "Neighbors, Our children''s safety concerns me. Streets are unsafe,
+      and rumors of dark forces unsettle me. Let''s watch over them, ensuring their
+      safe return home each night."'
+    name: Message from a Worried Parent
+  - sprite: {fileID: 21300000, guid: 9770e7aefd4ca0746b76d77aaaa4a9bf, type: 3}
+    isOwned: 1
+    description: ' "With a heavy heart, I note our city''s corruption and greed.
+      The rich thrive while the common suffer. We must unite, demand change, or be
+      complicit in our oppression."'
+    name: Note from a Concerned Citizen
+  - sprite: {fileID: 21300000, guid: 791a43109dd08194d98843ee67d5039e, type: 3}
+    isOwned: 1
+    description: A small, intricately designed device that can enhance the potency
+      of your Flask. When used in conjunction with the Flask, it infuses the liquid
+      with rare alchemical compounds, amplifying its effects.
+    name: Infuser
+  imageSize: {x: 100, y: 100}
+  scale: {x: 1, y: 1, z: 1}
+  descriptionText: {fileID: 0}
+  nameText: {fileID: 0}
+--- !u!114 &6532800119698280020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382089798182240097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 340375f68845311478e3321eefcc41f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resolutions:
+  - 1920x1080
+  - 1280x720
+  - 1600x900
+  - 2560x1440
+  lowQualityToggle: {fileID: 0}
+  mediumQualityToggle: {fileID: 0}
+  highQualityToggle: {fileID: 0}
+  controls_settings: {fileID: 0}
+  resolution_settings: {fileID: 0}
+  quality_settings: {fileID: 0}
+  sound_settings: {fileID: 0}
+  video1: {fileID: 0}
+  video2: {fileID: 0}
+  volumeSlider: {fileID: 0}
+  resolutionDropdown: {fileID: 0}
+--- !u!114 &504365584222329724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382089798182240097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072f76181112e9447bcdf144941f400f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button_w: {fileID: 0}
+  Button_a: {fileID: 0}
+  Button_s: {fileID: 0}
+  Button_d: {fileID: 0}
+  Button_jump: {fileID: 0}
+  Button_ability: {fileID: 0}
+  Button_attack: {fileID: 0}
+  Button_strongAttack: {fileID: 0}
+  Button_dash: {fileID: 0}
+  Button_heal: {fileID: 0}
+  Button_use: {fileID: 0}
