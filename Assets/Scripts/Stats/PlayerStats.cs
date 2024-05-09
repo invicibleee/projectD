@@ -31,7 +31,9 @@ public class PlayerStats : CharacterStats
     {
         base.DoDamage(_targetStats);
         IncreaseMana(5);
+        IncreaseUlt(10);
         allBars.SetMana(currentMana, maxMana.GetValue());
+        allBars.SetUlt(currentUlt, maxUlt.GetValue());
     }
     public override void RegenerateMana()
     {

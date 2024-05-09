@@ -9,6 +9,7 @@ public class SkillManager : MonoBehaviour
     public CloneSkill clone { get; private set; }
     public ChronoSkill chrono { get; set; }
     public ScytheThrowSkill scytheThrow { get; private set; }
+    public CelestialNexus celestialNexus { get; private set; }
 
     private void Awake()
     {
@@ -26,5 +27,6 @@ public class SkillManager : MonoBehaviour
         clone = GetComponent<CloneSkill>();
         chrono = GetComponent<ChronoSkill>();
         scytheThrow = GetComponent<ScytheThrowSkill>();
+        celestialNexus = GetComponent<CelestialNexus>();
     }
 }

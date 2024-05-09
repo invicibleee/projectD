@@ -27,6 +27,8 @@ public class CharacterStats : MonoBehaviour
     [Header("Mana stats")]
     public Stat maxMana;
     public Stat manaRegenRate;
+    [Header("Ult stats")]
+    public Stat maxUlt;
 
     [Header("Magic stats")]
     public Stat fireDamage;
@@ -52,6 +54,7 @@ public class CharacterStats : MonoBehaviour
     private float shockDamage;
     public float currentHealth;
     public float currentMana;
+    public float currentUlt;
     public float damageReceivedReductionPercentage = 0;
 
     public System.Action onHealthChanged;
@@ -281,7 +284,19 @@ public class CharacterStats : MonoBehaviour
     public void SetupShockStrikeDamage(float _damage) => shockDamage = _damage;
 
     #endregion
+    #region Ult
+    public virtual void DecreaseUlt(float amount)
+    {
+        currentUlt -= amount;
 
+        currentUlt = Mathf.Max(currentUlt, 0f);
+    }public virtual void IncreaseUlt(float amount)
+    {
+        currentUlt += amount;
+
+        currentUlt = Mathf.Clamp(currentUlt, 0f, maxUlt.GetValue());
+    }
+    #endregion
     #region Mana
     public virtual void RegenerateMana()
     {
@@ -311,6 +326,18 @@ public class CharacterStats : MonoBehaviour
         DecreaseHealthBy(reducedDamage);
 
         GetComponent<Entity>().DamageImpact();
+        fx.StartCoroutine("FlashFX");
+
+        if (currentHealth < 0 && !isDead)
+            Die();
+        OnDamageReceived?.Invoke(_damage);
+
+    }
+    public virtual void TakeDamageWithoutKnockback(float _damage)
+    {
+        float reducedDamage = _damage * (1f - damageReceivedReductionPercentage / 100f);
+        DecreaseHealthBy(reducedDamage);
+
         fx.StartCoroutine("FlashFX");
 
         if (currentHealth < 0 && !isDead)
@@ -418,6 +445,10 @@ public class CharacterStats : MonoBehaviour
     public float GetMaxManaValue()
     {
         return maxMana.GetValue();
+    }
+    public float GetMaxUltValue()
+    {
+        return maxUlt.GetValue();
     }
     #endregion
 }

@@ -19,7 +19,7 @@ public class CharacterPanelScript : MonoBehaviour
     PauseMenuScript pauseMenuScript;
     [SerializeField] private CharacterStats playerStats;
 
-    public Text[] statTextsFloat; // Array of texts for displaying float statistics
+    public Text[] statTextsFloat; 
 
     public WeaponSkill[] skills;
     public Text descriptionText;

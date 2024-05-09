@@ -22,7 +22,7 @@ public class HealthManaUltBars : MonoBehaviour
     {
         currentHP = stats.GetMaxHealthValue();
         currentMana = stats.GetMaxManaValue();
-        //currentUlt = maxUlt;
+        currentUlt = stats.GetMaxUltValue();
         UpdateBars();
     }
 
@@ -30,7 +30,7 @@ public class HealthManaUltBars : MonoBehaviour
     {
         BarHP.fillAmount = currentHP / stats.GetMaxHealthValue();
         BarMana.fillAmount = currentMana / stats.GetMaxManaValue();
-        //BarUlt.fillAmount = currentUlt / maxUlt;
+        BarUlt.fillAmount = currentUlt / stats.GetMaxUltValue();
     }
 
     public void SetHealth(float health, float maxHealth)
@@ -45,17 +45,17 @@ public class HealthManaUltBars : MonoBehaviour
         UpdateBars();
     }
 
-    public void SetUlt(float ult)
+    public void SetUlt(float ult, float maxUlt)
     {
-        //currentUlt = Mathf.Clamp(ult, 0f, maxUlt);
+        currentUlt = Mathf.Clamp(ult, 0f, maxUlt);
         UpdateBars();
     }
 
-    public void IncreaseUltPercent(float percent)
-    {
-        //float ultIncrease = (percent / 100f) * maxUlt;
-        //SetUlt(currentUlt + ultIncrease);
-    }
+    //public void IncreaseUltPercent(float percent)
+    //{
+    //    //float ultIncrease = (percent / 100f) * maxUlt;
+    //    //SetUlt(currentUlt + ultIncrease);
+    //}
 
 #if UNITY_EDITOR
     void OnValidate()
