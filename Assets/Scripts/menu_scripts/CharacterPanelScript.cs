@@ -19,8 +19,8 @@ public class CharacterPanelScript : MonoBehaviour
     PauseMenuScript pauseMenuScript;
     [SerializeField] private CharacterStats playerStats;
 
-    public Text[] statTextsFloat; 
-
+    public Text[] statTextsFloat;
+    public WeaponStyle[] weaponStyles;
     public WeaponSkill[] skills;
     public Text descriptionText;
     public GameObject confrim;
@@ -31,7 +31,10 @@ public class CharacterPanelScript : MonoBehaviour
     private int currentStyle;
     private int selectedSkillIndex = -1;
 
-
+    private void Awake()
+    {
+        weaponStyles = FindObjectsOfType<WeaponStyle>();
+    }
     private void Start()
     {
         pauseMenuScript = GetComponent<PauseMenuScript>();
@@ -98,6 +101,7 @@ public class CharacterPanelScript : MonoBehaviour
                     if ( skills[skillIndex + 1].isPurchased)
                     {
                         isUpgradedOnce = true;
+                        Debug.Log(isUpgradedOnce);
 
                         /// Check if the second-level skill requiring the current skill is upgraded
                         if (skills[skillIndex + 2].isPurchased)
@@ -109,22 +113,29 @@ public class CharacterPanelScript : MonoBehaviour
                 }
             }
 
-            // Check for upgrades and display the corresponding message
-            if (isUpgradedTwice)
-            {
-                Prompt.text = "skill equiped";
-                Debug.Log("Equipped Skill " + skillIndex + " with two upgrades");
-            }
-            else if (isUpgradedOnce)
+            //// Check for upgrades and display the corresponding message
+            //if (isUpgradedTwice)
+            //{
+            //    Prompt.text = "skill equiped";
+            //    Debug.Log("Equipped Skill " + skillIndex + " with two upgrades");
+            //    weaponStyles[currentStyle].ActivateFirstUpgrade();
+            //    weaponStyles[currentStyle].ActivateSecondUpgrade();
+            //}
+            //else if (isUpgradedOnce)
+            if (isUpgradedOnce)
             {
                 Prompt.text = "skill equiped";
                 Debug.Log("Equipped Skill " + skillIndex + " with one upgrade");
+                weaponStyles[2].ActivateFirstUpgrade();
             }
-            else
-            {
-                Prompt.text = "skill equiped";
-                Debug.Log("Equipped Skill " + skillIndex + " without upgrades");
-            }
+            //else
+            //{
+            //    Prompt.text = "skill equiped";
+            //    Debug.Log("Equipped Skill " + skillIndex + " without upgrades");
+            //    weaponStyles[currentStyle].ActivateFirstUpgrade();
+            //    weaponStyles[currentStyle].ActivateSecondUpgrade();
+            //    weaponStyles[currentStyle].ActivateThirdUpgrade();
+            //}
         }
         else
         {

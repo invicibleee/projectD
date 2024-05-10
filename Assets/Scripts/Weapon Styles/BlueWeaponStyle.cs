@@ -11,8 +11,17 @@ public class BlueWeaponStyle : WeaponStyle
         // Проверяем, существует ли префаб
         if (celestialNexusPrefab != null)
         {
-            // Создаем экземпляр объекта с префабом celestialNexusPrefab
-            GameObject celestialNexusObject = Instantiate(celestialNexusPrefab, transform.position + transform.right * 2f, Quaternion.identity);
+            // Получаем ссылку на игрока из PlayerManager
+            PlayerManager playerManager = PlayerManager.instance;
+            if (playerManager != null && playerManager.player != null)
+            {
+                // Создаем экземпляр объекта с префабом celestialNexusPrefab рядом с игроком
+                Instantiate(celestialNexusPrefab, playerManager.player.transform.position + playerManager.player.transform.right * 2f, Quaternion.identity);
+            }
+            else
+            {
+                Debug.LogError("PlayerManager or player reference is missing!");
+            }
         }
         else
         {
