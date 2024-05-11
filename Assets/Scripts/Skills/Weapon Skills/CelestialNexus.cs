@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CelestialNexus : MonoBehaviour
 {
-    private PlayerStats playerStats;
+    [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveForce;
-    [SerializeField] private float healthRestore;
+    [SerializeField] private float healthRestore; 
     [SerializeField] private float damage;
     [SerializeField] private float ticksPerSecond; // „астота тиков урона
 
@@ -13,7 +13,6 @@ public class CelestialNexus : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerStats= FindObjectOfType<PlayerStats>();
     }
     private void Update()
     {
@@ -51,7 +50,8 @@ public class CelestialNexus : MonoBehaviour
         float attackRadius = playerStats.GetComponent<Entity>().GetAttackCheckRadius();
 
         // ѕровер€ем, находитс€ ли игрок в состо€нии атаки и сфера в радиусе его атаки
-        if (player.stateMachine.currentState == player.primaryAttackState && Physics2D.OverlapCircle(transform.position, attackRadius, LayerMask.GetMask("Player")))
+        if (player.stateMachine.currentState == player.primaryAttackState &&
+            Physics2D.OverlapCircle(transform.position, attackRadius, LayerMask.GetMask("Player")))
         {
             // ѕолучаем направление, в котором смотрит игрок
             Vector2 playerDirection = player.transform.right; // ¬озможно, нужно использовать другое направление, зависит от ориентации вашего персонажа

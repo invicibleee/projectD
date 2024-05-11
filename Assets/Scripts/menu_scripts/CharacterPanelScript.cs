@@ -67,13 +67,13 @@ public class CharacterPanelScript : MonoBehaviour
         {
             if (skill.image != null)
             {
-                if (skill.isPurchased)
+                 if (skill.isPurchased)
                 {
-                    skill.image.color = Color.white;
+                    skill.image.color = Color.white; 
                 }
                 else
                 {
-                    skill.image.color = Color.gray;
+                    skill.image.color = Color.gray; 
                 }
             }
         }
@@ -83,13 +83,13 @@ public class CharacterPanelScript : MonoBehaviour
     void EquipSkill(int skillIndex)
     {
         WeaponSkill selectedSkill = skills[skillIndex];
-
+   
         if (selectedSkill.isBasicSkill)
         {
             // If the selected skill is basic, it can be equipped
             Debug.Log("Equipped Skill Index: " + skillIndex);
-            int pickedStyle = skillIndex / 3;
 
+           
             bool isUpgradedOnce = false;
             bool isUpgradedTwice = false;
 
@@ -98,7 +98,7 @@ public class CharacterPanelScript : MonoBehaviour
                 if (skill.isPurchased && skill.requiredSkill.Length > 0)
                 {
                     // Check if the skill requiring the current skill is upgraded
-                    if (skills[skillIndex + 1].isPurchased)
+                    if ( skills[skillIndex + 1].isPurchased)
                     {
                         isUpgradedOnce = true;
                         Debug.Log(isUpgradedOnce);
@@ -112,33 +112,34 @@ public class CharacterPanelScript : MonoBehaviour
                     }
                 }
             }
-// Check for upgrades and display the corresponding message
-            if (isUpgradedTwice)
-            {
-                Prompt.text = "skill equiped";
-                Debug.Log("Equipped Skill " + skillIndex + " with two upgrades");
-                weaponStyles[pickedStyle].ActivateFirstUpgrade();
-                weaponStyles[pickedStyle].ActivateSecondUpgrade();
-                weaponStyles[pickedStyle].ActivateThirdUpgrade();
-            }
-            else if (isUpgradedOnce)
+
+            //// Check for upgrades and display the corresponding message
+            //if (isUpgradedTwice)
+            //{
+            //    Prompt.text = "skill equiped";
+            //    Debug.Log("Equipped Skill " + skillIndex + " with two upgrades");
+            //    weaponStyles[currentStyle].ActivateFirstUpgrade();
+            //    weaponStyles[currentStyle].ActivateSecondUpgrade();
+            //}
+            //else if (isUpgradedOnce)
+            if (isUpgradedOnce)
             {
                 Prompt.text = "skill equiped";
                 Debug.Log("Equipped Skill " + skillIndex + " with one upgrade");
-                weaponStyles[pickedStyle].ActivateFirstUpgrade();
-                weaponStyles[pickedStyle].ActivateSecondUpgrade();
+                weaponStyles[2].ActivateFirstUpgrade();
             }
-            else
-            {
-                Prompt.text = "skill equiped";
-                Debug.Log("Equipped Skill " + skillIndex + " without upgrades");
-                weaponStyles[pickedStyle].ActivateFirstUpgrade();
-
-            }
+            //else
+            //{
+            //    Prompt.text = "skill equiped";
+            //    Debug.Log("Equipped Skill " + skillIndex + " without upgrades");
+            //    weaponStyles[currentStyle].ActivateFirstUpgrade();
+            //    weaponStyles[currentStyle].ActivateSecondUpgrade();
+            //    weaponStyles[currentStyle].ActivateThirdUpgrade();
+            //}
         }
         else
         {
-
+           
             Debug.Log("Skill Index: " + skillIndex + " is not a basic skill and cannot be equipped directly.");
         }
     }
@@ -207,19 +208,17 @@ public class CharacterPanelScript : MonoBehaviour
         }
     }
 
-    public void SetStyle(int skillIndex)
-    {
+    public void SetStyle(int skillIndex) {
 
-        switch (skillIndex)
-        {
+        switch (skillIndex) {
             case 0:
                 style.color = Color.red;
                 break;
             case 3:
-                style.color = Color.green;
+                style.color = Color.blue;
                 break;
             case 6:
-                style.color = Color.blue;
+                style.color = Color.green;
                 break;
             default:
                 style.color = Color.white;
@@ -233,10 +232,11 @@ public class CharacterPanelScript : MonoBehaviour
         updatedSkills[skillIndex].isPurchased = value;
         skills = updatedSkills;
     }
+
     public void OnSkillImageClick(int skillIndex)
     {
         int clickedStyle = skillIndex / 3 + 1;
-        // Debug.Log(skillIndex);
+       // Debug.Log(skillIndex);
         if (clickedStyle != currentStyle)
         {
             currentStyle = clickedStyle;
@@ -271,8 +271,7 @@ public class CharacterPanelScript : MonoBehaviour
             Prompt.text = "Do you wish to equip this skill?";
             confrim.SetActive(true);
         }
-        else if (skills[skillIndex].isPurchased && !skills[skillIndex].isBasicSkill)
-        {
+        else if (skills[skillIndex].isPurchased && !skills[skillIndex].isBasicSkill) {
             confrim.SetActive(false);
             Prompt.text = "";
         }
@@ -345,12 +344,14 @@ public class CharacterPanelScript : MonoBehaviour
             statTextsFloat[index].text = string.Format("{0}/{1}", currentValue, maxValue);
         }
     }
+
+
     // Method to set the text of a specific integer statistic
     void SetStatTextInt(int index, int value, int maxValue)
     {
         if (index >= 0 && index < statTextsFloat.Length)
         {
-
+          
             if (index == 4)
             {
                 statTextsFloat[index].text = $"{value}%";
@@ -360,6 +361,6 @@ public class CharacterPanelScript : MonoBehaviour
                 statTextsFloat[index].text = $"{value}/{maxValue}";
             }
         }
-
+       
     }
 }

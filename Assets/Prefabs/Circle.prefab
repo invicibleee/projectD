@@ -161,8 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfbad3fcb5033614a96cafabcb3e0e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 0}
   rb: {fileID: 3144428828399727385}
-  moveForce: 0.3
+  moveForce: 2
   healthRestore: 3
   damage: 2
   ticksPerSecond: 2
