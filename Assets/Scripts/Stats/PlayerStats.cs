@@ -40,4 +40,9 @@ public class PlayerStats : CharacterStats
         base.RegenerateMana();
         allBars.SetMana(currentMana, maxMana.GetValue());
     }
+    public override void IncreaseHealthBy(float healAmount)
+    {
+        base.IncreaseHealthBy(healAmount);
+        allBars.SetHealth(currentHealth, GetMaxHealthValue());
+    }
 }
