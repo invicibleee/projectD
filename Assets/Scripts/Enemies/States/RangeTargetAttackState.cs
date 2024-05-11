@@ -50,6 +50,6 @@ public class RangeTargetAttackState : AttackState
         base.TriggerAttack();
         projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
         projectileTargetScript = projectile.GetComponent<ProjectileTarget>();
-        projectileTargetScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage,stateData.pursuitTime);
+        projectileTargetScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage,stateData.pursuitTime, stateData.timeToDestroy);
     }
 }

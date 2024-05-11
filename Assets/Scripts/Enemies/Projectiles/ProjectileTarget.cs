@@ -10,6 +10,8 @@ public class ProjectileTarget : MonoBehaviour
     private float pursuitTime; // Час переслідування
     private float currentPursuitTime; // Поточний час переслідування
     private bool isPursuing; // Позначка переслідування
+    private float startTime;
+    private float timeToDestroy;
 
     [SerializeField]
     private float gravity;
@@ -32,7 +34,7 @@ public class ProjectileTarget : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         targetPlayer = Transform.FindAnyObjectByType<Player>();
         rb.gravityScale = 0.0f;
-
+        startTime = Time.time;
         isGravitiOn = false;
         isPursuing = true; // Початково об'єкт переслідує гравця
         currentPursuitTime = 0f; // Початковий час переслідування
@@ -52,6 +54,7 @@ public class ProjectileTarget : MonoBehaviour
                     rb.velocity = direction * speed;
                 }
 
+
                 // Якщо час переслідування вичерпано, зупиняємо переслідування
                 if (currentPursuitTime >= pursuitTime)
                 {
@@ -64,6 +67,10 @@ public class ProjectileTarget : MonoBehaviour
             }
             else
             {
+                if (Time.time >= startTime + timeToDestroy)
+                {
+                    Destroy(gameObject);
+                }
                 // Якщо переслідування завершено, об'єкт рухається прямо вперед
                 rb.velocity = transform.right * speed;
             }
@@ -98,12 +105,13 @@ public class ProjectileTarget : MonoBehaviour
         }
     }
 
-    public void FireProjectile(float speed, float travelDistance, float damage, float pursuitTime)
+    public void FireProjectile(float speed, float travelDistance, float damage, float pursuitTime,float timeToDestroy)
     {
         this.speed = speed;
         this.travelDistance = travelDistance;
         attackDetails.damageAmount = damage;
         this.pursuitTime = pursuitTime;
+        this.timeToDestroy = timeToDestroy;
     }
 
     private void OnDrawGizmos()
