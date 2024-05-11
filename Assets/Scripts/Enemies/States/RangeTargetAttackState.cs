@@ -5,9 +5,10 @@ using UnityEngine;
 public class RangeTargetAttackState : AttackState
 {
     private D_RangeTargetAttackState stateData;
+    protected ProjectileTarget projectileTargetScript;
 
     protected GameObject projectile;
-    protected ProjectileTarget projectileTargetScript;
+
     protected bool isPlayerInMaxAgroRange;
     public RangeTargetAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_RangeTargetAttackState stateData) : base(stateMashine, enemy, animBoolName, attackPosition)
     {
