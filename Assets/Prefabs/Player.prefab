@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 1485019578107172287}
   - component: {fileID: 4379914219021130065}
   - component: {fileID: 383409272858027507}
+  - component: {fileID: 1861261544267750383}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -479,3 +480,17 @@ MonoBehaviour:
   currentUlt: 0
   damageReceivedReductionPercentage: 0
   allBars: {fileID: 0}
+--- !u!114 &1861261544267750383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074423769926948372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4955a8e1bec68bc4abdebab3176d0c35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  miragePrefab: {fileID: 7074423769926948372, guid: 91b9093d0fd09b34aba961dd05a09435, type: 3}
+  mirageDuration: 10
