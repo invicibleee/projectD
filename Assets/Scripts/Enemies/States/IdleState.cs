@@ -11,6 +11,7 @@ public class IdleState : EnemyState
     protected float idleTime;
     protected bool isIdleTimeOver;
     protected bool isPlayerInMinAgroRange;
+    protected bool isPlayerInMaxAgroRange;
 
     public IdleState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_IdleState stateData) : base(stateMashine, enemy, animBoolName)
     {
@@ -21,6 +22,7 @@ public class IdleState : EnemyState
     {
         base.DoChecks();
         isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
+        isPlayerInMaxAgroRange = enemy.CheckPlayerInMaxAgroRange(); 
 
     }
 
