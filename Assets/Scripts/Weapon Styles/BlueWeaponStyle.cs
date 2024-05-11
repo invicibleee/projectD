@@ -5,7 +5,8 @@ using UnityEngine;
 public class BlueWeaponStyle : WeaponStyle
 {
     public GameObject celestialNexusPrefab; // Префаб объекта с скриптом CelestialNexus
-
+    private GameObject celestialNexusInstance;
+    [SerializeField] private float timeToDestroy;
     public override void ActivateFirstUpgrade()
     {
         // Проверяем, существует ли префаб
@@ -16,7 +17,8 @@ public class BlueWeaponStyle : WeaponStyle
             if (playerManager != null && playerManager.player != null)
             {
                 // Создаем экземпляр объекта с префабом celestialNexusPrefab рядом с игроком
-                Instantiate(celestialNexusPrefab, playerManager.player.transform.position + playerManager.player.transform.right * 2f, Quaternion.identity);
+                celestialNexusInstance = Instantiate(celestialNexusPrefab, playerManager.player.transform.position + playerManager.player.transform.right * 2f, Quaternion.identity);
+                Destroy(celestialNexusInstance, timeToDestroy);
             }
             else
             {

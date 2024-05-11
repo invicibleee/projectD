@@ -10,9 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6977957401124833334}
   - component: {fileID: 3217939575128238223}
-  - component: {fileID: 5893509486287604368}
-  - component: {fileID: 9043559721968375369}
-  - component: {fileID: 7079120660888491430}
   m_Layer: 0
   m_Name: WeaponStyleManager
   m_TagString: Untagged
@@ -47,43 +44,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c8e74d9c27961419d5f87f738865fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5893509486287604368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3747550256276733827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81c0b659a15ec8540b1a4624f3cfac85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  styleIndex: 0
---- !u!114 &9043559721968375369
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3747550256276733827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50bc55529d80c444f911ac31fdee40c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  styleIndex: 1
---- !u!114 &7079120660888491430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3747550256276733827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f210b73f6e855e845ad15e1547c242ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  styleIndex: 2
-  celestialNexusPrefab: {fileID: 3349952997649885553, guid: 4ce05d5dfe9cc1c478c1a9ef25d5a4f1, type: 3}

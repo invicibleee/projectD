@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CelestialNexus : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
+    private PlayerStats playerStats;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float moveForce;
     [SerializeField] private float healthRestore; 
@@ -12,6 +12,7 @@ public class CelestialNexus : MonoBehaviour
     private float damageTimer = 0f;
     private void Start()
     {
+        playerStats = FindObjectOfType<PlayerStats>();
         rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
