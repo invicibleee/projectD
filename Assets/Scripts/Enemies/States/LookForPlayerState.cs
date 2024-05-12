@@ -11,6 +11,7 @@ public class LookForPlayerState : EnemyState
     protected bool isPlayerInMaxAgroRange;
     protected bool isAllTurnsDone;
     protected bool isAllTurnsTimeDone;
+    protected bool performCloseRangeAction;
 
     protected float lastTurnTime;
 
@@ -25,7 +26,9 @@ public class LookForPlayerState : EnemyState
         base.DoChecks();
         isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
         isPlayerInMaxAgroRange = enemy.CheckPlayerInMaxAgroRange();
+        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
     }
+
 
     public override void Enter()
     {

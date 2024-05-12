@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba84d04a0d665e240b89a8f67ebf4da6, type: 3}
-  m_Name: E1_ChageData
+  m_Script: {fileID: 11500000, guid: ea0254c33ffc9ed46af51f64dceadeaf, type: 3}
+  m_Name: B1_JumpAttackStateData
   m_EditorClassIdentifier: 
-  chargeSpeed: 6
-  chargeTime: 1.8
+  jumpAngle: {x: 1, y: 5}
+  jumpSpeed: 40
+  jumpTime: 1

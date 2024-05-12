@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B1_IdleState : IdleState
+public class B1_LookForPlayer : LookForPlayerState
 {
     private EnemyBossOne bossOne;
-    private bool playerDetected;
-    public B1_IdleState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_IdleState stateData, EnemyBossOne bossOne) : base(stateMashine, enemy, animBoolName, stateData)
+    public B1_LookForPlayer(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_LookForPlayer stateData, EnemyBossOne bossOne) : base(stateMashine, enemy, animBoolName, stateData)
     {
         this.bossOne = bossOne;
     }
@@ -19,7 +18,6 @@ public class B1_IdleState : IdleState
     public override void Enter()
     {
         base.Enter();
-        playerDetected = false ;
     }
 
     public override void Exit()
@@ -32,25 +30,26 @@ public class B1_IdleState : IdleState
         base.LogicUpdate();
         if (isPlayerInMaxAgroRange)
         {
-            playerDetected = true;
             stateMashine.ChangeState(bossOne.rangeTargetAttackState);
         }
-        else if (performCloseRangeAction)
+        else if (isPlayerInMinAgroRange)
         {
-            playerDetected = true;
-            stateMashine.ChangeState(bossOne.jumpAttackState);
-        }
-        else if(isPlayerInMinAgroRange)
-        {
-            playerDetected = true;
-            if (Time.time >= bossOne.rollState.startTime + bossOne.bossRollStateData.rollCooldown)
+            if (Time.time >= startTime + bossOne.bossRollStateData.rollCooldown)
             {
                 stateMashine.ChangeState(bossOne.rollState);
             }
+            else
+            {
+                stateMashine.ChangeState(bossOne.idleState);
+            }
         }
-        else if(playerDetected)
+        else if (performCloseRangeAction)
         {
-            stateMashine.ChangeState(bossOne.lookForPlayerState);
+            stateMashine.ChangeState(bossOne.jumpAttackState);
+        }
+        if (isAllTurnsDone && !isPlayerInMaxAgroRange)
+        {
+            stateMashine.ChangeState(bossOne.rollState);
         }
 
     }

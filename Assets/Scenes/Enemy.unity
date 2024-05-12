@@ -3563,6 +3563,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1987582435261637371, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987582435261637371, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.11
+      objectReference: {fileID: 0}
     - target: {fileID: 2025576667771532534, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
       propertyPath: m_Name
       value: EnemyWolf
@@ -3570,6 +3578,14 @@ PrefabInstance:
     - target: {fileID: 2025576667771532534, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2604383300167545167, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 2604383300167545167, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 5144542349666050711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
       propertyPath: m_Layer
@@ -4370,7 +4386,7 @@ Transform:
   m_GameObject: {fileID: 2749207619677657921}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 148.03, y: -41.69, z: 0}
+  m_LocalPosition: {x: 23.92, y: -4.39, z: 0}
   m_LocalScale: {x: 1.4154, y: 1.4154, z: 1.4154}
   m_ConstrainProportionsScale: 0
   m_Children:

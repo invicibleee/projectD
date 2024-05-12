@@ -12,6 +12,12 @@ public class EnemyBossOne : Enemy
 
     public B1_RangeTargetAttackState rangeTargetAttackState { get; private set;}
 
+    public B1_LookForPlayer lookForPlayerState { get; private set; }
+
+    public B1_JumpAttackState jumpAttackState { get; private set; }
+
+    public B1_JumpAttackDone jumpAttackDone { get; private set; }
+
     [SerializeField]
     public D_BossRollState bossRollStateData;
     [SerializeField]
@@ -21,7 +27,13 @@ public class EnemyBossOne : Enemy
     [SerializeField]
     private D_RangeTargetAttackState rangeTargetAttackStateData;
     [SerializeField]
+    private D_LookForPlayer lookForPlayerStateData;
+    [SerializeField]
     private Transform rangeAttackPosition;
+    [SerializeField]
+    private D_JumpAttackState jumpAttackStateData;
+    [SerializeField]
+    private D_JumpAttackDone jumpAttackDoneData;
     protected override void Start()
     {
         base.Start();
@@ -32,6 +44,12 @@ public class EnemyBossOne : Enemy
         rollOverState = new B1_RollOver(stateMashine, this,"rollOver",bossRollIsOverStateData,this);
 
         rangeTargetAttackState = new B1_RangeTargetAttackState(stateMashine, this, "rangeAttack", rangeAttackPosition, rangeTargetAttackStateData, this);
+
+        lookForPlayerState = new B1_LookForPlayer(stateMashine,this, "lookForPlayer", lookForPlayerStateData,this);
+
+        jumpAttackState = new B1_JumpAttackState(stateMashine, this, "jumpAttackState",  jumpAttackStateData, this);
+
+        jumpAttackDone = new B1_JumpAttackDone(stateMashine, this,"jumpAttackDone",attackCheck,jumpAttackDoneData,this);
 
         stateMashine.Initialize(idleState);
     }

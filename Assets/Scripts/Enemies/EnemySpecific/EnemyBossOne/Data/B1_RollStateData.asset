@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7a95fd4b5007b44193a83764ec805f4, type: 3}
   m_Name: B1_RollStateData
   m_EditorClassIdentifier: 
-  rollSpeed: 20
+  rollSpeed: 40
   minRollTime: 1
   maxRollTime: 2
   rollCooldown: 5
   angleTime: 0.5
-  attackRadius: 2
+  attackRadius: 3
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64

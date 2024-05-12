@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: B1_RollOverData
   m_EditorClassIdentifier: 
   minTimetOverRoll: 0.5
-  maxTimeOverRoll: 3
+  maxTimeOverRoll: 1

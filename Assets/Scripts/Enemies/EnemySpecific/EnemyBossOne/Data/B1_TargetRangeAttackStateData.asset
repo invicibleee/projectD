@@ -16,5 +16,5 @@ MonoBehaviour:
   projectileDamage: 10
   projectileSpeed: 10
   projectileTravelDistance: 10
-  pursuitTime: 2
-  timeToDestroy: 1
+  pursuitTime: 1
+  timeToDestroy: 3

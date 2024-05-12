@@ -31,17 +31,17 @@ public class B1_RollOver : BossRollIsOverState
         base.LogicUpdate();
         if (isRollTimeDone)
         {
-            if (Time.time >= startTime + bossOne.bossRollStateData.rollCooldown)
+            if (performCloseRangeAction)
             {
-                stateMashine.ChangeState(bossOne.rollState);
+                stateMashine.ChangeState(bossOne.jumpAttackState);
             }
             else if (isPlayerInMaxAgroRange)
             {
                 stateMashine.ChangeState(bossOne.rangeTargetAttackState);
             }
-            else
+            else 
             {
-                stateMashine.ChangeState(bossOne.idleState);
+                stateMashine.ChangeState(bossOne.lookForPlayerState);
             }
         }
 

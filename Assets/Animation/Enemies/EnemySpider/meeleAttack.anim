@@ -21,12 +21,18 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 2883293435020092253, guid: f4f0458ef69c94847b0e5dd9a6ab7f40, type: 3}
+      value: {fileID: 3241896249052477475, guid: 395fb4bc88cfda94b930f3c5c2e4620c, type: 3}
+    - time: 0.05
+      value: {fileID: -1852315415381951510, guid: 395fb4bc88cfda94b930f3c5c2e4620c, type: 3}
+    - time: 0.11666667
+      value: {fileID: 5175715998483808781, guid: 395fb4bc88cfda94b930f3c5c2e4620c, type: 3}
     - time: 0.16666667
+      value: {fileID: -1423941773685871303, guid: 395fb4bc88cfda94b930f3c5c2e4620c, type: 3}
+    - time: 0.35
       value: {fileID: -7576249252577737871, guid: f4f0458ef69c94847b0e5dd9a6ab7f40, type: 3}
-    - time: 0.33333334
+    - time: 0.43333334
       value: {fileID: -2714965079365432766, guid: f4f0458ef69c94847b0e5dd9a6ab7f40, type: 3}
-    - time: 0.5
+    - time: 0.51666665
       value: {fileID: -5789946964581391, guid: f4f0458ef69c94847b0e5dd9a6ab7f40, type: 3}
     - time: 1
       value: {fileID: -5789946964581391, guid: f4f0458ef69c94847b0e5dd9a6ab7f40, type: 3}
@@ -52,7 +58,10 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 2883293435020092253, guid: f4f0458ef69c94847b0e5dd9a6ab7f40, type: 3}
+    - {fileID: 3241896249052477475, guid: 395fb4bc88cfda94b930f3c5c2e4620c, type: 3}
+    - {fileID: -1852315415381951510, guid: 395fb4bc88cfda94b930f3c5c2e4620c, type: 3}
+    - {fileID: 5175715998483808781, guid: 395fb4bc88cfda94b930f3c5c2e4620c, type: 3}
+    - {fileID: -1423941773685871303, guid: 395fb4bc88cfda94b930f3c5c2e4620c, type: 3}
     - {fileID: -7576249252577737871, guid: f4f0458ef69c94847b0e5dd9a6ab7f40, type: 3}
     - {fileID: -2714965079365432766, guid: f4f0458ef69c94847b0e5dd9a6ab7f40, type: 3}
     - {fileID: -5789946964581391, guid: f4f0458ef69c94847b0e5dd9a6ab7f40, type: 3}
@@ -82,7 +91,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
+  - time: 0.35
     functionName: TriggerAttack
     data: 
     objectReferenceParameter: {fileID: 0}

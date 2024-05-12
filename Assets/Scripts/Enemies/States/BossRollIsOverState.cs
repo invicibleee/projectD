@@ -7,6 +7,8 @@ public class BossRollIsOverState : EnemyState
     protected D_BossRollIsOverState stateData;
 
     protected bool isPlayerInMaxAgroRange;
+    protected bool isPlayerInMinAgroRange;
+    protected bool performCloseRangeAction;
     protected bool isRollTimeDone; 
     protected float rollDoneTime;
     public BossRollIsOverState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_BossRollIsOverState stateData) : base(stateMashine, enemy, animBoolName)
@@ -18,6 +20,8 @@ public class BossRollIsOverState : EnemyState
     {
         base.DoChecks();
         isPlayerInMaxAgroRange = enemy.CheckPlayerInMaxAgroRange();
+        isPlayerInMinAgroRange = enemy.CheckPlayerInMinAgroRange();
+        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
     }
 
     public override void Enter()

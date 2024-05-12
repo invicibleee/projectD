@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B1_RangeTargetAttackState : RangeTargetAttackState
+public class B1_JumpAttackDone : JumpAttackDone
 {
     private EnemyBossOne bossOne;
-    public B1_RangeTargetAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_RangeTargetAttackState stateData, EnemyBossOne bossOne) : base(stateMashine, enemy, animBoolName, attackPosition, stateData)
+    public B1_JumpAttackDone(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_JumpAttackDone stateData, EnemyBossOne bossOne) : base(stateMashine, enemy, animBoolName, attackPosition, stateData)
     {
         this.bossOne = bossOne;
     }
@@ -33,20 +33,16 @@ public class B1_RangeTargetAttackState : RangeTargetAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (performCloseRangeAction)
-        {
-            stateMashine.ChangeState(bossOne.jumpAttackState);
-        }
-        else if (isPlayerInMinAgroRange)
+        if (isPlayerInMinAgroRange)
         {
             if (Time.time >= bossOne.rollState.startTime + bossOne.bossRollStateData.rollCooldown)
             {
                 stateMashine.ChangeState(bossOne.rollState);
             }
-        }        
-        else if (!isPlayerInMaxAgroRange)
+        }
+        else
         {
-            stateMashine.ChangeState(bossOne.lookForPlayerState);
+            stateMashine.ChangeState(bossOne.idleState);
         }
     }
 
