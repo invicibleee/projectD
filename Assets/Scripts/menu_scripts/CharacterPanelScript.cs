@@ -112,7 +112,7 @@ public class CharacterPanelScript : MonoBehaviour
                     }
                 }
             }
-// Check for upgrades and display the corresponding message
+
             if (isUpgradedTwice)
             {
                 Prompt.text = "skill equiped";
@@ -143,7 +143,27 @@ public class CharacterPanelScript : MonoBehaviour
         }
     }
 
-
+    private bool GetRequiedSkills(WeaponSkill currentSkill)
+    {
+        foreach (int requiredSkillIndex in currentSkill.requiredSkill)
+        {
+            if (requiredSkillIndex >= 0 && requiredSkillIndex < skills.Length)
+            {
+                if (!skills[requiredSkillIndex].isPurchased)
+                {
+                    Debug.Log("no");
+                    return false;
+                }
+              
+            }
+            else
+            {
+                return false;
+            }
+        }
+        Debug.Log("yes");
+        return true;
+    }
     public void PurchaseSkill()
     {
         int skillIndex = selectedSkillIndex;
@@ -151,24 +171,7 @@ public class CharacterPanelScript : MonoBehaviour
         {
             WeaponSkill currentSkill = skills[skillIndex];
 
-            allRequiredSkillsPurchased = true;
-            foreach (int requiredSkillIndex in currentSkill.requiredSkill)
-            {
-                if (requiredSkillIndex >= 0 && requiredSkillIndex < skills.Length)
-                {
-                    if (!skills[requiredSkillIndex].isPurchased)
-                    {
-                        allRequiredSkillsPurchased = false;
-                        break;
-                    }
-                }
-                else
-                {
-                    allRequiredSkillsPurchased = false;
-                    break;
-                }
-            }
-
+            allRequiredSkillsPurchased = GetRequiedSkills(currentSkill);
             if (allRequiredSkillsPurchased)
             {
                 if (!currentSkill.isPurchased)
@@ -180,6 +183,8 @@ public class CharacterPanelScript : MonoBehaviour
                         pauseMenuScript.UseCurrency(skillCost);
                         Prompt.text = "skill purshcased";
                         SetSkillPurchased(skillIndex, true);
+                        EquipSkill(skillIndex);
+                        SetStyle(skillIndex);
                         Debug.Log("Purchased Skill Index: " + skillIndex);
                         confrimText.text = "Confrim";
                         if (!skills[skillIndex].isBasicSkill)
@@ -234,8 +239,10 @@ public class CharacterPanelScript : MonoBehaviour
     }
     public void OnSkillImageClick(int skillIndex)
     {
+        WeaponSkill currentSkill = skills[skillIndex];
+        allRequiredSkillsPurchased =  GetRequiedSkills(currentSkill);
+
         int clickedStyle = skillIndex / 3 + 1;
-        // Debug.Log(skillIndex);
         if (clickedStyle != currentStyle)
         {
             currentStyle = clickedStyle;
@@ -247,34 +254,39 @@ public class CharacterPanelScript : MonoBehaviour
 
         if (selectedSkillIndex != -1)
         {
-            // Reduce the scale of the previously selected skill image
             UpdateSkillImageScale(selectedSkillIndex, 1f);
         }
 
-        // Increase the scale of the clicked skill image
         UpdateSkillImageScale(skillIndex, 1.1f);
-
         selectedSkillIndex = skillIndex;
-        // Debug.Log("Selected Skill Index: " + selectedSkillIndex);
 
-        if (!skills[skillIndex].isPurchased)
-        {
-            confrimText.text = "Upgrade";
-            Prompt.text = "Do you wish to buy this skill?";
+        if (allRequiredSkillsPurchased) {
             confrim.SetActive(true);
+            if (!skills[skillIndex].isPurchased)
+            {
+                confrimText.text = "Upgrade";
+                Prompt.text = "Do you wish to buy this skill?";
+                confrim.SetActive(true);
 
+            }
+            else if (skills[skillIndex].isPurchased && skills[skillIndex].isBasicSkill)
+            {
+                confrimText.text = "Confrim";
+                Prompt.text = "Do you wish to equip this skill?";
+                confrim.SetActive(true);
+            }
+            else if (skills[skillIndex].isPurchased && !skills[skillIndex].isBasicSkill)
+            {
+                confrim.SetActive(false);
+                Prompt.text = "";
+            }
         }
-        else if (skills[skillIndex].isPurchased && skills[skillIndex].isBasicSkill)
-        {
-            confrimText.text = "Confrim";
-            Prompt.text = "Do you wish to equip this skill?";
-            confrim.SetActive(true);
-        }
-        else if (skills[skillIndex].isPurchased && !skills[skillIndex].isBasicSkill)
+        else
         {
             confrim.SetActive(false);
             Prompt.text = "";
         }
+   
     }
 
     private void UpdateSkillImageScale(int skillIndex, float scale)
@@ -316,12 +328,10 @@ public class CharacterPanelScript : MonoBehaviour
         if (descriptions != null && descriptionIndex >= 0 && descriptionIndex < descriptions.Length)
         {
             descriptionText.text = descriptions[descriptionIndex];
-            //Debug.Log("Description: " + descriptions[descriptionIndex]);
         }
         else
         {
             Debug.LogError("Invalid description index: " + descriptionIndex);
-            //descriptionText.text = "No description available";
         }
     }
 
