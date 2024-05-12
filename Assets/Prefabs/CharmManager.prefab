@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
+  evasionChance: 25
 --- !u!114 &7273798657058131291
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +85,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
+  maxHPIncreasePercentage: 100
+  vampirismPercentage: 50
+  damageReductionPercentage: 20
 --- !u!114 &6853081790620593176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +114,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
+  maxManaIncrease: 50
+  manaRegenerationRate: 2
 --- !u!114 &5984573191212178505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
+  dashX: 6.1
+  dashY: 3
+  dashOffset: 2.58
 --- !u!114 &6718987898481976468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
   damageReductionPercentage: 10
-  reflectedDamage: 0
+  damageReflectionPercentage: 50
 --- !u!114 &7775475849035887533
 MonoBehaviour:
   m_ObjectHideFlags: 0

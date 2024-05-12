@@ -52,4 +52,8 @@ public class CloneSkill : Skill
         yield return new WaitForSeconds(.4f);
         CreateClone(_trasnform, _offset);
     }
+    public void CanCreateCloneOnStart(bool canCreateClone)
+    {
+        creatCloneOnDashStart = canCreateClone;
+    }
 }

@@ -4,14 +4,71 @@ using UnityEngine;
 
 public class BlueWeaponStyle : WeaponStyle
 {
+    [Header("Base Upgrade")]
     public GameObject celestialNexusPrefab; // Префаб объекта с скриптом CelestialNexus
     private GameObject celestialNexusInstance;
     [SerializeField] private float timeToDestroy;
+    [Header("First Upgrade")]
+    [SerializeField] private float maxManaIncrease; // Значение увеличения максимальной маны
+    [SerializeField] private float manaRegenerationRate; // Количество восстанавливаемого здоровья при попадании
+    [Header("Second Upgrade")]
+
+    private bool isBaseActive;
+    private bool isFirstActive;
+    private bool isSecondActive;
+
+    private PlayerStats playerStats;
+    private void Start()
+    {
+        playerStats = FindObjectOfType<PlayerStats>();
+    }
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.F) && isBaseActive && playerStats.currentUlt == playerStats.maxUlt.GetValue())
+        {
+            ActivateCelestialNexus();
+        }
+    }
     public override void ActivateFirstUpgrade()
     {
-        // Проверяем, существует ли префаб
+        isBaseActive = true;
+
+    }
+
+    // Переопределение метода для активации второго апгрейда красного стиля оружия
+    public override void ActivateSecondUpgrade()
+    {
+        isFirstActive = true;
+        playerStats.maxMana.AddModifier(maxManaIncrease);
+        playerStats.manaRegenRate.AddModifier(manaRegenerationRate);
+        playerStats.allBars.SetMana(playerStats.currentMana, playerStats.maxMana.GetValue());
+    }
+
+    // Переопределение метода для активации третьего апгрейда красного стиля оружия
+    public override void ActivateThirdUpgrade()
+    {
+        isSecondActive = true;
+    }
+    public override void DeactivateEffect()
+    {
+        base.DeactivateEffect();
+        if (isFirstActive)
+        {
+            playerStats.maxMana.RemoveModifier(maxManaIncrease);
+            playerStats.manaRegenRate.RemoveModifier(manaRegenerationRate);
+            playerStats.allBars.SetMana(playerStats.currentMana, playerStats.maxMana.GetValue());
+        }
+
+        isBaseActive = false;
+        isFirstActive = false;
+        isSecondActive = false;
+    }
+
+    public void ActivateCelestialNexus()
+    {
         if (celestialNexusPrefab != null)
         {
+            playerStats.DecreaseUlt(playerStats.maxUlt.GetValue());
             // Получаем ссылку на игрока из PlayerManager
             PlayerManager playerManager = PlayerManager.instance;
             if (playerManager != null && playerManager.player != null)
@@ -29,20 +86,5 @@ public class BlueWeaponStyle : WeaponStyle
         {
             Debug.LogError("Celestial Nexus prefab is not assigned!");
         }
-    }
-
-    // Переопределение метода для активации второго апгрейда красного стиля оружия
-    public override void ActivateSecondUpgrade()
-    {
-    }
-
-    // Переопределение метода для активации третьего апгрейда красного стиля оружия
-    public override void ActivateThirdUpgrade()
-    {
-
-    }
-    public override void DeactivateEffect()
-    {
-        base.DeactivateEffect();
     }
 }

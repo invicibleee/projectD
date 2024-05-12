@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 6168751610182604586}
   - component: {fileID: 7477122536738654214}
   m_Layer: 5
-  m_Name: gui (1)
+  m_Name: GUICLONE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

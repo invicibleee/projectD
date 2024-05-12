@@ -28,8 +28,10 @@ public class CharacterPanelScript : MonoBehaviour
     public Text Prompt;
     public Image style;
 
+    private int lastPicked;
     private int currentStyle;
     private int selectedSkillIndex = -1;
+    bool allRequiredSkillsPurchased;
 
     private void Awake()
     {
@@ -83,13 +85,12 @@ public class CharacterPanelScript : MonoBehaviour
     void EquipSkill(int skillIndex)
     {
         WeaponSkill selectedSkill = skills[skillIndex];
-
         if (selectedSkill.isBasicSkill)
         {
-            // If the selected skill is basic, it can be equipped
-            Debug.Log("Equipped Skill Index: " + skillIndex);
             int pickedStyle = skillIndex / 3;
-
+            if (pickedStyle != lastPicked)
+                weaponStyles[lastPicked].DeactivateEffect();
+            lastPicked = pickedStyle;
             bool isUpgradedOnce = false;
             bool isUpgradedTwice = false;
 
@@ -101,7 +102,6 @@ public class CharacterPanelScript : MonoBehaviour
                     if (skills[skillIndex + 1].isPurchased)
                     {
                         isUpgradedOnce = true;
-                        Debug.Log(isUpgradedOnce);
 
                         /// Check if the second-level skill requiring the current skill is upgraded
                         if (skills[skillIndex + 2].isPurchased)
@@ -151,7 +151,7 @@ public class CharacterPanelScript : MonoBehaviour
         {
             WeaponSkill currentSkill = skills[skillIndex];
 
-            bool allRequiredSkillsPurchased = true;
+            allRequiredSkillsPurchased = true;
             foreach (int requiredSkillIndex in currentSkill.requiredSkill)
             {
                 if (requiredSkillIndex >= 0 && requiredSkillIndex < skills.Length)
@@ -206,7 +206,6 @@ public class CharacterPanelScript : MonoBehaviour
             UpdateSkillImages();
         }
     }
-
     public void SetStyle(int skillIndex)
     {
 
@@ -345,6 +344,7 @@ public class CharacterPanelScript : MonoBehaviour
             statTextsFloat[index].text = string.Format("{0}/{1}", currentValue, maxValue);
         }
     }
+
     // Method to set the text of a specific integer statistic
     void SetStatTextInt(int index, int value, int maxValue)
     {

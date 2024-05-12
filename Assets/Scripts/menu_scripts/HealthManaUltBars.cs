@@ -15,14 +15,12 @@ public class HealthManaUltBars : MonoBehaviour
     private float currentMana;
     private float currentUlt;
 
-   //  public float currentHP;
-   // public float currentMana;
-   // public float currentUlt;
+
     void Start()
     {
-        currentHP = stats.GetMaxHealthValue();
-        currentMana = stats.GetMaxManaValue();
-        currentUlt = stats.GetMaxUltValue();
+        currentHP = stats.currentHealth;
+        currentMana = stats.currentMana;
+        currentUlt = stats.currentUlt;
         UpdateBars();
     }
 
@@ -50,12 +48,6 @@ public class HealthManaUltBars : MonoBehaviour
         currentUlt = Mathf.Clamp(ult, 0f, maxUlt);
         UpdateBars();
     }
-
-    //public void IncreaseUltPercent(float percent)
-    //{
-    //    //float ultIncrease = (percent / 100f) * maxUlt;
-    //    //SetUlt(currentUlt + ultIncrease);
-    //}
 
 #if UNITY_EDITOR
     void OnValidate()

@@ -45,4 +45,9 @@ public class PlayerStats : CharacterStats
         base.IncreaseHealthBy(healAmount);
         allBars.SetHealth(currentHealth, GetMaxHealthValue());
     }
+    public override void DecreaseUlt(float amount)
+    {
+        base.DecreaseUlt(amount);
+        allBars.SetUlt(currentUlt, GetMaxUltValue());
+    }
 }

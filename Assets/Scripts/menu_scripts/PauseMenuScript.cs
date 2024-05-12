@@ -46,7 +46,7 @@ public class PauseMenuScript : MonoBehaviour
         {
             Debug.LogError("The number of buttons does not match the number of panels or navigation buttons are not set.");
         }
-        Currency = SetCurrency(1000);
+        Currency = SetCurrency(5000);
         currency.text = $"{Currency}$";
 
     }
