@@ -19,25 +19,23 @@ public struct CharmInfo
 public class CharmsPanelScript : MonoBehaviour
 {
     PauseMenuScript pauseMenuScript;
-    public Charm[] charmsArray;
-    public CharmInfo[] charms;
-    public CharmInfo[] equippedCharms = new CharmInfo[3];
-    public Text descriptionText;
-    public Text nameText;
-    public Text Prompt;
-    public GameObject confirm;
+    [SerializeField] private Charm[] charmsArray;
+    [SerializeField] private CharmInfo[] charms;
+    [SerializeField] private CharmInfo[] equippedCharms = new CharmInfo[3];
+    [SerializeField] private Text descriptionText;
+    [SerializeField] private Text nameText;
+    [SerializeField] private Text Prompt;
+    [SerializeField] private GameObject confirm;
 
     private int currentCharm;
     private int selectedCharmIndex = -1;
 
-    public Image Image_one;
-    public Image Image_two;
-    public Image Image_three;
-    public Sprite basic;
-    public Sprite none;
+    [SerializeField] private Image Image_one;
+    [SerializeField] private Image Image_two;
+    [SerializeField] private Image Image_three;
+    [SerializeField] private Sprite basic;
+    [SerializeField] private Sprite none;
     private int lastClickedIndex = -1;
-
-    private int equipedUnique = 0;
 
     private void Awake()
     {
@@ -67,6 +65,7 @@ public class CharmsPanelScript : MonoBehaviour
         }
     }
 
+
     public void OnEquipedCharmImageClick(int charmIndex) { 
         confirm.SetActive(false);
         Prompt.text = "";
@@ -95,7 +94,7 @@ public class CharmsPanelScript : MonoBehaviour
 
     }
 
-    void UpdateDescriptionText(int charmIndex)
+    private void UpdateDescriptionText(int charmIndex)
     {
         if (charmIndex >= 0 && charmIndex < charms.Length)
         {
@@ -107,7 +106,7 @@ public class CharmsPanelScript : MonoBehaviour
         }
     }
 
-    void UpdateCharmImages()
+    private void UpdateCharmImages()
     {
         for (int i = 0; i < charms.Length; i++)
         {
@@ -165,7 +164,6 @@ public class CharmsPanelScript : MonoBehaviour
 
         UpdateCharmImages();
     }
-
 
     public void LastClicked(int index)
     {
@@ -285,8 +283,6 @@ public class CharmsPanelScript : MonoBehaviour
         }
     }
 
-
-
     private int FindIndexOfEquippedUniqueCharm()
     {
         for (int i = 0; i < equippedCharms.Length; i++)
@@ -385,7 +381,7 @@ public class CharmsPanelScript : MonoBehaviour
 
     }
 
-    void UpdateDescription(int charmIndex)
+    private void UpdateDescription(int charmIndex)
     {
         int descriptionIndex = charmIndex;
 

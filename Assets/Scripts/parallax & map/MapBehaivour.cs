@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMapIcon : MonoBehaviour
+public class MapBehaivour : MonoBehaviour
 {
 
-    public Transform targetObject; 
-    public float speed = 10.0f;
-    public GameObject mainCamera; 
+    [SerializeField] private Transform targetObject;
+    [SerializeField] private float speed = 10.0f;
+    [SerializeField] private GameObject mainCamera; 
     private bool isObjectActive = false; 
 
     void Start()
@@ -17,29 +17,14 @@ public class CharacterMapIcon : MonoBehaviour
 
     void Update()
     {
-        // Отримуємо поточне положення об'єкта
         Vector2 targetPosition = targetObject.position;
-
-        // Розраховуємо вектор напрямку до цілі
         Vector3 direction = (targetPosition - (Vector2)transform.position).normalized;
 
-        // Розраховуємо відстань, яку має пройти об'єкт за кожен кадр
         float distanceToMove = speed * Time.deltaTime;
-
-        // Зберігаємо поточне значення Z
-        float currentZ = transform.position.z;
-
-        // Розраховуємо нове положення, додавши до поточного положення відстань, яку має пройти об'єкт
         Vector3 newPosition = transform.position + direction * distanceToMove;
 
-        // Задаємо значення Z як 0
-        newPosition.z =100 ;
-
-        // Встановлюємо нове положення об'єкта
+        newPosition.z =100;
         transform.position = newPosition;
-
-
-
 
         if (Input.GetKeyDown(KeyCode.M))
         {

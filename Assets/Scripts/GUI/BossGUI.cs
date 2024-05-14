@@ -4,28 +4,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 
-public class BossHud : MonoBehaviour
+public class BossGUI : MonoBehaviour
 {
     protected bool isDead;
-    public GameObject HUD;
-    public Image BarHP;
-    public float maxHP = 100f;
-    public float currentHP;
+    [SerializeField] private GameObject HUD;
+    [SerializeField] private Image BarHP;
+    [SerializeField] private float maxHP = 100f;
+    [SerializeField] private float currentHP;
 
-    public float displayTime = 10f;
-    public float fadeDuration = 4f;
+    [SerializeField] private float displayTime = 10f;
+    [SerializeField] private float fadeDuration = 4f;
 
-    public GameObject hpBack;
-    public GameObject hp;
-    public GameObject nameText;
-    public GameObject victoryText;
+    [SerializeField] private GameObject hpBack;
+    [SerializeField] private GameObject hp;
+    [SerializeField] private GameObject nameText;
+    [SerializeField] private GameObject victoryText;
 
     void Start()
     {
         currentHP = maxHP;
         ResetHUDColors();
     }
-    void UpdateBars()
+    void UpdateBar()
     {
         BarHP.fillAmount = currentHP / maxHP;
     }
@@ -38,13 +38,13 @@ public class BossHud : MonoBehaviour
     public void SetHealth(float health)
     {
         currentHP = Mathf.Clamp(health, 0f, maxHP);
-        UpdateBars();
+        UpdateBar();
     }
     public async void FixedUpdate()
     {
         if (currentHP <= 0 && HUD.activeSelf)
         {
-            UpdateBars();
+            UpdateBar();
             isDead = true;
             victoryText.SetActive(true);
 
@@ -54,7 +54,7 @@ public class BossHud : MonoBehaviour
         }
     }
 
-    async Task FadeOutHUD(float duration)
+    private async Task FadeOutHUD(float duration)
     {
         Color[] originalColors = new Color[4];
         originalColors[0] = hpBack.GetComponent<Image>().color;

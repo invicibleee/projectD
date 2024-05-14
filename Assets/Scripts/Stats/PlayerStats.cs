@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerStats : CharacterStats
 {
     private Player player;
-    public HealthManaUltBars allBars;
+    public BarsController allBars;
 
     protected override void Start()
     {

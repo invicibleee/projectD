@@ -16,10 +16,10 @@ public struct Talant
 
 public class TalantsPanelScript : MonoBehaviour
 {
-    public Talant[] talants;
-    public Text descriptionText;
-    public Text nameText;
-    private int selectedTalantIndex = -1;
+    [SerializeField] public Talant[] talants;
+    [SerializeField] private Text descriptionText;
+    [SerializeField] private Text nameText;
+    [SerializeField] private int selectedTalantIndex = -1;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +60,7 @@ public class TalantsPanelScript : MonoBehaviour
 
     }
 
-    void UpdateDescriptionText(int talantIndex)
+    private void UpdateDescriptionText(int talantIndex)
     {
         if (talantIndex >= 0 && talantIndex < talants.Length && talants[talantIndex].isOwned)
         {
@@ -72,7 +72,7 @@ public class TalantsPanelScript : MonoBehaviour
             //  Debug.LogError("Invalid description index: " + talantIndex);
         }
     }
-    void UpdateTalantImages()
+    private void UpdateTalantImages()
     {
         for (int i = 0; i < talants.Length; i++)
         {
@@ -81,7 +81,7 @@ public class TalantsPanelScript : MonoBehaviour
         }
     }
 
-    private void SetTalantOwned(int talantIndex)
+    public void SetTalantOwned(int talantIndex)
     {
         talants[talantIndex].isOwned = true;
         Debug.Log("You found Charm Index: " + talantIndex);

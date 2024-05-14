@@ -5,17 +5,17 @@ using System.Collections.Generic;
 
 public class InputSettings : MonoBehaviour
 {
-    public Button Button_w;
-    public Button Button_a;
-    public Button Button_s;
-    public Button Button_d;
-    public Button Button_jump;
-    public Button Button_ability;
-    public Button Button_attack;
-    public Button Button_strongAttack;
-    public Button Button_dash;
-    public Button Button_heal;
-    public Button Button_use;
+    [SerializeField] private Button Button_w;
+    [SerializeField] private Button Button_a;
+    [SerializeField] private Button Button_s;
+    [SerializeField] private Button Button_d;
+    [SerializeField] private Button Button_jump;
+    [SerializeField] private Button Button_ability;
+    [SerializeField] private Button Button_attack;
+    [SerializeField] private Button Button_strongAttack;
+    [SerializeField] private Button Button_dash;
+    [SerializeField] private Button Button_heal;
+    [SerializeField] private Button Button_use;
 
     Dictionary<Button, KeyCode> buttonKeyMap = new Dictionary<Button, KeyCode>();
 

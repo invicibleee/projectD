@@ -5,13 +5,13 @@ using UnityEngine;
 public class BossExit : MonoBehaviour
 {
 
-    BossHud boss;
-    public GameObject trigger;
-    public bool status;
-    public GameObject bossHud;
+    private BossGUI boss;
+    [SerializeField] private GameObject trigger;
+    [SerializeField] private bool status;
+    [SerializeField] private GameObject bossHud;
     void Start()
     {
-        boss = bossHud.GetComponent<BossHud>();
+        boss = bossHud.GetComponent<BossGUI>();
         if (boss == null)
         {
             Debug.LogError("BossHud not found!");

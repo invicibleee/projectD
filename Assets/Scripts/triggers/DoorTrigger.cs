@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CastleEntrance : MonoBehaviour
+public class DoorTrigger : MonoBehaviour
 {
-    public GameObject door;
-    public bool isOpen; 
-    public float rotationSpeed = 90f;
-    public Animator doorAnimator;
+    [SerializeField] private GameObject door;
+    [SerializeField] private bool isOpen;
+    [SerializeField] private float rotationSpeed = 90f;
+    [SerializeField] private Animator doorAnimator;
 
     private void Start()
     {
@@ -47,6 +47,11 @@ public class CastleEntrance : MonoBehaviour
         {
             Debug.LogError("Door animator is null!");
         }
+    }
+
+    public void SetOpen()
+    {
+        isOpen = true;
     }
 
 }
