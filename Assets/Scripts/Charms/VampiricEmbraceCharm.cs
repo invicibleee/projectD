@@ -10,25 +10,32 @@ public class VampiricEmbraceCharm : Charm
     private float hpAdded;
 
     private FlaskGUI flaskGUI;
+    private HealthFlask healthFlask;
 
     public void Start()
     {
         flaskGUI = FindObjectOfType<FlaskGUI>();
+        healthFlask = FindObjectOfType<HealthFlask>();
     }
 
     public override void ActivateEffect()
     {
         base.ActivateEffect();
         playerStats.onDamageDealt += ApplyVampirism;
+        healthFlask.CanUseFlasks(false);
         flaskGUI.Deactivate();
+        Debug.Log("HP ADDED:" + hpAdded);
     }
     public override void DeactivateEffect()
     {
         playerStats.onDamageDealt -= ApplyVampirism;
 
-        hpAdded = playerStats.maxHealth.GetValue() * (maxHPIncreasePercentage / 100f);
         playerStats.maxHealth.RemoveModifier(hpAdded);
+        healthFlask.CanUseFlasks(true);
         flaskGUI.Activate();
+
+        playerStats.damageReceivedReductionPercentage -= damageReductionPercentage;
+        Debug.Log("HP REMOVED:" + hpAdded);
     }
 
     public override void CharmEffect()

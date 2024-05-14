@@ -10,7 +10,6 @@ public class PlayerStats : CharacterStats
     protected override void Start()
     {
         base.Start();
-
         player= GetComponent<Player>();
     }
 

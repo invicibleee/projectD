@@ -19,6 +19,9 @@ public class PlayerManager : MonoBehaviour
             instance = this;
         }
     }
+    private void Start()
+    {
+    }
     public void AddEssences(int amount)
     {
         essenceAmount += amount;
@@ -35,5 +38,4 @@ public class PlayerManager : MonoBehaviour
     {
         return essenceAmount;
     }
-
 }

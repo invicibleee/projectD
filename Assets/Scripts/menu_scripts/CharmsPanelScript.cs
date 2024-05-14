@@ -262,7 +262,7 @@ public class CharmsPanelScript : MonoBehaviour
                 SetColorForSlot(lastClickedIndex);
                 UpdateDescription(lastClickedIndex);
                
-                lastClickedIndex = -1;
+                //lastClickedIndex = -1;
             }
             else
             {
