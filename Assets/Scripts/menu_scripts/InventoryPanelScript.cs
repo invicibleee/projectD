@@ -19,10 +19,22 @@ public class InventoryPanelScript : MonoBehaviour
     public Item[] items = new Item[10];
     [SerializeField] private Vector2 imageSize = new(100, 100);
     [SerializeField] private Vector3 scale = new(1, 1, 1);
-
-     private int selecteditemIndex = -1;
+    public static InventoryPanelScript instance;
+    private int selecteditemIndex = -1;
     [SerializeField] private Text descriptionText;
     [SerializeField] private Text nameText;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -151,5 +163,13 @@ public class InventoryPanelScript : MonoBehaviour
         }
 
         return -1;
+    }
+
+    public void SetItemOwned(int index)
+    {
+        items[index].isOwned = true;
+        Debug.Log("You found item Index: " + index);
+        FindItems();
+
     }
 }

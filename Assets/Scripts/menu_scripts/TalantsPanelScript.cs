@@ -20,6 +20,19 @@ public class TalantsPanelScript : MonoBehaviour
     [SerializeField] private Text descriptionText;
     [SerializeField] private Text nameText;
     [SerializeField] private int selectedTalantIndex = -1;
+    public static TalantsPanelScript instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +97,7 @@ public class TalantsPanelScript : MonoBehaviour
     public void SetTalantOwned(int talantIndex)
     {
         talants[talantIndex].isOwned = true;
-        Debug.Log("You found Charm Index: " + talantIndex);
+        Debug.Log("You found talant Index: " + talantIndex);
         UpdateTalantImages();
 
     }
