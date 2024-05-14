@@ -9,6 +9,7 @@ public class SphereGUI : MonoBehaviour
     [SerializeField] public Sprite emptyImage;
     [SerializeField] public Sprite fullImage;
     public Image[] images;
+    
 
     private void Start()
     {
@@ -27,10 +28,22 @@ public class SphereGUI : MonoBehaviour
 
         // Convert to array
         images = validImages.ToArray();
+        Deactivate();
     }
 
-    public void Activation()
+    public void Activate()
     {
-
+        foreach (Image img in images)
+        {
+            img.enabled = true; 
+        }
+    }
+    public void Deactivate()
+    {
+        foreach (Image img in images)
+        {
+            img.sprite = emptyImage; 
+            img.enabled = false;
+        }
     }
 }

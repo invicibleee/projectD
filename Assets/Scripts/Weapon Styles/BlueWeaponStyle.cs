@@ -81,7 +81,7 @@ public class BlueWeaponStyle : WeaponStyle
     public override void ActivateThirdUpgrade()
     {
         isSecondActive = true;
-        sphereGUI.Activation();
+        sphereGUI.Activate();
         playerStats.OnDamageReceived += RemoveAllSpheres;
         
     }
@@ -97,7 +97,7 @@ public class BlueWeaponStyle : WeaponStyle
         if(isSecondActive)
         {
             RemoveAllSpheres(0);
-            sphereGUI.Activation();
+            sphereGUI.Deactivate();
         }
 
         isBaseActive = false;
