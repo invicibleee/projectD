@@ -12,21 +12,55 @@ public class BlueWeaponStyle : WeaponStyle
     [SerializeField] private float maxManaIncrease; // Значение увеличения максимальной маны
     [SerializeField] private float manaRegenerationRate; // Количество восстанавливаемого здоровья при попадании
     [Header("Second Upgrade")]
+    [SerializeField] private float magicDamageIncreasePerOrb;
+    [SerializeField] private int maxOrbCount = 3;
+    [SerializeField] private int currentOrbCount;
+    [SerializeField] private float timeToSpawnSphere;
+    private bool isAddingSphere = false;
 
     private bool isBaseActive;
     private bool isFirstActive;
     private bool isSecondActive;
 
     private PlayerStats playerStats;
+    public SphereGUI sphereGUI;
     private void Start()
     {
         playerStats = FindObjectOfType<PlayerStats>();
+        sphereGUI = FindObjectOfType<SphereGUI>();
     }
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.F) && isBaseActive && playerStats.currentUlt == playerStats.maxUlt.GetValue())
         {
             ActivateCelestialNexus();
+        }
+        if (isSecondActive && currentOrbCount < maxOrbCount && !isAddingSphere)
+        {
+            StartCoroutine(AddSphere());
+        }
+    }
+
+    private void RemoveAllSpheres(float remove)
+    {
+        currentOrbCount = 0;
+        playerStats.magicAmplify.RemoveAllModifiers();
+        for (int i = 0; i < sphereGUI.images.Length; i++)
+        {
+            sphereGUI.images[i].sprite = sphereGUI.emptyImage;
+        }
+    }
+
+    private IEnumerator AddSphere()
+    {
+        if (currentOrbCount < maxOrbCount)
+        {
+            isAddingSphere = true; // Устанавливаем флаг, что началось добавление орба
+            yield return new WaitForSeconds(timeToSpawnSphere);
+            currentOrbCount++;
+            sphereGUI.images[currentOrbCount - 1].sprite = sphereGUI.fullImage;
+            playerStats.magicAmplify.AddModifier(magicDamageIncreasePerOrb);
+            isAddingSphere = false; // Сбрасываем флаг после добавления орба
         }
     }
     public override void ActivateFirstUpgrade()
@@ -44,10 +78,12 @@ public class BlueWeaponStyle : WeaponStyle
         playerStats.allBars.SetMana(playerStats.currentMana, playerStats.maxMana.GetValue());
     }
 
-    // Переопределение метода для активации третьего апгрейда красного стиля оружия
     public override void ActivateThirdUpgrade()
     {
         isSecondActive = true;
+        sphereGUI.Activation();
+        playerStats.OnDamageReceived += RemoveAllSpheres;
+        
     }
     public override void DeactivateEffect()
     {
@@ -57,6 +93,11 @@ public class BlueWeaponStyle : WeaponStyle
             playerStats.maxMana.RemoveModifier(maxManaIncrease);
             playerStats.manaRegenRate.RemoveModifier(manaRegenerationRate);
             playerStats.allBars.SetMana(playerStats.currentMana, playerStats.maxMana.GetValue());
+        }
+        if(isSecondActive)
+        {
+            RemoveAllSpheres(0);
+            sphereGUI.Activation();
         }
 
         isBaseActive = false;

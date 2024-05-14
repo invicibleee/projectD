@@ -142,7 +142,6 @@ public class CharacterPanelScript : MonoBehaviour
             Debug.Log("Skill Index: " + skillIndex + " is not a basic skill and cannot be equipped directly.");
         }
     }
-
     private bool GetRequiedSkills(WeaponSkill currentSkill)
     {
         foreach (int requiredSkillIndex in currentSkill.requiredSkill)

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class CrimsonCarnage : MonoBehaviour
 {
-    [SerializeField] private float damageRadius = 5f; // Радиус урона ударной волны
+    [SerializeField] private float damageRadius; // Радиус урона ударной волны
+    [SerializeField] private float damage ; // Радиус урона ударной волны
+
+    private float damageTimer = 0f;
     [SerializeField] private PlayerStats playerStats;
     private void Update()
     {
@@ -23,7 +26,23 @@ public class CrimsonCarnage : MonoBehaviour
                 if (enemyStats != null)
                 {
                     // Применяем урон к врагу
-                    enemyStats.TakeDamage(playerStats.damage.GetValue());
+                    enemyStats.TakeDamage(damage + damage * playerStats.magicAmplify.GetValue() / 100);
+                }
+            }
+        }
+    }
+    public void BleedEffect(float bleedDamage)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, damageRadius);
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                EnemyStats enemyStats = collider.GetComponent<EnemyStats>();
+                if (enemyStats != null)
+                {
+                    // Применяем урон к врагу
+                    enemyStats.TakeDamage(bleedDamage);
                 }
             }
         }

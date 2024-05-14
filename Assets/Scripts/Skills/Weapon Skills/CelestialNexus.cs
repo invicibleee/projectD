@@ -39,8 +39,8 @@ public class CelestialNexus : MonoBehaviour
             {
                 EnemyStats enemyStats = collider.GetComponent<EnemyStats>();
                 if (enemyStats != null)
-                {
-                    enemyStats.TakeDamageWithoutKnockback(damage);
+                { 
+                    enemyStats.TakeDamageWithoutKnockback(damage + damage * playerStats.magicAmplify.GetValue()/100);
                 }
             }
         }
