@@ -10,4 +10,14 @@ public class SphereGUI : GUIController
     {
         return GetComponentsInChildren<Image>(true);
     }
+
+    public override void Deactivate()
+    {
+        foreach (Image img in images)
+        {
+            img.sprite = emptyImage;
+            img.enabled = false;
+        }
+       
+    }
 }

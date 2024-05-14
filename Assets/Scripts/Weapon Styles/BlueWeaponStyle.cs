@@ -23,7 +23,7 @@ public class BlueWeaponStyle : WeaponStyle
     private bool isSecondActive;
 
     private PlayerStats playerStats;
-    public SphereGUI sphereGUI;
+    private SphereGUI sphereGUI;
     private void Start()
     {
         playerStats = FindObjectOfType<PlayerStats>();

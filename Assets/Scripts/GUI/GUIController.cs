@@ -29,7 +29,7 @@ public abstract class GUIController : MonoBehaviour
     {
         foreach (Image img in images)
         {
-            img.sprite = emptyImage;
+ 
             img.enabled = false;
         }
     }
