@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[CreateAssetMenu(fileName = "newTargetRangeAttackStateData", menuName = "Data/State Data/Target Range Attack State")]
-public class D_RangeTargetAttackState : ScriptableObject
+[CreateAssetMenu(fileName = "newRangeTripleTargetAttackStateData", menuName = "Data/State Data/Range Triple Target Attack State")]
+public class D_RangeTripleTargetAttackState : ScriptableObject
 {
     public GameObject projectile;
     public float projectileDamage = 10.0f;
@@ -10,6 +10,7 @@ public class D_RangeTargetAttackState : ScriptableObject
     public float projectileTravelDistance = 10.0f;
     public float pursuitTime = 2.0f;
     public float timeToDestroy = 3.0f;
-    public float rangeAttackCooldown = 3.0f;
+    public float rangeTripleAttackCooldown = 6.0f;
+
     public int countOfShots = 3;
 }

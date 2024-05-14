@@ -34,6 +34,8 @@ public class BossRollIsOverState : EnemyState
     public override void Exit()
     {
         base.Exit();
+
+        enemy.SetVelocityEnemy(0f);
     }
 
     public override void LogicUpdate()

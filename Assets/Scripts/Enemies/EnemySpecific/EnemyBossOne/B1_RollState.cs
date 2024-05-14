@@ -29,6 +29,7 @@ public class B1_RollState : BossRollState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+ 
         if (isRollTimeOver)
         {
             stateMashine.ChangeState(bossOne.rollOverState);

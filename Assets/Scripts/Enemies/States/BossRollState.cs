@@ -32,13 +32,13 @@ public class BossRollState : AttackState
         base.Enter();
         enemy.SetVelocityEnemy(stateData.rollSpeed, stateData.rollAngle, enemy.facingDirection);
         isRollTimeOver = false;
-        SetRandomIdleTime();
+        SetRandomRollTime();
     }
 
     public override void Exit()
     {
         base.Exit();
-
+        enemy.SetVelocityEnemy(0);
     }
 
     public override void FinishAttack()
@@ -49,6 +49,12 @@ public class BossRollState : AttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (isWallDetected)
+        {
+            enemy.Flip();
+            enemy.SetVelocityEnemy(stateData.rollSpeed);
+
+        }
         if (Time.time >= startTime + stateData.angleTime && isGrounded)
         {
             enemy.SetVelocityEnemy(stateData.rollSpeed);
@@ -57,10 +63,7 @@ public class BossRollState : AttackState
         {
             isRollTimeOver = true;
         }
-        if(isWallDetected)
-        {
-            enemy.Flip();
-        }
+
     }
 
     public override void PhysicsUpdate()
@@ -69,7 +72,7 @@ public class BossRollState : AttackState
     }
 
 
-    public void SetRandomIdleTime()
+    public void SetRandomRollTime()
     {
         rollTime = Random.Range(stateData.minRollTime, stateData.maxRollTime);
     }

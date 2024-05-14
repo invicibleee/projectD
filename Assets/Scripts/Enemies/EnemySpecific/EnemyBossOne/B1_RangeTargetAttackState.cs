@@ -8,6 +8,7 @@ public class B1_RangeTargetAttackState : RangeTargetAttackState
     public B1_RangeTargetAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_RangeTargetAttackState stateData, EnemyBossOne bossOne) : base(stateMashine, enemy, animBoolName, attackPosition, stateData)
     {
         this.bossOne = bossOne;
+
     }
 
     public override void DoChecks()
@@ -33,17 +34,23 @@ public class B1_RangeTargetAttackState : RangeTargetAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (performCloseRangeAction)
+        if (numberOfShots >= bossOne.rangeTargetAttackStateData.countOfShots)
         {
-            stateMashine.ChangeState(bossOne.jumpAttackState);
+            stateMashine.ChangeState(bossOne.rollState);
+            numberOfShots = 0;
+
         }
-        else if (isPlayerInMinAgroRange)
+        if (performCloseRangeAction || isPlayerInMinAgroRange)
         {
             if (Time.time >= bossOne.rollState.startTime + bossOne.bossRollStateData.rollCooldown)
             {
                 stateMashine.ChangeState(bossOne.rollState);
             }
-        }        
+            else if (Time.time >= bossOne.jumpAttackState.startTime + bossOne.jumpAttackStateData.jumpAttackCooldown)
+            {
+                stateMashine.ChangeState(bossOne.jumpAttackState);
+            }
+        }    
         else if (!isPlayerInMaxAgroRange)
         {
             stateMashine.ChangeState(bossOne.lookForPlayerState);
@@ -58,5 +65,6 @@ public class B1_RangeTargetAttackState : RangeTargetAttackState
     public override void TriggerAttack()
     {
         base.TriggerAttack();
+
     }
 }

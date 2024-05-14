@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B1_JumpAttackDone : JumpAttackDone
+public class B1_RangeTripleTargetAttackState : RangeTripleTargetAttackState
 {
     private EnemyBossOne bossOne;
-    public B1_JumpAttackDone(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_JumpAttackDone stateData, EnemyBossOne bossOne) : base(stateMashine, enemy, animBoolName, attackPosition, stateData)
+    public B1_RangeTripleTargetAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_RangeTripleTargetAttackState stateData, Transform secondAttackPosition, Transform thirdAttackPosition, EnemyBossOne bossOne) : base(stateMashine, enemy, animBoolName, attackPosition, stateData, secondAttackPosition, thirdAttackPosition)
     {
         this.bossOne = bossOne;
     }
@@ -33,26 +33,24 @@ public class B1_JumpAttackDone : JumpAttackDone
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        if (isPlayerInMaxAgroRange)
+        if (numberOfShots >= bossOne.rangeTargetAttackStateData.countOfShots)
         {
-            if (Time.time >= bossOne.rangeTargetAttackState.startTime + bossOne.rangeTargetAttackStateData.rangeAttackCooldown)
-            {
-                stateMashine.ChangeState(bossOne.rangeTargetAttackState);
-            }
-            else if (Time.time >= bossOne.rangeTripleTargetAttackState.startTime + bossOne.rangeTripleTargetAttackStateData.rangeTripleAttackCooldown)
-            {
-                stateMashine.ChangeState(bossOne.rangeTripleTargetAttackState);
-            }
+            stateMashine.ChangeState(bossOne.rollState);
+            numberOfShots = 0;
+
         }
-        if (isPlayerInMinAgroRange)
+        if (performCloseRangeAction || isPlayerInMinAgroRange)
         {
             if (Time.time >= bossOne.rollState.startTime + bossOne.bossRollStateData.rollCooldown)
             {
                 stateMashine.ChangeState(bossOne.rollState);
             }
+            else if (Time.time >= bossOne.jumpAttackState.startTime + bossOne.jumpAttackStateData.jumpAttackCooldown)
+            {
+                stateMashine.ChangeState(bossOne.jumpAttackState);
+            }
         }
-        else
+        else if (!isPlayerInMaxAgroRange)
         {
             stateMashine.ChangeState(bossOne.lookForPlayerState);
         }

@@ -6,6 +6,7 @@ public class JumpAttackDone : AttackState
 {
     protected D_JumpAttackDone stateData;
     protected AttackDetails attackDetails;
+    protected bool isPlayerInMaxAgroRange;
     public JumpAttackDone(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_JumpAttackDone stateData) : base(stateMashine, enemy, animBoolName, attackPosition)
     {
         this.stateData = stateData;
@@ -14,6 +15,7 @@ public class JumpAttackDone : AttackState
     public override void DoChecks()
     {
         base.DoChecks();
+        isPlayerInMaxAgroRange = enemy.CheckPlayerInMaxAgroRange();
     }
 
     public override void Enter()

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RangeTargetAttackState : AttackState
@@ -8,11 +6,13 @@ public class RangeTargetAttackState : AttackState
     protected ProjectileTarget projectileTargetScript;
 
     protected GameObject projectile;
+    protected int numberOfShots; // Лічильник вистрілів
 
     protected bool isPlayerInMaxAgroRange;
     public RangeTargetAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_RangeTargetAttackState stateData) : base(stateMashine, enemy, animBoolName, attackPosition)
     {
         this.stateData = stateData;
+        numberOfShots = 0; // Ініціалізація лічильника вистрілів
     }
 
     public override void DoChecks()
@@ -51,6 +51,9 @@ public class RangeTargetAttackState : AttackState
         base.TriggerAttack();
         projectile = GameObject.Instantiate(stateData.projectile, attackPosition.position, attackPosition.rotation);
         projectileTargetScript = projectile.GetComponent<ProjectileTarget>();
-        projectileTargetScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage,stateData.pursuitTime, stateData.timeToDestroy);
+        projectileTargetScript.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage, stateData.pursuitTime, stateData.timeToDestroy);
+        numberOfShots++; // Збільшення лічильника вистрілів
+        Debug.Log(numberOfShots);
+
     }
 }

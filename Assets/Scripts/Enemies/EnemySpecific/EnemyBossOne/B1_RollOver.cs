@@ -18,7 +18,6 @@ public class B1_RollOver : BossRollIsOverState
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelocityEnemy(0f);
     }
 
     public override void Exit()
@@ -31,13 +30,20 @@ public class B1_RollOver : BossRollIsOverState
         base.LogicUpdate();
         if (isRollTimeDone)
         {
-            if (performCloseRangeAction)
+            if (performCloseRangeAction || isPlayerInMaxAgroRange)
             {
-                stateMashine.ChangeState(bossOne.jumpAttackState);
-            }
-            else if (isPlayerInMaxAgroRange)
-            {
-                stateMashine.ChangeState(bossOne.rangeTargetAttackState);
+                if (Time.time >= bossOne.jumpAttackState.startTime + bossOne.jumpAttackStateData.jumpAttackCooldown)
+                {
+                    stateMashine.ChangeState(bossOne.jumpAttackState);
+                }
+                else if (Time.time >= bossOne.rangeTargetAttackState.startTime + bossOne.rangeTargetAttackStateData.rangeAttackCooldown)
+                {
+                    stateMashine.ChangeState(bossOne.rangeTargetAttackState);
+                }
+                else if (Time.time >= bossOne.rangeTripleTargetAttackState.startTime + bossOne.rangeTripleTargetAttackStateData.rangeTripleAttackCooldown)
+                {
+                    stateMashine.ChangeState(bossOne.rangeTripleTargetAttackState);
+                }
             }
             else 
             {
