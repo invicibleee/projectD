@@ -137,9 +137,9 @@ public class CharmsPanelScript : MonoBehaviour
                     Prompt.text = "Charm unowned";
                     descriptionText.text = "This charm is not available for purchase.";
                 }
-                else if (pauseMenuScript.GetCurrency(0) >= currentCharm.cost)
+                else if (pauseMenuScript.GetEssenceAmount(0) >= currentCharm.cost)
                 {
-                    pauseMenuScript.UseCurrency(currentCharm.cost);
+                    pauseMenuScript.UseEssenceAmount(currentCharm.cost);
                     Prompt.text = "charm purshcased";
                     charms[charmIndex].isOwned = true;
                     Debug.Log(currentCharm.isOwned);

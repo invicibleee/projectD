@@ -26,6 +26,8 @@ public class PlayerStats : CharacterStats
         base.Die();
         player.Die();
 
+        PlayerManager.instance.RemoveEssences(PlayerManager.instance.GetEssenceAmount());
+
     }
     public override void DoDamage(CharacterStats _targetStats)
     {

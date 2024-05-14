@@ -17,8 +17,10 @@ public class PauseMenuScript : MonoBehaviour
     public GameObject[] menuPanels;
 
     public Button[] navigationButtons;
-    public Text currency;
-    private int Currency;
+    public Text currentEssences;
+    private int essenceAmount;
+    private int increaseRate = 100;
+    [SerializeField] private Text essenceText;
 
     private void Start()
     {
@@ -46,8 +48,10 @@ public class PauseMenuScript : MonoBehaviour
         {
             Debug.LogError("The number of buttons does not match the number of panels or navigation buttons are not set.");
         }
-        Currency = SetCurrency(5000);
-        currency.text = $"{Currency}$";
+        essenceAmount = PlayerManager.instance.GetEssenceAmount();
+        Debug.Log(essenceAmount);
+        currentEssences.text = $"{essenceAmount}$";
+        essenceText.text = $"{essenceAmount}$";
 
     }
 
@@ -68,22 +72,27 @@ public class PauseMenuScript : MonoBehaviour
             closeButton.onClick = new Button.ButtonClickedEvent();
             closeButton.onClick.AddListener(TogglePauseMenu);
         }
+        essenceAmount = PlayerManager.instance.GetEssenceAmount();
+        currentEssences.text = $"{essenceAmount}$";
+        essenceText.text = $"{essenceAmount}$";
     }
 
-    int SetCurrency(int value) {
-       int currency = value;
-       return currency;
+    int SetEssenceAmount(int value) {
+       int currentEssences = value;
+        essenceText.text = currentEssences.ToString();
+       return currentEssences;
     }
-    public int GetCurrency(int value)
+    public int GetEssenceAmount(int value)
     {
-        value = Currency;
+        value = essenceAmount;
         return value;
     }
-    public void UseCurrency(int amount)
+    public void UseEssenceAmount(int amount)
     {
-        Currency -= amount;
-        SetCurrency(Currency);
-        currency.text = $"{Currency}$";
+        essenceAmount -= amount;
+        PlayerManager.instance.RemoveEssences(amount);
+        SetEssenceAmount(essenceAmount);
+        currentEssences.text = $"{essenceAmount}$";
     }
 
     // Method to toggle the visibility of the pause menu and control the game's pause state
