@@ -176,9 +176,9 @@ public class CharacterPanelScript : MonoBehaviour
                 {
                     int skillCost = currentSkill.cost;
 
-                    if (pauseMenuScript.GetCurrency(0) >= skillCost)
+                    if (pauseMenuScript.GetEssenceAmount(0) >= skillCost)
                     {
-                        pauseMenuScript.UseCurrency(skillCost);
+                        pauseMenuScript.UseEssenceAmount(skillCost);
                         Prompt.text = "skill purshcased";
                         SetSkillPurchased(skillIndex, true);
                         EquipSkill(skillIndex);
