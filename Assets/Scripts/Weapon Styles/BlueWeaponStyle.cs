@@ -47,7 +47,7 @@ public class BlueWeaponStyle : WeaponStyle
         playerStats.magicAmplify.RemoveAllModifiers();
         for (int i = 0; i < sphereGUI.images.Length; i++)
         {
-            sphereGUI.images[i].sprite = sphereGUI.emptyImage;
+            sphereGUI.ClearImage(i);
         }
     }
 
@@ -58,7 +58,7 @@ public class BlueWeaponStyle : WeaponStyle
             isAddingSphere = true; // Устанавливаем флаг, что началось добавление орба
             yield return new WaitForSeconds(timeToSpawnSphere);
             currentOrbCount++;
-            sphereGUI.images[currentOrbCount - 1].sprite = sphereGUI.fullImage;
+            sphereGUI.FillImage(currentOrbCount - 1);
             playerStats.magicAmplify.AddModifier(magicDamageIncreasePerOrb);
             isAddingSphere = false; // Сбрасываем флаг после добавления орба
         }

@@ -9,7 +9,7 @@ public class CameraChangeTrigger : MonoBehaviour
     [SerializeField] private GameObject alternativeCamera;
     private bool isMainCameraActive;
 
-    public void TriggerAction()
+    private void TriggerAction()
     {
         isMainCameraActive = mainCamera.gameObject.activeInHierarchy;
 

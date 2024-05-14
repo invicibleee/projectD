@@ -15,30 +15,32 @@ public struct Achivement
     public string name;
 }
 
-public class MenuController : MonoBehaviour
+public class MainMenu : MonoBehaviour
 {
-    public GameObject gameMenu; 
-    public GameObject optionsMenu; 
-    public GameObject achievementsMenu;
+    [SerializeField] private GameObject gameMenu;
+    [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private GameObject achievementsMenu;
 
-    public GameObject resolutionSettings; 
-    public GameObject qualitySettings;   
-    public GameObject soundSettings;
-    private GameObject currentActiveSettings;
+    [SerializeField] private GameObject resolutionSettings;
+    [SerializeField] private GameObject qualitySettings;
+    [SerializeField] private GameObject soundSettings;
+    [SerializeField] private GameObject currentActiveSettings;
 
-    public TMP_Dropdown resolutionDropdown; 
-    public string[] resolutions = new string[] { "1920x1080", "1280x720", "1600x900", "2560x1440" };
+    [SerializeField] private Slider volumeSlider;
+
+    [SerializeField] private Toggle lowQualityToggle;
+    [SerializeField] private Toggle mediumQualityToggle;
+    [SerializeField] private Toggle highQualityToggle;
+
+    [SerializeField] private Text descriptionText;
+    [SerializeField] private Text nameText;
+
+    [SerializeField] private TMP_Dropdown resolutionDropdown; 
+    private string[] resolutions = new string[] { "1920x1080", "1280x720", "1600x900", "2560x1440" };
     private bool isFullScreen = true;
-
     private int currentQualityLevel = 2;
-    public Toggle lowQualityToggle;
-    public Toggle mediumQualityToggle;
-    public Toggle highQualityToggle;
 
-    public Slider volumeSlider;
     public Achivement[] achivements =  new Achivement[14];
-    public Text descriptionText;
-    public Text nameText;
     private int selectedAchivementIndex = -1;
 
     void Start()

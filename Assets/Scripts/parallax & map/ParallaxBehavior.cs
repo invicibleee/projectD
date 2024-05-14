@@ -5,9 +5,9 @@ using UnityEngine;
 public class ParallaxBehavior : MonoBehaviour
 {
 
-    [SerializeField] Transform followingTarget;
-    [SerializeField, Range(-1f, 1f)] float parallaxStrength = 0.1f;
-    [SerializeField] bool disableVerticalParallax;
+    [SerializeField] private Transform followingTarget;
+    [SerializeField, Range(-1f, 1f)] private float parallaxStrength = 0.1f;
+    [SerializeField] private bool disableVerticalParallax;
     Vector3 targetPreviousPosition;
 
     void Start()
