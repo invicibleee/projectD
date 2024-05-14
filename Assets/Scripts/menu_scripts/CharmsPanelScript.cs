@@ -49,7 +49,6 @@ public class CharmsPanelScript : MonoBehaviour
         Prompt.text = "";
         nameText.text = "";
         UpdateCharmImages();
-        
 
     }
 
@@ -66,17 +65,21 @@ public class CharmsPanelScript : MonoBehaviour
     }
 
 
-    public void OnEquipedCharmImageClick(int charmIndex) { 
-        confirm.SetActive(false);
-        Prompt.text = "";
-        UpdateDescriptionText(charmIndex);
+    public void OnEquipedCharmImageClick(int charmIndex)
+    {
+        selectedCharmIndex = GetEquipedCharmInList(charmIndex);
+        if (selectedCharmIndex != -1)
+        {
+            Prompt.text = "unequip charm?";
+            UpdateDescriptionText(selectedCharmIndex);
+        }
     }
 
     public void OnCharmImageClick(int charmIndex)
     {
+        Prompt.text = "";
         confirm.SetActive(true);
         UpdateDescriptionText(charmIndex);
-        nameText.text = charms[charmIndex].name;
 
         if (selectedCharmIndex != -1)
         {
@@ -85,19 +88,13 @@ public class CharmsPanelScript : MonoBehaviour
 
         charms[charmIndex].image.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
         selectedCharmIndex = charmIndex;
-
-        if (!charms[charmIndex].isEquiped)
-        {
-            Prompt.text = "equip this charm?";
-        }
-        else Prompt.text = "unequip this charm?";
-
     }
 
     private void UpdateDescriptionText(int charmIndex)
     {
         if (charmIndex >= 0 && charmIndex < charms.Length)
         {
+            nameText.text = charms[charmIndex].name;
             descriptionText.text = charms[charmIndex].description;
         }
         else
@@ -114,47 +111,35 @@ public class CharmsPanelScript : MonoBehaviour
             charms[i].image.color = charms[i].isOwned ? Color.white : Color.black;
         }
     }
-    
+
     public void PurchaseCharm()
     {
         int charmIndex = selectedCharmIndex;
         if (charmIndex >= 0 && charmIndex < charms.Length)
         {
-            CharmInfo currentCharm = charms[charmIndex];
-
-            // Check if the charm is available
-            if (currentCharm.isOwned && !currentCharm.isEquiped)
+            CharmInfo currentCharm = charms[charmIndex]; if (currentCharm.isOwned)
             {
-                Prompt.text = "Charm equiped";
-                // If the charm is already owned, it can be equipped
-                EquipCharm(charmIndex);
+                if (!currentCharm.isEquiped)
+                {
+                    EquipCharm(charmIndex);
+                }
+                else UnequipeCharm(charmIndex);
             }
-            else if (!currentCharm.isOwned)
+            else
             {
-                if (currentCharm.cost == 0)
+                if (currentCharm.cost == 0 || pauseMenuScript.GetEssenceAmount(0) < currentCharm.cost)
                 {
                     Prompt.text = "Charm unowned";
                     descriptionText.text = "This charm is not available for purchase.";
                 }
-                else if (pauseMenuScript.GetEssenceAmount(0) >= currentCharm.cost)
+                else
                 {
                     pauseMenuScript.UseEssenceAmount(currentCharm.cost);
                     Prompt.text = "charm purshcased";
                     charms[charmIndex].isOwned = true;
                     Debug.Log(currentCharm.isOwned);
                     UpdateCharmImages();
-                    
                 }
-                else {
-                    Prompt.text = "Charm unowned";
-                    descriptionText.text = "Not enough money.";
-                }
-               
-            }
-            else if (currentCharm.isOwned && currentCharm.isEquiped)
-            {
-                Prompt.text = "Charm unequiped";
-                UnequipeCharm(charmIndex);
             }
         }
         else
@@ -188,6 +173,10 @@ public class CharmsPanelScript : MonoBehaviour
     }
     private void UnequipeCharm(int charmIndex)
     {
+        selectedCharmIndex = -1;
+        nameText.text = "";
+        descriptionText.text = "select skill";
+        Prompt.text = "charm unequiped";
         CharmInfo currentCharm = charms[charmIndex];
         charms[charmIndex].isEquiped = false;
 
@@ -213,16 +202,13 @@ public class CharmsPanelScript : MonoBehaviour
     }
     private void EquipCharm(int charmIndex)
     {
-        // Check if the charm is unique and already equipped
         if (charms[charmIndex].isUnique)
         {
             int equippedUniqueIndex = FindIndexOfEquippedUniqueCharm();
             int previousIndex = FindIndexOfEquippedUniqueCharmInLIst();
-            Debug.Log("check for unique " + equippedUniqueIndex);
             if (equippedUniqueIndex != -1)
             {
-                Debug.Log("found unique ");       
-                // If a unique charm is already equipped and it's different, replace it with the new one
+                Debug.Log("found unique ");
                 if (!equippedCharms[equippedUniqueIndex].Equals(charms[charmIndex]))
                 {
                     charms[previousIndex].isEquiped = false;
@@ -232,57 +218,32 @@ public class CharmsPanelScript : MonoBehaviour
                     SetColorForSlot(equippedUniqueIndex);
                     UpdateDescription(equippedUniqueIndex);
                 }
-
                 return;
             }
         }
-
-        // Check if there are free slots for equipping
         int freeSlot = FindFreeSlot();
 
         if (freeSlot != -1)
         {
-            // Fill the free slot with the charm's data
             equippedCharms[freeSlot] = charms[charmIndex];
 
             charms[charmIndex].isEquiped = true;
             SetColorForSlot(freeSlot);
             UpdateDescription(freeSlot);
-            
+
         }
         else
         {
-            // If all slots are occupied and a specific slot is chosen, insert into that slot
-            if (lastClickedIndex != -1)
-            {
-                charms[lastClickedIndex].isEquiped = false;
-                equippedCharms[lastClickedIndex] = charms[charmIndex];
-
-                charms[charmIndex].isEquiped = true;
-                SetColorForSlot(lastClickedIndex);
-                UpdateDescription(lastClickedIndex);
-               
-                //lastClickedIndex = -1;
-            }
-            else
-            {
-                // If all slots are occupied and no slot is chosen, insert into the first slot
-                charms[0].isEquiped = false;
-                equippedCharms[0] = charms[charmIndex];
-
-                charms[charmIndex].isEquiped = true;
-                SetColorForSlot(0);
-                UpdateDescription(0);
-               
-            }
+            Prompt.text = "No slots available";
         }
+
         if (charms[charmIndex].isEquiped)
         {
+            Prompt.text = "charm equiped";
             Debug.Log("activated" + charmsArray[charmIndex]);
             charmsArray[charmIndex].ActivateEffect();
         }
     }
-
     private int FindIndexOfEquippedUniqueCharm()
     {
         for (int i = 0; i < equippedCharms.Length; i++)
@@ -301,8 +262,10 @@ public class CharmsPanelScript : MonoBehaviour
         {
             if (equippedCharms[i].isUnique)
             {
-                for (int j = 0; j < charms.Length; j++) {
-                    if (equippedCharms[i].description == charms[j].description) {
+                for (int j = 0; j < charms.Length; j++)
+                {
+                    if (equippedCharms[i].description == charms[j].description)
+                    {
                         return j;
                     }
                 }
@@ -312,7 +275,18 @@ public class CharmsPanelScript : MonoBehaviour
         return -1;
     }
 
-
+    private int GetEquipedCharmInList(int index)
+    {
+        for (int i = 0; i < charms.Length; i++)
+        {
+            if (equippedCharms[index].description == charms[i].description)
+            {
+                Debug.Log(i);
+                return i;
+            }
+        }
+        return -1;
+    }
     private int FindFreeSlot()
     {
         //find first free slot
@@ -373,7 +347,8 @@ public class CharmsPanelScript : MonoBehaviour
             Prompt.text = "";
             selectedCharmIndex = -1;
         }
-        else {
+        else
+        {
             Prompt.text = "";
             nameText.text = "";
             descriptionText.text = "select skill";
@@ -397,5 +372,3 @@ public class CharmsPanelScript : MonoBehaviour
     }
 
 }
-
-
