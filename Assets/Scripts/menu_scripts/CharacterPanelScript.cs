@@ -19,14 +19,14 @@ public class CharacterPanelScript : MonoBehaviour
     PauseMenuScript pauseMenuScript;
     [SerializeField] private CharacterStats playerStats;
 
-    public Text[] statTextsFloat;
-    public WeaponStyle[] weaponStyles;
-    public WeaponSkill[] skills;
-    public Text descriptionText;
-    public GameObject confrim;
-    public Text confrimText;
-    public Text Prompt;
-    public Image style;
+    [SerializeField] private Text[] statTextsFloat;
+    [SerializeField] private WeaponStyle[] weaponStyles;
+    [SerializeField] private WeaponSkill[] skills;
+    [SerializeField] private Text descriptionText;
+    [SerializeField] private GameObject confrim;
+    [SerializeField] private Text confrimText;
+    [SerializeField] private Text Prompt;
+    [SerializeField] private Image style;
 
     private int lastPicked;
     private int currentStyle;
@@ -63,7 +63,7 @@ public class CharacterPanelScript : MonoBehaviour
         }
     }
 
-    void UpdateSkillImages()
+    private void UpdateSkillImages()
     {
         foreach (var skill in skills)
         {
@@ -81,8 +81,7 @@ public class CharacterPanelScript : MonoBehaviour
         }
     }
 
-
-    void EquipSkill(int skillIndex)
+    private void EquipSkill(int skillIndex)
     {
         WeaponSkill selectedSkill = skills[skillIndex];
         if (selectedSkill.isBasicSkill)
@@ -210,7 +209,7 @@ public class CharacterPanelScript : MonoBehaviour
             UpdateSkillImages();
         }
     }
-    public void SetStyle(int skillIndex)
+    private void SetStyle(int skillIndex)
     {
 
         switch (skillIndex)
@@ -312,7 +311,7 @@ public class CharacterPanelScript : MonoBehaviour
         }
     }
 
-    void UpdateDescriptionText(int skillIndex)
+    private void UpdateDescriptionText(int skillIndex)
     {
         int descriptionIndex = skillIndex;
 
@@ -334,8 +333,7 @@ public class CharacterPanelScript : MonoBehaviour
         }
     }
 
-    // Method to set health, stamina, and mana values
-    public void SetStats(float _currentHealth, float _maxHealth/*/, int _currentMana, 
+    private void SetStats(float _currentHealth, float _maxHealth/*/, int _currentMana, 
         int _maxMana, int _collectedCollectibles, int _maxCollectibles, int _completionPercentage/*/)
     {
 
@@ -345,8 +343,7 @@ public class CharacterPanelScript : MonoBehaviour
         //SetStatTextInt(3, completionPercentage, 100); // Completion Percentage
     }
 
-    // Method to set the text of a specific float statistic
-    void SetStatTextFloat(int index, float currentValue, float maxValue)
+    private void SetStatTextFloat(int index, float currentValue, float maxValue)
     {
         if (index >= 0 && index < statTextsFloat.Length)
         {
@@ -354,8 +351,7 @@ public class CharacterPanelScript : MonoBehaviour
         }
     }
 
-    // Method to set the text of a specific integer statistic
-    void SetStatTextInt(int index, int value, int maxValue)
+    private void SetStatTextInt(int index, int value, int maxValue)
     {
         if (index >= 0 && index < statTextsFloat.Length)
         {

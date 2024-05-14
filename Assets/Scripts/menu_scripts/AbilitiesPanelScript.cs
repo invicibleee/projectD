@@ -17,11 +17,11 @@ public class AbilitiesPanelScript : MonoBehaviour
 {
     public static AbilitiesPanelScript instance;
 
-    public Ability[] abilities;
-    public Text descriptionText;
-    public Text nameText;
-    public Text promptText;
-    public Text equipedText;
+    [SerializeField] public Ability[] abilities;
+    [SerializeField] private Text descriptionText;
+    [SerializeField] private Text nameText;
+    [SerializeField] private Text promptText;
+    [SerializeField] private Text equipedText;
     private int selectedAbilityIndex = -1;
     private bool equiped = false;
 
@@ -84,7 +84,7 @@ public class AbilitiesPanelScript : MonoBehaviour
         else if (abilities[abilityIndex].isEquiped && abilities[abilityIndex].isOwned) promptText.text = "unequip this ability?";
     }
 
-    void UpdateDescriptionText(int abilityIndex)
+    private void UpdateDescriptionText(int abilityIndex)
     {
         if (abilityIndex >= 0 && abilityIndex < abilities.Length && abilities[abilityIndex].isOwned)
         {
@@ -96,7 +96,7 @@ public class AbilitiesPanelScript : MonoBehaviour
             //  Debug.LogError("Invalid description index: " + talantIndex);
         }
     }
-    void UpdateAbilityImages()
+    private void UpdateAbilityImages()
     {
         for (int i = 0; i < abilities.Length; i++)
         {
@@ -142,7 +142,7 @@ public class AbilitiesPanelScript : MonoBehaviour
         }
     }
 
-    int FindIndexOfEquippedAbility()
+    private int FindIndexOfEquippedAbility()
     {
         for (int i = 0; i < abilities.Length; i++)
         {

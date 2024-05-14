@@ -15,14 +15,14 @@ public struct Item
 public class InventoryPanelScript : MonoBehaviour
 {
 
-    public GridLayoutGroup layoutInventory;
+    [SerializeField] private GridLayoutGroup layoutInventory;
     public Item[] items = new Item[10];
-    public Vector2 imageSize = new(100, 100);
-    public Vector3 scale = new(1, 1, 1);
+    [SerializeField] private Vector2 imageSize = new(100, 100);
+    [SerializeField] private Vector3 scale = new(1, 1, 1);
 
-    private int selecteditemIndex = -1;
-    public Text descriptionText;
-    public Text nameText;
+     private int selecteditemIndex = -1;
+    [SerializeField] private Text descriptionText;
+    [SerializeField] private Text nameText;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +43,7 @@ public class InventoryPanelScript : MonoBehaviour
         }
     }
 
-        private void FindItems()
+    private void FindItems()
     {
 
         for (int i = 0; i < items.Length; i++)
@@ -122,7 +122,7 @@ public class InventoryPanelScript : MonoBehaviour
         selecteditemIndex = itemsIndex;
     }
 
-    void UpdateDescriptionText(int itemsIndex)
+    private void UpdateDescriptionText(int itemsIndex)
     {
         int descriptionIndex = itemsIndex;
 
