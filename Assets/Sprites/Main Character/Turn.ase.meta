@@ -75,7 +75,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
@@ -87,7 +87,7 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638405148399373029
+  platformSettingsDirtyTick: 638502775375319622
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -121,7 +121,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Turn_Frame_0
     originalName: 
-    pivot: {x: 0.6666667, y: -0.10204081}
+    pivot: {x: 0.6666667, y: 0.5510204}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 60
       width: 27
       height: 49
-    spriteID: 65fe4393573f70541bf3ebef1b8ce165
+    spriteID: f3ad14c8e25748949b37df8beb20fa0c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -141,7 +141,7 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 60}
   - name: Turn_Frame_1
     originalName: 
-    pivot: {x: 0.67857146, y: -0.10416667}
+    pivot: {x: 0.67857146, y: 0.5625}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
@@ -150,7 +150,7 @@ ScriptedImporter:
       y: 4
       width: 28
       height: 48
-    spriteID: 0fa69f5aa0c7b4b46b63b0fa989de40f
+    spriteID: 043a4952b72795d43ad565dd8e1aa8c3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -175,7 +175,7 @@ ScriptedImporter:
         y: 5
         width: 27
         height: 49
-      spriteId: 65fe4393573f70541bf3ebef1b8ce165
+      spriteId: f3ad14c8e25748949b37df8beb20fa0c
     - name: Turn_Frame_1
       frameIndex: 1
       cellRect:
@@ -183,7 +183,7 @@ ScriptedImporter:
         y: 5
         width: 28
         height: 48
-      spriteId: 0fa69f5aa0c7b4b46b63b0fa989de40f
+      spriteId: 043a4952b72795d43ad565dd8e1aa8c3
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -212,6 +212,18 @@ ScriptedImporter:
     allowsAlphaSplitting: 0
     androidETC2FallbackOverride: 0
   - name: Server
+    overridden: 0
+    ignorePlatformSupport: 0
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    androidETC2FallbackOverride: 0
+  - name: Android
     overridden: 0
     ignorePlatformSupport: 0
     maxTextureSize: 2048

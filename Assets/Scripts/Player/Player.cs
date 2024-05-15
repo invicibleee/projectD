@@ -15,12 +15,20 @@ public class Player : Entity
     [Header("Move Info")]
     public float moveSpeed = 5f;
     public float jumpForce;
+    public float scytheReturnImpact;
+    private float defaultMoveSpeed;
+    private float defaultDashSpeed;
+    private float defaultJumpForce;
     [Header("Dash info")]
     public float dashSpeed;
     public float dashDuration;
+    public float dashX;
+    public float dashY;
+    public float dashOffset;
+
     public float dashDirection { get; private set; }
 
-    private float currentDamageplayer;
+    public GameObject scythe { get; private set; }
 
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
@@ -33,9 +41,11 @@ public class Player : Entity
     public PlayerWallSlideState wallSlideState { get; private set; }
     public PlayerWallJumpState wallJumpState { get; private set; }
     public PlayerCounterAttackState counterAttackState { get; private set; }
-
-
+    public PlayerChronoState chronoState { get; private set; }
     public PlayerPrimaryAttackState primaryAttackState { get; private set; }
+    public PlayerAimScytheState aimScytheState { get; private set; }
+    public PlayerCatchScytheState catchScytheState { get; private set; }   
+    public PlayerDeadState deadState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -53,13 +63,21 @@ public class Player : Entity
         
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
+        chronoState = new PlayerChronoState(this, stateMachine, "Jump");
+        aimScytheState = new PlayerAimScytheState(this, stateMachine, "AimScythe");
+        catchScytheState = new PlayerCatchScytheState(this, stateMachine, "CatchScythe");
         
+        deadState = new PlayerDeadState(this, stateMachine, "Die");
     }
 
     protected override void Start()
     {
         base.Start();
         stateMachine.Initialize(idleState);
+
+        defaultMoveSpeed = moveSpeed;
+        defaultJumpForce = jumpForce;
+        defaultDashSpeed = dashSpeed;
     }
 
     protected override void Update()
@@ -68,6 +86,32 @@ public class Player : Entity
         stateMachine.currentState.Update();
 
         CheckForDashInput();
+    }
+    public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+        moveSpeed = moveSpeed * (1 - _slowPercentage);
+        jumpForce = jumpForce * (1 - _slowPercentage);
+        dashSpeed = dashSpeed * (1 - _slowPercentage);
+        anim.speed = anim.speed * (1 - _slowPercentage);
+
+        Invoke("ReturnDefaultSpeed", _slowDuration);
+    }
+    protected override void ReturnDefaultSpeed()
+    {
+        base.ReturnDefaultSpeed();
+
+        moveSpeed = defaultMoveSpeed;
+        jumpForce = defaultJumpForce;
+        dashSpeed = defaultDashSpeed;
+    }
+    public void AssingNewScythe(GameObject _newScythe)
+    {
+        scythe = _newScythe;
+    }
+    public void CatchTheScythe()
+    {
+        stateMachine.ChangeState(catchScytheState);
+        Destroy(scythe);
     }
     public IEnumerator BusyFor(float seconds)
     {
@@ -90,8 +134,20 @@ public class Player : Entity
 
             stateMachine.ChangeState(dashState);
 
+            CharmManager.instance.blinkstrikeAmulet.PerformBlinkstrike(this);
         }
 
     }
+    public override void Die()
+    {
+        base.Die();
+        stateMachine.ChangeState(deadState);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red; // Цвет границы
 
+        // Рисуем прямоугольную область вокруг текущей позиции объекта
+        Gizmos.DrawWireCube(new Vector3(transform.position.x + dashOffset, transform.position.y, 0), new Vector3(dashX, dashY, 0));
+    }
 }

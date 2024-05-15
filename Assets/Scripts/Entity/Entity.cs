@@ -18,6 +18,8 @@ public class Entity : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public EntityFX fx { get; private set; }
     public SkillManager skill { get; private set; }
+    public SpriteRenderer sr { get; private set; }
+    public CharacterStats stats { get; private set; }
 
 
     #endregion
@@ -30,7 +32,7 @@ public class Entity : MonoBehaviour
 
 
     public int facingDirection { get; private set; } = 1;
-    protected bool facingRight = true;
+    public bool facingRight = true;
 
     protected virtual void Awake()
     {
@@ -39,10 +41,11 @@ public class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
+        sr = GetComponentInChildren<SpriteRenderer>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         fx = GetComponent<EntityFX>();
-
+        stats = GetComponent<CharacterStats>();
 
         skill = SkillManager.instance;
     }
@@ -57,13 +60,22 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual void Damage()
+    public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration)
+    {
+
+    }
+
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
+    }
+    public virtual void DamageEffect()
     {
         fx.StartCoroutine("FlashFX");
         StartCoroutine("HitKnockback");
-        Debug.Log(gameObject.name + "was Damaged");
+        
     }
-    
+    public virtual void DamageImpact() => StartCoroutine("HitKnockback");
     protected virtual IEnumerator HitKnockback()
     {
         isKnocked = true;
@@ -116,4 +128,24 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
     #endregion
+    public void SetAttackCheckRadius(float radius)
+    {
+        attackCheckRadius = radius;
+    }
+    public float GetAttackCheckRadius()
+    {
+        return attackCheckRadius;
+    }
+    public void MakeTransparent(bool _transparent)
+    {
+        Debug.Log(_transparent);
+        if (_transparent)
+            sr.color = Color.clear;
+        else
+            sr.color = Color.white;
+    }
+    public virtual void Die()
+    {
+
+    }
 }

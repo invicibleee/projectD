@@ -7,10 +7,10 @@ public class PlayerGroundedState : PlayerState
     public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
-
     public override void Enter()
     {
         base.Enter();
+        
     }
 
     public override void Exit()
@@ -21,8 +21,12 @@ public class PlayerGroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-        if(Input.GetKeyDown(KeyCode.Mouse1))
-            stateMachine.ChangeState(player.counterAttackState);
+
+        if (Input.GetKeyDown(KeyCode.R) && AbilitiesPanelScript.instance.abilities[0].isEquiped)// ChronoSKill
+            stateMachine.ChangeState(player.chronoState);
+
+        if (Input.GetKeyDown(KeyCode.R) && HasNoScythe() && AbilitiesPanelScript.instance.abilities[1].isEquiped)//ThrowSkill
+            stateMachine.ChangeState(player.aimScytheState);
 
         if (!player.IsGroundDetected())
             stateMachine.ChangeState(player.airState);
@@ -30,7 +34,15 @@ public class PlayerGroundedState : PlayerState
         if (Input.GetKeyDown(KeyCode.Mouse0))
             stateMachine.ChangeState(player.primaryAttackState);
 
-        if(Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
+        if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
             stateMachine.ChangeState(player.jumpState);
+    }
+
+    private bool HasNoScythe()
+    {
+        if (!player.scythe) return true;
+
+        player.scythe.GetComponent<ScytheSkillController>().ReturnScythe();
+        return false;
     }
 }

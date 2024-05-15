@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     public Player player;
     public static PlayerManager instance;
+    public int essenceAmount;
 
     private void Awake()
     {
@@ -17,5 +18,24 @@ public class PlayerManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+    private void Start()
+    {
+    }
+    public void AddEssences(int amount)
+    {
+        essenceAmount += amount;
+    }
+
+    // Method to remove essences from the player
+    public void RemoveEssences(int amount)
+    {
+        essenceAmount -= amount;
+    }
+
+    // Method to get the current essence amount
+    public int GetEssenceAmount()
+    {
+        return essenceAmount;
     }
 }
