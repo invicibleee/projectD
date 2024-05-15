@@ -13,6 +13,8 @@ public class RangeTripleTargetAttackState : AttackState
     protected bool isPlayerInMaxAgroRange;
 
     protected int numberOfShots; // Лічильник вистрілів
+
+    public int countOfShots;
     public RangeTripleTargetAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_RangeTripleTargetAttackState stateData,Transform secondAttackPosition, Transform thirdAttackPosition) : base(stateMashine, enemy, animBoolName, attackPosition)
     {
         this.stateData = stateData;
@@ -32,6 +34,7 @@ public class RangeTripleTargetAttackState : AttackState
     public override void Enter()
     {
         base.Enter();
+        SetRandomShotTimes();
     }
 
     public override void Exit()
@@ -72,5 +75,9 @@ public class RangeTripleTargetAttackState : AttackState
         ProjectileTarget projectileTargetScript3 = projectile3.GetComponent<ProjectileTarget>();
         projectileTargetScript3.FireProjectile(stateData.projectileSpeed, stateData.projectileTravelDistance, stateData.projectileDamage, stateData.pursuitTime, stateData.timeToDestroy);
         numberOfShots++; // Збільшення лічильника вистрілів
+    }
+    public void SetRandomShotTimes()
+    {
+        countOfShots = Random.Range(stateData.minCountOfShots, stateData.maxCountOfShots);
     }
 }

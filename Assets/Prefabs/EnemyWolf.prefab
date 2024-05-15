@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4924513538753381427}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeleeStrongAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1987582435261637371}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MeleeAttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 8351264739438697798}
   - component: {fileID: 4418771574110474728}
   - component: {fileID: 2085715601318566588}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyWolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,6 +195,8 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: cb69ff60543f0ff42be07bb008354a2e, type: 2}
   playerCheck: {fileID: 2604383300167545167}
   groundCheckStun: {fileID: 4395780582925715061}
+  playerUnderCheck: {fileID: 0}
+  checkPlayerUnderDistance: 0
   idleStateData: {fileID: 11400000, guid: b96403ac702da964f88b878dd975071e, type: 2}
   moveStateData: {fileID: 11400000, guid: b5c7999a7301b1049801cfa61bd65aed, type: 2}
   lookForPlayerData: {fileID: 11400000, guid: 8ed3328841fbfdc479433d6b1116fdfc, type: 2}
@@ -214,7 +216,7 @@ GameObject:
   - component: {fileID: 3029517024832456354}
   - component: {fileID: 9201673976774409706}
   - component: {fileID: 5110561545263793359}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Alive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +337,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2604383300167545167}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,7 +368,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4395780582925715061}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +399,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6917491944214979772}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

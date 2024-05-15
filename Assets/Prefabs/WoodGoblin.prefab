@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1981806338949573753}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1215744078106685741}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8225452272695144282}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RangeAttackPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1565110115285509336}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 8102944097587921858}
   - component: {fileID: 9170147329748620407}
   - component: {fileID: 4950757279186983236}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Alive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 9213441799538606340}
   - component: {fileID: 7125976226864767114}
   - component: {fileID: 4278140826344672931}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WoodGoblin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,10 +323,14 @@ MonoBehaviour:
   enemyData: {fileID: 11400000, guid: 49c1d840394dfd04cb51286d786a3e32, type: 2}
   playerCheck: {fileID: 1565110115285509336}
   groundCheckStun: {fileID: 1215744078106685741}
+  playerUnderCheck: {fileID: 0}
+  checkPlayerUnderDistance: 0
   idleStateData: {fileID: 11400000, guid: 4695abeee5b711f4ba163462368de098, type: 2}
   moveStateData: {fileID: 11400000, guid: 4b41e5fd7f8411a41993779ae2aea3f6, type: 2}
   playerDetectedData: {fileID: 11400000, guid: bce483e4ccf92d64fb8a41ac9f52e700, type: 2}
   lookForPlayerData: {fileID: 11400000, guid: 8c6d4be4a1dd20a49a462fd7848bfe20, type: 2}
+  rangeAttackStateData: {fileID: 0}
+  rangeAttackPosition: {fileID: 0}
 --- !u!61 &4278140826344672931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -381,7 +385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4571867771990719190}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}

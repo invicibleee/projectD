@@ -9,6 +9,8 @@ public class RangeTargetAttackState : AttackState
     protected int numberOfShots; // Лічильник вистрілів
 
     protected bool isPlayerInMaxAgroRange;
+
+    public  int countOfShots;
     public RangeTargetAttackState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, Transform attackPosition, D_RangeTargetAttackState stateData) : base(stateMashine, enemy, animBoolName, attackPosition)
     {
         this.stateData = stateData;
@@ -24,6 +26,7 @@ public class RangeTargetAttackState : AttackState
     public override void Enter()
     {
         base.Enter();
+        SetRandomShotTimes();
     }
 
     public override void Exit()
@@ -55,5 +58,9 @@ public class RangeTargetAttackState : AttackState
         numberOfShots++; // Збільшення лічильника вистрілів
         Debug.Log(numberOfShots);
 
+    }
+    public void SetRandomShotTimes()
+    {
+        countOfShots = Random.Range(stateData.minCountOfShots, stateData.maxCountOfShots);
     }
 }

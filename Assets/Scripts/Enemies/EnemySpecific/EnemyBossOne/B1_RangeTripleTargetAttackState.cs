@@ -33,7 +33,7 @@ public class B1_RangeTripleTargetAttackState : RangeTripleTargetAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (numberOfShots >= bossOne.rangeTargetAttackStateData.countOfShots)
+        if (numberOfShots >= bossOne.rangeTripleTargetAttackState.countOfShots)
         {
             stateMashine.ChangeState(bossOne.rollState);
             numberOfShots = 0;

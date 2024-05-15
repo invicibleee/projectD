@@ -12,5 +12,6 @@ public class D_RangeTripleTargetAttackState : ScriptableObject
     public float timeToDestroy = 3.0f;
     public float rangeTripleAttackCooldown = 6.0f;
 
-    public int countOfShots = 3;
+    public int minCountOfShots = 1;
+    public int maxCountOfShots = 5;
 }

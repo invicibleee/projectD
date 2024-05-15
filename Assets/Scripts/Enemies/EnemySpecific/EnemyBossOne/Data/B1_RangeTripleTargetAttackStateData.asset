@@ -19,4 +19,5 @@ MonoBehaviour:
   pursuitTime: 2
   timeToDestroy: 3
   rangeTripleAttackCooldown: 12
-  countOfShots: 3
+  minCountOfShots: 2
+  maxCountOfShots: 5
