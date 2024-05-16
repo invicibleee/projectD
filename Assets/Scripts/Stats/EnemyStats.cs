@@ -7,6 +7,7 @@ public class EnemyStats : CharacterStats
 {
     private Enemy enemy;
     public static event Action<EnemyStats> OnEnemyDeath;
+    public static event Action<EnemyStats> OnEnemyTakeDamage;
 
     public int essenceDropAmount;
     private PlayerStats playerStats;
@@ -21,6 +22,7 @@ public class EnemyStats : CharacterStats
     public override void TakeDamage(float _damage)
     {
         base.TakeDamage(_damage);
+        OnEnemyTakeDamage?.Invoke(this);
     }
 
     protected override void Die()
