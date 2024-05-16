@@ -62,19 +62,19 @@ public class EnemyDog : Enemy
 
     }
 
-    public override void Damage()
-    {
-        base.Damage();
+    //public override void Damage()
+    //{
+    //    base.Damage();
         
-        if (isDead)
-        {
-            stateMashine.ChangeState(deathState);
-        }
-        else if (isStunned && stateMashine.currentState != stunState)
-        {
-            stateMashine.ChangeState(stunState);
-        }
+    //    if (isDead)
+    //    {
+    //        stateMashine.ChangeState(deathState);
+    //    }
+    //    else if (isStunned && stateMashine.currentState != stunState)
+    //    {
+    //        stateMashine.ChangeState(stunState);
+    //    }
         
 
-    }
+    //}
 }

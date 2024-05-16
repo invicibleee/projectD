@@ -7,9 +7,10 @@ public class Enemy : Entity
     public EnemyStateMashine stateMashine;
 
     public D_Enemy enemyData;
+    public D_MoveState stateData;
     public AnimationToStatemashine atsm { get; private set; }
     public int lastDamageDirection { get; private set; }
-
+    public float defaultMoveSpeed;
 
     [SerializeField]
     private Transform playerCheck;
@@ -35,7 +36,7 @@ public class Enemy : Entity
         currentStunResistence = enemyData.stunResistance;
         strongAttackCoolwodn = false;
         atsm = GetComponentInChildren<AnimationToStatemashine>();
-    
+        defaultMoveSpeed = stateData.movementSpeed;
         stateMashine = new EnemyStateMashine();
     }
 
@@ -101,17 +102,17 @@ public class Enemy : Entity
     //        isStunned= true;
     //    }
     //}
-    public override void Damage()
-    {
-        base.Damage();
-        currentHealth = enemyData.maxHealth;
+    //public override void Damage()
+    //{
+    //    base.Damage();
+    //    currentHealth = enemyData.maxHealth;
         
-        Instantiate(enemyData.hitParticle,rb.transform.position, Quaternion.Euler(0f,0f,Random.Range(0f,360f)));
-        if(currentHealth <= 0)
-        {
-            isDead = true;
-        }
-    }
+    //    Instantiate(enemyData.hitParticle,rb.transform.position, Quaternion.Euler(0f,0f,Random.Range(0f,360f)));
+    //    if(currentHealth <= 0)
+    //    {
+    //        isDead = true;
+    //    }
+    //}
     public virtual void SetVelocityEnemy(float velocity)
     {
         velocityWokrSpace.Set(facingDirection * velocity, rb.velocity.y);
@@ -160,5 +161,27 @@ public class Enemy : Entity
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * enemyData.minAgroDistance), 0.2f);
         Gizmos.DrawWireSphere(playerCheck.position + (Vector3)(Vector2.right * enemyData.maxAgroDistance), 0.2f);
 
+    }
+    public virtual void FreezeTime(bool _timeFrozen)
+    {
+        if (_timeFrozen)
+        {
+            stateData.movementSpeed = 0;
+            anim.speed = 0;
+        }
+        else
+        {
+            stateData.movementSpeed = defaultMoveSpeed;
+            anim.speed = 1;
+        }
+    }
+
+    protected virtual IEnumerator FreezeTimer(float _seconds)
+    {
+        FreezeTime(true);
+
+        yield return new WaitForSeconds(_seconds);
+
+        FreezeTime(false);
     }
 }

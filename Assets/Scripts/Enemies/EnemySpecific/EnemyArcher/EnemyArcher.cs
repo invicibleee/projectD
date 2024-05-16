@@ -71,27 +71,27 @@ public class EnemyArcher : Enemy
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
-    public override void Damage()
-    {
-        base.Damage();
+    //public override void Damage()
+    //{
+    //    base.Damage();
 
-        if (isDead)
-        {
-            stateMashine.ChangeState(deathState);
-        }
-        else if (isStunned && stateMashine.currentState != stunState)
-        {
-            stateMashine.ChangeState(stunState);
-        }
-        else if (CheckPlayerInMinAgroRange())
-        {
-            stateMashine.ChangeState(rangeAttackState);
-        }
-        else if (!CheckPlayerInMinAgroRange())
-        {
-            lookForPlayerState.SetTunrImmediatly(true);
-            stateMashine.ChangeState(lookForPlayerState);
-        }
+    //    if (isDead)
+    //    {
+    //        stateMashine.ChangeState(deathState);
+    //    }
+    //    else if (isStunned && stateMashine.currentState != stunState)
+    //    {
+    //        stateMashine.ChangeState(stunState);
+    //    }
+    //    else if (CheckPlayerInMinAgroRange())
+    //    {
+    //        stateMashine.ChangeState(rangeAttackState);
+    //    }
+    //    else if (!CheckPlayerInMinAgroRange())
+    //    {
+    //        lookForPlayerState.SetTunrImmediatly(true);
+    //        stateMashine.ChangeState(lookForPlayerState);
+    //    }
 
-    }
+    //}
 }
