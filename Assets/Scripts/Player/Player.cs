@@ -143,11 +143,4 @@ public class Player : Entity
         base.Die();
         stateMachine.ChangeState(deadState);
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red; // Цвет границы
-
-        // Рисуем прямоугольную область вокруг текущей позиции объекта
-        Gizmos.DrawWireCube(new Vector3(transform.position.x + dashOffset, transform.position.y, 0), new Vector3(dashX, dashY, 0));
-    }
 }

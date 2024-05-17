@@ -24,9 +24,11 @@ public class RedWeaponStyle : WeaponStyle
 
 
     private PlayerStats playerStats;
+    private Player player;
     private void Start()
     {
         playerStats = FindObjectOfType<PlayerStats>();
+        player = PlayerManager.instance.player;
         originalBleedDuration = bleedDuration;
     }
     private void Update()
