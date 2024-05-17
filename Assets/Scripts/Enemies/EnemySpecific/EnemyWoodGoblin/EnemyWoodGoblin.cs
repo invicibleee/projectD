@@ -16,7 +16,8 @@ public class EnemyWoodGoblin : Enemy
     public E5_PlayerDetectedState playerDetectedState { get; private set; }
 
     public E5_RangeAttackState rangeAttackState { get; private set; }
-
+    public E5_DeathState deathState { get; private set; }
+    
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField]
@@ -29,6 +30,8 @@ public class EnemyWoodGoblin : Enemy
     private D_RangeAttackState rangeAttackStateData;
     [SerializeField]
     private Transform rangeAttackPosition;
+    [SerializeField]
+    private D_DeathState deathStateData;
     protected override void Start()
     {
         base.Start();
@@ -42,6 +45,8 @@ public class EnemyWoodGoblin : Enemy
 
         rangeAttackState = new E5_RangeAttackState(stateMashine, this, "rangeAttack", rangeAttackPosition, rangeAttackStateData, this);
 
+        deathState = new E5_DeathState(stateMashine, this,"death",deathStateData, this);
+
         stateMashine.Initialize(moveState);
     }
 
@@ -49,5 +54,18 @@ public class EnemyWoodGoblin : Enemy
     {
         base.OnDrawGizmos();
         
+    }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        DamageTaken();
+    }
+
+    protected void DamageTaken()
+    {
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
     }
 }

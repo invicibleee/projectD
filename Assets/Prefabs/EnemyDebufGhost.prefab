@@ -153,6 +153,8 @@ GameObject:
   - component: {fileID: 1310975128273396887}
   - component: {fileID: 372504723147396725}
   - component: {fileID: 7697772048921117749}
+  - component: {fileID: 3510810222577837138}
+  - component: {fileID: 7737966359550104803}
   m_Layer: 7
   m_Name: EnemyDebufGhost
   m_TagString: Untagged
@@ -271,7 +273,10 @@ MonoBehaviour:
     m_Bits: 8
   knockbackDirection: {x: 0, y: 0}
   knockbackDuration: 0
+  facingRight: 1
   enemyData: {fileID: 11400000, guid: 4e54565fabc19ec4ea3b2ec3c052fa48, type: 2}
+  stateData: {fileID: 11400000, guid: 8db734482ed4997438e3b1e25c8bc296, type: 2}
+  defaultMoveSpeed: 0
   playerCheck: {fileID: 7295689463154159237}
   groundCheckStun: {fileID: 4332507846243332361}
   playerUnderCheck: {fileID: 0}
@@ -283,6 +288,82 @@ MonoBehaviour:
   playerDetectedData: {fileID: 11400000, guid: 5629394680798264b8b9b6fcb5471e4a, type: 2}
   idleStateData: {fileID: 11400000, guid: a65047552af9f6b4eb3361de918245f4, type: 2}
   appearenceStateData: {fileID: 11400000, guid: 7571d712a31772b438461e8c80f706fd, type: 2}
+--- !u!114 &3510810222577837138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192215972139281611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  vitality:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 0
+    modifiers: []
+  critChance:
+    baseValue: 0
+    modifiers: []
+  critPower:
+    baseValue: 0
+    modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 10
+    modifiers: []
+  armor:
+    baseValue: 0
+    modifiers: []
+  evasion:
+    baseValue: 0
+    modifiers: []
+  maxMana:
+    baseValue: 0
+    modifiers: []
+  manaRegenRate:
+    baseValue: 0
+    modifiers: []
+  maxUlt:
+    baseValue: 0
+    modifiers: []
+  currentHealth: 0
+  currentMana: 0
+  currentUlt: 0
+  damageReceivedReductionPercentage: 0
+  essenceDropAmount: 0
+--- !u!114 &7737966359550104803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192215972139281611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor: []
+  igniteColor: []
+  shockColor: []
 --- !u!1 &4766933623662061047
 GameObject:
   m_ObjectHideFlags: 0

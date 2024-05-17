@@ -39,6 +39,7 @@ public class EnemyDog : Enemy
     protected override void Start()
     {
         base.Start();
+
         moveState = new E1_MoveState(stateMashine, this, "move", moveStateData, this);
 
         idleState = new E1_IdleState(stateMashine, this, "idle", idleStateData, this);
@@ -60,6 +61,19 @@ public class EnemyDog : Enemy
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
 
+    }
+    protected override void Update()
+    {
+        base.Update();
+        DamageTaken();
+    }
+
+    protected void DamageTaken()
+    {
+        if(stats.currentHealth <= 0)
+        {            
+            stateMashine.ChangeState(deathState);
+        }
     }
 
     //public override void Damage()

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7972837194615885838}
   - component: {fileID: 3521503258703144984}
   - component: {fileID: 2101740897822907389}
+  - component: {fileID: 4016849564350647836}
   m_Layer: 7
   m_Name: EnemyAsassin
   m_TagString: Untagged
@@ -122,6 +123,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.25
   hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor: []
+  igniteColor: []
+  shockColor: []
 --- !u!114 &2101740897822907389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +149,10 @@ MonoBehaviour:
     m_Bits: 8
   knockbackDirection: {x: 0, y: 0}
   knockbackDuration: 0
+  facingRight: 1
   enemyData: {fileID: 11400000, guid: 558b42a96cd090d47ba6cfff5497bb46, type: 2}
+  stateData: {fileID: 11400000, guid: 8db734482ed4997438e3b1e25c8bc296, type: 2}
+  defaultMoveSpeed: 0
   playerCheck: {fileID: 3348079625132746301}
   groundCheckStun: {fileID: 3708607064344079816}
   playerUnderCheck: {fileID: 3172595715192045259}
@@ -159,6 +166,66 @@ MonoBehaviour:
   chargeStateData: {fileID: 11400000, guid: 96d18404e64454248a6c060753d86d52, type: 2}
   dashStateData: {fileID: 11400000, guid: 8eb0617572a51104bb01a6c8860a1633, type: 2}
   backTeleportStateData: {fileID: 11400000, guid: bc7416da70932d949aa68bf0ac034edc, type: 2}
+  deathStateData: {fileID: 11400000, guid: 4fec7898f9a391a4b827104d83846033, type: 2}
+--- !u!114 &4016849564350647836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397794491993708464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  vitality:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 5
+    modifiers: []
+  critChance:
+    baseValue: 0
+    modifiers: []
+  critPower:
+    baseValue: 0
+    modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 10
+    modifiers: []
+  armor:
+    baseValue: 0
+    modifiers: []
+  evasion:
+    baseValue: 0
+    modifiers: []
+  maxMana:
+    baseValue: 0
+    modifiers: []
+  manaRegenRate:
+    baseValue: 0
+    modifiers: []
+  maxUlt:
+    baseValue: 0
+    modifiers: []
+  currentHealth: 0
+  currentMana: 0
+  currentUlt: 0
+  damageReceivedReductionPercentage: 0
+  essenceDropAmount: 0
 --- !u!1 &4527632659847291255
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +347,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -298,8 +365,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 216361711
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -6999727209595934473, guid: ec3280264e3a1084bb35dd534d39ce56, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

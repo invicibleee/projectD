@@ -16,3 +16,6 @@ MonoBehaviour:
   teleportTime: 0.5
   teleportCooldown: 10
   distanceBehindPlayer: 1
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64

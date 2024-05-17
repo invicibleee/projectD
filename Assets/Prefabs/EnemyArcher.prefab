@@ -173,7 +173,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 216361711
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 7790061708117990980, guid: 95e00b8305f0604479acc969a5d3b267, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -198,6 +198,8 @@ GameObject:
   - component: {fileID: 43802814771330675}
   - component: {fileID: 8605671643223680029}
   - component: {fileID: 2291033660439592853}
+  - component: {fileID: 703628271562811017}
+  - component: {fileID: 714631180013412147}
   m_Layer: 7
   m_Name: EnemyArcher
   m_TagString: Untagged
@@ -244,9 +246,14 @@ MonoBehaviour:
     m_Bits: 8
   knockbackDirection: {x: 0, y: 0}
   knockbackDuration: 0
+  facingRight: 1
   enemyData: {fileID: 11400000, guid: 86a2c039da59b484f931a4a1b406a1e8, type: 2}
+  stateData: {fileID: 11400000, guid: 6616388d43a129649aa03b1e02902ce7, type: 2}
+  defaultMoveSpeed: 0
   playerCheck: {fileID: 3473313710324722708}
   groundCheckStun: {fileID: 8315170646363205676}
+  playerUnderCheck: {fileID: 0}
+  checkPlayerUnderDistance: 0
   idleStateData: {fileID: 11400000, guid: c0b928b908b173549a064452ee837f92, type: 2}
   moveStateData: {fileID: 11400000, guid: 6616388d43a129649aa03b1e02902ce7, type: 2}
   playerDetectedData: {fileID: 11400000, guid: 437f61337d21fcb47b91d70e7c1e3db7, type: 2}
@@ -329,6 +336,82 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.4091272, y: 3.0160575}
   m_EdgeRadius: 0
+--- !u!114 &703628271562811017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7038028942644176627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  vitality:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 10
+    modifiers: []
+  critChance:
+    baseValue: 0
+    modifiers: []
+  critPower:
+    baseValue: 0
+    modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 10
+    modifiers: []
+  armor:
+    baseValue: 0
+    modifiers: []
+  evasion:
+    baseValue: 0
+    modifiers: []
+  maxMana:
+    baseValue: 0
+    modifiers: []
+  manaRegenRate:
+    baseValue: 0
+    modifiers: []
+  maxUlt:
+    baseValue: 0
+    modifiers: []
+  currentHealth: 0
+  currentMana: 0
+  currentUlt: 0
+  damageReceivedReductionPercentage: 0
+  essenceDropAmount: 0
+--- !u!114 &714631180013412147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7038028942644176627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor: []
+  igniteColor: []
+  shockColor: []
 --- !u!1 &7649601973984789169
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +468,7 @@ Transform:
   m_GameObject: {fileID: 7661951273653819749}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.068, y: 0.307, z: 0}
+  m_LocalPosition: {x: 1.037, y: 0.537, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -18,9 +18,6 @@ public class E2_DeathState : DeathState
     public override void Enter()
     {
         base.Enter();
-        GameObject.Instantiate(stateData.deathBloodParticle, enemy.rb.transform.position, stateData.deathBloodParticle.transform.rotation);
-        GameObject.Instantiate(stateData.deathChunkParticle, enemy.rb.transform.position, stateData.deathChunkParticle.transform.rotation);
-        enemy.gameObject.SetActive(false);
     }
 
     public override void Exit()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EnemyBossOne : Enemy
 {
@@ -20,7 +21,7 @@ public class EnemyBossOne : Enemy
 
     public B1_JumpAttackDone jumpAttackDone { get; private set; }
 
-
+    public B1_DeathState deathState { get; private set; }
 
     [SerializeField] public D_BossRollState bossRollStateData;
 
@@ -44,6 +45,8 @@ public class EnemyBossOne : Enemy
 
     [SerializeField] private Transform rangeThirdAttackPosition;
 
+    [SerializeField] private D_DeathState deathStateData;
+
     protected override void Start()
     {
         base.Start();
@@ -63,6 +66,8 @@ public class EnemyBossOne : Enemy
 
         jumpAttackDone = new B1_JumpAttackDone(stateMashine, this,"jumpAttackDone",attackCheck,jumpAttackDoneData,this);
 
+        deathState = new B1_DeathState(stateMashine,this,"death",deathStateData,this);
+
         stateMashine.Initialize(idleState);
     }
 
@@ -71,5 +76,18 @@ public class EnemyBossOne : Enemy
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
 
+    }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        DamageTaken();
+    }
+
+    protected void DamageTaken()
+    {
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
     }
 }

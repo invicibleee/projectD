@@ -8,6 +8,7 @@ public class EnemyAsassin : Enemy
     protected Player player;
     public E9_IdleState idleState {  get; private set; }
 
+    public E9_DeathState deathState { get; private set; }
     public E9_DodgeState dodgeState { get; private set; }
 
     public E9_LookForPlayerState lookForPlayerState { get; private set; }
@@ -44,6 +45,8 @@ public class EnemyAsassin : Enemy
     public D_DashState dashStateData;
     [SerializeField]
     public D_BackTeleportState backTeleportStateData;
+    [SerializeField]
+    private D_DeathState deathStateData;
     protected override void Start()
     {
         base.Start();
@@ -69,9 +72,23 @@ public class EnemyAsassin : Enemy
 
         dangeState = new E9_DangleState(stateMashine, this, "dangle", this);
 
+        deathState = new E9_DeathState(stateMashine, this, "death", deathStateData,this);
+
         stateMashine.Initialize(dangeState);
     }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        DamageTaken();
+    }
 
+    protected void DamageTaken()
+    {
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
+    }
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();

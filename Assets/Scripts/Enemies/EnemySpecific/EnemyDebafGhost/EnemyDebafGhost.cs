@@ -63,9 +63,17 @@ public class EnemyDebafGhost : Enemy
 
     }
 
-    protected override void Update()
+    protected override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
+        DamageTaken();
+    }
 
+    protected void DamageTaken()
+    {
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
     }
 }

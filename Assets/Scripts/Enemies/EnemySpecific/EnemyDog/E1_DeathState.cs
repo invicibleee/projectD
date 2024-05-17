@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class E1_DeathState : DeathState
@@ -28,6 +29,7 @@ public class E1_DeathState : DeathState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
     }
 
     public override void PhysicsUpdate()

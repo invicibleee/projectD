@@ -10,22 +10,22 @@ public class ProjectileLazer : MonoBehaviour
     [SerializeField]
     private float rotationSpeed;
     [SerializeField]
-    private float maxAccelerationTime = 2f; // Час для досягнення максимального прискорення
+    private float maxAccelerationTime = 2f; // Р§Р°СЃ РґР»СЏ РґРѕСЃСЏРіРЅРµРЅРЅСЏ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ РїСЂРёСЃРєРѕСЂРµРЅРЅСЏ
     [SerializeField]
     private float damageRadius;
     [SerializeField]
-    private float destroyDelay = 2f; // Затримка перед знищенням об'єкта
+    private float destroyDelay = 2f; // Р—Р°С‚СЂРёРјРєР° РїРµСЂРµРґ Р·РЅРёС‰РµРЅРЅСЏРј РѕР±'С”РєС‚Р°
 
-    public Transform startPoint; // Початкова точка лазера
-    public float maxDistance = 10f; // Максимальна дистанція лазера
-    public LayerMask layerMask; // Шари для виявлення колайдерів
-    public LineRenderer lineRenderer; // Компонент для відображення лінії лазера
+    public Transform startPoint; // РџРѕС‡Р°С‚РєРѕРІР° С‚РѕС‡РєР° Р»Р°Р·РµСЂР°
+    public float maxDistance = 10f; // РњР°РєСЃРёРјР°Р»СЊРЅР° РґРёСЃС‚Р°РЅС†С–СЏ Р»Р°Р·РµСЂР°
+    public LayerMask layerMask; // РЁР°СЂРё РґР»СЏ РІРёСЏРІР»РµРЅРЅСЏ РєРѕР»Р°Р№РґРµСЂС–РІ
+    public LineRenderer lineRenderer; // РљРѕРјРїРѕРЅРµРЅС‚ РґР»СЏ РІС–РґРѕР±СЂР°Р¶РµРЅРЅСЏ Р»С–РЅС–С— Р»Р°Р·РµСЂР°
 
     private EnemyEye enemyEye;
 
     private void Start()
     {
-        // Початковий поворот об'єкта
+        // РџРѕС‡Р°С‚РєРѕРІРёР№ РїРѕРІРѕСЂРѕС‚ РѕР±'С”РєС‚Р°
         transform.rotation = Quaternion.Euler(0, 0, -45);
         startTime = Time.time;
         enemyEye = GetComponent<EnemyEye>();
@@ -35,48 +35,52 @@ public class ProjectileLazer : MonoBehaviour
     {
         if (startPoint != null && lineRenderer != null)
         {
-            // Виконуємо виявлення першого зіткнення з колайдером на шарах "Player" або "Ground"
+            // Р’РёР·РЅР°С‡Р°С”РјРѕ РїРѕС‚РѕС‡РЅРёР№ С‡Р°СЃ, С‰Рѕ РїСЂРѕР№С€РѕРІ Р· РјРѕРјРµРЅС‚Сѓ РїРѕС‡Р°С‚РєСѓ РІРѕРіРЅРµРІРѕС— РґС–С—
+            float timeElapsed = Time.time - startTime;
+
+            // Р РѕР·СЂР°С…РѕРІСѓС”РјРѕ РїРѕС‚РѕС‡РЅСѓ С€РІРёРґРєС–СЃС‚СЊ РѕР±РµСЂС‚Р°РЅРЅСЏ Р·Р°Р»РµР¶РЅРѕ РІС–Рґ С‡Р°СЃСѓ
+            float currentRotationSpeed = Mathf.Lerp(0f, rotationSpeed * 10f, Mathf.Clamp01(timeElapsed / maxAccelerationTime));
+            transform.Rotate(Vector3.forward * currentRotationSpeed * Time.deltaTime);
+
+            // Р’РёРєРѕРЅСѓС”РјРѕ РІРёСЏРІР»РµРЅРЅСЏ РїРµСЂС€РѕРіРѕ Р·С–С‚РєРЅРµРЅРЅСЏ Р· РєРѕР»Р°Р№РґРµСЂРѕРј РЅР° С€Р°СЂР°С… "Player" Р°Р±Рѕ "Ground"
             RaycastHit2D hit = Physics2D.Raycast(startPoint.position, Quaternion.Euler(0, projectileRotation.rotation.eulerAngles.y, transform.rotation.eulerAngles.z) * Vector2.right, maxDistance, layerMask);
-            Vector2 endPosition; // Позиція кінця лазера
 
             if (hit.collider != null)
             {
-                // Якщо зіткнення відбулося, встановлюємо кінцеву точку лазера на місці зіткнення
-                endPosition = hit.point;
+                // РЇРєС‰Рѕ Р·С–С‚РєРЅРµРЅРЅСЏ РІС–РґР±СѓР»РѕСЃСЏ, РІСЃС‚Р°РЅРѕРІР»СЋС”РјРѕ РєС–РЅС†РµРІСѓ С‚РѕС‡РєСѓ Р»Р°Р·РµСЂР° РЅР° РјС–СЃС†С– Р·С–С‚РєРЅРµРЅРЅСЏ
+                Vector2 endPosition = hit.point;
 
-                // Перевіряємо, чи зіткнення відбулося з об'єктом на заданому шарі
+                // РџРµСЂРµРІС–СЂСЏС”РјРѕ, С‡Рё Р·С–С‚РєРЅРµРЅРЅСЏ РІС–РґР±СѓР»РѕСЃСЏ Р· РѕР±'С”РєС‚РѕРј РЅР° Р·Р°РґР°РЅРѕРјСѓ С€Р°СЂС–
                 if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
-                    // Викликаємо метод Damage на об'єкті, з яким зіткнувся лазер
-                    hit.collider.gameObject.SendMessage("Damage", attackDetails);
+                    PlayerStats target = hit.collider.GetComponent<PlayerStats>();
+                    if (target != null)
+                    {
+                        target.TakeDamage(attackDetails.damageAmount);
+                    }
                 }
+
+                // РџРµСЂРµРјС–С‰Р°С”РјРѕ РєС–РЅС†РµРІСѓ С‚РѕС‡РєСѓ Р»Р°Р·РµСЂР° РІ РЅР°РїСЂСЏРјРєСѓ Р№РѕРіРѕ РЅР°РїСЂСЏРјРєСѓ
+                lineRenderer.SetPosition(0, startPoint.position);
+                lineRenderer.SetPosition(1, endPosition);
             }
             else
             {
-                // Встановлюємо кінцеву точку лазера на максимальній дистанції, слідкуючи за зміною позиції початкової точки
-                endPosition = startPoint.position + Quaternion.Euler(0, projectileRotation.rotation.eulerAngles.y, transform.rotation.eulerAngles.z) * Vector2.right * maxDistance;
-
+                // РЇРєС‰Рѕ Р·С–С‚РєРЅРµРЅРЅСЏ РЅРµ РІС–РґР±СѓР»РѕСЃСЏ, РІСЃС‚Р°РЅРѕРІР»СЋС”РјРѕ РєС–РЅС†РµРІСѓ С‚РѕС‡РєСѓ Р»Р°Р·РµСЂР° РЅР° РјР°РєСЃРёРјР°Р»СЊРЅС–Р№ РґРёСЃС‚Р°РЅС†С–С—, СЃР»С–РґРєСѓСЋС‡Рё Р·Р° Р·РјС–РЅРѕСЋ РїРѕР·РёС†С–С— РїРѕС‡Р°С‚РєРѕРІРѕС— С‚РѕС‡РєРё
+                Vector2 endPosition = startPoint.position + Quaternion.Euler(0, projectileRotation.rotation.eulerAngles.y, transform.rotation.eulerAngles.z) * Vector2.right * maxDistance;
+                lineRenderer.SetPosition(0, startPoint.position);
+                lineRenderer.SetPosition(1, endPosition);
             }
-
-            // Переміщаємо кінцеву точку лазера в напрямку його напрямку
-            lineRenderer.SetPosition(0, startPoint.position);
-            lineRenderer.SetPosition(1, endPosition);
         }
 
-        // Визначаємо поточний час, що пройшов з моменту початку вогневої дії
-        float timeElapsed = Time.time - startTime;
 
-        // Розраховуємо поточну швидкість обертання залежно від часу
-        float currentRotationSpeed = Mathf.Lerp(0f, rotationSpeed * 10f, Mathf.Clamp01(timeElapsed / maxAccelerationTime));
 
-        // Обертаємо об'єкт
-        transform.Rotate(Vector3.forward * currentRotationSpeed * Time.deltaTime);
 
-        // Перевіряємо, чи час знищення об'єкта вже настав
+        // РџРµСЂРµРІС–СЂСЏС”РјРѕ, С‡Рё С‡Р°СЃ Р·РЅРёС‰РµРЅРЅСЏ РѕР±'С”РєС‚Р° РІР¶Рµ РЅР°СЃС‚Р°РІ
         if (Time.time >= startTime + destroyDelay)
         {
-            // Знищуємо об'єкт
-            Debug.Log("Лазер знищено");
+            // Р—РЅРёС‰СѓС”РјРѕ РѕР±'С”РєС‚
+            Debug.Log("Р›Р°Р·РµСЂ Р·РЅРёС‰РµРЅРѕ");
             Destroy(gameObject);
         }
     }

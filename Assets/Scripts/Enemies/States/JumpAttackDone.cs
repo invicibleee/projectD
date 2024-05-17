@@ -52,7 +52,9 @@ public class JumpAttackDone : AttackState
 
         foreach (Collider2D collider in detectedObjects)
         {
-            collider.transform.SendMessage("Damage", attackDetails);
+            PlayerStats target = collider.GetComponent<PlayerStats>();
+            enemy.stats.DoDamage(target);
+            //collider.transform.SendMessage("Damage", attackDetails);
         }
 
     }

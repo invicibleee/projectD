@@ -47,6 +47,7 @@ public class EnemyArcher : Enemy
     protected override void Start()
     {
         base.Start();
+
         moveState = new E2_MoveState(stateMashine, this, "move", moveStateData, this);
 
         idleState = new E2_IdleState(stateMashine, this, "idle", idleStateData, this);
@@ -70,6 +71,18 @@ public class EnemyArcher : Enemy
     {
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
+    }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        DamageTaken();
+    }
+    protected void DamageTaken()
+    {
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
     }
     //public override void Damage()
     //{

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 127556805245064370}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.193, y: -0.046, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 266786211485566964}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.46, y: -1.84, z: 0}
+  m_LocalPosition: {x: 0.972, y: -1.222, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 289039826520580441}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.983, y: 0.853, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 2665770728225793366}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.096, y: -0.103, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 8102944097587921858}
   - component: {fileID: 9170147329748620407}
   - component: {fileID: 4950757279186983236}
+  - component: {fileID: 2904715595575733463}
   m_Layer: 7
   m_Name: Alive
   m_TagString: Untagged
@@ -235,6 +236,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2904715595575733463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2872286318098671854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d71dde1e8b2e46488c32cff2057ba94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5433299132137753890
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,6 +260,8 @@ GameObject:
   - component: {fileID: 9213441799538606340}
   - component: {fileID: 7125976226864767114}
   - component: {fileID: 4278140826344672931}
+  - component: {fileID: 2894825677861159557}
+  - component: {fileID: 3963125492878200593}
   m_Layer: 7
   m_Name: WoodGoblin
   m_TagString: Untagged
@@ -312,7 +327,7 @@ MonoBehaviour:
   attackCheck: {fileID: 1981806338949573753}
   attackCheckRadius: 2
   groundCheck: {fileID: 1215744078106685741}
-  groundCheckDistance: 1
+  groundCheckDistance: 0.6
   wallCheck: {fileID: 4571867771990719190}
   wallCheckDistance: 2
   whatIsGround:
@@ -320,7 +335,10 @@ MonoBehaviour:
     m_Bits: 8
   knockbackDirection: {x: 0, y: 0}
   knockbackDuration: 0
+  facingRight: 1
   enemyData: {fileID: 11400000, guid: 49c1d840394dfd04cb51286d786a3e32, type: 2}
+  stateData: {fileID: 11400000, guid: 4b41e5fd7f8411a41993779ae2aea3f6, type: 2}
+  defaultMoveSpeed: 0
   playerCheck: {fileID: 1565110115285509336}
   groundCheckStun: {fileID: 1215744078106685741}
   playerUnderCheck: {fileID: 0}
@@ -329,8 +347,9 @@ MonoBehaviour:
   moveStateData: {fileID: 11400000, guid: 4b41e5fd7f8411a41993779ae2aea3f6, type: 2}
   playerDetectedData: {fileID: 11400000, guid: bce483e4ccf92d64fb8a41ac9f52e700, type: 2}
   lookForPlayerData: {fileID: 11400000, guid: 8c6d4be4a1dd20a49a462fd7848bfe20, type: 2}
-  rangeAttackStateData: {fileID: 0}
-  rangeAttackPosition: {fileID: 0}
+  rangeAttackStateData: {fileID: 11400000, guid: 6a7e2fc48b4e85649bbd21420e9c2cb4, type: 2}
+  rangeAttackPosition: {fileID: 8225452272695144282}
+  deathStateData: {fileID: 11400000, guid: 92c9a84facfece543a5745b36371aaaf, type: 2}
 --- !u!61 &4278140826344672931
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -363,7 +382,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.23674393, y: -0.5983677}
+  m_Offset: {x: 0.29208946, y: -0.22951126}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -374,8 +393,84 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.0793533, y: 3.529026}
+  m_Size: {x: 1.1976357, y: 2.7913132}
   m_EdgeRadius: 0
+--- !u!114 &2894825677861159557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5433299132137753890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  vitality:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 0
+    modifiers: []
+  critChance:
+    baseValue: 0
+    modifiers: []
+  critPower:
+    baseValue: 0
+    modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 10
+    modifiers: []
+  armor:
+    baseValue: 0
+    modifiers: []
+  evasion:
+    baseValue: 0
+    modifiers: []
+  maxMana:
+    baseValue: 0
+    modifiers: []
+  manaRegenRate:
+    baseValue: 0
+    modifiers: []
+  maxUlt:
+    baseValue: 0
+    modifiers: []
+  currentHealth: 10
+  currentMana: 0
+  currentUlt: 0
+  damageReceivedReductionPercentage: 0
+  essenceDropAmount: 0
+--- !u!114 &3963125492878200593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5433299132137753890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor: []
+  igniteColor: []
+  shockColor: []
 --- !u!1 &6240828089065442628
 GameObject:
   m_ObjectHideFlags: 0
