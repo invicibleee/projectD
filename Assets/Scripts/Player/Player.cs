@@ -26,6 +26,7 @@ public class Player : Entity
     public float dashY;
     public float dashOffset;
 
+    public string areaTransitionName;
     public float dashDirection { get; private set; }
 
     public GameObject scythe { get; private set; }

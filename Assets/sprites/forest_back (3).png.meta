@@ -121,7 +121,49 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: forest_back (3)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 875
+        height: 604
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12e1128c1d711464593347bf8c8fa2a8
+      internalID: 739726797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: forest_back (3)_1
+      rect:
+        serializedVersion: 2
+        x: 2986
+        y: 3
+        width: 1642
+        height: 587
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0adbada9863fd9945aa25b65dbd48530
+      internalID: -2056767852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +174,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      forest_back (3)_0: 739726797
+      forest_back (3)_1: -2056767852
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
