@@ -274,7 +274,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 16.2, y: 12.577625}
+  m_Size: {x: 17.194633, y: 12.577625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -288,12 +288,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483102175}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 78.03, y: -6.8452, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 29.546791, y: -7.6799784, z: -0.28731993}
   m_LocalScale: {x: 0.6242, y: 0.6242, z: 0.6242}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1181037409}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &630620226
 GameObject:
@@ -372,12 +372,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630620226}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 88.14, y: -7.4, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 39.34639, y: -8.234778, z: -0.28731993}
   m_LocalScale: {x: 0.6242, y: 0.6242, z: 0.6242}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1181037409}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &652684144
 GameObject:
@@ -4058,9 +4058,20 @@ PrefabInstance:
     - {fileID: 6137608559480023899, guid: 49966e6fcd012fc419f02c1a74f42c84, type: 3}
     - {fileID: 631321535378527600, guid: 49966e6fcd012fc419f02c1a74f42c84, type: 3}
     - {fileID: 8370986406219433826, guid: 49966e6fcd012fc419f02c1a74f42c84, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 5528217561511429702, guid: 49966e6fcd012fc419f02c1a74f42c84, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 483102177}
+    - targetCorrespondingSourceObject: {fileID: 5528217561511429702, guid: 49966e6fcd012fc419f02c1a74f42c84, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 630620228}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49966e6fcd012fc419f02c1a74f42c84, type: 3}
+--- !u!4 &1181037409 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5528217561511429702, guid: 49966e6fcd012fc419f02c1a74f42c84, type: 3}
+  m_PrefabInstance: {fileID: 1181037408}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1182747511
 GameObject:
   m_ObjectHideFlags: 0
@@ -32541,5 +32552,3 @@ SceneRoots:
   - {fileID: 1256563640}
   - {fileID: 1120105445}
   - {fileID: 1902836053}
-  - {fileID: 630620228}
-  - {fileID: 483102177}

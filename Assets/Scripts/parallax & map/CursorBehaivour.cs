@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapBehaivour : MonoBehaviour
+public class CursorBehaivour : MonoBehaviour
 {
 
     [SerializeField] private Transform targetObject;
     [SerializeField] private float speed = 10.0f;
-    [SerializeField] private GameObject mainCamera; 
-    private bool isObjectActive = false; 
 
     void Start()
     {
@@ -26,11 +24,5 @@ public class MapBehaivour : MonoBehaviour
         newPosition.z =100;
         transform.position = newPosition;
 
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            isObjectActive = !isObjectActive;
-
-            mainCamera.SetActive(isObjectActive);
-        }
     }
 }
