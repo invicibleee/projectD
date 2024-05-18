@@ -30,9 +30,13 @@ public class BossGUI : MonoBehaviour
         BarHP.fillAmount = currentHP / maxHP;
     }
 
+    public void SetStatus(bool Dead)
+    {
+        isDead = Dead;
+    }
     public bool GetStatus(bool Dead)
     {
-        Dead = isDead;
+        isDead = Dead;
         return Dead;
     }
     public void SetHealth(float health)
@@ -71,7 +75,7 @@ public class BossGUI : MonoBehaviour
         float timer = 0f;
         while (timer < duration)
         {
-            float progress = timer / duration;
+            float progress = timer / duration * 5f;
 
             hpBack.GetComponent<Image>().color = Color.Lerp(originalColors[0], fadeColors[0], progress);
             hp.GetComponent<Image>().color = Color.Lerp(originalColors[1], fadeColors[1], progress);

@@ -1151,6 +1151,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Untitled97_20240406224927_40
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 201
+        width: 44
+        height: 44
+      alignment: 9
+      pivot: {x: 0.49999964, y: 0.5529619}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 972f5be1f18813643816bc12beccb09a
+      internalID: -597602494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Untitled97_20240406224927_50
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 203
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6d51973c501ec54990375a3582bd6f2
+      internalID: 2109511244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Untitled97_20240406224927_51
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 154
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a712cb8566c4364cba0ad22b5a20320
+      internalID: -1263102763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Untitled97_20240406224927_52
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 154
+        width: 44
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 534bfb995c559e04b8a42ec8b55a8576
+      internalID: -1359817203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

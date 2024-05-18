@@ -10,7 +10,7 @@ public class CursorBehaivour : MonoBehaviour
 
     void Start()
     {
-        transform.position = new Vector3(0, 0, 0);
+        transform.position = targetObject.position;
     }
 
     void Update()
