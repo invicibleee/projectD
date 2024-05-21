@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 887866408526022667}
   - component: {fileID: 3321819232773332975}
   - component: {fileID: 7166026627950467183}
+  - component: {fileID: 3203603804681605693}
   m_Layer: 0
   m_Name: wood-spirit_ball_Frame_0
   m_TagString: Untagged
@@ -152,9 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85293b284fc85064295841013f9f97f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialGravity: 0
   maxGravity: 0.1
-  gravityChangeRate: 100
+  rotationSpeed: 0
   damageRadius: 0.2
   whatIsGround:
     serializedVersion: 2
@@ -191,3 +191,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &3203603804681605693
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3661241975947734426}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.08758012, y: -0.0070010535}
+  m_Size: {x: 0.14059158, y: 0.14059158}
+  m_Direction: 1

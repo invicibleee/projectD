@@ -6,7 +6,8 @@ public class DeathState : EnemyState
 {
     protected D_DeathState stateData;
 
-    public DeathState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_DeathState stateData) : base(stateMashine, enemy, animBoolName)
+    public DeathState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_DeathState stateData)
+        : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }
@@ -19,10 +20,9 @@ public class DeathState : EnemyState
     public override void Enter()
     {
         base.Enter();
-
-        GameObject.Instantiate(stateData.deathBloodParticle, enemy.rb.transform.position, stateData.deathBloodParticle.transform.rotation);
-        GameObject.Instantiate(stateData.deathChunkParticle, enemy.rb.transform.position, stateData.deathChunkParticle.transform.rotation);
-        enemy.gameObject.SetActive(false);
+        enemy.SetVelocityEnemy(0f);
+        // Start the coroutine to disable the enemy after deathTime
+        enemy.StartCoroutine(DisableEnemyAfterDelay());
     }
 
     public override void Exit()
@@ -38,5 +38,12 @@ public class DeathState : EnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    private IEnumerator DisableEnemyAfterDelay()
+    {
+        yield return new WaitForSeconds(stateData.deathTime);
+        enemy.gameObject.SetActive(false);
+        Debug.Log("Enemy is now inactive after delay.");
     }
 }

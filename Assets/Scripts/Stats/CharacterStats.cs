@@ -39,7 +39,7 @@ public class CharacterStats : MonoBehaviour
     public event System.Action<float> OnDamageReceived;
     public event System.Action<float> onDamageDealt;
     protected bool isDead;
-
+    public bool damaged;
  
 
     protected virtual void Start()
@@ -47,7 +47,7 @@ public class CharacterStats : MonoBehaviour
         critPower.SetDefaultValue(150);
         currentHealth = GetMaxHealthValue();
         currentMana = GetMaxManaValue();
-
+        damaged = false;
         fx = GetComponent<EntityFX>();
     }
 
@@ -138,7 +138,7 @@ public class CharacterStats : MonoBehaviour
     protected virtual void DecreaseHealthBy(float _damage)
     {
         currentHealth -= _damage;
-
+        damaged = true;
         if (onHealthChanged != null)
             onHealthChanged();
     }

@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EnemyGhost : Enemy
 {
     protected Player player;
+
     public E7_IdleState idleState {  get; private set; }
 
     public E7_LookForPlayer lookForPlayerState { get; private set; }
@@ -18,6 +20,8 @@ public class EnemyGhost : Enemy
     public E7_BackTeleportState backTeleportState { get; private set; }
 
     public E7_ChargeState chargeState { get; private set; }
+
+    public E7_DeathState deathState { get; private set; }
 
     [SerializeField]
     private D_IdleState idleStateData;
@@ -33,6 +37,8 @@ public class EnemyGhost : Enemy
     private D_ChargeState chargeStateData;
     [SerializeField]
     public D_BackTeleportState backTeleportStateData;
+    [SerializeField]
+    private D_DeathState deathStateData;
 
     protected override void Start()
     {
@@ -54,21 +60,34 @@ public class EnemyGhost : Enemy
 
         chargeState = new E7_ChargeState(stateMashine, this, "charge", chargeStateData, this);
 
-        stateMashine.Initialize(moveState);
+        deathState = new E7_DeathState(stateMashine, this,"death",deathStateData, this);
 
-
-        
+        stateMashine.Initialize(moveState);        
 
     }
-    protected override void Update()
-    {
-        base.Update();
-   
-    }
+
     protected override void OnDrawGizmos()
     {
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
 
+    }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        CheckDamageAndVisibility();
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
+    }
+
+    private void CheckDamageAndVisibility()
+    {
+        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        {
+            stateMashine.ChangeState(lookForPlayerState);
+            stats.damaged = false;
+        }
     }
 }

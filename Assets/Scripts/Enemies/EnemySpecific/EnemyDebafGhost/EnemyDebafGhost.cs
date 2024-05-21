@@ -63,9 +63,26 @@ public class EnemyDebafGhost : Enemy
 
     }
 
-    protected override void Update()
+    protected override void FixedUpdate()
     {
-        base.Update();
+        base.FixedUpdate();
+        CheckDamageAndVisibility();
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
+        if (stats.currentHealth <= 0 && stateMashine.currentState == appearence)
+        {
+            stateMashine.ChangeState(deathState);
+        }
+    }
 
+    private void CheckDamageAndVisibility()
+    {
+        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        {
+            stateMashine.ChangeState(lookForPLayerState);
+            stats.damaged = false;
+        }
     }
 }

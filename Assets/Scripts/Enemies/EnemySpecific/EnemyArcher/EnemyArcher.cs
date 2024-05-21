@@ -47,6 +47,7 @@ public class EnemyArcher : Enemy
     protected override void Start()
     {
         base.Start();
+
         moveState = new E2_MoveState(stateMashine, this, "move", moveStateData, this);
 
         idleState = new E2_IdleState(stateMashine, this, "idle", idleStateData, this);
@@ -71,27 +72,22 @@ public class EnemyArcher : Enemy
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
-    //public override void Damage()
-    //{
-    //    base.Damage();
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        CheckDamageAndVisibility();
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
+    }
 
-    //    if (isDead)
-    //    {
-    //        stateMashine.ChangeState(deathState);
-    //    }
-    //    else if (isStunned && stateMashine.currentState != stunState)
-    //    {
-    //        stateMashine.ChangeState(stunState);
-    //    }
-    //    else if (CheckPlayerInMinAgroRange())
-    //    {
-    //        stateMashine.ChangeState(rangeAttackState);
-    //    }
-    //    else if (!CheckPlayerInMinAgroRange())
-    //    {
-    //        lookForPlayerState.SetTunrImmediatly(true);
-    //        stateMashine.ChangeState(lookForPlayerState);
-    //    }
-
-    //}
+    private void CheckDamageAndVisibility()
+    {
+        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        {
+            stateMashine.ChangeState(lookForPlayerState);
+            stats.damaged = false;
+        }
+    }
 }

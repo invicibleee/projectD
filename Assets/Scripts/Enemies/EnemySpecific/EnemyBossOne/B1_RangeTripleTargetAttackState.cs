@@ -45,7 +45,7 @@ public class B1_RangeTripleTargetAttackState : RangeTripleTargetAttackState
             {
                 stateMashine.ChangeState(bossOne.rollState);
             }
-            else if (Time.time >= bossOne.jumpAttackState.startTime + bossOne.jumpAttackStateData.jumpAttackCooldown)
+            else if (Time.time >= bossOne.jumpAttackState.startTime + bossOne.jumpAttackStateData.jumpAttackCooldown && bossOne.stats.currentHealth <= bossOne.stats.maxHealth.GetValue() / 2)
             {
                 stateMashine.ChangeState(bossOne.jumpAttackState);
             }

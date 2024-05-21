@@ -32,7 +32,7 @@ public class B1_RollOver : BossRollIsOverState
         {
             if (performCloseRangeAction || isPlayerInMaxAgroRange)
             {
-                if (Time.time >= bossOne.jumpAttackState.startTime + bossOne.jumpAttackStateData.jumpAttackCooldown)
+                if (Time.time >= bossOne.jumpAttackState.startTime + bossOne.jumpAttackStateData.jumpAttackCooldown && bossOne.stats.currentHealth <= bossOne.stats.maxHealth.GetValue() / 2)
                 {
                     stateMashine.ChangeState(bossOne.jumpAttackState);
                 }
@@ -40,9 +40,12 @@ public class B1_RollOver : BossRollIsOverState
                 {
                     stateMashine.ChangeState(bossOne.rangeTargetAttackState);
                 }
-                else if (Time.time >= bossOne.rangeTripleTargetAttackState.startTime + bossOne.rangeTripleTargetAttackStateData.rangeTripleAttackCooldown)
+                else if (Time.time >= bossOne.rangeTripleTargetAttackState.startTime + bossOne.rangeTripleTargetAttackStateData.rangeTripleAttackCooldown && bossOne.stats.currentHealth <= bossOne.stats.maxHealth.GetValue() / 2)
                 {
                     stateMashine.ChangeState(bossOne.rangeTripleTargetAttackState);
+                }else
+                {
+                    stateMashine.ChangeState(bossOne.idleState);
                 }
             }
             else 

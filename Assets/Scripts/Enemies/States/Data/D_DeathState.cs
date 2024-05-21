@@ -4,7 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newDeadStateData", menuName = "Data/State Data/Dead State")]
 public class D_DeathState : ScriptableObject
 {
-    public GameObject deathChunkParticle;
-    public GameObject deathBloodParticle;
+    public float deathTime = 0.1f;
 
 }

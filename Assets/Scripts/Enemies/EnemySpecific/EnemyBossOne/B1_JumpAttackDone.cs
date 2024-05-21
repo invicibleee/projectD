@@ -40,7 +40,7 @@ public class B1_JumpAttackDone : JumpAttackDone
             {
                 stateMashine.ChangeState(bossOne.rangeTargetAttackState);
             }
-            else if (Time.time >= bossOne.rangeTripleTargetAttackState.startTime + bossOne.rangeTripleTargetAttackStateData.rangeTripleAttackCooldown)
+            else if (Time.time >= bossOne.rangeTripleTargetAttackState.startTime + bossOne.rangeTripleTargetAttackStateData.rangeTripleAttackCooldown && bossOne.stats.currentHealth <= bossOne.stats.maxHealth.GetValue() / 2)
             {
                 stateMashine.ChangeState(bossOne.rangeTripleTargetAttackState);
             }

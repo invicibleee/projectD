@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EnemyEye : Enemy
 {
@@ -14,6 +15,8 @@ public class EnemyEye : Enemy
 
     public E6_LazerAttackState lazerAttackState { get; private set; }
 
+    public E6_DeathState deathState { get; private set; }
+
     [SerializeField]
     private D_MoveState moveStateData;
     [SerializeField]
@@ -26,7 +29,8 @@ public class EnemyEye : Enemy
     private D_IdleState idleStateData;
     [SerializeField]
     private Transform lazerAttackPosition;
-
+    [SerializeField]
+    private D_DeathState deathStateData;
 
     protected override void Start()
     {
@@ -41,6 +45,7 @@ public class EnemyEye : Enemy
 
         lookForPlayerState = new E6_LookForPlayer(stateMashine, this,"lookForPlayer",lookForPlayerStateData, this);
 
+        deathState = new E6_DeathState(stateMashine,this,"death",deathStateData, this); 
         stateMashine.Initialize(moveState);
     }
 
@@ -50,6 +55,23 @@ public class EnemyEye : Enemy
         base.OnDrawGizmos();
 
     }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        CheckDamageAndVisibility();
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
+    }
 
+    private void CheckDamageAndVisibility()
+    {
+        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        {
+            stateMashine.ChangeState(lookForPlayerState);
+            stats.damaged = false;
+        }
+    }
 
 }

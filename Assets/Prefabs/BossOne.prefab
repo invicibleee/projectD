@@ -355,6 +355,8 @@ GameObject:
   - component: {fileID: 3408923269159804197}
   - component: {fileID: 8908845534397182633}
   - component: {fileID: 2624001268884971165}
+  - component: {fileID: 6273477571891109269}
+  - component: {fileID: 8441380021272308355}
   m_Layer: 7
   m_Name: BossOne
   m_TagString: Untagged
@@ -372,7 +374,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 146.26, y: -39.19, z: -0.4130553}
-  m_LocalScale: {x: 1.8574, y: 1.8574, z: 1.8574}
+  m_LocalScale: {x: 1.4962285, y: 1.4962285, z: 1.4962285}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 770281106878924200}
@@ -401,7 +403,10 @@ MonoBehaviour:
     m_Bits: 8
   knockbackDirection: {x: 0, y: 0}
   knockbackDuration: 0
+  facingRight: 1
   enemyData: {fileID: 11400000, guid: 830913c5d9e2b1d4a9bd2244ae5c1617, type: 2}
+  stateData: {fileID: 11400000, guid: 2fbd438f56f9ff2498926ec8fc6f0731, type: 2}
+  defaultMoveSpeed: 0
   playerCheck: {fileID: 5389968947861364042}
   groundCheckStun: {fileID: 0}
   playerUnderCheck: {fileID: 0}
@@ -417,6 +422,7 @@ MonoBehaviour:
   rangeAttackPosition: {fileID: 9156920061602790178}
   rangeSecondAttackPosition: {fileID: 8559266966322628708}
   rangeThirdAttackPosition: {fileID: 5247944681725175540}
+  deathStateData: {fileID: 11400000, guid: fbebb45fdaf4b654083c7d7419177988, type: 2}
 --- !u!50 &8908845534397182633
 Rigidbody2D:
   serializedVersion: 4
@@ -489,3 +495,79 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.093486, y: 3.426672}
   m_EdgeRadius: 0
+--- !u!114 &6273477571891109269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7383949718959736087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  vitality:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 5
+    modifiers: []
+  critChance:
+    baseValue: 0
+    modifiers: []
+  critPower:
+    baseValue: 0
+    modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 100
+    modifiers: []
+  armor:
+    baseValue: 0
+    modifiers: []
+  evasion:
+    baseValue: 0
+    modifiers: []
+  maxMana:
+    baseValue: 0
+    modifiers: []
+  manaRegenRate:
+    baseValue: 0
+    modifiers: []
+  maxUlt:
+    baseValue: 0
+    modifiers: []
+  currentHealth: 0
+  currentMana: 0
+  currentUlt: 0
+  damageReceivedReductionPercentage: 0
+  essenceDropAmount: 0
+--- !u!114 &8441380021272308355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7383949718959736087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor: []
+  igniteColor: []
+  shockColor: []

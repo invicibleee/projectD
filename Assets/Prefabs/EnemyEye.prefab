@@ -77,9 +77,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 216361711
+  m_SortingLayer: 3
+  m_SortingOrder: 10
   m_Sprite: {fileID: -1389764468456732622, guid: 2d2c78a874ed8d5419e8367ab6e91da9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -260,6 +260,8 @@ GameObject:
   - component: {fileID: 4907612687299777911}
   - component: {fileID: 3383924890904692257}
   - component: {fileID: 8269201233109366327}
+  - component: {fileID: 6403650549868214460}
+  - component: {fileID: 3321684597500869349}
   m_Layer: 7
   m_Name: EnemyEye
   m_TagString: Untagged
@@ -378,15 +380,98 @@ MonoBehaviour:
     m_Bits: 8
   knockbackDirection: {x: 0, y: 0}
   knockbackDuration: 0
+  facingRight: 1
   enemyData: {fileID: 11400000, guid: 885fae0c8510640448e5701f3a05ad33, type: 2}
+  stateData: {fileID: 11400000, guid: 6565652ad2177364ca51c6c48ffe285a, type: 2}
+  defaultMoveSpeed: 0
   playerCheck: {fileID: 3895961490591121307}
   groundCheckStun: {fileID: 1235580090192167863}
+  playerUnderCheck: {fileID: 0}
+  checkPlayerUnderDistance: 0
   moveStateData: {fileID: 11400000, guid: 6565652ad2177364ca51c6c48ffe285a, type: 2}
   playerDetectedStateData: {fileID: 11400000, guid: 9bf844680036c964cbe59d40f1711361, type: 2}
   lookForPlayerStateData: {fileID: 11400000, guid: efcb9da2127a9c040b7e4eed614d3480, type: 2}
   lazerAttackStateData: {fileID: 11400000, guid: a0714b651ffe38d4e979012269ddb632, type: 2}
   idleStateData: {fileID: 11400000, guid: 78d9b1f6bed45d140adcfbbbfa5ba45a, type: 2}
   lazerAttackPosition: {fileID: 5304060716329293201}
+  deathStateData: {fileID: 11400000, guid: 8c72749b4d8a43a4e81d031b4f654ec0, type: 2}
+--- !u!114 &6403650549868214460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7351329261160196128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  vitality:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 10
+    modifiers: []
+  critChance:
+    baseValue: 0
+    modifiers: []
+  critPower:
+    baseValue: 0
+    modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 10
+    modifiers: []
+  armor:
+    baseValue: 1
+    modifiers: []
+  evasion:
+    baseValue: 0
+    modifiers: []
+  maxMana:
+    baseValue: 0
+    modifiers: []
+  manaRegenRate:
+    baseValue: 0
+    modifiers: []
+  maxUlt:
+    baseValue: 0
+    modifiers: []
+  currentHealth: 0
+  currentMana: 0
+  currentUlt: 0
+  damageReceivedReductionPercentage: 0
+  damaged: 0
+  essenceDropAmount: 0
+--- !u!114 &3321684597500869349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7351329261160196128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor: []
+  igniteColor: []
+  shockColor: []
 --- !u!1 &7523151603462565521
 GameObject:
   m_ObjectHideFlags: 0
