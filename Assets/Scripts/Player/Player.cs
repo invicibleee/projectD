@@ -26,6 +26,13 @@ public class Player : Entity
     public float dashY;
     public float dashOffset;
 
+    public float coyoteTime; // Продолжительность койот тайма (в секундах)
+    private float coyoteTimeCounter; // Счетчик времени для койот тайма
+
+    public float jumpBufferTime;
+    private float jumpBufferCounter;
+
+
     public string areaTransitionName;
     public float dashDirection { get; private set; }
 
@@ -80,14 +87,53 @@ public class Player : Entity
         defaultJumpForce = jumpForce;
         defaultDashSpeed = dashSpeed;
     }
-
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        // Рисуем луч для проверки наклона
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(groundCheck.position, groundCheck.position + Vector3.down * groundCheckDistance);
+    }
     protected override void Update()
     {
         base.Update();
         stateMachine.currentState.Update();
+        // Проверяем наличие "койот тайма" при нажатии прыжка
+        if (IsGroundDetected())
+        {
+            coyoteTimeCounter = coyoteTime; // Устанавливаем счетчик койот тайма при нажатии кнопки прыжка
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime; // Уменьшаем счетчик койот тайма
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpBufferCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferCounter -= Time.deltaTime;
+        }
+        if (coyoteTimeCounter > 0 && jumpBufferCounter > 0)
+        {
+            stateMachine.ChangeState(jumpState);
 
+            jumpBufferCounter = 0;
+        }
+        // Проверяем возможность прыжка во время койот тайма
+        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0)
+        {
+            coyoteTimeCounter = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            stateMachine.ChangeState(primaryAttackState);
+        if (Input.GetKeyDown(KeyCode.R) && AbilitiesPanelScript.instance.abilities[0].isEquiped)// ChronoSKill
+            stateMachine.ChangeState(chronoState);
         CheckForDashInput();
     }
+
+
     public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
     {
         moveSpeed = moveSpeed * (1 - _slowPercentage);
@@ -118,7 +164,7 @@ public class Player : Entity
     {
         isBusy = true;
         yield return new WaitForSeconds(seconds);
-        isBusy= false;
+        isBusy = false;
     }
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     private void CheckForDashInput()
@@ -145,3 +191,6 @@ public class Player : Entity
         stateMachine.ChangeState(deadState);
     }
 }
+
+
+
