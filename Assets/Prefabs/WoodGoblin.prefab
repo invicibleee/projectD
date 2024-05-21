@@ -453,6 +453,7 @@ MonoBehaviour:
   currentMana: 0
   currentUlt: 0
   damageReceivedReductionPercentage: 0
+  damaged: 0
   essenceDropAmount: 0
 --- !u!114 &3963125492878200593
 MonoBehaviour:

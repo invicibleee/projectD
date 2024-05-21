@@ -75,36 +75,19 @@ public class EnemyArcher : Enemy
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        DamageTaken();
-    }
-    protected void DamageTaken()
-    {
+        CheckDamageAndVisibility();
         if (stats.currentHealth <= 0)
         {
             stateMashine.ChangeState(deathState);
         }
     }
-    //public override void Damage()
-    //{
-    //    base.Damage();
 
-    //    if (isDead)
-    //    {
-    //        stateMashine.ChangeState(deathState);
-    //    }
-    //    else if (isStunned && stateMashine.currentState != stunState)
-    //    {
-    //        stateMashine.ChangeState(stunState);
-    //    }
-    //    else if (CheckPlayerInMinAgroRange())
-    //    {
-    //        stateMashine.ChangeState(rangeAttackState);
-    //    }
-    //    else if (!CheckPlayerInMinAgroRange())
-    //    {
-    //        lookForPlayerState.SetTunrImmediatly(true);
-    //        stateMashine.ChangeState(lookForPlayerState);
-    //    }
-
-    //}
+    private void CheckDamageAndVisibility()
+    {
+        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        {
+            stateMashine.ChangeState(lookForPlayerState);
+            stats.damaged = false;
+        }
+    }
 }

@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: E6_LazerAttackStateData
   m_EditorClassIdentifier: 
   projectile: {fileID: 872593288655824666, guid: f182c5a5eb9584e4fbf374bcdeb770eb, type: 3}
-  projectileDamage: 10
-  projectileSpeed: 10
+  projectileDamage: 0.5

@@ -32,6 +32,7 @@ public class EnemySkeleton : Enemy
     private D_MeleeAttack meleeAttackStateData;
     [SerializeField]
     private D_DeathState deathStateData;
+    private bool tookDamage = false;
     protected override void Start() 
     {
         base.Start();
@@ -63,14 +64,22 @@ public class EnemySkeleton : Enemy
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        DamageTaken();
-    }
-
-    protected void DamageTaken()
-    {
+        CheckDamageAndVisibility();
         if (stats.currentHealth <= 0)
         {
             stateMashine.ChangeState(deathState);
         }
     }
+
+    private void CheckDamageAndVisibility()
+    {
+        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        {
+            stateMashine.ChangeState(lookForPlayerState);
+            stats.damaged = false;
+        }
+    }
+
+
+
 }

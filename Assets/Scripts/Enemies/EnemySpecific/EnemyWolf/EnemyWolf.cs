@@ -69,14 +69,19 @@ public class EnemyWolf : Enemy
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        DamageTaken();
-    }
-
-    protected void DamageTaken()
-    {
+        CheckDamageAndVisibility();
         if (stats.currentHealth <= 0)
         {
             stateMashine.ChangeState(deathState);
+        }
+    }
+
+    private void CheckDamageAndVisibility()
+    {
+        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        {
+            stateMashine.ChangeState(lookForPlayerState);
+            stats.damaged = false;
         }
     }
 }

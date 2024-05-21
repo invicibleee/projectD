@@ -89,7 +89,6 @@ public class ProjectileTarget : MonoBehaviour
                 if (target != null)
                 {
                     target.TakeDamage(attackDetails.damageAmount);
-                    Destroy(gameObject);
                 }
 
             }
@@ -114,5 +113,12 @@ public class ProjectileTarget : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(damagePosition.position, damageRadius);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
