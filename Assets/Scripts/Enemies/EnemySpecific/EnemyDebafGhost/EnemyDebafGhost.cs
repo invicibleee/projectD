@@ -71,6 +71,10 @@ public class EnemyDebafGhost : Enemy
         {
             stateMashine.ChangeState(deathState);
         }
+        if (stats.currentHealth <= 0 && stateMashine.currentState == appearence)
+        {
+            stateMashine.ChangeState(deathState);
+        }
     }
 
     private void CheckDamageAndVisibility()
