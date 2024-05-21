@@ -36,7 +36,7 @@ public class B1_RollOver : BossRollIsOverState
                 {
                     stateMashine.ChangeState(bossOne.jumpAttackState);
                 }
-                else if (Time.time >= bossOne.rangeTargetAttackState.startTime + bossOne.rangeTargetAttackStateData.rangeAttackCooldown)
+                else if (Time.time >= bossOne.rangeTargetAttackState.startTime + bossOne.rangeTargetAttackStateData.rangeAttackCooldown && bossOne.stats.currentHealth >= bossOne.stats.maxHealth.GetValue() / 2)
                 {
                     stateMashine.ChangeState(bossOne.rangeTargetAttackState);
                 }

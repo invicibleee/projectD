@@ -30,7 +30,7 @@ public class JumpAttackState : EnemyState
         base.Enter();
         startTimeB = Time.time;
         isJumped = false;
-        enemy.SetVelocityEnemy(stateData.jumpSpeed, stateData.jumpAngle, enemy.facingDirection);
+        enemy.SetVelocityEnemy(stateData.jumpSpeed, stateData.jumpAngle, -enemy.facingDirection);
     }
 
     public override void Exit()

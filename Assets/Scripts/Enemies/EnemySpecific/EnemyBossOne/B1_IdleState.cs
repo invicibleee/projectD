@@ -33,7 +33,7 @@ public class B1_IdleState : IdleState
         if (isPlayerInMaxAgroRange)
         {
             playerDetected = true;
-            if (Time.time >= bossOne.rangeTargetAttackState.startTime + bossOne.rangeTargetAttackStateData.rangeAttackCooldown)
+            if (Time.time >= bossOne.rangeTargetAttackState.startTime + bossOne.rangeTargetAttackStateData.rangeAttackCooldown && bossOne.stats.currentHealth >= bossOne.stats.maxHealth.GetValue() / 2)
             {
                 stateMashine.ChangeState(bossOne.rangeTargetAttackState);
             }

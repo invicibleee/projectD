@@ -89,9 +89,9 @@ public class EnemyBossOne : Enemy
 
     private void CheckDamageAndVisibility()
     {
-        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        if (stats.damaged && stateMashine.currentState == rollState)
         {
-            stateMashine.ChangeState(lookForPlayerState);
+            SetVelocityEnemy(-facingDirection,bossRollStateData.rollSpeed);
             stats.damaged = false;
         }
     }

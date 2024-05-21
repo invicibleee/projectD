@@ -36,13 +36,16 @@ public class B1_JumpAttackDone : JumpAttackDone
 
         if (isPlayerInMaxAgroRange)
         {
-            if (Time.time >= bossOne.rangeTargetAttackState.startTime + bossOne.rangeTargetAttackStateData.rangeAttackCooldown)
+            if (Time.time >= bossOne.rangeTargetAttackState.startTime + bossOne.rangeTargetAttackStateData.rangeAttackCooldown && bossOne.stats.currentHealth >= bossOne.stats.maxHealth.GetValue() / 2)
             {
                 stateMashine.ChangeState(bossOne.rangeTargetAttackState);
             }
             else if (Time.time >= bossOne.rangeTripleTargetAttackState.startTime + bossOne.rangeTripleTargetAttackStateData.rangeTripleAttackCooldown && bossOne.stats.currentHealth <= bossOne.stats.maxHealth.GetValue() / 2)
             {
                 stateMashine.ChangeState(bossOne.rangeTripleTargetAttackState);
+            }else
+            {
+                stateMashine.ChangeState(bossOne.idleState);
             }
         }
         if (isPlayerInMinAgroRange)

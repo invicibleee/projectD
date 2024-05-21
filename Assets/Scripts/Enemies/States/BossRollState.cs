@@ -30,7 +30,7 @@ public class BossRollState : AttackState
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelocityEnemy(stateData.rollSpeed, stateData.rollAngle, enemy.facingDirection);
+        enemy.SetVelocityEnemy(stateData.rollSpeed, stateData.rollAngle, -enemy.facingDirection);
         isRollTimeOver = false;
         SetRandomRollTime();
     }
