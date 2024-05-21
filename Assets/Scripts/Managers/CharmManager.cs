@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.TerrainTools;
+//using UnityEditor.TerrainTools;
 using UnityEngine;
 
 public class CharmManager : MonoBehaviour

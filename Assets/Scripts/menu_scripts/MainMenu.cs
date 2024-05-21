@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,25 +29,34 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private Slider volumeSlider;
 
+  
+
     [SerializeField] private Toggle lowQualityToggle;
     [SerializeField] private Toggle mediumQualityToggle;
     [SerializeField] private Toggle highQualityToggle;
 
     [SerializeField] private Text descriptionText;
     [SerializeField] private Text nameText;
+    [SerializeField] private Text fullscreenText;
 
-    [SerializeField] private TMP_Dropdown resolutionDropdown; 
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
     private string[] resolutions = new string[] { "1920x1080", "1280x720", "1600x900", "2560x1440" };
-    private bool isFullScreen = true;
-    private int currentQualityLevel = 2;
+    private bool isFullScreen;
+    private int currentQualityLevel;
+    private int width;
+    private int height;
+    private string currentResolution;
 
-    public Achivement[] achivements =  new Achivement[14];
+    public Achivement[] achivements = new Achivement[14];
     private int selectedAchivementIndex = -1;
+    private string saveKey = "mainMenuSettings";
+
 
     void Start()
     {
-        Screen.fullScreen = isFullScreen;
-        volumeSlider.value = 0.5f;
+        Load();
+        //currentResolution = $"{width}x{height}";
+
         descriptionText.text = "";
         nameText.text = "";
         UpdateAchivementImages();
@@ -78,21 +88,31 @@ public class MainMenu : MonoBehaviour
 
 
     }
-    void OnResolutionChanged(int resolutionIndex)
+    public void OnResolutionChanged(int resolutionIndex)
     {
         string selectedResolution = resolutions[resolutionIndex];
         string[] resolutionParts = selectedResolution.Split('x');
 
-        int width = int.Parse(resolutionParts[0]);
-        int height = int.Parse(resolutionParts[1]);
+        width = int.Parse(resolutionParts[0]);
+        height = int.Parse(resolutionParts[1]);
 
         Screen.SetResolution(width, height, Screen.fullScreen);
         Debug.Log("Changed resolution to: " + width + "x" + height);
+        Save();
+
     }
     public void ToggleFullScreen()
     {
         isFullScreen = !isFullScreen;
         Screen.fullScreen = isFullScreen;
+        if (isFullScreen)
+        {
+            fullscreenText.text = "Fullscreen";
+        }
+        else
+            fullscreenText.text = "Window";
+        Save();
+
     }
 
     public void ActivateQualitySettings()
@@ -102,15 +122,15 @@ public class MainMenu : MonoBehaviour
         lowQualityToggle.onValueChanged.AddListener(newValue => OnQualityToggleValueChanged(newValue, 0));
         mediumQualityToggle.onValueChanged.AddListener(newValue => OnQualityToggleValueChanged(newValue, 2));
         highQualityToggle.onValueChanged.AddListener(newValue => OnQualityToggleValueChanged(newValue, 5));
-    
-}
+
+    }
 
     void UpdateToggles()
     {
         lowQualityToggle.isOn = currentQualityLevel == 0;
         mediumQualityToggle.isOn = currentQualityLevel == 2;
         highQualityToggle.isOn = currentQualityLevel == 5;
-   
+
     }
 
     void OnQualityToggleValueChanged(bool newValue, int qualityLevel)
@@ -120,13 +140,16 @@ public class MainMenu : MonoBehaviour
             currentQualityLevel = qualityLevel;
             QualitySettings.SetQualityLevel(currentQualityLevel);
             UpdateToggles();
+            Save();
         }
         else if (!lowQualityToggle.isOn && !mediumQualityToggle.isOn && !highQualityToggle.isOn)
         {
             mediumQualityToggle.isOn = true;
             currentQualityLevel = 2;
             QualitySettings.SetQualityLevel(currentQualityLevel);
+            Save();
         }
+
     }
     public void ActivateSoundSettings()
     {
@@ -136,6 +159,7 @@ public class MainMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         AudioListener.volume = volume;
+        Save();
     }
     void ActivateSettings(GameObject settings)
     {
@@ -197,5 +221,61 @@ public class MainMenu : MonoBehaviour
     public void ExitGame()
     {
         Application.Quit();
+    }
+
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+
+    }
+    private void SetFull(bool status)
+    {
+        isFullScreen = status;
+    }
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.MainSettings>(saveKey);
+        SetFull(data._isFullScreen);
+        Screen.fullScreen = isFullScreen;
+        if (isFullScreen)
+        {
+            fullscreenText.text = "Fullscreen";
+        } else
+            fullscreenText.text = "Window";
+
+        currentQualityLevel = data._currentQualityLevel;
+        UpdateToggles();
+        Screen.SetResolution(data._width, data._height, Screen.fullScreen);
+        volumeSlider.value = data._volumeValue;
+        width = data._width;
+        height = data._height;
+
+        Debug.Log(isFullScreen);
+        Debug.Log(data._isFullScreen);
+
+        string savedResolution = $"{width}x{height}";
+        if (resolutions.Contains(savedResolution))
+        {
+            resolutions = resolutions.OrderBy(r => r != savedResolution).ToArray();
+        }
+
+        resolutionDropdown.ClearOptions();
+        resolutionDropdown.AddOptions(resolutions.ToList());
+        resolutionDropdown.value = Array.IndexOf(resolutions, savedResolution);
+
+    }
+
+    private SaveData.MainSettings GetData()
+    {
+        var data = new SaveData.MainSettings()
+        {
+            _isFullScreen = isFullScreen,
+            _currentQualityLevel = currentQualityLevel,
+            _height = height,
+            _width = width,
+            _volumeValue = volumeSlider.value,
+        };
+        return data;
     }
 }
