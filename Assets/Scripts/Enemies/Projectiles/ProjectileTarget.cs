@@ -18,8 +18,8 @@ public class ProjectileTarget : MonoBehaviour
     private float travelDistance;
     private float xStartPosition;
 
-    private float pursuitTime; // Час переслідування
-    private float currentPursuitTime; // Поточний час переслідування 
+    private float pursuitTime;
+    private float currentPursuitTime;
     private float startTime;
     private float timeToDestroy;
 
@@ -27,7 +27,7 @@ public class ProjectileTarget : MonoBehaviour
     
     private bool isGravitiOn;
     private bool hasHitGround;
-    private bool isPursuing; // Позначка переслідування
+    private bool isPursuing; 
 
     private void Start()
     {
@@ -36,8 +36,8 @@ public class ProjectileTarget : MonoBehaviour
         rb.gravityScale = 0.0f;
         startTime = Time.time;
         isGravitiOn = false;
-        isPursuing = true; // Початково об'єкт переслідує гравця
-        currentPursuitTime = 0f; // Початковий час переслідування
+        isPursuing = true; 
+        currentPursuitTime = 0f; 
         xStartPosition = transform.position.x;
     }
     private void Update()
@@ -51,7 +51,6 @@ public class ProjectileTarget : MonoBehaviour
                     Vector2 direction = (targetPlayer.transform.position - transform.position).normalized;
                     rb.velocity = direction * speed;
                 }
-                // Якщо час переслідування вичерпано, зупиняємо переслідування
                 if (currentPursuitTime >= pursuitTime)
                 {
                     isPursuing = false;
@@ -63,7 +62,6 @@ public class ProjectileTarget : MonoBehaviour
             }
             else
             {
-                // Якщо переслідування завершено, об'єкт рухається прямо вперед
                 rb.velocity = transform.right * speed;
             }
 
@@ -87,8 +85,12 @@ public class ProjectileTarget : MonoBehaviour
 
             if (damageHit)
             {
-                damageHit.transform.SendMessage("Damage", attackDetails);
-                Destroy(gameObject);
+                PlayerStats target = damageHit.GetComponent<PlayerStats>();
+                if (target != null)
+                {
+                    target.TakeDamage(attackDetails.damageAmount);
+                }
+
             }
 
             if (Mathf.Abs(xStartPosition - transform.position.x) >= travelDistance && !isGravitiOn)
@@ -111,5 +113,12 @@ public class ProjectileTarget : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(damagePosition.position, damageRadius);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

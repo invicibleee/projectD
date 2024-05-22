@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f20b1fc535cad0d4abd69d077b95c0a9, type: 3}
   m_Name: E4_StrongMeleeAttackStateData
   m_EditorClassIdentifier: 
-  attackRadius: 0.8
+  attackRadius: 3
   attackDamage: 10
   strongAttackCooldown: 10
   whatIsPlayer:

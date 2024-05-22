@@ -39,6 +39,7 @@ public class EnemyDog : Enemy
     protected override void Start()
     {
         base.Start();
+
         moveState = new E1_MoveState(stateMashine, this, "move", moveStateData, this);
 
         idleState = new E1_IdleState(stateMashine, this, "idle", idleStateData, this);
@@ -61,20 +62,22 @@ public class EnemyDog : Enemy
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
 
     }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        CheckDamageAndVisibility();
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
+    }
 
-    //public override void Damage()
-    //{
-    //    base.Damage();
-        
-    //    if (isDead)
-    //    {
-    //        stateMashine.ChangeState(deathState);
-    //    }
-    //    else if (isStunned && stateMashine.currentState != stunState)
-    //    {
-    //        stateMashine.ChangeState(stunState);
-    //    }
-        
-
-    //}
+    private void CheckDamageAndVisibility()
+    {
+        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        {
+            stateMashine.ChangeState(lookForPlayerState);
+            stats.damaged = false;
+        }
+    }
 }

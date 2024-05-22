@@ -16,6 +16,8 @@ public class EnemySkeleton : Enemy
 
     public E8_MeleeAttack meleeAttackState { get; private set; }
 
+    public E8_DeathState deathState { get; private set; }
+
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField]
@@ -28,7 +30,9 @@ public class EnemySkeleton : Enemy
     private D_LookForPlayer lookForPlayerStateData;
     [SerializeField]
     private D_MeleeAttack meleeAttackStateData;
-
+    [SerializeField]
+    private D_DeathState deathStateData;
+    private bool tookDamage = false;
     protected override void Start() 
     {
         base.Start();
@@ -44,6 +48,8 @@ public class EnemySkeleton : Enemy
 
         meleeAttackState = new E8_MeleeAttack(stateMashine, this, "meleeAttack", attackCheck, meleeAttackStateData, this);
 
+        deathState = new E8_DeathState(stateMashine,this,"death",deathStateData, this);
+
         stateMashine.Initialize(moveState);
 
     }
@@ -55,5 +61,25 @@ public class EnemySkeleton : Enemy
         base.OnDrawGizmos();
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
     }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        CheckDamageAndVisibility();
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
+    }
+
+    private void CheckDamageAndVisibility()
+    {
+        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        {
+            stateMashine.ChangeState(lookForPlayerState);
+            stats.damaged = false;
+        }
+    }
+
+
 
 }

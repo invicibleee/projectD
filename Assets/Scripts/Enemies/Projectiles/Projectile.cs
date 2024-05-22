@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
     private float maxGravity;
 
     [SerializeField]
-    private float rotationSpeed; // Кутова швидкість обертання по осі Z
+    private float rotationSpeed; // РљСѓС‚РѕРІР° С€РІРёРґРєС–СЃС‚СЊ РѕР±РµСЂС‚Р°РЅРЅСЏ РїРѕ РѕСЃС– Z
 
     [SerializeField]
     private float damageRadius;
@@ -32,19 +32,20 @@ public class Projectile : MonoBehaviour
 
     [SerializeField]
     private bool destroyOnWallHit = true; // Whether to destroy on wall hit
-
+    private bool isDamaged;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
 
         rb.gravityScale = 0.0f;
         rb.velocity = transform.right * speed;
-
+        isDamaged = false;
         xStartPosition = transform.position.x;
     }
 
     private void Update()
     {
+        Debug.Log(isDamaged);
         if (!hasHitGround)
         {
             attackDetails.position = transform.position;
@@ -69,8 +70,13 @@ public class Projectile : MonoBehaviour
 
             if (damageHit)
             {
-                damageHit.transform.SendMessage("Damage", attackDetails);
-                Destroy(gameObject);
+                PlayerStats target = damageHit.GetComponent<PlayerStats>();
+                if (target != null)
+                {
+                    target.TakeDamage(attackDetails.damageAmount);
+                    isDamaged = true;
+                }
+
             }
             // Check for wall hit if destroyOnWallHit is enabled
             if (destroyOnWallHit)
@@ -92,6 +98,7 @@ public class Projectile : MonoBehaviour
         }
     }
 
+
     public void FireProjectile(float speed, float travelDistance, float damage)
     {
         this.speed = speed;
@@ -102,5 +109,16 @@ public class Projectile : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(damagePosition.position, damageRadius);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+
+                Destroy(gameObject);
+
+            
+        }
     }
 }

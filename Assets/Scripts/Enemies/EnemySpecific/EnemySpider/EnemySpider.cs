@@ -17,6 +17,8 @@ public class EnemySpider : Enemy
 
     public E3_ChargeState chargeState { get; private set; }
 
+    public E3_DeathState deathState { get; private set; }
+
     [SerializeField]
     private D_IdleState idleStateData;
     [SerializeField]
@@ -29,6 +31,8 @@ public class EnemySpider : Enemy
     private D_MeleeAttack meleeAttackStateData;
     [SerializeField]
     private D_ChargeState chargeStateData;
+    [SerializeField]
+    private D_DeathState deathStateData;
     protected override void Start()
     {
         base.Start();
@@ -45,6 +49,8 @@ public class EnemySpider : Enemy
 
         chargeState = new E3_ChargeState(stateMashine, this, "charge", chargeStateData, this); 
 
+        deathState = new E3_DeathState(stateMashine,this,"death",deathStateData, this);
+
         stateMashine.Initialize(moveState);
 
 
@@ -59,20 +65,22 @@ public class EnemySpider : Enemy
         Gizmos.DrawWireSphere(attackCheck.position, attackCheckRadius);
 
     }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        CheckDamageAndVisibility();
+        if (stats.currentHealth <= 0)
+        {
+            stateMashine.ChangeState(deathState);
+        }
+    }
 
-    //public override void Damage()
-    //{
-    //    base.Damage();
-
-    //    //if (isDead)
-    //    //{
-    //    //    stateMashine.ChangeState(deathState);
-    //    //}
-    //    //else if (isStunned && stateMashine.currentState != stunState)
-    //    //{
-    //    //    stateMashine.ChangeState(stunState);
-    //    //}
-
-
-    //}
+    private void CheckDamageAndVisibility()
+    {
+        if (stats.damaged && !CheckPlayerInMaxAgroRange())
+        {
+            stateMashine.ChangeState(lookForPlayerState);
+            stats.damaged = false;
+        }
+    }
 }

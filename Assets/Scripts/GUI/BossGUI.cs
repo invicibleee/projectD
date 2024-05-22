@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 public class BossGUI : MonoBehaviour
 {
-    protected bool isDead;
+
+    private EnemyBossOne bossOne;
+ 
     [SerializeField] private GameObject HUD;
     [SerializeField] private Image BarHP;
-    [SerializeField] private float maxHP = 100f;
-    [SerializeField] private float currentHP;
+    private float maxHP;
+    private float currentHP;
+    protected bool isDead;
 
     [SerializeField] private float displayTime = 10f;
     [SerializeField] private float fadeDuration = 4f;
@@ -19,12 +22,18 @@ public class BossGUI : MonoBehaviour
     [SerializeField] private GameObject hp;
     [SerializeField] private GameObject nameText;
     [SerializeField] private GameObject victoryText;
+    [SerializeField] private GameObject exitTrigger;
+    [SerializeField] private GameObject[] walls;
+
 
     void Start()
     {
+        bossOne = FindAnyObjectByType<EnemyBossOne>();
+        maxHP = bossOne.stats.maxHealth.GetValue();
         currentHP = maxHP;
         ResetHUDColors();
     }
+
     void UpdateBar()
     {
         BarHP.fillAmount = currentHP / maxHP;
@@ -39,23 +48,26 @@ public class BossGUI : MonoBehaviour
         isDead = Dead;
         return Dead;
     }
-    public void SetHealth(float health)
-    {
-        currentHP = Mathf.Clamp(health, 0f, maxHP);
-        UpdateBar();
-    }
+
     public async void FixedUpdate()
     {
+        currentHP = bossOne.stats.currentHealth;
+        UpdateBar();
+
         if (currentHP <= 0 && HUD.activeSelf)
         {
             UpdateBar();
             isDead = true;
             victoryText.SetActive(true);
-
+            walls[0].SetActive(false);
+            walls[1].SetActive(false);
+            exitTrigger.SetActive(true);
             await FadeOutHUD(displayTime);
 
             HUD.SetActive(false);
+
         }
+
     }
 
     private async Task FadeOutHUD(float duration)
@@ -116,6 +128,9 @@ public class BossGUI : MonoBehaviour
         if (other.CompareTag("Player") && !isDead)
         {
             HUD.SetActive(true);
+            walls[0].SetActive(true);
+            walls[1].SetActive(true);
+            exitTrigger.SetActive(false);
         }
     }
 

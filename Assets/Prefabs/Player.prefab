@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 383409272858027507}
   - component: {fileID: 1861261544267750383}
   - component: {fileID: 6827159932430421575}
+  - component: {fileID: 9160429626998238400}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -385,6 +386,7 @@ MonoBehaviour:
   dashX: 6.1
   dashY: 3
   dashOffset: 2.58
+  areaTransitionName: 
 --- !u!114 &4379914219021130065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +443,9 @@ MonoBehaviour:
   critPower:
     baseValue: 0
     modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
   maxHealth:
     baseValue: 100
     modifiers: []
@@ -448,9 +453,6 @@ MonoBehaviour:
     baseValue: 1
     modifiers: []
   evasion:
-    baseValue: 0
-    modifiers: []
-  magicResistance:
     baseValue: 0
     modifiers: []
   maxMana:
@@ -462,24 +464,11 @@ MonoBehaviour:
   maxUlt:
     baseValue: 100
     modifiers: []
-  fireDamage:
-    baseValue: 0
-    modifiers: []
-  iceDamage:
-    baseValue: 0
-    modifiers: []
-  lightingDamage:
-    baseValue: 0
-    modifiers: []
-  isIgnited: 0
-  isChilled: 0
-  isShocked: 0
-  ailmentsDuration: 4
-  shockStrikePrefab: {fileID: 6428285152831848507, guid: e725ef91825553d4989faae8a1226104, type: 3}
   currentHealth: 0
   currentMana: 0
   currentUlt: 0
   damageReceivedReductionPercentage: 0
+  damaged: 0
   allBars: {fileID: 0}
 --- !u!114 &1861261544267750383
 MonoBehaviour:
@@ -493,9 +482,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4955a8e1bec68bc4abdebab3176d0c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miragePrefab: {fileID: 7074423769926948372, guid: 91b9093d0fd09b34aba961dd05a09435, type: 3}
+  miragePrefab: {fileID: 7074423769926948372, guid: 8d35358ff8ae0f0429c2bce59acf42ed, type: 3}
   mirageDuration: 5
-  playerStats: {fileID: 0}
+  playerStats: {fileID: 383409272858027507}
 --- !u!114 &6827159932430421575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -509,4 +498,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageRadius: 5
+  damage: 0
   playerStats: {fileID: 383409272858027507}
+--- !u!114 &9160429626998238400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7074423769926948372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2343d2fa70e05d4ba6f31b84ed7a70a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthAmount: 30
+  currentFlasks: 0
+  maxFlasks: 3
+  canUseFlasks: 1
+  flaskGUI: {fileID: 0}

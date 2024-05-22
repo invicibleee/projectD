@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &169707053320651567
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4924513538753381427}
-  m_Layer: 7
-  m_Name: MeleeStrongAttack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4924513538753381427
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169707053320651567}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 50841541235821068}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &173075502842094405
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 173075502842094405}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.13, y: 0.2, z: 0}
+  m_LocalPosition: {x: 0.92, y: 0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,6 +43,8 @@ GameObject:
   - component: {fileID: 8351264739438697798}
   - component: {fileID: 4418771574110474728}
   - component: {fileID: 2085715601318566588}
+  - component: {fileID: 7150221320220680629}
+  - component: {fileID: 2663104162347355609}
   m_Layer: 7
   m_Name: EnemyWolf
   m_TagString: Untagged
@@ -192,7 +163,10 @@ MonoBehaviour:
     m_Bits: 8
   knockbackDirection: {x: 0, y: 0}
   knockbackDuration: 0
+  facingRight: 1
   enemyData: {fileID: 11400000, guid: cb69ff60543f0ff42be07bb008354a2e, type: 2}
+  stateData: {fileID: 11400000, guid: b5c7999a7301b1049801cfa61bd65aed, type: 2}
+  defaultMoveSpeed: 0
   playerCheck: {fileID: 2604383300167545167}
   groundCheckStun: {fileID: 4395780582925715061}
   playerUnderCheck: {fileID: 0}
@@ -204,6 +178,84 @@ MonoBehaviour:
   chargeStateData: {fileID: 11400000, guid: a6910fe9b70e9a14bb996d5465b31030, type: 2}
   meleeAttackData: {fileID: 11400000, guid: 7d400ea878e2f4b4b85cd6c54967045c, type: 2}
   strongAttackData: {fileID: 11400000, guid: 5e3278a78c0f7aa4ba3710a202e0b99b, type: 2}
+  deathStateData: {fileID: 11400000, guid: 060142098c9d9074c8c2b3eae87f0d62, type: 2}
+--- !u!114 &7150221320220680629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025576667771532534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  vitality:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 1
+    modifiers: []
+  critChance:
+    baseValue: 0
+    modifiers: []
+  critPower:
+    baseValue: 0
+    modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 10
+    modifiers: []
+  armor:
+    baseValue: 0
+    modifiers: []
+  evasion:
+    baseValue: 0
+    modifiers: []
+  maxMana:
+    baseValue: 0
+    modifiers: []
+  manaRegenRate:
+    baseValue: 0
+    modifiers: []
+  maxUlt:
+    baseValue: 0
+    modifiers: []
+  currentHealth: 0
+  currentMana: 0
+  currentUlt: 0
+  damageReceivedReductionPercentage: 0
+  damaged: 0
+  essenceDropAmount: 0
+--- !u!114 &2663104162347355609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025576667771532534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor: []
+  igniteColor: []
+  shockColor: []
 --- !u!1 &5144542349666050711
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,7 +292,6 @@ Transform:
   - {fileID: 2604383300167545167}
   - {fileID: 6917491944214979772}
   - {fileID: 1987582435261637371}
-  - {fileID: 4924513538753381427}
   m_Father: {fileID: 6755248647125745711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3029517024832456354
@@ -353,7 +404,7 @@ Transform:
   m_GameObject: {fileID: 7742156285051140597}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.09, y: 0.24, z: 0}
+  m_LocalPosition: {x: 0.71, y: 0.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

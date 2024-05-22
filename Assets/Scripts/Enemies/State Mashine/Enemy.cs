@@ -119,6 +119,12 @@ public class Enemy : Entity
         rb.velocity = velocityWokrSpace;
 
     }
+    public virtual void SetVelocityEnemy(int direction, float velocity)
+    {
+        velocityWokrSpace.Set(direction * velocity, rb.velocity.y);
+        rb.velocity = velocityWokrSpace;
+
+    }
     public virtual void SetVelocityEnemy(float velocity, Vector2 angle, int direction)
     {
         angle.Normalize();

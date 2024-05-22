@@ -89,7 +89,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,8 +107,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 216361711
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -3351127442274226088, guid: 7f7163f74aa6d2a4084b0045811c0804, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -196,7 +196,9 @@ GameObject:
   - component: {fileID: 213154032089655441}
   - component: {fileID: 3716426569247502470}
   - component: {fileID: 2142594930660054138}
-  - component: {fileID: 7134399017297916157}
+  - component: {fileID: 7597283700563918095}
+  - component: {fileID: 6248100294897081830}
+  - component: {fileID: 5665487586145171870}
   m_Layer: 7
   m_Name: EnemyGhost
   m_TagString: Untagged
@@ -292,7 +294,84 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.5892868, y: 3.335123}
   m_EdgeRadius: 0
---- !u!114 &7134399017297916157
+--- !u!114 &7597283700563918095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5706105852813782837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  vitality:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 5
+    modifiers: []
+  critChance:
+    baseValue: 0
+    modifiers: []
+  critPower:
+    baseValue: 0
+    modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 20
+    modifiers: []
+  armor:
+    baseValue: 0
+    modifiers: []
+  evasion:
+    baseValue: 0
+    modifiers: []
+  maxMana:
+    baseValue: 0
+    modifiers: []
+  manaRegenRate:
+    baseValue: 0
+    modifiers: []
+  maxUlt:
+    baseValue: 0
+    modifiers: []
+  currentHealth: 0
+  currentMana: 0
+  currentUlt: 0
+  damageReceivedReductionPercentage: 0
+  damaged: 0
+  essenceDropAmount: 0
+--- !u!114 &6248100294897081830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5706105852813782837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor: []
+  igniteColor: []
+  shockColor: []
+--- !u!114 &5665487586145171870
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -315,9 +394,14 @@ MonoBehaviour:
     m_Bits: 8
   knockbackDirection: {x: 0, y: 0}
   knockbackDuration: 0
+  facingRight: 1
   enemyData: {fileID: 11400000, guid: 9c2e6d93a8ebd4342a40a5ddd46c5187, type: 2}
+  stateData: {fileID: 11400000, guid: 3c3f4286ccaf1ec459980968f3c1914b, type: 2}
+  defaultMoveSpeed: 0
   playerCheck: {fileID: 5653988209721612521}
-  groundCheckStun: {fileID: 1113678932034358958}
+  groundCheckStun: {fileID: 0}
+  playerUnderCheck: {fileID: 0}
+  checkPlayerUnderDistance: 0
   idleStateData: {fileID: 11400000, guid: b4f2032a717b1fe4abd4de5d29ecb55a, type: 2}
   moveStateData: {fileID: 11400000, guid: 3c3f4286ccaf1ec459980968f3c1914b, type: 2}
   playerDetectedData: {fileID: 11400000, guid: 0f311132f6ec1ab4f8d225edf759913b, type: 2}
@@ -325,6 +409,7 @@ MonoBehaviour:
   meleeAttackData: {fileID: 11400000, guid: 5d3f82ece712eea4295a6a6da6380c70, type: 2}
   chargeStateData: {fileID: 11400000, guid: f60b5056562456f47bbc60f0b3e69a11, type: 2}
   backTeleportStateData: {fileID: 11400000, guid: 2fe6d6210a60f674999095d2213695f7, type: 2}
+  deathStateData: {fileID: 11400000, guid: b9acf3507e335d5459f8ee5e666c2df6, type: 2}
 --- !u!1 &6492602873401631072
 GameObject:
   m_ObjectHideFlags: 0

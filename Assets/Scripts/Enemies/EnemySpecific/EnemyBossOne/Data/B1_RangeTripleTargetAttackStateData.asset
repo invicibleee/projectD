@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: B1_RangeTripleTargetAttackStateData
   m_EditorClassIdentifier: 
   projectile: {fileID: 6044893477615387992, guid: 532d65f5069e44e479fc66f85bca6434, type: 3}
-  projectileDamage: 10
+  projectileDamage: 5
   projectileSpeed: 10
   projectileTravelDistance: 10
   pursuitTime: 2
   timeToDestroy: 3
   rangeTripleAttackCooldown: 12
-  minCountOfShots: 2
-  maxCountOfShots: 5
+  minCountOfShots: 1
+  maxCountOfShots: 3

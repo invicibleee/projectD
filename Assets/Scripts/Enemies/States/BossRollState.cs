@@ -30,7 +30,7 @@ public class BossRollState : AttackState
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelocityEnemy(stateData.rollSpeed, stateData.rollAngle, enemy.facingDirection);
+        enemy.SetVelocityEnemy(stateData.rollSpeed, stateData.rollAngle, -enemy.facingDirection);
         isRollTimeOver = false;
         SetRandomRollTime();
     }
@@ -84,7 +84,9 @@ public class BossRollState : AttackState
 
         foreach (Collider2D collider in detectedObjects)
         {
-            collider.transform.SendMessage("Damage", attackDetails);
+            PlayerStats target = collider.GetComponent<PlayerStats>();
+            enemy.stats.DoDamage(target);
+            //collider.transform.SendMessage("Damage", attackDetails);
         }
     }
 }

@@ -75,9 +75,10 @@ GameObject:
   - component: {fileID: 5752763598108980220}
   - component: {fileID: 5091566994836276528}
   - component: {fileID: 897667625311507480}
+  - component: {fileID: 1074974337212283230}
   m_Layer: 7
   m_Name: EnemyDog
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -184,6 +185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.2
   hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor: []
+  igniteColor: []
+  shockColor: []
 --- !u!114 &897667625311507480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,15 +205,20 @@ MonoBehaviour:
   groundCheck: {fileID: 1305916208489747587}
   groundCheckDistance: 0.15
   wallCheck: {fileID: 5336058231227312574}
-  wallCheckDistance: 0.2
+  wallCheckDistance: 1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  knockbackDirection: {x: 3, y: 6}
-  knockbackDuration: 0.07
+  knockbackDirection: {x: 0, y: 0}
+  knockbackDuration: 0
+  facingRight: 1
   enemyData: {fileID: 11400000, guid: 4d043ad287f22c94ab148f504ab4ffb5, type: 2}
+  stateData: {fileID: 11400000, guid: 2fbd438f56f9ff2498926ec8fc6f0731, type: 2}
+  defaultMoveSpeed: 0
   playerCheck: {fileID: 1509546273717907669}
   groundCheckStun: {fileID: 1305916208489747587}
+  playerUnderCheck: {fileID: 0}
+  checkPlayerUnderDistance: 0
   idleStateData: {fileID: 11400000, guid: f7a81a2972b5428408eb8be33be86ee5, type: 2}
   moveStateData: {fileID: 11400000, guid: 2fbd438f56f9ff2498926ec8fc6f0731, type: 2}
   playerDetectedData: {fileID: 11400000, guid: a082fe9a5094ed645a9d358143dc484a, type: 2}
@@ -218,6 +227,66 @@ MonoBehaviour:
   meleeAttackStateData: {fileID: 11400000, guid: af963466532686647b6eb0650e911d79, type: 2}
   stunStateData: {fileID: 11400000, guid: 53c2c6df89fb3dc47998a826d6dbbc67, type: 2}
   deathStateData: {fileID: 11400000, guid: ed1a9864187869545b495240aa935bfa, type: 2}
+--- !u!114 &1074974337212283230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779760739883694053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  vitality:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 5
+    modifiers: []
+  critChance:
+    baseValue: 0
+    modifiers: []
+  critPower:
+    baseValue: 0
+    modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 20
+    modifiers: []
+  armor:
+    baseValue: 1
+    modifiers: []
+  evasion:
+    baseValue: 0
+    modifiers: []
+  maxMana:
+    baseValue: 0
+    modifiers: []
+  manaRegenRate:
+    baseValue: 0
+    modifiers: []
+  maxUlt:
+    baseValue: 0
+    modifiers: []
+  currentHealth: 0
+  currentMana: 0
+  currentUlt: 0
+  damageReceivedReductionPercentage: 0
+  damaged: 0
+  essenceDropAmount: 0
 --- !u!1 &7212125882450112087
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,7 +396,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 216361711
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 2794444432037058684, guid: 993886e52d740a848aa0df5dd990a1fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -429,7 +498,7 @@ Transform:
   m_GameObject: {fileID: 9052929346064583411}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.009, y: -0.471, z: 0}
+  m_LocalPosition: {x: -0.009, y: 0.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

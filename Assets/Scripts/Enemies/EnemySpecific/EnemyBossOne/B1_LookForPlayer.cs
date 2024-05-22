@@ -28,7 +28,7 @@ public class B1_LookForPlayer : LookForPlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (isPlayerInMaxAgroRange)
+        if (isPlayerInMaxAgroRange && bossOne.stats.currentHealth >= bossOne.stats.maxHealth.GetValue() / 2)
         {
             stateMashine.ChangeState(bossOne.rangeTargetAttackState);
         }
@@ -43,7 +43,7 @@ public class B1_LookForPlayer : LookForPlayerState
                 stateMashine.ChangeState(bossOne.idleState);
             }
         }
-        else if (performCloseRangeAction)
+        else if (performCloseRangeAction && bossOne.stats.currentHealth <= bossOne.stats.maxHealth.GetValue() / 2)
         {
             stateMashine.ChangeState(bossOne.jumpAttackState);
         }
