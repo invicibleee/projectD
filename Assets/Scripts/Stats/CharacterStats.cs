@@ -38,7 +38,7 @@ public class CharacterStats : MonoBehaviour
     public System.Action onHealthChanged;
     public event System.Action<float> OnDamageReceived;
     public event System.Action<float> onDamageDealt;
-    protected bool isDead;
+    public bool isDead;
     public bool damaged;
  
 
