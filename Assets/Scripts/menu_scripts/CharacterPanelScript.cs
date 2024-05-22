@@ -114,6 +114,7 @@ public class CharacterPanelScript : MonoBehaviour
 
             if (isUpgradedTwice)
             {
+                SetStyle(skillIndex);
                 Prompt.text = "skill equiped";
                 Debug.Log("Equipped Skill " + skillIndex + " with two upgrades");
                 weaponStyles[pickedStyle].ActivateFirstUpgrade();
@@ -122,6 +123,7 @@ public class CharacterPanelScript : MonoBehaviour
             }
             else if (isUpgradedOnce)
             {
+                SetStyle(skillIndex);
                 Prompt.text = "skill equiped";
                 Debug.Log("Equipped Skill " + skillIndex + " with one upgrade");
                 weaponStyles[pickedStyle].ActivateFirstUpgrade();
@@ -129,6 +131,7 @@ public class CharacterPanelScript : MonoBehaviour
             }
             else
             {
+                SetStyle(skillIndex);
                 Prompt.text = "skill equiped";
                 Debug.Log("Equipped Skill " + skillIndex + " without upgrades");
                 weaponStyles[pickedStyle].ActivateFirstUpgrade();
@@ -137,8 +140,11 @@ public class CharacterPanelScript : MonoBehaviour
         }
         else
         {
+            int baseSkillIndex = GetBaseSkillIndex(skillIndex);
 
+            Debug.Log("set style color" + baseSkillIndex);
             Debug.Log("Skill Index: " + skillIndex + " is not a basic skill and cannot be equipped directly.");
+            EquipSkill(baseSkillIndex);
         }
     }
     private bool GetRequiedSkills(WeaponSkill currentSkill)
@@ -182,7 +188,6 @@ public class CharacterPanelScript : MonoBehaviour
                         Prompt.text = "skill purshcased";
                         SetSkillPurchased(skillIndex, true);
                         EquipSkill(skillIndex);
-                        SetStyle(skillIndex);
                         Debug.Log("Purchased Skill Index: " + skillIndex);
                         confrimText.text = "Confrim";
                         if (!skills[skillIndex].isBasicSkill)
@@ -209,13 +214,32 @@ public class CharacterPanelScript : MonoBehaviour
             UpdateSkillImages();
         }
     }
+
+    private int GetBaseSkillIndex(int upgradeIndex)
+    {
+        switch (upgradeIndex)
+        {
+            case 1:
+            case 2:
+                return 0;
+            case 4:
+            case 5:
+                return 3;
+            case 7:
+            case 8:
+                return 6;
+            default:
+                return -1;
+        }
+    }
+
     private void SetStyle(int skillIndex)
     {
-
         switch (skillIndex)
         {
             case 0:
                 style.color = Color.red;
+                Debug.Log("CHANGED");
                 break;
             case 3:
                 style.color = Color.green;
