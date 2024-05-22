@@ -10,7 +10,7 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        
+
     }
 
     public override void Exit()
@@ -21,21 +21,15 @@ public class PlayerGroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-
-        if (Input.GetKeyDown(KeyCode.R) && AbilitiesPanelScript.instance.abilities[0].isEquiped)// ChronoSKill
-            stateMachine.ChangeState(player.chronoState);
-
+        
         if (Input.GetKeyDown(KeyCode.R) && HasNoScythe() && AbilitiesPanelScript.instance.abilities[1].isEquiped)//ThrowSkill
             stateMachine.ChangeState(player.aimScytheState);
 
         if (!player.IsGroundDetected())
             stateMachine.ChangeState(player.airState);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            stateMachine.ChangeState(player.primaryAttackState);
-
-        if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
-            stateMachine.ChangeState(player.jumpState);
+        if (Input.GetKeyDown(KeyCode.R) && AbilitiesPanelScript.instance.abilities[0].isEquiped)// ChronoSKill
+            stateMachine.ChangeState(player.chronoState);
     }
 
     private bool HasNoScythe()
