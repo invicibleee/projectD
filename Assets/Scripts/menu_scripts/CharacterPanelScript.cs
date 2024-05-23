@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -27,15 +29,18 @@ public class CharacterPanelScript : MonoBehaviour
     [SerializeField] private Text confrimText;
     [SerializeField] private Text Prompt;
     [SerializeField] private Image style;
-
+    private SphereGUI sphereGUI;
     private int lastPicked;
     private int currentStyle;
     private int selectedSkillIndex = -1;
     bool allRequiredSkillsPurchased;
-
+    private string saveKey = "PlayerWeaponSkills";
+    private int isEqiped;
     private void Awake()
     {
         weaponStyles = FindObjectsOfType<WeaponStyle>();
+        sphereGUI = FindAnyObjectByType<SphereGUI>();
+
     }
     private void Start()
     {
@@ -46,12 +51,13 @@ public class CharacterPanelScript : MonoBehaviour
             Debug.LogError("PauseMenuScript not found!");
             return;
         }
-
+        Load();
         currentStyle = 1;
         descriptionText.text = "select weapon";
         Prompt.text = "";
         UpdateSkillImages();
         SetStats(playerStats.currentHealth, playerStats.GetMaxHealthValue());
+
     }
     private void Update()
     {
@@ -83,69 +89,75 @@ public class CharacterPanelScript : MonoBehaviour
 
     private void EquipSkill(int skillIndex)
     {
-        WeaponSkill selectedSkill = skills[skillIndex];
-        if (selectedSkill.isBasicSkill)
+        if(skillIndex >= 0)
         {
-            int pickedStyle = skillIndex / 3;
-            if (pickedStyle != lastPicked)
-                weaponStyles[lastPicked].DeactivateEffect();
-            lastPicked = pickedStyle;
-            bool isUpgradedOnce = false;
-            bool isUpgradedTwice = false;
-
-            foreach (var skill in skills)
+            WeaponSkill selectedSkill = skills[skillIndex];
+            if (selectedSkill.isBasicSkill)
             {
-                if (skill.isPurchased && skill.requiredSkill.Length > 0)
-                {
-                    // Check if the skill requiring the current skill is upgraded
-                    if (skills[skillIndex + 1].isPurchased)
-                    {
-                        isUpgradedOnce = true;
+                int pickedStyle = skillIndex / 3;
+                if (pickedStyle != lastPicked)
+                    weaponStyles[lastPicked].DeactivateEffect();
+                lastPicked = pickedStyle;
+                bool isUpgradedOnce = false;
+                bool isUpgradedTwice = false;
 
-                        /// Check if the second-level skill requiring the current skill is upgraded
-                        if (skills[skillIndex + 2].isPurchased)
+                foreach (var skill in skills)
+                {
+                    if (skill.isPurchased && skill.requiredSkill.Length > 0)
+                    {
+                        // Check if the skill requiring the current skill is upgraded
+                        if (skills[skillIndex + 1].isPurchased)
                         {
-                            isUpgradedOnce = false;
-                            isUpgradedTwice = true;
+                            isUpgradedOnce = true;
+
+                            /// Check if the second-level skill requiring the current skill is upgraded
+                            if (skills[skillIndex + 2].isPurchased)
+                            {
+                                isUpgradedOnce = false;
+                                isUpgradedTwice = true;
+                            }
                         }
                     }
                 }
-            }
 
-            if (isUpgradedTwice)
-            {
-                SetStyle(skillIndex);
-                Prompt.text = "skill equiped";
-                Debug.Log("Equipped Skill " + skillIndex + " with two upgrades");
-                weaponStyles[pickedStyle].ActivateFirstUpgrade();
-                weaponStyles[pickedStyle].ActivateSecondUpgrade();
-                weaponStyles[pickedStyle].ActivateThirdUpgrade();
-            }
-            else if (isUpgradedOnce)
-            {
-                SetStyle(skillIndex);
-                Prompt.text = "skill equiped";
-                Debug.Log("Equipped Skill " + skillIndex + " with one upgrade");
-                weaponStyles[pickedStyle].ActivateFirstUpgrade();
-                weaponStyles[pickedStyle].ActivateSecondUpgrade();
+                if (isUpgradedTwice)
+                {
+                    SetStyle(skillIndex);
+                    Prompt.text = "skill equiped";
+                    Debug.Log("Equipped Skill " + skillIndex + " with two upgrades");
+                    weaponStyles[pickedStyle].ActivateFirstUpgrade();
+                    weaponStyles[pickedStyle].ActivateSecondUpgrade();
+                    weaponStyles[pickedStyle].ActivateThirdUpgrade();
+
+                }
+                else if (isUpgradedOnce)
+                {
+                    SetStyle(skillIndex);
+                    Prompt.text = "skill equiped";
+                    Debug.Log("Equipped Skill " + skillIndex + " with one upgrade");
+                    weaponStyles[pickedStyle].ActivateFirstUpgrade();
+                    weaponStyles[pickedStyle].ActivateSecondUpgrade();
+                }
+                else
+                {
+                    SetStyle(skillIndex);
+                    Prompt.text = "skill equiped";
+                    Debug.Log("Equipped Skill " + skillIndex + " without upgrades");
+                    weaponStyles[pickedStyle].ActivateFirstUpgrade();
+
+                }
             }
             else
             {
-                SetStyle(skillIndex);
-                Prompt.text = "skill equiped";
-                Debug.Log("Equipped Skill " + skillIndex + " without upgrades");
-                weaponStyles[pickedStyle].ActivateFirstUpgrade();
+                int baseSkillIndex = GetBaseSkillIndex(skillIndex);
 
+                Debug.Log("set style color" + baseSkillIndex);
+                Debug.Log("Skill Index: " + skillIndex + " is not a basic skill and cannot be equipped directly.");
+                isEqiped = baseSkillIndex;
+                EquipSkill(baseSkillIndex);
             }
         }
-        else
-        {
-            int baseSkillIndex = GetBaseSkillIndex(skillIndex);
-
-            Debug.Log("set style color" + baseSkillIndex);
-            Debug.Log("Skill Index: " + skillIndex + " is not a basic skill and cannot be equipped directly.");
-            EquipSkill(baseSkillIndex);
-        }
+        Save();
     }
     private bool GetRequiedSkills(WeaponSkill currentSkill)
     {
@@ -171,7 +183,7 @@ public class CharacterPanelScript : MonoBehaviour
     public void PurchaseSkill()
     {
         int skillIndex = selectedSkillIndex;
-        if (skillIndex < skills.Length)
+        if (skillIndex < skills.Length && skillIndex != -1)
         {
             WeaponSkill currentSkill = skills[skillIndex];
 
@@ -188,6 +200,7 @@ public class CharacterPanelScript : MonoBehaviour
                         Prompt.text = "skill purshcased";
                         SetSkillPurchased(skillIndex, true);
                         EquipSkill(skillIndex);
+                        isEqiped = skillIndex;
                         Debug.Log("Purchased Skill Index: " + skillIndex);
                         confrimText.text = "Confrim";
                         if (!skills[skillIndex].isBasicSkill)
@@ -204,6 +217,7 @@ public class CharacterPanelScript : MonoBehaviour
                 {
                     Debug.Log("Skill Index: " + skillIndex + " is already purchased.");
                     EquipSkill(skillIndex);
+                    isEqiped = skillIndex;
                     SetStyle(skillIndex);
                 }
             }
@@ -212,6 +226,7 @@ public class CharacterPanelScript : MonoBehaviour
                 descriptionText.text = "Unable to buy, required skill is not purchased";
             }
             UpdateSkillImages();
+            Save();
         }
     }
 
@@ -390,5 +405,48 @@ public class CharacterPanelScript : MonoBehaviour
             }
         }
 
+    }
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+
+    }
+
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.WeaponSave>(saveKey);
+
+        
+        isEqiped = data._isEqiped;
+        
+        for (int i = 0; i < skills.Length; i++)
+        {
+            skills[i].isPurchased = data._isOwned[i];
+        }
+       
+        UpdateSkillImages();
+        if(isEqiped!= -1)
+        {
+            EquipSkill(isEqiped);
+            SetStyle(isEqiped);
+        }
+    }
+
+    private SaveData.WeaponSave GetData()
+    {
+
+        var data = new SaveData.WeaponSave()
+        {
+            _isEqiped = isEqiped,
+            _isOwned = new bool[skills.Length]
+        };
+
+        for (int i = 0; i < skills.Length; i++)
+        {
+            data._isOwned[i] = skills[i].isPurchased;
+        }
+
+        return data;
     }
 }

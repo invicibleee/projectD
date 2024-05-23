@@ -6,11 +6,13 @@ public class PlayerStats : CharacterStats
 {
     private Player player;
     public BarsController allBars;
+    private string saveKey = "playerSave";
 
     protected override void Start()
     {
         base.Start();
         player= GetComponent<Player>();
+        Load();
     }
 
     public override void TakeDamage(float _damage)
@@ -19,7 +21,11 @@ public class PlayerStats : CharacterStats
         allBars.SetHealth(currentHealth - _damage, GetMaxHealthValue());
 
     }
-
+    protected override void Update()
+    {
+        base.Update();
+        Save();
+    }
     protected override void Die()
     {
         base.Die();
@@ -49,5 +55,32 @@ public class PlayerStats : CharacterStats
     {
         base.DecreaseUlt(amount);
         allBars.SetUlt(currentUlt, GetMaxUltValue());
+    }
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+
+    }
+
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.CharaStatistic>(saveKey);
+        currentHealth = data._currentHealth;
+        currentMana = data._currentMana;
+        currentUlt = data._currentUlt;
+
+
+    }
+
+    private SaveData.CharaStatistic GetData()
+    {
+        var data = new SaveData.CharaStatistic()
+        {
+            _currentUlt = currentUlt,
+            _currentMana = currentMana,
+            _currentHealth = currentHealth,
+        };
+        return data;
     }
 }

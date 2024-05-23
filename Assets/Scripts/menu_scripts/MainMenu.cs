@@ -1,3 +1,4 @@
+using SaveData;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -50,7 +51,8 @@ public class MainMenu : MonoBehaviour
     public Achivement[] achivements = new Achivement[14];
     private int selectedAchivementIndex = -1;
     private string saveKey = "mainMenuSettings";
-
+    private string saveKey2 = "playerPosition";
+    private int sceneIndex;
 
     void Start()
     {
@@ -62,10 +64,7 @@ public class MainMenu : MonoBehaviour
         UpdateAchivementImages();
     }
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene("Game");
-    }
+
 
     public void ShowOptions()
     {
@@ -232,38 +231,67 @@ public class MainMenu : MonoBehaviour
     {
         isFullScreen = status;
     }
+    public void StartGame()
+    {
+        PlayerPrefs.DeleteKey("playerPosition");
+        PlayerPrefs.DeleteKey("playerMoneySave");
+        PlayerPrefs.DeleteKey("playerSave");
+        PlayerPrefs.DeleteKey("flasks");
+        PlayerPrefs.DeleteKey("PlayerWeaponSkills");
+        SceneManager.LoadScene(1);
+    }
+    public void ContinueGame()
+    {
+        var data2 = SaveManager.Load<SaveData.PlayerPos>(saveKey2);
+        sceneIndex = data2._sceneIndex;
+        SceneManager.LoadScene(sceneIndex);
 
+    }
     private void Load()
     {
         var data = SaveManager.Load<SaveData.MainSettings>(saveKey);
         SetFull(data._isFullScreen);
         Screen.fullScreen = isFullScreen;
-        if (isFullScreen)
-        {
-            fullscreenText.text = "Fullscreen";
-        } else
-            fullscreenText.text = "Window";
+        fullscreenText.text = isFullScreen ? "Fullscreen" : "Window";
 
         currentQualityLevel = data._currentQualityLevel;
         UpdateToggles();
-        Screen.SetResolution(data._width, data._height, Screen.fullScreen);
-        volumeSlider.value = data._volumeValue;
-        width = data._width;
-        height = data._height;
 
-        Debug.Log(isFullScreen);
-        Debug.Log(data._isFullScreen);
+        // Перевірка на значення 0 і встановлення за замовчуванням
+        if (data._width == 0 || data._height == 0)
+        {
+            string defaultResolution = resolutions[0];
+            string[] resolutionParts = defaultResolution.Split('x');
+            width = int.Parse(resolutionParts[0]);
+            height = int.Parse(resolutionParts[1]);
+        }
+        else
+        {
+            width = data._width;
+            height = data._height;
+        }
+
+        Screen.SetResolution(width, height, Screen.fullScreen);
+        volumeSlider.value = data._volumeValue;
 
         string savedResolution = $"{width}x{height}";
-        if (resolutions.Contains(savedResolution))
-        {
-            resolutions = resolutions.OrderBy(r => r != savedResolution).ToArray();
-        }
+        Debug.Log($"{savedResolution}");
 
         resolutionDropdown.ClearOptions();
         resolutionDropdown.AddOptions(resolutions.ToList());
-        resolutionDropdown.value = Array.IndexOf(resolutions, savedResolution);
 
+        int savedResolutionIndex = Array.IndexOf(resolutions, savedResolution);
+        if (savedResolutionIndex != -1)
+        {
+            resolutions = resolutions.OrderBy(r => r != savedResolution).ToArray();
+        }
+        else
+        {
+            resolutionDropdown.value = 0; // Встановлюємо перше значення за замовчуванням
+        }
+
+        Debug.Log(isFullScreen);
+        Debug.Log(data._isFullScreen);
     }
 
     private SaveData.MainSettings GetData()

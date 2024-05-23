@@ -126,8 +126,7 @@ public class Player : Entity
         {
             coyoteTimeCounter = 0;
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            stateMachine.ChangeState(primaryAttackState);
+
         CheckForDashInput();
     }
 

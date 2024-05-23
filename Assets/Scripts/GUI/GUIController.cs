@@ -10,10 +10,13 @@ public abstract class GUIController : MonoBehaviour
     public Image[] images;
 
     public abstract Image[] GetImages();
-
-    public virtual void Start()
+    public void Awake()
     {
         images = GetImages();
+
+    }
+    public virtual void Start()
+    {
         Deactivate();
     }
 
@@ -41,6 +44,7 @@ public abstract class GUIController : MonoBehaviour
 
     public virtual void ClearImage(int index)
     {
+        Debug.Log(index);
         images[index].sprite = emptyImage;
     }
 }

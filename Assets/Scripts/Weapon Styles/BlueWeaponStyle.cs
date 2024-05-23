@@ -28,6 +28,7 @@ public class BlueWeaponStyle : WeaponStyle
     {
         playerStats = FindObjectOfType<PlayerStats>();
         sphereGUI = FindObjectOfType<SphereGUI>();
+
     }
     private void Update()
     {

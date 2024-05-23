@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     public Player player;
     public static PlayerManager instance;
     public int essenceAmount;
+    private string saveKey = "playerMoneySave";
 
     private void Awake()
     {
@@ -21,21 +22,52 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
+        Load();
     }
+
     public void AddEssences(int amount)
     {
         essenceAmount += amount;
+        Save();
     }
 
     // Method to remove essences from the player
     public void RemoveEssences(int amount)
     {
+
         essenceAmount -= amount;
+        Save();
     }
 
     // Method to get the current essence amount
     public int GetEssenceAmount()
     {
+        Save();
         return essenceAmount;
+    }
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+
+    }
+
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.MoneyPlayer>(saveKey);
+        essenceAmount = data._money;
+
+    }
+
+    private SaveData.MoneyPlayer GetData()
+    {
+        var data = new SaveData.MoneyPlayer()
+        {
+            _money = essenceAmount,
+
+        };
+
+        return data;
+
     }
 }

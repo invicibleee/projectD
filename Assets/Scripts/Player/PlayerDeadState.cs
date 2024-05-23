@@ -26,7 +26,10 @@ public class PlayerDeadState : PlayerState
     public override void Update()
     {
         base.Update();
-
+        if(player.stats.currentHealth == player.stats.maxHealth.GetValue())
+        {
+            player.stateMachine.ChangeState(player.idleState);
+        }
         player.SetVelocity(0, 0);
     }
 }

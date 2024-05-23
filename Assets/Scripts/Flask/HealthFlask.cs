@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -6,17 +7,20 @@ using UnityEngine;
 public class HealthFlask : MonoBehaviour
 {
     [SerializeField] private int healthAmount = 50; // Количество восстанавливаемого здоровья
-    [SerializeField] private int currentFlasks;
-    [SerializeField] private int maxFlasks;
+    [SerializeField] public int currentFlasks;
+    [SerializeField] public int maxFlasks;
     public bool canUseFlasks = true;
 
     public FlaskGUI flaskGUI;
     private PlayerStats playerStats;
+    private string saveKey = "flasks";
     private void Start()
     {
-        currentFlasks = maxFlasks;
+       
         flaskGUI = FindObjectOfType<FlaskGUI>();
         playerStats = FindObjectOfType<PlayerStats>();
+        Load();
+
     }
     private void Update()
     {
@@ -39,8 +43,8 @@ public class HealthFlask : MonoBehaviour
                 // Если есть изображения фласок
                 if (flaskGUI.images.Length > currentFlasks)
                 {
-
                     flaskGUI.ClearImage(currentFlasks);
+                    Save();
                 }
             }
         } else
@@ -51,5 +55,38 @@ public class HealthFlask : MonoBehaviour
     public void CanUseFlasks(bool able)
     {
         canUseFlasks = able;
+    }
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+
+    }
+    public void Load()
+    {
+        var data = SaveManager.Load<SaveData.CharaStatistic>(saveKey);
+        currentFlasks = data._currentFlask;
+        maxFlasks = data._maxFlask;
+
+        // Очищуємо всі зображення
+        for (int i = 0; i < flaskGUI.images.Length; i++)
+        {
+            flaskGUI.ClearImage(i);
+        }
+
+        // Заповнюємо зображення відповідно до кількості поточних фляг
+        for (int i = 0; i < currentFlasks; i++)
+        {
+            flaskGUI.FillImage(i);
+        }
+
+    }
+    private SaveData.CharaStatistic GetData()
+    {
+        var data = new SaveData.CharaStatistic()
+        {
+            _currentFlask = currentFlasks,
+            _maxFlask = maxFlasks,  
+        };
+        return data;
     }
 }
