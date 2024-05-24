@@ -13,11 +13,17 @@ public class DeathController : MonoBehaviour
     [SerializeField] private BarsController barsController;
     private Vector2 playerDeathPoint;
     private int lostCurrency;
+    private bool status;
+    private MoneyTrigger moneyTrigger;
+
+    private string saveKey = "LostMoney";
     private void Start()
     {
+        Load();
         player = FindAnyObjectByType<Player>();
         barsController = FindAnyObjectByType<BarsController>();
         healthFlask = FindAnyObjectByType<HealthFlask>();
+        moneyTrigger = FindAnyObjectByType<MoneyTrigger>();
     }
 
     private void Update()
@@ -43,6 +49,36 @@ public class DeathController : MonoBehaviour
         healthFlask.Load();
         barsController.SetHealth(player.stats.currentHealth, player.stats.maxHealth.GetValue());
         player.transform.position = transform.position;
+        status = true;
+        moneyTrigger.status = status;
+        Save();
+        
+    }
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
     }
 
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.LostMoneySave>(saveKey);
+        lostCurrency = data._amount;
+        playerDeathPoint = data._position;
+        money.transform.position = playerDeathPoint;
+        money.SetActive(data._status);
+        currency.GetCurrency(lostCurrency);
+    }
+
+    private SaveData.LostMoneySave GetData()
+    {
+        var data = new SaveData.LostMoneySave()
+        {
+            _amount = lostCurrency,
+            _position = playerDeathPoint,
+            _status = status,
+        };
+
+        return data;
+    }
 }

@@ -24,6 +24,8 @@ public class InventoryPanelScript : MonoBehaviour
     [SerializeField] private Text descriptionText;
     [SerializeField] private Text nameText;
 
+    private string saveKey = "PlayerItems";
+
     private void Awake()
     {
         if (instance != null)
@@ -39,7 +41,8 @@ public class InventoryPanelScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FindItems();
+        Load();
+      // FindItems();
         descriptionText.text = "select item";
         nameText.text = "";
     }
@@ -170,6 +173,37 @@ public class InventoryPanelScript : MonoBehaviour
         items[index].isOwned = true;
         Debug.Log("You found item Index: " + index);
         FindItems();
+        Save();
+    }
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+    }
 
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.TalantsSave>(saveKey);
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            items[i].isOwned = data._isOwned[i];
+        }
+        FindItems();
+    }
+
+    private SaveData.TalantsSave GetData()
+    {
+        var data = new SaveData.TalantsSave()
+        {
+            _isOwned = new bool[items.Length]
+        };
+
+        for (int i = 0; i < items.Length; i++)
+        {
+            data._isOwned[i] = items[i].isOwned;
+        }
+
+        return data;
     }
 }

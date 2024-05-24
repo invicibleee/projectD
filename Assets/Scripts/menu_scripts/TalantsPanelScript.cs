@@ -20,6 +20,7 @@ public class TalantsPanelScript : MonoBehaviour
     [SerializeField] private Text descriptionText;
     [SerializeField] private Text nameText;
     [SerializeField] private int selectedTalantIndex = -1;
+    private string saveKey = "PlayerTalants";
     public static TalantsPanelScript instance;
 
     private void Awake()
@@ -40,6 +41,7 @@ public class TalantsPanelScript : MonoBehaviour
         descriptionText.text = "select talant";
         nameText.text = "";
         UpdateTalantImages();
+        Load();
     }
 
     // Update is called once per frame
@@ -99,6 +101,39 @@ public class TalantsPanelScript : MonoBehaviour
         talants[talantIndex].isOwned = true;
         Debug.Log("You found talant Index: " + talantIndex);
         UpdateTalantImages();
+        Save();
+    }
 
+
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+    }
+
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.TalantsSave>(saveKey);
+
+        for (int i = 0; i < talants.Length; i++)
+        {
+            talants[i].isOwned = data._isOwned[i];
+        }
+        UpdateTalantImages();
+    }
+
+    private SaveData.TalantsSave GetData()
+    {
+        var data = new SaveData.TalantsSave()
+        {
+            _isOwned = new bool[talants.Length]
+        };
+
+        for (int i = 0; i < talants.Length; i++)
+        {
+            data._isOwned[i] = talants[i].isOwned;
+        }
+
+        return data;
     }
 }

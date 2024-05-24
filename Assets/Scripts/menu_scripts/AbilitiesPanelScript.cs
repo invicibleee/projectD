@@ -24,7 +24,9 @@ public class AbilitiesPanelScript : MonoBehaviour
     [SerializeField] private Text equipedText;
     private int selectedAbilityIndex = -1;
     private bool equiped = false;
-
+    private int index;
+    private int abilityIndex;
+    private string saveKey = "PlayerAbilities";
 
     private void Awake()
     {
@@ -44,6 +46,7 @@ public class AbilitiesPanelScript : MonoBehaviour
         nameText.text = "";
         promptText.text = "";
         UpdateAbilityImages();
+        Load();
     }
 
     // Update is called once per frame
@@ -62,6 +65,11 @@ public class AbilitiesPanelScript : MonoBehaviour
         }
     }
 
+    public void SetAbilityOwned(int index)
+    {
+        abilities[index].isOwned = true;
+        Save();
+    }
     public void OnAbilityImageClick(int abilityIndex)
     {
         UpdateDescriptionText(abilityIndex);
@@ -107,9 +115,14 @@ public class AbilitiesPanelScript : MonoBehaviour
 
     public void EquipAbility()
     {
-        int abilityIndex = selectedAbilityIndex;
+        if (selectedAbilityIndex != -1)
+        {
+            abilityIndex = selectedAbilityIndex;
+            index = abilityIndex;
+        }
+       
         int equippedAbilityIndex = FindIndexOfEquippedAbility();
-        if (equiped == false)
+        if (abilities[abilityIndex].isOwned && equiped == false)
         {
             abilities[abilityIndex].isEquiped = true;
             equiped = true;
@@ -134,12 +147,14 @@ public class AbilitiesPanelScript : MonoBehaviour
                 equiped = false;
                 promptText.text = "unequiped " + nameText.text;
                 equipedText.text = "Equiped: " ;
+                index = -1;
             }
             else
             {
                 descriptionText.text = "You do not own this ability yet";
             }
         }
+        Save();
     }
 
     private int FindIndexOfEquippedAbility()
@@ -152,5 +167,47 @@ public class AbilitiesPanelScript : MonoBehaviour
             }
         }
         return -1;
+    }
+
+
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+    }
+
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.AbilitySave>(saveKey);
+
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            abilities[i].isOwned = data._isOwned[i];
+        }
+
+        if (data._isEqiped != -1 && abilities[data._isEqiped].isOwned)
+        {
+            abilityIndex = data._isEqiped;
+            EquipAbility();
+        }
+        
+        UpdateAbilityImages();
+
+    }
+
+    private SaveData.AbilitySave GetData()
+    {
+        var data = new SaveData.AbilitySave()
+        {
+            _isEqiped = index,
+            _isOwned = new bool[abilities.Length]
+        };
+
+        for (int i = 0; i < abilities.Length; i++)
+        {
+            data._isOwned[i] = abilities[i].isOwned;
+        }
+
+        return data;
     }
 }

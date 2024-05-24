@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,12 +38,15 @@ public class CharmsPanelScript : MonoBehaviour
     [SerializeField] private Sprite none;
     private int lastClickedIndex = -1;
 
+    private string saveKey = "PlayerCharms";
+
     private void Awake()
     {
         charmsArray = FindObjectsOfType<Charm>();
     }
     void Start()
     {
+        Load();
         pauseMenuScript = GetComponent<PauseMenuScript>();
         currentCharm = 1;
         descriptionText.text = "select skill";
@@ -117,7 +121,8 @@ public class CharmsPanelScript : MonoBehaviour
         int charmIndex = selectedCharmIndex;
         if (charmIndex >= 0 && charmIndex < charms.Length)
         {
-            CharmInfo currentCharm = charms[charmIndex]; if (currentCharm.isOwned)
+            CharmInfo currentCharm = charms[charmIndex]; 
+            if (currentCharm.isOwned)
             {
                 if (!currentCharm.isEquiped)
                 {
@@ -148,6 +153,7 @@ public class CharmsPanelScript : MonoBehaviour
         }
 
         UpdateCharmImages();
+        Save();
     }
 
     public void LastClicked(int index)
@@ -155,21 +161,23 @@ public class CharmsPanelScript : MonoBehaviour
         lastClickedIndex = index;
     }
 
-    private void SetCharmOwned(int charmIndex, bool value)
+
+    public void SetCharmOwned(int charmIndex)
     {
         CharmInfo[] updatedCharms = charms;
 
         if (charmIndex < updatedCharms.Length)
         {
-            updatedCharms[charmIndex].isOwned = value;
+            updatedCharms[charmIndex].isOwned = true;
             charms = updatedCharms;
 
             // Add logic to handle the charm discovery
-            if (value)
+            if (true)
             {
                 Debug.Log("You found Charm Index: " + charmIndex);
             }
         }
+        Save();
     }
     private void UnequipeCharm(int charmIndex)
     {
@@ -369,6 +377,62 @@ public class CharmsPanelScript : MonoBehaviour
         {
             Debug.LogError("Invalid description index: " + descriptionIndex);
         }
+    }
+
+
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+    }
+
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.CharmsSave>(saveKey);
+
+        for (int i = 0; i < charms.Length; i++)
+        {
+            charms[i].isOwned = data._isOwned[i];
+        }
+
+        if(data._isEqiped[0] != -1)
+        {
+            EquipCharm(data._isEqiped[0]);
+        }
+        if (data._isEqiped[1] != -1)
+        {
+            EquipCharm(data._isEqiped[1]);
+        }
+        if (data._isEqiped[2] != -1)
+        {
+            EquipCharm(data._isEqiped[2]);
+        }
+
+        SetColorForSlot(0);
+        SetColorForSlot(1);
+        SetColorForSlot(2);
+        UpdateCharmImages();
+    }
+
+    private SaveData.CharmsSave GetData()
+    {
+        var data = new SaveData.CharmsSave()
+        {
+            _isEqiped = new int[3],
+            _isOwned = new bool[charms.Length]
+        };
+
+       data._isEqiped[0] = GetEquipedCharmInList(0);
+       data._isEqiped[1] =  GetEquipedCharmInList(1);
+       data._isEqiped[2] = GetEquipedCharmInList(2);
+
+
+        for (int i = 0; i < charms.Length; i++)
+        {
+            data._isOwned[i] = charms[i].isOwned;
+        }
+
+        return data;
     }
 
 }

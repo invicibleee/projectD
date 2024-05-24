@@ -81,6 +81,80 @@ namespace SaveData
             }
         }
     }
+
+    [System.Serializable]
+    public class AbilitySave
+    {
+        public bool[] _isOwned = new bool[2];
+        public int _isEqiped;
+        public AbilitySave()
+        {
+            _isEqiped = -1;
+            for (int i = 0; i < _isOwned.Length; i++)
+            {
+                _isOwned[i] = false;
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class CharmsSave
+    {
+        public bool[] _isOwned = new bool[14];
+        public int[] _isEqiped = new int[3];
+        public CharmsSave()
+        {
+            for (int i = 0; i < _isEqiped.Length; i++)
+            {
+                _isEqiped[i] = -1;
+            }
+            for (int i = 0; i < _isOwned.Length; i++)
+            {
+                _isOwned[i] = false;
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class TalantsSave
+    {
+        public bool[] _isOwned = new bool[5];
+        public TalantsSave()
+        {
+            for (int i = 0; i < _isOwned.Length; i++)
+            {
+                _isOwned[i] = false;
+            }
+        }
+    }
+
+
+    [System.Serializable]
+    public class ItemsSave
+    {
+        public bool[] _isOwned = new bool[12];
+        public ItemsSave()
+        {
+            for (int i = 0; i < _isOwned.Length; i++)
+            {
+                _isOwned[i] = false;
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class LostMoneySave
+    {
+        public int _amount;
+        public bool _status;
+        public UnityEngine.Vector2 _position;
+        public LostMoneySave()
+        {
+            _amount = 0;
+            _status = false;
+            _position = new UnityEngine.Vector2(0,0);
+        }
+    }
 }
 
 

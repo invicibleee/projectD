@@ -10,20 +10,26 @@ public class TalantCollisison : MonoBehaviour
     [SerializeField] private int talantIndex;
     [SerializeField] private Text message;
     [SerializeField] private string text;
-
+    private string saveKey = "PlayerTalants";
     private bool isPlayerNearby = false;
+    private bool status;
 
     private void Start()
     {
         talantsPanelScript = TalantsPanelScript.instance;
+        Load();
     }
     private void Update()
     {
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        if (!status && isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
             talantsPanelScript.SetTalantOwned(talantIndex);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             message.text = "";
+        }
+        else if (status)
+        {
+            gameObject.SetActive(false);
         }
     }
 
@@ -43,6 +49,11 @@ public class TalantCollisison : MonoBehaviour
             isPlayerNearby = false;
             message.text = "";
         }
+    }
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.TalantsSave>(saveKey);
+        status = data._isOwned[talantIndex];
     }
 
 }

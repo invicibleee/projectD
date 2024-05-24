@@ -10,19 +10,26 @@ public class ItemCollision : MonoBehaviour
     [SerializeField] private Text message;
     [SerializeField] private string text;
 
+    private string saveKey = "PlayerItems";
     private bool isPlayerNearby = false;
+    private bool status;
 
     private void Start()
     {
+        Load();
         inventoryPanelScript = InventoryPanelScript.instance;
     }
     private void Update()
     {
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        if (!status && isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
             inventoryPanelScript.SetItemOwned(itemIndex);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             message.text = "";
+        }
+        else if (status)
+        {
+            gameObject.SetActive(false);
         }
     }
 
@@ -42,5 +49,11 @@ public class ItemCollision : MonoBehaviour
             isPlayerNearby = false;
             message.text = "";
         }
+    }
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.TalantsSave>(saveKey);
+        status = data._isOwned[itemIndex];
     }
 }
