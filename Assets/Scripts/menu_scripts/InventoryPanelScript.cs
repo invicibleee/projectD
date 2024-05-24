@@ -183,18 +183,19 @@ public class InventoryPanelScript : MonoBehaviour
 
     private void Load()
     {
-        var data = SaveManager.Load<SaveData.TalantsSave>(saveKey);
+        var data = SaveManager.Load<SaveData.ItemSave>(saveKey);
 
         for (int i = 0; i < items.Length; i++)
         {
             items[i].isOwned = data._isOwned[i];
+            Debug.Log("i" + i);
         }
         FindItems();
     }
 
-    private SaveData.TalantsSave GetData()
+    private SaveData.ItemSave GetData()
     {
-        var data = new SaveData.TalantsSave()
+        var data = new SaveData.ItemSave()
         {
             _isOwned = new bool[items.Length]
         };

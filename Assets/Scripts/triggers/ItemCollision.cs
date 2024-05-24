@@ -18,6 +18,7 @@ public class ItemCollision : MonoBehaviour
     {
         Load();
         inventoryPanelScript = InventoryPanelScript.instance;
+        Debug.Log("item"+itemIndex);
     }
     private void Update()
     {
@@ -53,7 +54,7 @@ public class ItemCollision : MonoBehaviour
 
     private void Load()
     {
-        var data = SaveManager.Load<SaveData.TalantsSave>(saveKey);
+        var data = SaveManager.Load<SaveData.ItemSave>(saveKey);
         status = data._isOwned[itemIndex];
     }
 }

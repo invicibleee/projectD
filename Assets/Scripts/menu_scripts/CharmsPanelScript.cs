@@ -398,19 +398,21 @@ public class CharmsPanelScript : MonoBehaviour
         if(data._isEqiped[0] != -1)
         {
             EquipCharm(data._isEqiped[0]);
+            SetColorForSlot(0);
         }
         if (data._isEqiped[1] != -1)
         {
             EquipCharm(data._isEqiped[1]);
+            SetColorForSlot(1);
         }
         if (data._isEqiped[2] != -1)
         {
             EquipCharm(data._isEqiped[2]);
+            SetColorForSlot(2);
         }
 
-        SetColorForSlot(0);
-        SetColorForSlot(1);
-        SetColorForSlot(2);
+  
+       
         UpdateCharmImages();
     }
 

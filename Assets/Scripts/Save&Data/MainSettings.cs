@@ -128,12 +128,11 @@ namespace SaveData
         }
     }
 
-
     [System.Serializable]
-    public class ItemsSave
+    public class ItemSave
     {
         public bool[] _isOwned = new bool[12];
-        public ItemsSave()
+        public ItemSave()
         {
             for (int i = 0; i < _isOwned.Length; i++)
             {
@@ -141,18 +140,24 @@ namespace SaveData
             }
         }
     }
-
     [System.Serializable]
     public class LostMoneySave
     {
         public int _amount;
-        public bool _status;
         public UnityEngine.Vector2 _position;
         public LostMoneySave()
         {
             _amount = 0;
-            _status = false;
             _position = new UnityEngine.Vector2(0,0);
+        }
+    }
+    [System.Serializable]
+    public class LostStatusSave
+    {
+        public bool _status;
+        public LostStatusSave()
+        {
+            _status = false;
         }
     }
 }

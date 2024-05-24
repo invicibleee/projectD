@@ -243,6 +243,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("PlayerTalants");
         PlayerPrefs.DeleteKey("PlayerItems");
         PlayerPrefs.DeleteKey("LostMoney");
+        PlayerPrefs.DeleteKey("LostStatusMoney");
         SceneManager.LoadScene(1);
     }
     public void ContinueGame()

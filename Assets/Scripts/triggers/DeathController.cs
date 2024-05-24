@@ -13,10 +13,11 @@ public class DeathController : MonoBehaviour
     [SerializeField] private BarsController barsController;
     private Vector2 playerDeathPoint;
     private int lostCurrency;
-    private bool status;
+    private bool status = false;
     private MoneyTrigger moneyTrigger;
 
     private string saveKey = "LostMoney";
+    private string saveKey2 = "LostStatusMoney";
     private void Start()
     {
         Load();
@@ -41,7 +42,11 @@ public class DeathController : MonoBehaviour
         PlayerManager.instance.RemoveEssences(lostCurrency);
         deathScreen.SetActive(false);
         money.transform.position = playerDeathPoint;
-        money.SetActive(true);
+        
+        status = true;
+
+        money.SetActive(status);
+        Save2();
         currency.GetCurrency(lostCurrency);
         player.stats.currentHealth = player.stats.maxHealth.GetValue();
         healthFlask.currentFlasks = healthFlask.maxFlasks;
@@ -49,25 +54,24 @@ public class DeathController : MonoBehaviour
         healthFlask.Load();
         barsController.SetHealth(player.stats.currentHealth, player.stats.maxHealth.GetValue());
         player.transform.position = transform.position;
-        status = true;
-        moneyTrigger.status = status;
         Save();
-        
     }
     public void Save()
     {
         SaveManager.Save(saveKey, GetData());
     }
-
+    public void Save2()
+    {
+        SaveManager.Save(saveKey2, GetData2());
+    }
 
     private void Load()
     {
         var data = SaveManager.Load<SaveData.LostMoneySave>(saveKey);
         lostCurrency = data._amount;
         playerDeathPoint = data._position;
-        money.transform.position = playerDeathPoint;
-        money.SetActive(data._status);
         currency.GetCurrency(lostCurrency);
+        money.transform.position = playerDeathPoint;
     }
 
     private SaveData.LostMoneySave GetData()
@@ -76,6 +80,15 @@ public class DeathController : MonoBehaviour
         {
             _amount = lostCurrency,
             _position = playerDeathPoint,
+        };
+
+        return data;
+    }
+
+    private SaveData.LostStatusSave GetData2()
+    {
+        var data = new SaveData.LostStatusSave()
+        {
             _status = status,
         };
 

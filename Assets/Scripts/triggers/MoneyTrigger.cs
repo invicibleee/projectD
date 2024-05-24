@@ -13,12 +13,12 @@ public class MoneyTrigger : MonoBehaviour
     private bool isPlayerNearby;
     private int money;
 
-    private string saveKey = "LostMoney";
+    private string saveKey = "LostStatusMoney";
     public bool status;
     private void Start()
     {
-        player = FindAnyObjectByType<Player>();
         Load();
+        player = FindAnyObjectByType<Player>();
     }
 
     public void GetCurrency(int i)
@@ -30,15 +30,16 @@ public class MoneyTrigger : MonoBehaviour
         if (status && isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
             PlayerManager.instance.AddEssences(money);
-            gameObject.SetActive(false);
+            status = false;
+            gameObject.SetActive(status);
             money = 0;
             message.text = "";
-            status = false;
             Save();
         } else if (!status)
         {
             gameObject.SetActive(false);
         }
+        Load();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -66,17 +67,16 @@ public class MoneyTrigger : MonoBehaviour
 
     private void Load()
     {
-        var data = SaveManager.Load<SaveData.LostMoneySave>(saveKey);
+        var data = SaveManager.Load<SaveData.LostStatusSave>(saveKey);
         status = data._status;
         gameObject.SetActive(data._status);
     }
 
-    private SaveData.LostMoneySave GetData()
+    private SaveData.LostStatusSave GetData()
     {
-        var data = new SaveData.LostMoneySave()
+        var data = new SaveData.LostStatusSave()
         {
             _status = status,
-
         };
 
         return data;
