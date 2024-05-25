@@ -22,6 +22,7 @@ public class DeathController : MonoBehaviour
     private string saveKey2 = "LostStatusMoney";
     private string saveKey3 = "StatueSave";
     private string saveKey4 = "playerPosition";
+    private string saveKey5 = "camera";
     private void Start()
     {
         Load();
@@ -59,6 +60,7 @@ public class DeathController : MonoBehaviour
         barsController.SetHealth(player.stats.currentHealth, player.stats.maxHealth.GetValue());
         index = SceneManager.GetActiveScene().buildIndex;
         Save();
+        Save4();
         Load2();
     }
     public void Save()
@@ -72,6 +74,10 @@ public class DeathController : MonoBehaviour
     public void Save3()
     {
         SaveManager.Save(saveKey4, GetData3());
+    }
+    public void Save4()
+    {
+        SaveManager.Save(saveKey5, GetData4());
     }
 
     private void Load()
@@ -117,6 +123,18 @@ public class DeathController : MonoBehaviour
         var data = new SaveData.PlayerPos()
         {
             _playerPos = player.transform.position,
+        };
+
+        return data;
+    }
+    private SaveData.CameraActivity GetData4()
+    {
+        var data = new SaveData.CameraActivity()
+        {  
+            _isMainCameraActive1 = true,
+            _isMainCameraActive2 = false,
+            _isMainCameraActive3 = true,
+            _isMainCameraActive4 = false,
         };
 
         return data;

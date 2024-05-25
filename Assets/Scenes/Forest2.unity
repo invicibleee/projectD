@@ -14825,7 +14825,7 @@ GameObject:
   m_Component:
   - component: {fileID: 935444679}
   - component: {fileID: 935444681}
-  - component: {fileID: 935444680}
+  - component: {fileID: 935444682}
   m_Layer: 0
   m_Name: bossExitTrigger
   m_TagString: Untagged
@@ -14848,20 +14848,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1500381266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &935444680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 935444678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7de163351021a3640a34ab4000fe1701, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1630666817}
-  alternativeCamera: {fileID: 1902836050}
 --- !u!61 &935444681
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14907,6 +14893,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.437088, y: 8.23601}
   m_EdgeRadius: 0
+--- !u!114 &935444682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935444678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7de163351021a3640a34ab4000fe1701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1630666817}
+  alternativeCamera: {fileID: 1902836050}
+  index: 2
 --- !u!1 &937237880
 GameObject:
   m_ObjectHideFlags: 0
@@ -41460,6 +41461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1902836052}
   alternativeCamera: {fileID: 1630666816}
+  index: 1
 --- !u!61 &1472733054
 BoxCollider2D:
   m_ObjectHideFlags: 0
