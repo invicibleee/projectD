@@ -3347,6 +3347,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278483479}
   m_CullTransparentMesh: 1
+--- !u!1 &280333068 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7383949718959736087, guid: 2d053412be1e71c4bb3038f31c36c3d3, type: 3}
+  m_PrefabInstance: {fileID: 1002854030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &281859762
 GameObject:
   m_ObjectHideFlags: 0
@@ -15597,7 +15602,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5096433497256549000, guid: 2d053412be1e71c4bb3038f31c36c3d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 194.88
+      value: 194.87
       objectReference: {fileID: 0}
     - target: {fileID: 5096433497256549000, guid: 2d053412be1e71c4bb3038f31c36c3d3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15639,13 +15644,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossOne
       objectReference: {fileID: 0}
+    - target: {fileID: 7383949718959736087, guid: 2d053412be1e71c4bb3038f31c36c3d3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8919917102071163419, guid: 2d053412be1e71c4bb3038f31c36c3d3, type: 3}
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8919917102071163419, guid: 2d053412be1e71c4bb3038f31c36c3d3, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8919917102071163419, guid: 2d053412be1e71c4bb3038f31c36c3d3, type: 3}
       propertyPath: m_SortingOrder
@@ -15660,6 +15669,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d053412be1e71c4bb3038f31c36c3d3, type: 3}
+--- !u!114 &1002854031 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3408923269159804197, guid: 2d053412be1e71c4bb3038f31c36c3d3, type: 3}
+  m_PrefabInstance: {fileID: 1002854030}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 280333068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabbc7e2134452541b5f3b087c8c442d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1011997805
 GameObject:
   m_ObjectHideFlags: 0
@@ -17737,7 +17757,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -6.3624954, y: -2.6662302}
+  m_Offset: {x: 13.4004135, y: 1.2745886}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -17748,7 +17768,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4766388, y: 6.3324604}
+  m_Size: {x: 40.002457, y: 14.214098}
   m_EdgeRadius: 0
 --- !u!4 &1120483133
 Transform:
@@ -17777,8 +17797,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca3a72ea6220be8418f1ae16b931172e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossOne: {fileID: 1002854031}
   HUD: {fileID: 4541528273480319665}
   BarHP: {fileID: 7891387532533584047}
+  Boss: {fileID: 280333068}
+  maxHP: 0
+  currentHP: 0
+  isDead: 0
   displayTime: 10
   fadeDuration: 4
   hpBack: {fileID: 3011395233520873553}

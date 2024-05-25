@@ -246,13 +246,16 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("LostStatusMoney");
         PlayerPrefs.DeleteKey("StatueSave");
         PlayerPrefs.DeleteKey("camera");
+        PlayerPrefs.DeleteKey("BossSave");
         SceneManager.LoadScene(1);
     }
     public void ContinueGame()
     {
         var data2 = SaveManager.Load<SaveData.PlayerPos>(saveKey2);
         sceneIndex = data2._sceneIndex;
-        SceneManager.LoadScene(sceneIndex);
+        Debug.Log(sceneIndex);
+        Debug.Log(data2._playerPos);
+       SceneManager.LoadScene(sceneIndex);
 
     }
     private void Load()

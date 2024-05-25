@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 public class BossGUI : MonoBehaviour
 {
 
-    private EnemyBossOne bossOne;
- 
-    [SerializeField] private GameObject HUD;
+    [SerializeField] private EnemyBossOne bossOne;
+    [SerializeField] public GameObject HUD;
     [SerializeField] private Image BarHP;
-    private float maxHP;
-    private float currentHP;
-    protected bool isDead;
+    [SerializeField] private GameObject Boss;
+    public float maxHP;
+    public float currentHP;
+    [SerializeField] public bool isDead;
 
     [SerializeField] private float displayTime = 10f;
     [SerializeField] private float fadeDuration = 4f;
@@ -25,13 +26,24 @@ public class BossGUI : MonoBehaviour
     [SerializeField] private GameObject exitTrigger;
     [SerializeField] private GameObject[] walls;
 
+    private string saveKey = "BossSave";
 
+    private void Awake()
+    {
+        Load();
+        if (!isDead)
+        {
+            Boss.SetActive(true);
+            bossOne = FindAnyObjectByType<EnemyBossOne>();
+        }
+    }
     void Start()
     {
-        bossOne = FindAnyObjectByType<EnemyBossOne>();
-        maxHP = bossOne.stats.maxHealth.GetValue();
+        maxHP = 1;
+
         currentHP = maxHP;
         ResetHUDColors();
+  
     }
 
     void UpdateBar()
@@ -51,13 +63,18 @@ public class BossGUI : MonoBehaviour
 
     public async void FixedUpdate()
     {
-        currentHP = bossOne.stats.currentHealth;
-        UpdateBar();
+        if (!isDead)
+        {
+            currentHP = bossOne.stats.currentHealth;
+            UpdateBar();
+        }
+        
 
         if (currentHP <= 0 && HUD.activeSelf)
         {
             UpdateBar();
             isDead = true;
+            Save();
             victoryText.SetActive(true);
             walls[0].SetActive(false);
             walls[1].SetActive(false);
@@ -131,7 +148,34 @@ public class BossGUI : MonoBehaviour
             walls[0].SetActive(true);
             walls[1].SetActive(true);
             exitTrigger.SetActive(false);
+
+            if (bossOne != null)
+            {
+                maxHP = bossOne.stats.maxHealth.GetValue();
+
+                currentHP = maxHP;
+            }
+
         }
+    }
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+
+    }
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.BossSave>(saveKey);
+        isDead = !data._isFirstBossAlive;
+
+    }
+    private SaveData.BossSave GetData()
+    {
+        var data = new SaveData.BossSave()
+        {
+            _isFirstBossAlive = !isDead,
+        };
+        return data;
     }
 
 }

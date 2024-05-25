@@ -190,6 +190,17 @@ namespace SaveData
 
         }
     }
+    [System.Serializable]
+    public class BossSave
+    {
+        public bool _isFirstBossAlive;
+        public bool _isSecondBossAlive;
+        public BossSave()
+        {
+            _isFirstBossAlive = true;
+            _isSecondBossAlive = true;
+        }
+    }
 }
 
 

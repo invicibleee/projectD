@@ -15,8 +15,8 @@ MonoBehaviour:
   maxHealth: 30
   damageHopSpeed: 10
   enemyAttackDamage: 10
-  maxAgroDistance: 40
-  minAgroDistance: 30
+  maxAgroDistance: 25
+  minAgroDistance: 20
   groundCheckRadius: 0.3
   stunResistance: 3
   stunRecoveryTime: 2

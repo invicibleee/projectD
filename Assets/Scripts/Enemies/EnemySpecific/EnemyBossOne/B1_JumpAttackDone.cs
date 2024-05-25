@@ -33,31 +33,33 @@ public class B1_JumpAttackDone : JumpAttackDone
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        if (isPlayerInMaxAgroRange)
-        {
-            if (Time.time >= bossOne.rangeTargetAttackState.startTime + bossOne.rangeTargetAttackStateData.rangeAttackCooldown && bossOne.stats.currentHealth >= bossOne.stats.maxHealth.GetValue() / 2)
+        if(isAnimationFinished) 
+        { 
+            if (isPlayerInMaxAgroRange)
             {
-                stateMashine.ChangeState(bossOne.rangeTargetAttackState);
+                if (Time.time >= bossOne.rangeTargetAttackState.startTime + bossOne.rangeTargetAttackStateData.rangeAttackCooldown && bossOne.stats.currentHealth >= bossOne.stats.maxHealth.GetValue() / 2)
+                {
+                    stateMashine.ChangeState(bossOne.rangeTargetAttackState);
+                }
+                else if (Time.time >= bossOne.rangeTripleTargetAttackState.startTime + bossOne.rangeTripleTargetAttackStateData.rangeTripleAttackCooldown && bossOne.stats.currentHealth <= bossOne.stats.maxHealth.GetValue() / 2)
+                {
+                    stateMashine.ChangeState(bossOne.rangeTripleTargetAttackState);
+                }else
+                {
+                    stateMashine.ChangeState(bossOne.idleState);
+                }
             }
-            else if (Time.time >= bossOne.rangeTripleTargetAttackState.startTime + bossOne.rangeTripleTargetAttackStateData.rangeTripleAttackCooldown && bossOne.stats.currentHealth <= bossOne.stats.maxHealth.GetValue() / 2)
+            if (isPlayerInMinAgroRange)
             {
-                stateMashine.ChangeState(bossOne.rangeTripleTargetAttackState);
-            }else
-            {
-                stateMashine.ChangeState(bossOne.idleState);
+                if (Time.time >= bossOne.rollState.startTime + bossOne.bossRollStateData.rollCooldown)
+                {
+                    stateMashine.ChangeState(bossOne.rollState);
+                }
             }
-        }
-        if (isPlayerInMinAgroRange)
-        {
-            if (Time.time >= bossOne.rollState.startTime + bossOne.bossRollStateData.rollCooldown)
+            else
             {
-                stateMashine.ChangeState(bossOne.rollState);
+                stateMashine.ChangeState(bossOne.lookForPlayerState);
             }
-        }
-        else
-        {
-            stateMashine.ChangeState(bossOne.lookForPlayerState);
         }
     }
 

@@ -40,6 +40,7 @@ public class DeathController : MonoBehaviour
             deathScreen.SetActive(true);
         }
     }
+
     public void Respawn()
     {
         player.stats.isDead = false;
