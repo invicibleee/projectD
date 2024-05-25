@@ -144,10 +144,12 @@ namespace SaveData
     public class LostMoneySave
     {
         public int _amount;
+        public int _sceneIndex;
         public UnityEngine.Vector2 _position;
         public LostMoneySave()
         {
             _amount = 0;
+            _sceneIndex = 1;
             _position = new UnityEngine.Vector2(0,0);
         }
     }
@@ -158,6 +160,18 @@ namespace SaveData
         public LostStatusSave()
         {
             _status = false;
+        }
+    }
+
+    [System.Serializable]
+    public class StatueSave
+    {
+        public UnityEngine.Vector2 _statuePosition;
+        public int _sceneIndex;
+        public StatueSave()
+        {
+            _statuePosition = new UnityEngine.Vector2(-3, 12);
+            _sceneIndex = 1;
         }
     }
 }

@@ -12,7 +12,7 @@ public class DetecringPlayer : MonoBehaviour
     }
     private void Update()
     {
-        Save();
+       
     }
     public void Save()
     {
@@ -20,7 +20,10 @@ public class DetecringPlayer : MonoBehaviour
 
     }
 
-
+    private void OnApplicationQuit()
+    {
+        Save();
+    }
     private void Load()
     {
         var data = SaveManager.Load<SaveData.PlayerPos>(saveKey);

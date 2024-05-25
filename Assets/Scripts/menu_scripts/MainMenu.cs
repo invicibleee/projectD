@@ -244,6 +244,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("PlayerItems");
         PlayerPrefs.DeleteKey("LostMoney");
         PlayerPrefs.DeleteKey("LostStatusMoney");
+        PlayerPrefs.DeleteKey("StatueSave");
         SceneManager.LoadScene(1);
     }
     public void ContinueGame()

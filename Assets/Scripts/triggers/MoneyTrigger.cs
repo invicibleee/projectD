@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
@@ -12,12 +13,20 @@ public class MoneyTrigger : MonoBehaviour
     [SerializeField] private string text;
     private bool isPlayerNearby;
     private int money;
+    private int index;
 
     private string saveKey = "LostStatusMoney";
+    private string saveKey2 = "LostMoney";
+
     public bool status;
     private void Start()
     {
         Load();
+        Load2();
+        if(index != SceneManager.GetActiveScene().buildIndex)
+        {
+            gameObject.SetActive(false);
+        }
         player = FindAnyObjectByType<Player>();
     }
 
@@ -71,7 +80,11 @@ public class MoneyTrigger : MonoBehaviour
         status = data._status;
         gameObject.SetActive(data._status);
     }
-
+    private void Load2()
+    {
+        var data = SaveManager.Load<SaveData.LostMoneySave>(saveKey2);
+        index = data._sceneIndex;
+    }
     private SaveData.LostStatusSave GetData()
     {
         var data = new SaveData.LostStatusSave()
