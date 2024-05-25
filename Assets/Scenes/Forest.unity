@@ -51787,13 +51787,13 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 5567253570619046216}
+    - target: {fileID: 4721911540413673691, guid: 81edec62d3b815549a164eb86b0f068c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4972206494300132691, guid: 81edec62d3b815549a164eb86b0f068c, type: 3}
       propertyPath: m_Name
       value: map
-      objectReference: {fileID: 0}
-    - target: {fileID: 4972206494300132691, guid: 81edec62d3b815549a164eb86b0f068c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7026794637745661748, guid: 81edec62d3b815549a164eb86b0f068c, type: 3}
       propertyPath: targetObject
