@@ -118,9 +118,21 @@ public class Entity : MonoBehaviour
     }
     #endregion
     #region Collision
-    public virtual bool IsGroundDetected() => Physics2D.OverlapCircle(groundCheck.position, groundCheckDistance, whatIsGround);
+    public virtual bool IsGroundDetected()
+    {
+        int whatIsGroundAndOneWay = whatIsGround | (1 << LayerMask.NameToLayer("OneWayPlatform"));
+        return Physics2D.OverlapCircle(groundCheck.position, groundCheckDistance, whatIsGroundAndOneWay);
+    }
 
-    public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, wallCheckDistance, whatIsGround);
+
+    public virtual bool IsWallDetected()
+    {
+        // —оздайте маску слоев, котора€ игнорирует слой OneWayPlatform
+        int whatIsGroundAndNotOneWay = whatIsGround & ~(1 << LayerMask.NameToLayer("OneWayPlatform"));
+
+        return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDirection, wallCheckDistance, whatIsGroundAndNotOneWay);
+    }
+
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y, groundCheckDistance));
