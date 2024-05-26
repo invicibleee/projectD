@@ -102,18 +102,21 @@ public class BossGUI : MonoBehaviour
         }
 
         float timer = 0f;
-        while (timer < duration)
-        {
-            float progress = timer / duration * 5f;
+        if(HUD.activeSelf == true) {
+            while (timer < duration)
+            {
+                float progress = timer / duration * 5f;
 
-            hpBack.GetComponent<Image>().color = Color.Lerp(originalColors[0], fadeColors[0], progress);
-            hp.GetComponent<Image>().color = Color.Lerp(originalColors[1], fadeColors[1], progress);
-            nameText.GetComponent<Text>().color = Color.Lerp(originalColors[2], fadeColors[2], progress);
-            victoryText.GetComponent<Text>().color = Color.Lerp(originalColors[3], fadeColors[3], progress);
+                hpBack.GetComponent<Image>().color = Color.Lerp(originalColors[0], fadeColors[0], progress);
+                hp.GetComponent<Image>().color = Color.Lerp(originalColors[1], fadeColors[1], progress);
+                nameText.GetComponent<Text>().color = Color.Lerp(originalColors[2], fadeColors[2], progress);
+                victoryText.GetComponent<Text>().color = Color.Lerp(originalColors[3], fadeColors[3], progress);
 
-            timer += Time.deltaTime;
-            await Task.Yield();
+                timer += Time.deltaTime;
+                await Task.Yield();
+            }
         }
+
 
     }
 

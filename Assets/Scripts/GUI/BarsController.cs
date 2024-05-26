@@ -24,6 +24,10 @@ public class BarsController : MonoBehaviour
         UpdateBars();
     }
 
+    private void FixedUpdate()
+    {
+        UpdateBars();
+    }
     public void UpdateBars()
     {
         BarHP.fillAmount = currentHP / stats.GetMaxHealthValue();

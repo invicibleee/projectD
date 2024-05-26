@@ -9,30 +9,39 @@ public class CameraChangeTrigger : MonoBehaviour
     [SerializeField] private CinemachineVirtualCamera mainCamera;
     [SerializeField] private GameObject alternativeCamera;
     [SerializeField] private int index;
-    private bool isMainCameraActive;
+    [SerializeField] private CameraChangeTrigger otherCameraTrigger;
+    public bool isMainCameraActive;
     private string saveKey = "camera";
 
     private void Awake()
     {
         Load();
         mainCamera.gameObject.SetActive(isMainCameraActive);
+        alternativeCamera.gameObject.SetActive(!isMainCameraActive);
     }
+
     private void TriggerAction()
     {
-        if (isMainCameraActive) {
+        isMainCameraActive = !isMainCameraActive;
+        mainCamera.gameObject.SetActive(isMainCameraActive);
+        alternativeCamera.gameObject.SetActive(!isMainCameraActive);
 
-            alternativeCamera.SetActive(true);
-            mainCamera.gameObject.SetActive(false);
-            isMainCameraActive = false;
-        }
-        else
+        if (otherCameraTrigger != null)
         {
-            mainCamera.gameObject.SetActive(true);
-            alternativeCamera.SetActive(false);
-            isMainCameraActive = true;
+            otherCameraTrigger.SetCameraState(!isMainCameraActive);
         }
-      
+
+        Save();
     }
+
+    public void SetCameraState(bool state)
+    {
+        isMainCameraActive = state;
+        mainCamera.gameObject.SetActive(isMainCameraActive);
+        alternativeCamera.gameObject.SetActive(!isMainCameraActive);
+        Save();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
@@ -40,104 +49,41 @@ public class CameraChangeTrigger : MonoBehaviour
             TriggerAction();
         }
     }
-    public void Save1()
-    {
-        SaveManager.Save(saveKey, GetData1());
 
-    }
-    public void Save2()
-    {
-        SaveManager.Save(saveKey, GetData2());
-
-    }
-    public void Save3()
-    {
-        SaveManager.Save(saveKey, GetData3());
-
-    }
-    public void Save4()
-    {
-        SaveManager.Save(saveKey, GetData4());
-
-    }
     private void OnApplicationQuit()
     {
+        Save();
+    }
+
+    private void Save()
+    {
+        var data = SaveManager.Load<SaveData.CameraActivity>(saveKey) ?? new SaveData.CameraActivity();
         if (index == 1)
         {
-            Save1();
-           
+            data._isMainCameraActive1 = isMainCameraActive;
         }
         else if (index == 2)
         {
-            Save2();
-           
+            data._isMainCameraActive2 = isMainCameraActive;
         }
-        else if (index == 3)
-        {
-            Save3();
-        }
-        else if (index == 4)
-        {
-            Save4();
-        }
+        SaveManager.Save(saveKey, data);
     }
+
     private void Load()
     {
         var data = SaveManager.Load<SaveData.CameraActivity>(saveKey);
-        if(index == 1)
+        if (data != null)
         {
-            isMainCameraActive = data._isMainCameraActive1;
-            Debug.Log("camera 1 status" + isMainCameraActive);
-        } else if (index == 2)
-        {
-            isMainCameraActive = data._isMainCameraActive2;
-            Debug.Log("camera 2 status" + isMainCameraActive);
+            if (index == 1)
+            {
+                isMainCameraActive = data._isMainCameraActive1;
+                Debug.Log("Camera 1 status: " + isMainCameraActive);
+            }
+            else if (index == 2)
+            {
+                isMainCameraActive = data._isMainCameraActive2;
+                Debug.Log("Camera 2 status: " + isMainCameraActive);
+            }
         }
-        else if (index == 3)
-        {
-            isMainCameraActive = data._isMainCameraActive3;
-        }
-        else if (index == 4)
-        {
-            isMainCameraActive = data._isMainCameraActive4;
-        }
-
-    }
-
-    private SaveData.CameraActivity GetData1()
-    {
-        var data = new SaveData.CameraActivity()
-        {
-            _isMainCameraActive1 = isMainCameraActive,
-            _isMainCameraActive2 = !isMainCameraActive,
-        };
-        return data;
-    }
-    private SaveData.CameraActivity GetData2()
-    {
-        var data = new SaveData.CameraActivity()
-        {
-            _isMainCameraActive1 = !isMainCameraActive,
-            _isMainCameraActive2 = isMainCameraActive,
-        };
-        return data;
-    }
-    private SaveData.CameraActivity GetData3()
-    {
-        var data = new SaveData.CameraActivity()
-        {
-            _isMainCameraActive3 = isMainCameraActive,
-            _isMainCameraActive4 = !isMainCameraActive,
-        };
-        return data;
-    }
-    private SaveData.CameraActivity GetData4()
-    {
-        var data = new SaveData.CameraActivity()
-        {
-            _isMainCameraActive3 = !isMainCameraActive,
-            _isMainCameraActive4 = isMainCameraActive,
-        };
-        return data;
     }
 }
