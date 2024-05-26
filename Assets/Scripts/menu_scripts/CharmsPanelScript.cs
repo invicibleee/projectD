@@ -43,11 +43,12 @@ public class CharmsPanelScript : MonoBehaviour
     private void Awake()
     {
         charmsArray = FindObjectsOfType<Charm>();
+        pauseMenuScript = GetComponent<PauseMenuScript>();
+
     }
     void Start()
     {
         Load();
-        pauseMenuScript = GetComponent<PauseMenuScript>();
         currentCharm = 1;
         descriptionText.text = "select skill";
         Prompt.text = "";
@@ -206,7 +207,7 @@ public class CharmsPanelScript : MonoBehaviour
             Debug.Log("deactivated " + charmsArray[charmIndex]);
             charmsArray[charmIndex].DeactivateEffect();
         }
-
+        Save();
     }
     private void EquipCharm(int charmIndex)
     {
@@ -395,26 +396,26 @@ public class CharmsPanelScript : MonoBehaviour
             charms[i].isOwned = data._isOwned[i];
         }
 
-        if(data._isEqiped[0] != -1)
+        Debug.Log("charm 1" + data._isEqiped[0]);
+        Debug.Log("charm 2" + data._isEqiped[1]);
+        Debug.Log("charm 3" + data._isEqiped[2]);
+        if (data._isEqiped[0] != -1)
         {
-            Debug.Log(data._isEqiped[0]);
+    
             EquipCharm(data._isEqiped[0]);
-          
-            SetColorForSlot(0);
+         
         }
-        if (data._isEqiped[1] != -1 || data._isEqiped[1] != null)
+        if (data._isEqiped[1] != -1)
         {
-            Debug.Log(data._isEqiped[1]);
-            EquipCharm(data._isEqiped[1]);
            
-            SetColorForSlot(1);
+            EquipCharm(data._isEqiped[1]);
+          
         }
-        if (data._isEqiped[2] != -1 ||  data._isEqiped[2] != null)
+        if (data._isEqiped[2] != -1)
         {
-            Debug.Log(data._isEqiped[2]);
+         
             EquipCharm(data._isEqiped[2]);
             
-            SetColorForSlot(2);
         }
 
   

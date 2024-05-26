@@ -47073,7 +47073,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb88ad32ca4655419d10c7920097046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 11, y: 1}
+  position: {x: -8, y: 0}
   scene: 4
   screenFade: {fileID: 1323936339}
   ui: {fileID: 208710687}
