@@ -397,17 +397,23 @@ public class CharmsPanelScript : MonoBehaviour
 
         if(data._isEqiped[0] != -1)
         {
+            Debug.Log(data._isEqiped[0]);
             EquipCharm(data._isEqiped[0]);
+          
             SetColorForSlot(0);
         }
-        if (data._isEqiped[1] != -1)
+        if (data._isEqiped[1] != -1 || data._isEqiped[1] != null)
         {
+            Debug.Log(data._isEqiped[1]);
             EquipCharm(data._isEqiped[1]);
+           
             SetColorForSlot(1);
         }
-        if (data._isEqiped[2] != -1)
+        if (data._isEqiped[2] != -1 ||  data._isEqiped[2] != null)
         {
+            Debug.Log(data._isEqiped[2]);
             EquipCharm(data._isEqiped[2]);
+            
             SetColorForSlot(2);
         }
 
