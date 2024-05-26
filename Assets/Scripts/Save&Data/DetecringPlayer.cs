@@ -30,7 +30,7 @@ public class DetecringPlayer : MonoBehaviour
 
         // якщо ви хочете використовувати завантажен≥ дан≥, наприклад, дл€ перем≥щенн€ гравц€
         transform.position = new Vector2(data._playerPos.x, data._playerPos.y);
-        Debug.Log("Scene = "+data._sceneIndex);
+       // SceneManager.LoadScene(data._sceneIndex);
     }
 
     private SaveData.PlayerPos GetData()

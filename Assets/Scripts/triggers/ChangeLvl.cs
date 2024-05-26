@@ -28,11 +28,6 @@ public class ChangeLvl : MonoBehaviour
                 ui.SetActive(true);
                 screenFade.FadeOutAndChangeScene(scene); 
             }
-            else
-            {
-                Save();
-                SceneManager.LoadScene(scene); 
-            }
 
         }
     }

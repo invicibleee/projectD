@@ -45,7 +45,7 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(isDamaged);
+       //Debug.Log(isDamaged);
         if (!hasHitGround)
         {
             attackDetails.position = transform.position;

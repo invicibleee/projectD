@@ -174,6 +174,33 @@ namespace SaveData
             _sceneIndex = 1;
         }
     }
+    [System.Serializable]
+    public class CameraActivity
+    {
+        public bool _isMainCameraActive1;
+        public bool _isMainCameraActive2;
+        public bool _isMainCameraActive3;
+        public bool _isMainCameraActive4;
+        public CameraActivity()
+        {
+          _isMainCameraActive1 = true;
+          _isMainCameraActive2 = false;
+          _isMainCameraActive3 = true;    
+          _isMainCameraActive4 = false;
+
+        }
+    }
+    [System.Serializable]
+    public class BossSave
+    {
+        public bool _isFirstBossAlive;
+        public bool _isSecondBossAlive;
+        public BossSave()
+        {
+            _isFirstBossAlive = true;
+            _isSecondBossAlive = true;
+        }
+    }
 }
 
 
