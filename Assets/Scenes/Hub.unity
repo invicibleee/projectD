@@ -6605,7 +6605,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 33.12587, y: 15.568672}
+  m_Offset: {x: 33.12587, y: 11.105131}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6616,7 +6616,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 29.809326, y: 32.137344}
+  m_Size: {x: 29.809326, y: 41.064426}
   m_EdgeRadius: 0
 --- !u!61 &407859834
 BoxCollider2D:
@@ -6650,7 +6650,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: -8.0385895, y: 1.018713}
+  m_Offset: {x: -22.427643, y: 1.018713}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6661,7 +6661,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 112.14874, y: 21.147877}
+  m_Size: {x: 83.370636, y: 21.147877}
   m_EdgeRadius: 0
 --- !u!66 &407859835
 CompositeCollider2D:
@@ -6702,13 +6702,13 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 407859834}
     m_ColliderPaths:
-    - - X: 480357824
+    - - X: 192576752
         Y: 115926512
       - X: -641129600
         Y: 115926512
       - X: -641129600
         Y: -95552256
-      - X: 480357824
+      - X: 192576752
         Y: -95552256
   - m_Collider: {fileID: 407859833}
     m_ColliderPaths:
@@ -6717,9 +6717,9 @@ CompositeCollider2D:
       - X: 182212064
         Y: 316373440
       - X: 182212064
-        Y: -5000000
+        Y: -94270824
       - X: 480305344
-        Y: -5000000
+        Y: -94270824
   - m_Collider: {fileID: 407859832}
     m_ColliderPaths:
     - - X: 480437632
@@ -6734,9 +6734,7 @@ CompositeCollider2D:
     m_Paths:
     - - {x: 48.043736, y: -23.858742}
       - {x: 48.043736, y: -7.7637067}
-      - {x: 48.03578, y: -7.763677}
-      - {x: 48.035755, y: 11.592651}
-      - {x: 48.030537, y: 11.592681}
+      - {x: 48.030537, y: -7.763677}
       - {x: 48.030506, y: 31.637344}
       - {x: 18.221207, y: 31.637316}
       - {x: 18.221178, y: 11.592651}
@@ -20120,6 +20118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 777979193}
   isOpen: 0
+  index: 2
   rotationSpeed: 90
   doorAnimator: {fileID: 777979195}
 --- !u!61 &1159751230
@@ -46400,7 +46399,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 359333861}
-  isOpen: 0
+  isOpen: 1
+  index: 3
   rotationSpeed: 90
   doorAnimator: {fileID: 359333863}
 --- !u!61 &1279088924
@@ -48250,8 +48250,8 @@ Transform:
   m_GameObject: {fileID: 1414202700}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 132.3603, y: -1.9982, z: -0.2873}
-  m_LocalScale: {x: 2.033541, y: 2.59847, z: 1.1208735}
+  m_LocalPosition: {x: 132.3603, y: -1.8534, z: -0.2873}
+  m_LocalScale: {x: 2.033541, y: 2.6397858, z: 1.1208735}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1915034390}
@@ -50524,6 +50524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   door: {fileID: 1903437182}
   isOpen: 0
+  index: 1
   rotationSpeed: 90
   doorAnimator: {fileID: 1903437183}
 --- !u!61 &1628146532

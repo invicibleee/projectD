@@ -201,6 +201,20 @@ namespace SaveData
             _isSecondBossAlive = true;
         }
     }
+
+    [System.Serializable]
+    public class DoorSave
+    {
+        public bool _doorOpenOne;
+        public bool _doorOpenTwo;
+        public bool _doorOpenThree;
+        public DoorSave()
+        {
+            _doorOpenOne = false;
+            _doorOpenTwo = false;
+            _doorOpenThree = false;
+        }
+    }
 }
 
 

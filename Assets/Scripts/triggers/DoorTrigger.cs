@@ -6,13 +6,17 @@ public class DoorTrigger : MonoBehaviour
 {
     [SerializeField] private GameObject door;
     [SerializeField] private bool isOpen;
+    [SerializeField] private int index;
     [SerializeField] private float rotationSpeed = 90f;
     [SerializeField] private Animator doorAnimator;
+    private string saveKey = "doorSave";
 
     private void Start()
     {
-        isOpen = false;
+    
+       // isOpen = false;
         doorAnimator = door.GetComponent<Animator>();
+        Load();
     }
     private IEnumerator UpdateAnimation()
     {
@@ -24,7 +28,7 @@ public class DoorTrigger : MonoBehaviour
     {
         if (isOpen)
         {
-            StartCoroutine(UpdateAnimation());
+            doorAnimator.SetBool("isStaying", true);
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
@@ -33,7 +37,9 @@ public class DoorTrigger : MonoBehaviour
         {
             Debug.Log("Open");
             OpenDoor();
+            StartCoroutine(UpdateAnimation());
             isOpen = true;
+            Save();
         }
     }
 
@@ -43,15 +49,54 @@ public class DoorTrigger : MonoBehaviour
         {
             doorAnimator.SetBool("isFalling", true);
         }
-        else
-        {
-            Debug.LogError("Door animator is null!");
-        }
     }
 
     public void SetOpen()
     {
         isOpen = true;
     }
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+    }
 
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.DoorSave>(saveKey);
+       
+            switch (index)
+            {
+                case 1:
+                    isOpen = data._doorOpenOne;
+                    break;
+                case 2:
+                    isOpen = data._doorOpenTwo;
+                    break;
+                case 3:
+                    isOpen = data._doorOpenThree;
+                    break;
+            }
+    }
+
+    private SaveData.DoorSave GetData()
+    {
+        var data = SaveManager.Load<SaveData.DoorSave>(saveKey);
+        if (data == null) data = new SaveData.DoorSave();
+
+        switch (index)
+        {
+            case 1:
+                data._doorOpenOne = isOpen;
+                break;
+            case 2:
+                data._doorOpenTwo = isOpen;
+                break;
+            case 3:
+                data._doorOpenThree = isOpen;
+                break;
+        }
+
+        return data;
+    }
 }
