@@ -40390,6 +40390,7 @@ GameObject:
   - component: {fileID: 1281832112}
   - component: {fileID: 1281832111}
   - component: {fileID: 1281832110}
+  - component: {fileID: 1281832113}
   m_Layer: 0
   m_Name: ChangeScene2
   m_TagString: Untagged
@@ -40487,6 +40488,18 @@ MonoBehaviour:
   scene: 3
   screenFade: {fileID: 1281832111}
   ui: {fileID: 771368752}
+--- !u!114 &1281832113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1281832108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 054f348e88635cd4dae18d0f8739a5d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1287494641
 GameObject:
   m_ObjectHideFlags: 0

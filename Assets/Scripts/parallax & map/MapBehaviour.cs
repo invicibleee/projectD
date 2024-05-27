@@ -14,18 +14,31 @@ public class MapBehaviour : MonoBehaviour
 
     private bool isObjectActive = false;
     private bool isPaused = false;
-    [SerializeField] private bool isForestMapOpened;
-    [SerializeField] private bool isFullMapOpened;
-
+    [SerializeField] public bool isForestMapOpened;
+    [SerializeField] public bool isFullMapOpened;
+    private string saveKey = "mapSave";
+    private Player player;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        Load();
+    }
+    private void Start()
+    {
+       player= FindAnyObjectByType<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(player.stats.currentHealth <= 0)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(true);
+        }
 
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -101,4 +114,13 @@ public class MapBehaviour : MonoBehaviour
         Time.timeScale = 1f;
         isPaused = false;
     }
+
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.MapSave>(saveKey);
+
+        isFullMapOpened = data._isCastleOpen;
+        isForestMapOpened = data._isForestOpen;
+    }
+
 }

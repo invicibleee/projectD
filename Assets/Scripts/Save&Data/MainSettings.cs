@@ -215,6 +215,19 @@ namespace SaveData
             _doorOpenThree = false;
         }
     }
+
+    [System.Serializable]
+    public class MapSave
+    {
+        public bool _isForestOpen;
+        public bool _isCastleOpen;
+
+        public MapSave()
+        {
+            _isForestOpen = false;
+            _isCastleOpen = false;
+        }
+    }
 }
 
 
