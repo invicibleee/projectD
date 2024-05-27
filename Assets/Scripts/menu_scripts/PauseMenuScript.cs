@@ -10,6 +10,7 @@ public class PauseMenuScript : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject gui;
     public GameObject postProcessing;
+    public GameObject map;
 
     public Button closeButton;
 
@@ -103,9 +104,15 @@ public class PauseMenuScript : MonoBehaviour
             bool isMenuActive = pauseMenu.activeSelf;
             bool isGuiActive = gui.activeSelf;
             bool isPostActive = postProcessing.activeSelf;
+            if(map != null)
+            {
+                bool isMapActive = map.activeSelf;
+                map.SetActive(!isMapActive);
+            }
             pauseMenu.SetActive(!isMenuActive);
             gui.SetActive(!isGuiActive);
             postProcessing.SetActive(!isPostActive);
+           
             // Pause or resume the game based on the menu's visibility
             Time.timeScale = isMenuActive ? 1f : 0f;
         }

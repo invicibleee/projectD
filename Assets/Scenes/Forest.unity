@@ -109220,6 +109220,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 605476949}
   gui: {fileID: 2664701494368598057}
   postProcessing: {fileID: 1498560922}
+  map: {fileID: 2147642853433988334}
   closeButton: {fileID: 929595065}
   menuButtons:
   - {fileID: 259666327}

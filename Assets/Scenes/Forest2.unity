@@ -52052,6 +52052,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 865487540}
   gui: {fileID: 1433263943}
   postProcessing: {fileID: 1568600379}
+  map: {fileID: 1254478091042330852}
   closeButton: {fileID: 291368335}
   menuButtons:
   - {fileID: 1578700033}
@@ -58244,7 +58245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1261321147375783506
 RectTransform:
   m_ObjectHideFlags: 0
