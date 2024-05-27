@@ -42152,7 +42152,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1023
+    m_Bits: 3071
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -54293,7 +54293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ff79446ddca9c4cbbd1403dbf95ad1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFirstDialogue: 1
+  isFirstDialogue: 0
   dialogue: {fileID: 2930529}
   message: {fileID: 281859763}
 --- !u!1 &1938027141

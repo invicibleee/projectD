@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DialogueEditor;
 
 [System.Serializable]
 public struct Item
@@ -24,7 +25,7 @@ public class InventoryPanelScript : MonoBehaviour
     [SerializeField] private Text descriptionText;
     [SerializeField] private Text nameText;
 
-    private string saveKey = "PlayerItems";
+   private string saveKey = "PlayerItems";
 
     private void Awake()
     {
@@ -207,4 +208,5 @@ public class InventoryPanelScript : MonoBehaviour
 
         return data;
     }
+
 }

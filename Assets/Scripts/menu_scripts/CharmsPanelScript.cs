@@ -21,7 +21,7 @@ public class CharmsPanelScript : MonoBehaviour
 {
     PauseMenuScript pauseMenuScript;
     [SerializeField] private Charm[] charmsArray;
-    [SerializeField] private CharmInfo[] charms;
+    [SerializeField] public CharmInfo[] charms;
     [SerializeField] private CharmInfo[] equippedCharms = new CharmInfo[3];
     [SerializeField] private Text descriptionText;
     [SerializeField] private Text nameText;
@@ -39,12 +39,21 @@ public class CharmsPanelScript : MonoBehaviour
     private int lastClickedIndex = -1;
 
     private string saveKey = "PlayerCharms";
+    public static CharmsPanelScript instance;
 
     private void Awake()
     {
         charmsArray = FindObjectsOfType<Charm>();
         pauseMenuScript = GetComponent<PauseMenuScript>();
 
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
     void Start()
     {

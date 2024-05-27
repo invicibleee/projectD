@@ -8,6 +8,7 @@ public class npcFirstDialogueStart : MonoBehaviour
 {
     [SerializeField] private bool isFirstDialogue;
     [SerializeField] private NPCConversation dialogue;
+    [SerializeField] private NPCConversation dialogue2;
     [SerializeField] private Text message;
     private bool isPlayerNearby;
     // Start is called before the first frame update
@@ -29,7 +30,8 @@ public class npcFirstDialogueStart : MonoBehaviour
             }
             else
             {
-                Debug.Log("secon dialogue");
+                ConversationManager.Instance.StartConversation(dialogue2);
+             
             }
          
         }

@@ -30,7 +30,7 @@ public class BossShieldState : EnemyState
         {
             isShieldTimeOver = true;
         }
-        Debug.Log(isShieldTimeOver);
+       // Debug.Log(isShieldTimeOver);
     }
 
     public override void Exit()

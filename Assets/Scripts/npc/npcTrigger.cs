@@ -6,6 +6,7 @@ using UnityEditor.VersionControl;
 using UnityEngine;
 using DialogueEditor;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class npcTrigger : MonoBehaviour
 {
@@ -13,16 +14,34 @@ public class npcTrigger : MonoBehaviour
     [SerializeField] private NPCConversation dialogue;
     [SerializeField] private Text message;
     private bool isPlayerNearby;
+    private int index;
     // Start is called before the first frame update
     void Start()
     {
-        if (isFirstDialogue)
+        index = SceneManager.GetActiveScene().buildIndex;
+
+        switch (index)
         {
-            gameObject.SetActive(true);
-        }
-        else
-        {
-            gameObject.SetActive(false);
+            case 2:
+                if (isFirstDialogue)
+                {
+                    gameObject.SetActive(true);
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
+                break;
+            case 3:
+                if (!isFirstDialogue)
+                {
+                    gameObject.SetActive(true);
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
+                break;
         }
     }
 
