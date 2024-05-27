@@ -6,6 +6,7 @@ public class MapBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject mainCamera;
     [SerializeField] private GameObject localMap;
+    [SerializeField] private GameObject fullforestMap;
     [SerializeField] private GameObject fullMap;
     [SerializeField] private GameObject cursor;
     [SerializeField] private GameObject background;
@@ -14,6 +15,7 @@ public class MapBehaviour : MonoBehaviour
     private bool isObjectActive = false;
     private bool isPaused = false;
     [SerializeField] private bool isForestMapOpened;
+    [SerializeField] private bool isFullMapOpened;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +43,7 @@ public class MapBehaviour : MonoBehaviour
             }
         }
 
-        if (isObjectActive && isForestMapOpened)
+        if (isObjectActive && isForestMapOpened && !isFullMapOpened)
         {
             prompt.SetActive(true);
             if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -49,6 +51,7 @@ public class MapBehaviour : MonoBehaviour
                 localMap.SetActive(true);
                 cursor.SetActive(true);
                 background.SetActive(false);
+                fullforestMap.SetActive(false);
                 fullMap.SetActive(false);
             }
 
@@ -57,6 +60,27 @@ public class MapBehaviour : MonoBehaviour
                 localMap.SetActive(false);
                 cursor.SetActive(false);
                 background.SetActive(true);
+                fullforestMap.SetActive(true);
+                fullMap.SetActive(false);
+            }
+        } else if (isObjectActive && isFullMapOpened)
+        {
+            prompt.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                localMap.SetActive(true);
+                cursor.SetActive(true);
+                background.SetActive(false);
+                fullforestMap.SetActive(false);
+                fullMap.SetActive(false);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                localMap.SetActive(false);
+                cursor.SetActive(false);
+                background.SetActive(true);
+                fullforestMap.SetActive(false);
                 fullMap.SetActive(true);
             }
         }
