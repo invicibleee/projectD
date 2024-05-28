@@ -1733,6 +1733,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 773879287}
   gui: {fileID: 90970175}
   postProcessing: {fileID: 385411763}
+  map: {fileID: 0}
   closeButton: {fileID: 1413799249}
   menuButtons:
   - {fileID: 1054448550}
@@ -6825,6 +6826,9 @@ MonoBehaviour:
   dialogue: {fileID: 325530779}
   dialogue2: {fileID: 1632602766}
   message: {fileID: 1856713662}
+  typeOfNpc: Mushroom
+  npcIcon: {fileID: 1794999067}
+  map: {fileID: 1794999067}
 --- !u!1001 &385411761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7705,6 +7709,7 @@ Transform:
   - {fileID: 818030081}
   - {fileID: 2100596582}
   - {fileID: 385411762}
+  - {fileID: 1794999068}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &440688856
@@ -53143,6 +53148,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1794999067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1794999068}
+  m_Layer: 0
+  m_Name: emptyObj
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1794999068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794999067}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 130.74571, y: -4.7996273, z: 76.23331}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 421638842}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1798995279
 GameObject:
   m_ObjectHideFlags: 0
@@ -61018,6 +61054,9 @@ MonoBehaviour:
   dialogue: {fileID: 459407379}
   dialogue2: {fileID: 0}
   message: {fileID: 1856713662}
+  typeOfNpc: Knight
+  npcIcon: {fileID: 1794999067}
+  map: {fileID: 1794999067}
 --- !u!1 &2144893369
 GameObject:
   m_ObjectHideFlags: 0

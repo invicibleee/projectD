@@ -228,6 +228,21 @@ namespace SaveData
             _isCastleOpen = false;
         }
     }
+
+    [System.Serializable]
+    public class IconsSave
+    {
+        public bool _isForestBossVisited;
+        public bool _isCastleBossVisited;
+        public bool _isSnakeVisited;
+
+        public IconsSave()
+        {
+            _isForestBossVisited = false;
+            _isCastleBossVisited = false;
+            _isSnakeVisited = false;
+        }
+    }
 }
 
 

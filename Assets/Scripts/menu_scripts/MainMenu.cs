@@ -249,6 +249,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("BossSave");
         PlayerPrefs.DeleteKey("doorSave");
         PlayerPrefs.DeleteKey("mapSave");
+        PlayerPrefs.DeleteKey("IconsSave");
         SceneManager.LoadScene(1);
     }
     public void ContinueGame()

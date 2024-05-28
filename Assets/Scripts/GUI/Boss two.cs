@@ -24,11 +24,17 @@ public class Bosstwo : MonoBehaviour
     [SerializeField] private GameObject victoryText;
     [SerializeField] private GameObject[] walls;
 
+    [SerializeField] private GameObject bossIcon;
+    private bool isBossOpened;
+
     private string saveKey = "BossSave";
+    private string saveKey2 = "IconsSave";
+ 
 
     private void Awake()
     {
         Load();
+        Load2();
         if (!isDead)
         {
             Boss.SetActive(true);
@@ -153,7 +159,9 @@ public class Bosstwo : MonoBehaviour
 
                 currentHP = maxHP;
             }
-
+            isBossOpened = true;
+            bossIcon.SetActive(true);
+            Save2();
         }
     }
     public void Save()
@@ -172,6 +180,27 @@ public class Bosstwo : MonoBehaviour
         var data = new SaveData.BossSave()
         {
             _isSecondBossAlive = !isDead,
+        };
+        return data;
+    }
+
+    public void Save2()
+    {
+        Debug.Log("Saving boss icon state: " + isBossOpened);
+        SaveManager.Save(saveKey2, GetData2());
+    }
+    private void Load2()
+    {
+        var data = SaveManager.Load<SaveData.IconsSave>(saveKey2);
+        isBossOpened = data._isCastleBossVisited;
+        bossIcon.SetActive(isBossOpened);
+        Debug.Log("Loaded boss icon state: " + isBossOpened);
+    }
+    private SaveData.IconsSave GetData2()
+    {
+        var data = new SaveData.IconsSave()
+        {
+            _isCastleBossVisited = isBossOpened,
         };
         return data;
     }

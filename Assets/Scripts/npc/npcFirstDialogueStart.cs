@@ -1,6 +1,7 @@
 using DialogueEditor;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,11 +11,19 @@ public class npcFirstDialogueStart : MonoBehaviour
     [SerializeField] private NPCConversation dialogue;
     [SerializeField] private NPCConversation dialogue2;
     [SerializeField] private Text message;
+    [SerializeField] private string typeOfNpc;
+    [SerializeField] private GameObject npcIcon;
+    [SerializeField] private GameObject map;
     private bool isPlayerNearby;
+    private bool shopOpened;
+
+
+    private string saveKey2 = "IconsSave";
+
     // Start is called before the first frame update
     void Start()
     {
- 
+        Load2();
     }
 
     // Update is called once per frame
@@ -22,6 +31,7 @@ public class npcFirstDialogueStart : MonoBehaviour
     {
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
+
             if (isFirstDialogue)
             {
                 message.text = "";
@@ -41,9 +51,19 @@ public class npcFirstDialogueStart : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+           
             message.text = "Press E to talk";
             isPlayerNearby = true;
+
+            if (typeOfNpc == "Snake")
+            {
+                map.SetActive(false);
+                npcIcon.SetActive(true);
+                shopOpened = true;
+                Save2();
+            }
         }
+     
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -53,5 +73,28 @@ public class npcFirstDialogueStart : MonoBehaviour
             message.text = "";
             isPlayerNearby = false;
         }
+        if (typeOfNpc == "Snake")
+        {
+            map.SetActive(true);
+        }
+    }
+
+    public void Save2()
+    {
+        SaveManager.Save(saveKey2, GetData2());
+    }
+    private void Load2()
+    {
+        var data = SaveManager.Load<SaveData.IconsSave>(saveKey2);
+        shopOpened = data._isSnakeVisited;
+        npcIcon.SetActive(shopOpened);
+    }
+    private SaveData.IconsSave GetData2()
+    {
+        var data = new SaveData.IconsSave()
+        {
+            _isSnakeVisited = shopOpened,
+        };
+        return data;
     }
 }

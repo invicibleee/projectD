@@ -26,11 +26,16 @@ public class BossGUI : MonoBehaviour
     [SerializeField] private GameObject exitTrigger;
     [SerializeField] private GameObject[] walls;
 
+    [SerializeField] private GameObject bossIcon;
+    private bool isBossOpened;
+
     private string saveKey = "BossSave";
+    private string saveKey2 = "IconsSave";
 
     private void Awake()
     {
         Load();
+        Load2();
         if (!isDead)
         {
             Boss.SetActive(true);
@@ -102,7 +107,7 @@ public class BossGUI : MonoBehaviour
         }
 
         float timer = 0f;
-        if(HUD.activeSelf == true) {
+        if(HUD.activeSelf == true && HUD != null) {
             while (timer < duration)
             {
                 float progress = timer / duration * 5f;
@@ -159,7 +164,11 @@ public class BossGUI : MonoBehaviour
                 currentHP = maxHP;
             }
 
+            isBossOpened = true;
+            bossIcon.SetActive(true);
+            Save2();
         }
+
     }
     public void Save()
     {
@@ -177,6 +186,27 @@ public class BossGUI : MonoBehaviour
         var data = new SaveData.BossSave()
         {
             _isFirstBossAlive = !isDead,
+        };
+        return data;
+    }
+
+    public void Save2()
+    {
+        Debug.Log("Saving boss icon state: " + isBossOpened);
+        SaveManager.Save(saveKey2, GetData2());
+    }
+    private void Load2()
+    {
+        var data = SaveManager.Load<SaveData.IconsSave>(saveKey2);
+        isBossOpened = data._isForestBossVisited;
+        bossIcon.SetActive(isBossOpened);
+        Debug.Log("Loaded boss icon state: " + isBossOpened);
+    }
+    private SaveData.IconsSave GetData2()
+    {
+        var data = new SaveData.IconsSave()
+        {
+            _isForestBossVisited = isBossOpened,
         };
         return data;
     }
