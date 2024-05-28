@@ -243,6 +243,24 @@ namespace SaveData
             _isSnakeVisited = false;
         }
     }
+
+    [System.Serializable]
+    public class NPCDialogues
+    {
+        public bool _isFirstPilgrimDialogue;
+        public bool _isFirstSnakeDialogue;
+        public bool _isFirstMushroomDialogue;
+        public bool _infuserOwned;
+        public bool _isDogQuestCompleted;
+        public NPCDialogues()
+        {
+            _isFirstMushroomDialogue = true;
+            _isFirstSnakeDialogue = true;
+            _isFirstPilgrimDialogue = true;
+            _infuserOwned = false;
+            _isDogQuestCompleted = false;
+        }
+    }
 }
 
 

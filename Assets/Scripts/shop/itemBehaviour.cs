@@ -14,6 +14,13 @@ public class itemBehaviour : MonoBehaviour
     private bool lantern = false;
     private bool heart = false;
     private bool amulet = false;
+
+    private string saveKey = "itemsSave";
+
+    public void Start()
+    {
+        Load();
+    }
     public void BuyInfuser(int amount)
     {
         if (PlayerManager.instance.essenceAmount >= amount)
@@ -96,6 +103,7 @@ public class itemBehaviour : MonoBehaviour
     }
     public void CheckInfuser()
     {
+        infuserOwned = InventoryPanelScript.instance.items[11].isOwned;
         ConversationManager.Instance.SetBool("isBought", infuserOwned);
 
     }
@@ -139,6 +147,7 @@ public class itemBehaviour : MonoBehaviour
     {
         dogQuestCompleted = true;
         PlayerManager.instance.AddEssences(amount);
+        Save();
     }
 
     public void CheckDogQuest()
@@ -147,5 +156,21 @@ public class itemBehaviour : MonoBehaviour
         ConversationManager.Instance.SetBool("isQuestCompleted", dogQuestCompleted);
     }
 
-
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+    }
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.NPCDialogues>(saveKey);
+        dogQuestCompleted = data._isDogQuestCompleted;
+    }
+    private SaveData.NPCDialogues GetData()
+    {
+        var data = new SaveData.NPCDialogues()
+        {
+           _isDogQuestCompleted = dogQuestCompleted,
+        };
+        return data;
+    }
 }

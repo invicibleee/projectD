@@ -13,11 +13,15 @@ public class npcTrigger : MonoBehaviour
     [SerializeField] private bool isFirstDialogue;
     [SerializeField] private NPCConversation dialogue;
     [SerializeField] private Text message;
+    [SerializeField] private GameObject map;
     private bool isPlayerNearby;
     private int index;
+
+    private string saveKey = "NPCSave";
     // Start is called before the first frame update
     void Start()
     {
+        Load();
         index = SceneManager.GetActiveScene().buildIndex;
 
         switch (index)
@@ -54,6 +58,7 @@ public class npcTrigger : MonoBehaviour
             ConversationManager.Instance.StartConversation(dialogue);
             isFirstDialogue = false;
             Debug.Log("dialog started");
+            Save();
         }
     }
 
@@ -61,6 +66,7 @@ public class npcTrigger : MonoBehaviour
     {
             if (other.CompareTag("Player"))
             {
+                map.SetActive(false);
                 message.text = "Press E to talk";
                 isPlayerNearby = true;
             }
@@ -70,9 +76,29 @@ public class npcTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            map.SetActive(true);
             message.text = "";
             isPlayerNearby = false;
         }
+    }
+
+
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+    }
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.NPCDialogues>(saveKey);
+        isFirstDialogue = data._isFirstPilgrimDialogue;
+    }
+    private SaveData.NPCDialogues GetData()
+    {
+        var data = new SaveData.NPCDialogues()
+        {
+            _isFirstPilgrimDialogue = isFirstDialogue,
+        };
+        return data;
     }
 
 }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Timeline;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class npcFirstDialogueStart : MonoBehaviour
@@ -17,13 +18,21 @@ public class npcFirstDialogueStart : MonoBehaviour
     private bool isPlayerNearby;
     private bool shopOpened;
 
-
+    private string saveKey = "NPCSave2";
     private string saveKey2 = "IconsSave";
+    private string saveKey3 = "NPCSave3";
 
     // Start is called before the first frame update
     void Start()
     {
         Load2();
+        if(SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            Load();
+        } else if (SceneManager.GetActiveScene().buildIndex == 4)
+        {
+            Load3();
+        }
     }
 
     // Update is called once per frame
@@ -37,10 +46,25 @@ public class npcFirstDialogueStart : MonoBehaviour
                 message.text = "";
                 ConversationManager.Instance.StartConversation(dialogue);
                 isFirstDialogue = false;
+                if(typeOfNpc == "Mushroom")
+                {
+                    Save();
+                } else if (typeOfNpc == "Snake")
+                {
+                    Save3();
+                }
             }
             else
             {
-                ConversationManager.Instance.StartConversation(dialogue2);
+                if(typeOfNpc == "Knight")
+                {
+                    ConversationManager.Instance.StartConversation(dialogue);
+                }
+                else
+                {
+                    ConversationManager.Instance.StartConversation(dialogue2);
+                }
+              
              
             }
          
@@ -97,4 +121,42 @@ public class npcFirstDialogueStart : MonoBehaviour
         };
         return data;
     }
+
+    public void Save()
+    {
+        SaveManager.Save(saveKey, GetData());
+    }
+    private void Load()
+    {
+        var data = SaveManager.Load<SaveData.NPCDialogues>(saveKey);
+        isFirstDialogue = data._isFirstMushroomDialogue;
+    }
+    private SaveData.NPCDialogues GetData()
+    {
+        var data = new SaveData.NPCDialogues()
+        {
+            _isFirstMushroomDialogue = isFirstDialogue,
+        };
+        return data;
+    }
+
+
+    public void Save3()
+    {
+        SaveManager.Save(saveKey3, GetData3());
+    }
+    private void Load3()
+    {
+        var data = SaveManager.Load<SaveData.NPCDialogues>(saveKey3);
+        isFirstDialogue = data._isFirstSnakeDialogue;
+    }
+    private SaveData.NPCDialogues GetData3()
+    {
+        var data = new SaveData.NPCDialogues()
+        {
+            _isFirstSnakeDialogue = isFirstDialogue,
+        };
+        return data;
+    }
+
 }

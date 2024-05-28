@@ -250,6 +250,10 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("doorSave");
         PlayerPrefs.DeleteKey("mapSave");
         PlayerPrefs.DeleteKey("IconsSave");
+        PlayerPrefs.DeleteKey("NPCSave");
+        PlayerPrefs.DeleteKey("NPCSave2");
+        PlayerPrefs.DeleteKey("NPCSave3");
+        PlayerPrefs.DeleteKey("itemsSave");
         SceneManager.LoadScene(1);
     }
     public void ContinueGame()
