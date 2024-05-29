@@ -78,7 +78,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 216361711
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: -1389764468456732622, guid: 2d2c78a874ed8d5419e8367ab6e91da9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -258,10 +258,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7151870928212273405}
   - component: {fileID: 4907612687299777911}
-  - component: {fileID: 3383924890904692257}
   - component: {fileID: 8269201233109366327}
   - component: {fileID: 6403650549868214460}
   - component: {fileID: 3321684597500869349}
+  - component: {fileID: 5463129491927699666}
   m_Layer: 7
   m_Name: EnemyEye
   m_TagString: Untagged
@@ -312,51 +312,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &3383924890904692257
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7351329261160196128}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.04733467, y: 0.08954239}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.5273628, y: 2.1709518}
-  m_EdgeRadius: 0
 --- !u!114 &8269201233109366327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +387,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   maxHealth:
-    baseValue: 10
+    baseValue: 50
     modifiers: []
   armor:
     baseValue: 1
@@ -453,6 +408,7 @@ MonoBehaviour:
   currentMana: 0
   currentUlt: 0
   damageReceivedReductionPercentage: 0
+  isDead: 0
   damaged: 0
   essenceDropAmount: 0
 --- !u!114 &3321684597500869349
@@ -472,6 +428,41 @@ MonoBehaviour:
   chillColor: []
   igniteColor: []
   shockColor: []
+--- !u!70 &5463129491927699666
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7351329261160196128}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.13613369, y: 0.01237579}
+  m_Size: {x: 2.6253407, y: 1.7838122}
+  m_Direction: 1
 --- !u!1 &7523151603462565521
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 251197573144251400}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.42, y: 0, z: 0}
+  m_LocalPosition: {x: 0.625, y: -0.497, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -173,7 +173,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 216361711
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7790061708117990980, guid: 95e00b8305f0604479acc969a5d3b267, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -197,9 +197,9 @@ GameObject:
   - component: {fileID: 4226739296690157587}
   - component: {fileID: 43802814771330675}
   - component: {fileID: 8605671643223680029}
-  - component: {fileID: 2291033660439592853}
   - component: {fileID: 703628271562811017}
   - component: {fileID: 714631180013412147}
+  - component: {fileID: 4783400420600797215}
   m_Layer: 7
   m_Name: EnemyArcher
   m_TagString: Untagged
@@ -291,8 +291,86 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &2291033660439592853
-BoxCollider2D:
+--- !u!114 &703628271562811017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7038028942644176627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 0
+    modifiers: []
+  agility:
+    baseValue: 0
+    modifiers: []
+  intelligence:
+    baseValue: 0
+    modifiers: []
+  vitality:
+    baseValue: 0
+    modifiers: []
+  damage:
+    baseValue: 20
+    modifiers: []
+  critChance:
+    baseValue: 0
+    modifiers: []
+  critPower:
+    baseValue: 0
+    modifiers: []
+  magicAmplify:
+    baseValue: 0
+    modifiers: []
+  maxHealth:
+    baseValue: 100
+    modifiers: []
+  armor:
+    baseValue: 0
+    modifiers: []
+  evasion:
+    baseValue: 0
+    modifiers: []
+  maxMana:
+    baseValue: 0
+    modifiers: []
+  manaRegenRate:
+    baseValue: 0
+    modifiers: []
+  maxUlt:
+    baseValue: 0
+    modifiers: []
+  currentHealth: 0
+  currentMana: 0
+  currentUlt: 0
+  damageReceivedReductionPercentage: 0
+  isDead: 0
+  damaged: 0
+  essenceDropAmount: 0
+--- !u!114 &714631180013412147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7038028942644176627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashDuration: 0.2
+  hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
+  chillColor: []
+  igniteColor: []
+  shockColor: []
+--- !u!70 &4783400420600797215
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -323,96 +401,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.20456362, y: -0.052953005}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.4091272, y: 3.0160575}
-  m_EdgeRadius: 0
---- !u!114 &703628271562811017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7038028942644176627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d03ada5e860a0f4a95337e03a8a72aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  strength:
-    baseValue: 0
-    modifiers: []
-  agility:
-    baseValue: 0
-    modifiers: []
-  intelligence:
-    baseValue: 0
-    modifiers: []
-  vitality:
-    baseValue: 0
-    modifiers: []
-  damage:
-    baseValue: 10
-    modifiers: []
-  critChance:
-    baseValue: 0
-    modifiers: []
-  critPower:
-    baseValue: 0
-    modifiers: []
-  magicAmplify:
-    baseValue: 0
-    modifiers: []
-  maxHealth:
-    baseValue: 10
-    modifiers: []
-  armor:
-    baseValue: 0
-    modifiers: []
-  evasion:
-    baseValue: 0
-    modifiers: []
-  maxMana:
-    baseValue: 0
-    modifiers: []
-  manaRegenRate:
-    baseValue: 0
-    modifiers: []
-  maxUlt:
-    baseValue: 0
-    modifiers: []
-  currentHealth: 0
-  currentMana: 0
-  currentUlt: 0
-  damageReceivedReductionPercentage: 0
-  damaged: 0
-  essenceDropAmount: 0
---- !u!114 &714631180013412147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7038028942644176627}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d70952086fd9aa43bec915b97a42442, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashDuration: 0.2
-  hitMaterial: {fileID: 2100000, guid: b574df421d0081f469d0bbeb5a4a570e, type: 2}
-  chillColor: []
-  igniteColor: []
-  shockColor: []
+  m_Offset: {x: 0.22088146, y: -0.102552295}
+  m_Size: {x: 0.9417629, y: 2.7512748}
+  m_Direction: 0
 --- !u!1 &7649601973984789169
 GameObject:
   m_ObjectHideFlags: 0

@@ -325,7 +325,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   maxHealth:
-    baseValue: 10
+    baseValue: 100
     modifiers: []
   armor:
     baseValue: 0
@@ -346,6 +346,7 @@ MonoBehaviour:
   currentMana: 0
   currentUlt: 0
   damageReceivedReductionPercentage: 0
+  isDead: 0
   damaged: 0
   essenceDropAmount: 0
 --- !u!114 &7737966359550104803

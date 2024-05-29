@@ -202,7 +202,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 216361711
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1192192735721035651, guid: a8f7501e85c9b2b4d95a6bb090187c1d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -259,9 +259,9 @@ GameObject:
   - component: {fileID: 8693883832251755774}
   - component: {fileID: 9213441799538606340}
   - component: {fileID: 7125976226864767114}
-  - component: {fileID: 4278140826344672931}
   - component: {fileID: 2894825677861159557}
   - component: {fileID: 3963125492878200593}
+  - component: {fileID: 2345705439514329461}
   m_Layer: 7
   m_Name: WoodGoblin
   m_TagString: Untagged
@@ -350,51 +350,6 @@ MonoBehaviour:
   rangeAttackStateData: {fileID: 11400000, guid: 6a7e2fc48b4e85649bbd21420e9c2cb4, type: 2}
   rangeAttackPosition: {fileID: 8225452272695144282}
   deathStateData: {fileID: 11400000, guid: 92c9a84facfece543a5745b36371aaaf, type: 2}
---- !u!61 &4278140826344672931
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5433299132137753890}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.29208946, y: -0.22951126}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.1976357, y: 2.7913132}
-  m_EdgeRadius: 0
 --- !u!114 &2894825677861159557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -432,7 +387,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   maxHealth:
-    baseValue: 10
+    baseValue: 60
     modifiers: []
   armor:
     baseValue: 0
@@ -453,6 +408,7 @@ MonoBehaviour:
   currentMana: 0
   currentUlt: 0
   damageReceivedReductionPercentage: 0
+  isDead: 0
   damaged: 0
   essenceDropAmount: 0
 --- !u!114 &3963125492878200593
@@ -472,6 +428,41 @@ MonoBehaviour:
   chillColor: []
   igniteColor: []
   shockColor: []
+--- !u!70 &2345705439514329461
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5433299132137753890}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.27710915, y: -0.25911427}
+  m_Size: {x: 0.8238945, y: 2.540289}
+  m_Direction: 0
 --- !u!1 &6240828089065442628
 GameObject:
   m_ObjectHideFlags: 0

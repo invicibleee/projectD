@@ -72,10 +72,10 @@ GameObject:
   m_Component:
   - component: {fileID: 518479905232411063}
   - component: {fileID: 3724012693397084787}
-  - component: {fileID: 5752763598108980220}
   - component: {fileID: 5091566994836276528}
   - component: {fileID: 897667625311507480}
   - component: {fileID: 1074974337212283230}
+  - component: {fileID: 106953370451063367}
   m_Layer: 7
   m_Name: EnemyDog
   m_TagString: Enemy
@@ -126,51 +126,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &5752763598108980220
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4779760739883694053}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.15517998, y: -0.2725407}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4, y: 4}
-    newSize: {x: 4, y: 4}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.255518, y: 1.4381788}
-  m_EdgeRadius: 0
 --- !u!114 &5091566994836276528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +207,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   damage:
-    baseValue: 5
+    baseValue: 15
     modifiers: []
   critChance:
     baseValue: 0
@@ -264,7 +219,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   maxHealth:
-    baseValue: 20
+    baseValue: 80
     modifiers: []
   armor:
     baseValue: 1
@@ -285,8 +240,44 @@ MonoBehaviour:
   currentMana: 0
   currentUlt: 0
   damageReceivedReductionPercentage: 0
+  isDead: 0
   damaged: 0
   essenceDropAmount: 0
+--- !u!70 &106953370451063367
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779760739883694053}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.112440504, y: -0.21497186}
+  m_Size: {x: 2.4816835, y: 1.6945707}
+  m_Direction: 1
 --- !u!1 &7212125882450112087
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +387,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 216361711
-  m_SortingLayer: 3
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 2794444432037058684, guid: 993886e52d740a848aa0df5dd990a1fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

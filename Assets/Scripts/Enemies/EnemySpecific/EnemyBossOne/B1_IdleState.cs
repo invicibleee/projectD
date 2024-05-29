@@ -46,14 +46,15 @@ public class B1_IdleState : IdleState
         else if (performCloseRangeAction || isPlayerInMinAgroRange)
         {
             playerDetected = true;
-            if (Time.time >= bossOne.jumpAttackState.startTime + bossOne.jumpAttackStateData.jumpAttackCooldown && bossOne.stats.currentHealth <= bossOne.stats.maxHealth.GetValue() / 2)
-            {
-                stateMashine.ChangeState(bossOne.jumpAttackState);
-            }
-            else if (Time.time >= bossOne.rollState.startTime + bossOne.bossRollStateData.rollCooldown)
+            if (Time.time >= bossOne.rollState.startTime + bossOne.bossRollStateData.rollCooldown)
             {
                 stateMashine.ChangeState(bossOne.rollState);
             }
+            else if (Time.time >= bossOne.jumpAttackState.startTime + bossOne.jumpAttackStateData.jumpAttackCooldown && bossOne.stats.currentHealth <= bossOne.stats.maxHealth.GetValue() / 2)
+            {
+                stateMashine.ChangeState(bossOne.jumpAttackState);
+            }
+
         }
         else if(playerDetected)
         {

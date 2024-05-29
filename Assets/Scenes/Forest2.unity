@@ -2733,7 +2733,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1716334964}
   - {fileID: 496027466}
   m_Father: {fileID: 1941637232}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3648,63 +3647,6 @@ RectTransform:
   m_AnchoredPosition: {x: -941, y: 346}
   m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &298428889
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 239680885}
-    m_Modifications:
-    - target: {fileID: 2025576667771532534, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_Name
-      value: EnemyWolf
-      objectReference: {fileID: 0}
-    - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.45450044
-      objectReference: {fileID: 0}
-    - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
 --- !u!1 &329597105
 GameObject:
   m_ObjectHideFlags: 0
@@ -5829,6 +5771,10 @@ PrefabInstance:
     - target: {fileID: 2025576667771532534, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
       propertyPath: m_Name
       value: EnemyWolf (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2085715601318566588, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
+      propertyPath: groundCheckDistance
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -14895,8 +14841,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1433263945}
     - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
+      propertyPath: damage.baseValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 383409272858027507, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: maxHealth.baseValue
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 1485019578107172287, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: jumpForce
@@ -47038,11 +46988,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712495721}
   m_CullTransparentMesh: 1
---- !u!4 &1716334964 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6755248647125745711, guid: de842f1425ec96c47a0cf6dad9e5adb1, type: 3}
-  m_PrefabInstance: {fileID: 298428889}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1716974431
 GameObject:
   m_ObjectHideFlags: 0

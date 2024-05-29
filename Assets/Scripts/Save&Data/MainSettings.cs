@@ -39,7 +39,7 @@ namespace SaveData
             _maxFlask = 3;
             _currentFlask = _maxFlask;
             _maxMana = 100;
-            _maxHealth = 100;
+            _maxHealth = 200;
             _currentUlt = 0; 
             _currentMana = 0;
             _currentHealth = _maxHealth;
