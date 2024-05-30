@@ -1,56 +1,61 @@
 using UnityEngine;
+using DialogueEditor;
 
 public class HideCursor : MonoBehaviour
 {
-    //private Player player;
-    //private bool cursorVisible = false;
+    private Player player;
+    private bool cursorVisible = false;
 
-    //void Start()
-    //{
-    //    // —крыть курсор при старте игры
-    //    SetCursorState(cursorVisible);
-    //    player = FindAnyObjectByType<Player>();
-    //}
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private Texture2D customCursor;
+    [SerializeField] private Vector2 hotSpot = Vector2.zero;
+    [SerializeField] private CursorMode cursorMode = CursorMode.Auto;
 
-    //void Update()
-    //{
-    //    if (player.stats.isDead)
-    //    {
-    //        cursorVisible = true;
-    //        SetCursorState(cursorVisible);
-    //    }
-    //    else
-    //    {
-    //        // ѕереключение видимости курсора при нажатии клавиши Escape
-    //        if (Input.GetKeyDown(KeyCode.Escape))
-    //        {
-    //            cursorVisible = !cursorVisible;
-    //            SetCursorState(cursorVisible);
-    //        }
+    void Start()
+    {
+        // —крыть курсор при старте игры
+        SetCursorState(cursorVisible);
+        player = FindAnyObjectByType<Player>();
+    }
 
-    //        // –азблокировка курсора, но оставление его невидимым при зажатии клавиши R
-    //        if (Input.GetKey(KeyCode.R))
-    //        {
-    //            Cursor.lockState = CursorLockMode.None;
-    //            Cursor.visible = false;
-    //        }
-    //        else if (Input.GetKeyDown(KeyCode.E))
-    //        {
-    //            // ќтображение курсора при нажатии клавиши E
-    //            cursorVisible = true;
-    //            SetCursorState(cursorVisible);
-    //        }
-    //        else
-    //        {
-    //            // ¬озвращаем курсор в исходное состо€ние, если R не зажата и E не нажата
-    //            SetCursorState(cursorVisible);
-    //        }
-    //    }
-    //}
+    [System.Obsolete]
+    void Update()
+    {
+        if (player.stats.isDead || pauseMenu.activeSelf || ConversationManager.Instance.IsConversationActive)
+        {
+            if (!cursorVisible)
+            {
+                cursorVisible = true;
+                SetCursorState(cursorVisible);
+            }
+        }
+        else if (!pauseMenu.activeSelf && !ConversationManager.Instance.IsConversationActive && !Input.GetKey(KeyCode.R))
+        {
+            if (cursorVisible)
+            {
+                cursorVisible = false;
+                SetCursorState(cursorVisible);
+            }
+        }
 
-    //void SetCursorState(bool isVisible)
-    //{
-    //    Cursor.visible = isVisible;
-    //    Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
-    //}
+        if (Input.GetKey(KeyCode.R))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
+        }
+    }
+
+    void SetCursorState(bool isVisible)
+    {
+        if (isVisible)
+        {
+            Cursor.SetCursor(customCursor, hotSpot, cursorMode);
+        }
+        else
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+        Cursor.visible = isVisible;
+        Cursor.lockState = isVisible ? CursorLockMode.None : CursorLockMode.Locked;
+    }
 }

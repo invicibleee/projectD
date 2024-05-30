@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: til54 2_4 1
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -1915161902, guid: 97f7d9a1adcee114eb6234180b8a5529, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9716981, g: 0.43451402, b: 0.4509804, a: 1}
   m_Transform:
     e00: 1
     e01: 0

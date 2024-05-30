@@ -21,7 +21,9 @@ public class FireCollision : MonoBehaviour
 
     private bool activated;
 
+    private string saveKey2 = "flasks";
     private string saveKey = "StatueSave";
+    private string saveKey3 = "playerSave";
 
     private void Awake()
     {
@@ -49,6 +51,8 @@ public class FireCollision : MonoBehaviour
             flaskGUI.FillImage(1);
             flaskGUI.FillImage(2);
             activated = false;
+            Save2();
+            Save3();
         }
 
     }
@@ -92,6 +96,33 @@ public class FireCollision : MonoBehaviour
             _statuePosition = statuePosition,
         };
 
+        return data;
+    } 
+    public void Save2()
+    {
+        SaveManager.Save(saveKey2, GetData2());
+    }
+
+    private SaveData.CharaStatistic GetData2()
+    {
+        var data = new SaveData.CharaStatistic()
+        {
+            _currentFlask = 3,
+            _maxFlask = 3, 
+        };
+        return data;
+    } 
+    public void Save3()
+    {
+        SaveManager.Save(saveKey3, GetData3());
+    }
+
+    private SaveData.CharaStatistic GetData3()
+    {
+        var data = new SaveData.CharaStatistic()
+        {
+            _currentHealth = player.stats.maxHealth.GetValue(),
+        };
         return data;
     }
 }
