@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Bosstwo : MonoBehaviour
 {
+    private AbilitiesPanelScript abilitiesPanelScript;
 
     [SerializeField] private EnemyBossTwo bossTwo;
     [SerializeField] public GameObject HUD;
@@ -40,6 +41,8 @@ public class Bosstwo : MonoBehaviour
             Boss.SetActive(true);
             bossTwo = FindAnyObjectByType<EnemyBossTwo>();
         }
+        abilitiesPanelScript = FindAnyObjectByType<AbilitiesPanelScript>();
+
     }
     void Start()
     {
@@ -82,6 +85,7 @@ public class Bosstwo : MonoBehaviour
             victoryText.SetActive(true);
             walls[0].SetActive(false);
             await FadeOutHUD(displayTime);
+            abilitiesPanelScript.SetAbilityOwned(0);
 
             HUD.SetActive(false);
 

@@ -12,6 +12,7 @@ public class DeathController : MonoBehaviour
     [SerializeField] private MoneyTrigger currency;   
     [SerializeField] private GameObject money;
     [SerializeField] private BarsController barsController;
+    [SerializeField] private int pauseTime = 3;
     private Vector2 playerDeathPoint;
     private int lostCurrency;
     private bool status = false;
@@ -38,8 +39,11 @@ public class DeathController : MonoBehaviour
         {
             playerDeathPoint = player.transform.position;
             deathScreen.SetActive(true);
+            Time.timeScale = 0;
         }
     }
+
+
 
     public void Respawn()
     {
@@ -60,6 +64,7 @@ public class DeathController : MonoBehaviour
         healthFlask.Load();
         barsController.SetHealth(player.stats.currentHealth, player.stats.maxHealth.GetValue());
         index = SceneManager.GetActiveScene().buildIndex;
+        Time.timeScale = 1;
         Save();
         Save4();
         Load2();

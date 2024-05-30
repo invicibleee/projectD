@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class BossGUI : MonoBehaviour
 {
-
+    private AbilitiesPanelScript abilitiesPanelScript;
     [SerializeField] private EnemyBossOne bossOne;
     [SerializeField] public GameObject HUD;
     [SerializeField] private Image BarHP;
@@ -25,7 +26,7 @@ public class BossGUI : MonoBehaviour
     [SerializeField] private GameObject victoryText;
     [SerializeField] private GameObject exitTrigger;
     [SerializeField] private GameObject[] walls;
-
+    [SerializeField] public int bossIndex;
     [SerializeField] private GameObject bossIcon;
     private bool isBossOpened;
 
@@ -41,6 +42,7 @@ public class BossGUI : MonoBehaviour
             Boss.SetActive(true);
             bossOne = FindAnyObjectByType<EnemyBossOne>();
         }
+        abilitiesPanelScript = FindAnyObjectByType<AbilitiesPanelScript>();
     }
     void Start()
     {
@@ -73,7 +75,7 @@ public class BossGUI : MonoBehaviour
             currentHP = bossOne.stats.currentHealth;
             UpdateBar();
         }
-        
+
 
         if (currentHP <= 0 && HUD.activeSelf)
         {
@@ -85,7 +87,7 @@ public class BossGUI : MonoBehaviour
             walls[1].SetActive(false);
             exitTrigger.SetActive(true);
             await FadeOutHUD(displayTime);
-
+            abilitiesPanelScript.SetAbilityOwned(1);
             HUD.SetActive(false);
 
         }

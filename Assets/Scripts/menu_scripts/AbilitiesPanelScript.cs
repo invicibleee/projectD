@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -16,7 +17,8 @@ public struct Ability
 public class AbilitiesPanelScript : MonoBehaviour
 {
     public static AbilitiesPanelScript instance;
-
+    private BossGUI bossGUI;
+    private Bosstwo bosstwo;
     [SerializeField] public Ability[] abilities;
     [SerializeField] private Text descriptionText;
     [SerializeField] private Text nameText;
@@ -42,6 +44,8 @@ public class AbilitiesPanelScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        bossGUI = FindAnyObjectByType<BossGUI>();
+        bosstwo = FindAnyObjectByType<Bosstwo>();
         descriptionText.text = "select ability";
         nameText.text = "";
         promptText.text = "";
@@ -63,6 +67,8 @@ public class AbilitiesPanelScript : MonoBehaviour
             promptText.text = "";
             UpdateAbilityImages();
         }
+
+
     }
 
     public void SetAbilityOwned(int index)

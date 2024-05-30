@@ -16,7 +16,7 @@ public class PauseMenuScript : MonoBehaviour
 
     public Button[] menuButtons;
     public GameObject[] menuPanels;
-
+    public bool isOpen;
     public Button[] navigationButtons;
     public Text currentEssences;
     private int essenceAmount;
@@ -63,6 +63,7 @@ public class PauseMenuScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             TogglePauseMenu();
+            isOpen = true; ;
         }
 
         if (closeButton != null)

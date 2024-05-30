@@ -13,6 +13,7 @@ public class npcTrigger : MonoBehaviour
     [SerializeField] private NPCConversation dialogue;
     [SerializeField] private Text message;
     [SerializeField] private GameObject map;
+    private Player player;
     private bool isPlayerNearby;
     private int index;
 
@@ -20,6 +21,7 @@ public class npcTrigger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player= FindAnyObjectByType<Player>();
         Load();
         index = SceneManager.GetActiveScene().buildIndex;
 
@@ -57,6 +59,7 @@ public class npcTrigger : MonoBehaviour
             ConversationManager.Instance.StartConversation(dialogue);
             isFirstDialogue = false;
             Debug.Log("dialog started");
+            
             Save();
         }
     }
@@ -68,6 +71,7 @@ public class npcTrigger : MonoBehaviour
                 map.SetActive(false);
                 message.text = "Press E to talk";
                 isPlayerNearby = true;
+                player.ZeroVelocity();
             }
     }
 

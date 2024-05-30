@@ -7,10 +7,16 @@ using UnityEngine.UI;
 public class FireCollision : MonoBehaviour
 {
     private bool isPlayerNearby = false;
+
+    private HealthFlask healthFlask;
+    private Player player;
+    private BarsController bars;
+    public FlaskGUI flaskGUI;
+
+    [SerializeField] private int sceneIndex;
     [SerializeField] private Text message;
     [SerializeField] private string text;
-   
-    [SerializeField] private int sceneIndex;
+
     private Vector2 statuePosition;
 
     private bool activated;
@@ -20,6 +26,10 @@ public class FireCollision : MonoBehaviour
     private void Awake()
     {
         statuePosition= transform.position;
+        healthFlask = FindAnyObjectByType<HealthFlask>();
+        player = FindAnyObjectByType<Player>();
+        bars = FindAnyObjectByType<BarsController>();
+        flaskGUI= FindAnyObjectByType<FlaskGUI>();
     }
     private void Update()
     {
@@ -28,8 +38,19 @@ public class FireCollision : MonoBehaviour
             Save();
             activated = true;
             message.text = "";
+
         }
-   
+        if (activated)
+        {
+            player.stats.currentHealth = player.stats.maxHealth.GetValue();
+            healthFlask.currentFlasks = healthFlask.maxFlasks;
+            bars.SetHealth(player.stats.currentHealth, player.stats.maxHealth.GetValue());
+            flaskGUI.FillImage(0);
+            flaskGUI.FillImage(1);
+            flaskGUI.FillImage(2);
+            activated = false;
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
