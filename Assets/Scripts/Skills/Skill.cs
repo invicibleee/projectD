@@ -6,7 +6,8 @@ public class Skill : MonoBehaviour
 {
     [SerializeField] protected float cooldown;
     protected float cooldownTimer;
-
+    [SerializeField] private float manaCost;
+    public float ManaCost => manaCost;
     protected Player player;
 
     protected virtual void Update()

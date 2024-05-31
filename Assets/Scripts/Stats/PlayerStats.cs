@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerStats : CharacterStats
@@ -7,6 +8,7 @@ public class PlayerStats : CharacterStats
     private Player player;
     public BarsController allBars;
     private string saveKey = "playerSave";
+    public bool isInvincible { get; private set; }
 
     protected override void Start()
     {
@@ -18,6 +20,10 @@ public class PlayerStats : CharacterStats
     public override void TakeDamage(float _damage)
     {
         base.TakeDamage(_damage);
+        if (isInvincible)
+        {
+            return;
+        }
         allBars.SetHealth(currentHealth - _damage, GetMaxHealthValue());
 
     }
@@ -26,6 +32,7 @@ public class PlayerStats : CharacterStats
         base.Update();
         Save();
     }
+    public void MakeInvincible(bool _invincible) => isInvincible = _invincible;
     protected override void Die()
     {
         base.Die();
@@ -55,6 +62,20 @@ public class PlayerStats : CharacterStats
     {
         base.DecreaseUlt(amount);
         allBars.SetUlt(currentUlt, GetMaxUltValue());
+    }
+    public override void DecreaseMana(float amount)
+    {
+        base.DecreaseMana(amount);
+        allBars.SetMana(currentMana, GetMaxManaValue());
+    }
+     public bool TryUseMana(float amount)
+    {
+        if (currentMana >= amount)
+        {
+            DecreaseMana(amount);
+            return true;
+        }
+        return false;
     }
     public void Save()
     {

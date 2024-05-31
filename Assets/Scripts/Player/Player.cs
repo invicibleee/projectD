@@ -32,8 +32,7 @@ public class Player : Entity
     public float jumpBufferTime;
     private float jumpBufferCounter;
 
-
-    public string areaTransitionName;
+    private PlayerStats playerStats;
     public float dashDirection { get; private set; }
 
     public GameObject scythe { get; private set; }
@@ -81,6 +80,7 @@ public class Player : Entity
     protected override void Start()
     {
         base.Start();
+        GetStats();
         stateMachine.Initialize(idleState);
 
         defaultMoveSpeed = moveSpeed;
@@ -130,6 +130,10 @@ public class Player : Entity
         CheckForDashInput();
     }
 
+    public PlayerStats GetStats()
+    {
+        return playerStats = GetComponent<PlayerStats>();
+    }
 
     public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
     {

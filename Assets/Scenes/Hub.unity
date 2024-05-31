@@ -11377,6 +11377,14 @@ PrefabInstance:
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 1761881099}
+    - target: {fileID: 2211786716545682968, guid: ee181738cb8ab2b41933995b1056419d, type: 3}
+      propertyPath: dashSpeedIncreasePercent
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2211786716545682968, guid: ee181738cb8ab2b41933995b1056419d, type: 3}
+      propertyPath: dashDurationIncreasePercent
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3051722599854436563, guid: ee181738cb8ab2b41933995b1056419d, type: 3}
       propertyPath: m_Name
       value: CharmManager
@@ -20098,7 +20106,7 @@ PlatformEffector2D:
     m_Bits: 4294967295
   m_RotationalOffset: 0
   m_UseOneWay: 1
-  m_UseOneWayGrouping: 0
+  m_UseOneWayGrouping: 1
   m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
@@ -46709,9 +46717,21 @@ PrefabInstance:
       value: SkillManager
       objectReference: {fileID: 0}
     - target: {fileID: 6188087933920295939, guid: 6ee2d657ebe43f14fbd07e905d72e8c8, type: 3}
+      propertyPath: manaCost
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6188087933920295939, guid: 6ee2d657ebe43f14fbd07e905d72e8c8, type: 3}
       propertyPath: dotsParent
       value: 
       objectReference: {fileID: 1761881104}
+    - target: {fileID: 6188087933920295939, guid: 6ee2d657ebe43f14fbd07e905d72e8c8, type: 3}
+      propertyPath: scytheType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6188087933920295939, guid: 6ee2d657ebe43f14fbd07e905d72e8c8, type: 3}
+      propertyPath: pierceAmount
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -52054,6 +52074,10 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1485019578107172287, guid: b172ebe76825c5a47acd20b457479386, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 1761881099}
+    - target: {fileID: 1485019578107172287, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: jumpBufferTime
       value: 0.2
       objectReference: {fileID: 0}
@@ -52107,7 +52131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9134973802359527986, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9134973802359527986, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: m_SortingOrder

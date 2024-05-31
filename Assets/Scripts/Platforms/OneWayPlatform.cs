@@ -3,7 +3,7 @@ using UnityEngine;
 public class OneWayPlatform : MonoBehaviour
 {
     private PlatformEffector2D effector;
-    private float waitTime = 0.4f;  // Time to wait before allowing drop again
+    private float waitTime = 0.4f;  // Время ожидания перед разрешением падения
     private float timer = 0f;
     private bool isDropping = false;
 
@@ -23,19 +23,45 @@ public class OneWayPlatform : MonoBehaviour
                 isDropping = false;
             }
         }
+    }
 
-        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && !isDropping)
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
         {
-            effector.rotationalOffset = 180f;
-            timer = waitTime;
-            isDropping = true;
+            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && !isDropping)
+            {
+                effector.rotationalOffset = 180f;
+                timer = waitTime;
+                isDropping = true;
+            }
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            effector.rotationalOffset = 0f;
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Player") && !isDropping)
+        // Проверяем, сталкивается ли с платформой игрок
+        if (collision.collider.CompareTag("Player"))
         {
+            // Проверяем, находится ли игрок выше платформы
+            if (collision.contacts[0].point.y > transform.position.y)
+            {
+                // Если игрок находится выше платформы, разрешаем ему падение
+                effector.rotationalOffset = 0f;
+            }
+        }
+        // Проверяем, сталкивается ли с платформой враг
+        else if (collision.collider.CompareTag("Enemy"))
+        {
+            // Если это враг, сбрасываем эффект платформы, чтобы он не упал
             effector.rotationalOffset = 0f;
         }
     }

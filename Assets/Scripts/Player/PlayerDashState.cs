@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class PlayerDashState : PlayerState
 {
-    //private bool hasAttacked;
- 
+    public static event System.Action OnDashStart;
+    public static event System.Action OnDashEnd;
+
     public PlayerDashState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -13,7 +14,7 @@ public class PlayerDashState : PlayerState
     public override void Enter()
     {
         base.Enter();
-
+        OnDashStart?.Invoke();
         player.skill.clone.CreateCloneOnDashStart();
 
         stateTimer = player.dashDuration;
@@ -23,7 +24,7 @@ public class PlayerDashState : PlayerState
     public override void Exit()
     {
         base.Exit();
-
+        OnDashEnd?.Invoke();
         player.skill.clone.CreateCloneOnDashOver();
         player.SetVelocity(0, rb.velocity.y);
     }
