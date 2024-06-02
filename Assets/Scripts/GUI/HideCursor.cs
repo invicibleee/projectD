@@ -16,6 +16,7 @@ public class HideCursor : MonoBehaviour
         // Скрыть курсор при старте игры
         SetCursorState(cursorVisible);
         player = FindAnyObjectByType<Player>();
+        hotSpot = new Vector2(customCursor.width / 2, customCursor.height / 2);
     }
 
     [System.Obsolete]

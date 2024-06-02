@@ -24,8 +24,8 @@ public class TalantCollisison : MonoBehaviour
         if (!status && isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
             talantsPanelScript.SetTalantOwned(talantIndex);
-            gameObject.SetActive(false);
-            message.text = "";
+            StartCoroutine(DisplayMessageCoroutine("Found talant \"" + talantsPanelScript.talants[talantIndex].name + "\""));
+           
         }
         else if (status)
         {
@@ -54,6 +54,14 @@ public class TalantCollisison : MonoBehaviour
     {
         var data = SaveManager.Load<SaveData.TalantsSave>(saveKey);
         status = data._isOwned[talantIndex];
+    }
+
+    private IEnumerator DisplayMessageCoroutine(string messageText)
+    {
+        message.text = messageText;
+        yield return new WaitForSeconds(1);
+        message.text = "";
+        gameObject.SetActive(false);
     }
 
 }

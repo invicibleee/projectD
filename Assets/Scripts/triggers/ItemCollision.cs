@@ -25,8 +25,7 @@ public class ItemCollision : MonoBehaviour
         if (!status && isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
             inventoryPanelScript.SetItemOwned(itemIndex);
-            gameObject.SetActive(false);
-            message.text = "";
+            StartCoroutine(DisplayMessageCoroutine("Found item \"" + inventoryPanelScript.items[itemIndex].name + "\""));
         }
         else if (status)
         {
@@ -50,6 +49,13 @@ public class ItemCollision : MonoBehaviour
             isPlayerNearby = false;
             message.text = "";
         }
+    }
+    private IEnumerator DisplayMessageCoroutine(string messageText)
+    {
+        message.text = messageText;
+        yield return new WaitForSeconds(1);
+        message.text = "";
+        gameObject.SetActive(false);
     }
 
     private void Load()

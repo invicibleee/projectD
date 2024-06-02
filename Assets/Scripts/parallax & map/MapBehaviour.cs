@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DialogueEditor;
 
 public class MapBehaviour : MonoBehaviour
 {
@@ -16,8 +17,10 @@ public class MapBehaviour : MonoBehaviour
     private bool isPaused = false;
     [SerializeField] public bool isForestMapOpened;
     [SerializeField] public bool isFullMapOpened;
+    [SerializeField] private GameObject menu;
     private string saveKey = "mapSave";
     private Player player;
+    private PauseMenuScript menuController;
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,22 +28,28 @@ public class MapBehaviour : MonoBehaviour
     }
     private void Start()
     {
-       player= FindAnyObjectByType<Player>();
+       player = FindAnyObjectByType<Player>();
+        menuController = FindAnyObjectByType<PauseMenuScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(player.stats.currentHealth <= 0)
+        if (!isObjectActive && Input.GetKeyDown(KeyCode.Escape))
+        {
+            menuController.TogglePauseMenu();
+        }
+
+        if (player.stats.currentHealth <= 0 || menu.activeSelf || ConversationManager.Instance.IsConversationActive)
         {
             gameObject.SetActive(false);
         }
-        else
+        else 
         {
             gameObject.SetActive(true);
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.M) && !menu.activeSelf)
         {
             isObjectActive = !isObjectActive;
 
@@ -54,7 +63,8 @@ public class MapBehaviour : MonoBehaviour
             {
                 PauseGame();
             }
-        }
+        } 
+
 
         if (isObjectActive && isForestMapOpened && !isFullMapOpened)
         {

@@ -62,8 +62,11 @@ public class PauseMenuScript : MonoBehaviour
         // Check if the Escape key is pressed
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            TogglePauseMenu();
-            isOpen = true; ;
+            isOpen = true;
+            if (!map.activeSelf)
+            {
+                TogglePauseMenu();
+            }
         }
 
         if (closeButton != null)
@@ -98,18 +101,24 @@ public class PauseMenuScript : MonoBehaviour
     }
 
     // Method to toggle the visibility of the pause menu and control the game's pause state
-    void TogglePauseMenu()
+    public void TogglePauseMenu()
     {
-        if (pauseMenu != null)
+        if (pauseMenu != null && map != null)
         {
             bool isMenuActive = pauseMenu.activeSelf;
             bool isGuiActive = gui.activeSelf;
             bool isPostActive = postProcessing.activeSelf;
-            if(map != null)
+            bool isMapActive = map.activeSelf;
+
+            if (isMapActive)
             {
-                bool isMapActive = map.activeSelf;
-                map.SetActive(!isMapActive);
+                map.SetActive(false);
             }
+            else
+            {
+                map.SetActive(true);
+            }
+
             pauseMenu.SetActive(!isMenuActive);
             gui.SetActive(!isGuiActive);
             postProcessing.SetActive(!isPostActive);

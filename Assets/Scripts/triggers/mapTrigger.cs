@@ -18,11 +18,12 @@ public class mapTrigger : MonoBehaviour
         if (other.CompareTag("Player") && !map.isForestMapOpened && SceneManager.GetActiveScene().buildIndex == 1)
         {
             map.isForestMapOpened = true;
+            Save();
         } else if (other.CompareTag("Player") && !map.isFullMapOpened && SceneManager.GetActiveScene().buildIndex == 2)
         {
             map.isFullMapOpened = true;
+            Save();
         }
-        Save();
     }
     public void Save()
     {
