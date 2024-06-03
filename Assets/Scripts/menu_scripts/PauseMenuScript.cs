@@ -20,7 +20,7 @@ public class PauseMenuScript : MonoBehaviour
     public Button[] navigationButtons;
     public Text currentEssences;
     private int essenceAmount;
-    private int increaseRate = 100;
+
     [SerializeField] private Text essenceText;
 
     private void Start()
@@ -110,11 +110,11 @@ public class PauseMenuScript : MonoBehaviour
             bool isPostActive = postProcessing.activeSelf;
             bool isMapActive = map.activeSelf;
 
-            if (isMapActive)
+            if (isMapActive && map.name != "emptyObj")
             {
                 map.SetActive(false);
             }
-            else
+            else if (!isMapActive && map.name != "emptyObj")
             {
                 map.SetActive(true);
             }

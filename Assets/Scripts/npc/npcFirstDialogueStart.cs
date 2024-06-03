@@ -14,8 +14,10 @@ public class npcFirstDialogueStart : MonoBehaviour
     [SerializeField] private string typeOfNpc;
     [SerializeField] private GameObject npcIcon;
     [SerializeField] private GameObject map;
+    private Player player;
     private bool isPlayerNearby;
     private bool shopOpened;
+    public float moveSpeed;
 
     private string saveKey = "NPCSave2";
     private string saveKey2 = "IconsSave";
@@ -24,6 +26,7 @@ public class npcFirstDialogueStart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = FindAnyObjectByType<Player>();
         Load2();
         if(SceneManager.GetActiveScene().buildIndex == 3)
         {
@@ -32,6 +35,7 @@ public class npcFirstDialogueStart : MonoBehaviour
         {
             Load3();
         }
+        moveSpeed = player.moveSpeed;
     }
 
     // Update is called once per frame
@@ -67,6 +71,15 @@ public class npcFirstDialogueStart : MonoBehaviour
              
             }
          
+        }
+
+        if (ConversationManager.Instance.IsConversationActive)
+        {
+            player.moveSpeed = 0;
+        }
+        else
+        {
+            player.moveSpeed = moveSpeed;
         }
     }
 

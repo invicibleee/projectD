@@ -16,7 +16,7 @@ public class npcTrigger : MonoBehaviour
     private Player player;
     private bool isPlayerNearby;
     private int index;
-
+    public float moveSpeed;
     private string saveKey = "NPCSave";
     // Start is called before the first frame update
     void Start()
@@ -48,6 +48,7 @@ public class npcTrigger : MonoBehaviour
                 }
                 break;
         }
+        moveSpeed = player.moveSpeed;
     }
 
     // Update is called once per frame
@@ -59,8 +60,12 @@ public class npcTrigger : MonoBehaviour
             ConversationManager.Instance.StartConversation(dialogue);
             isFirstDialogue = false;
             Debug.Log("dialog started");
-            
+            player.moveSpeed = 0;
             Save();
+        }
+        if (!ConversationManager.Instance.IsConversationActive)
+        {
+            player.moveSpeed = moveSpeed;
         }
     }
 

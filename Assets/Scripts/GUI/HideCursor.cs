@@ -7,6 +7,7 @@ public class HideCursor : MonoBehaviour
     private bool cursorVisible = false;
 
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject tutorial;
     [SerializeField] private Texture2D customCursor;
     [SerializeField] private Vector2 hotSpot = Vector2.zero;
     [SerializeField] private CursorMode cursorMode = CursorMode.Auto;
@@ -22,7 +23,7 @@ public class HideCursor : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
-        if (player.stats.isDead || pauseMenu.activeSelf || ConversationManager.Instance.IsConversationActive)
+        if (player.stats.isDead || pauseMenu.activeSelf || ConversationManager.Instance.IsConversationActive || tutorial != null && tutorial.activeSelf)
         {
             if (!cursorVisible)
             {

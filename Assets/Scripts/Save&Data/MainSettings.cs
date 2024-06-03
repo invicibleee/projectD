@@ -261,6 +261,16 @@ namespace SaveData
             _isDogQuestCompleted = false;
         }
     }
+
+    [System.Serializable]
+    public class TutorialSave
+    {
+        public bool _tutorailShowed;
+        public TutorialSave()
+        {
+            _tutorailShowed = false;
+        }
+    }
 }
 
 

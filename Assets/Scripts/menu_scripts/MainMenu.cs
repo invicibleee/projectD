@@ -254,6 +254,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("NPCSave2");
         PlayerPrefs.DeleteKey("NPCSave3");
         PlayerPrefs.DeleteKey("itemsSave");
+        PlayerPrefs.DeleteKey("tutorialSave");
         SceneManager.LoadScene(1);
     }
     public void ContinueGame()
