@@ -52,7 +52,7 @@ namespace SaveData
 
         public MoneyPlayer()
         {
-            _money = 1000;
+            _money = 0;
         }
     }
     [System.Serializable]
@@ -269,6 +269,18 @@ namespace SaveData
         public TutorialSave()
         {
             _tutorailShowed = false;
+        }
+    }
+    [System.Serializable]
+    public class AchivementsSave
+    {
+        public bool[] _isOwned = new bool[14];
+        public AchivementsSave()
+        {
+            for (int i = 0; i < _isOwned.Length; i++)
+            {
+                _isOwned[i] = false;
+            }
         }
     }
 }

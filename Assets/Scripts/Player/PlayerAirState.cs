@@ -28,7 +28,7 @@ public class PlayerAirState : PlayerState
         {
             player.SetVelocity(player.moveSpeed * 0.8f * xInput, rb.velocity.y);
         }
-        if (player.IsWallDetected())
+        if (player.IsWallDetected() && TalantsPanelScript.instance.talants[1].isOwned)
         {
             stateMachine.ChangeState(player.wallSlideState);
         }

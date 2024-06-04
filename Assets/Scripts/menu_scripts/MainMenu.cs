@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 [System.Serializable]
 public struct Achivement
@@ -48,15 +49,31 @@ public class MainMenu : MonoBehaviour
     private int height;
     private string currentResolution;
 
+    public static MainMenu instance;
+
     public Achivement[] achivements = new Achivement[14];
     private int selectedAchivementIndex = -1;
     private string saveKey = "mainMenuSettings";
     private string saveKey2 = "playerPosition";
+    private string saveKey3 = "achivementsSave";
     private int sceneIndex;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Destroy(instance.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+    }
 
     void Start()
     {
         Load();
+        Load2();
         //currentResolution = $"{width}x{height}";
 
         descriptionText.text = "";
@@ -217,6 +234,13 @@ public class MainMenu : MonoBehaviour
             achivements[i].image.color = achivements[i].isOwned ? Color.white : Color.gray;
         }
     }
+
+    public void setAchivementOwned(int index)
+    {
+        achivements[index].isOwned = true;
+        Save2();
+        //UpdateAchivementImages();
+    }
     public void ExitGame()
     {
         Application.Quit();
@@ -225,6 +249,11 @@ public class MainMenu : MonoBehaviour
     public void Save()
     {
         SaveManager.Save(saveKey, GetData());
+
+    }
+    public void Save2()
+    {
+        SaveManager.Save(saveKey3, GetData2());
 
     }
     private void SetFull(bool status)
@@ -255,6 +284,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("NPCSave3");
         PlayerPrefs.DeleteKey("itemsSave");
         PlayerPrefs.DeleteKey("tutorialSave");
+        PlayerPrefs.DeleteKey("achivementsSave");
         SceneManager.LoadScene(1);
     }
     public void ContinueGame()
@@ -324,5 +354,30 @@ public class MainMenu : MonoBehaviour
             _volumeValue = volumeSlider.value,
         };
         return data;
+    }
+
+    private SaveData.AchivementsSave GetData2()
+    {
+        var data = new SaveData.AchivementsSave()
+        {
+            _isOwned = new bool[achivements.Length]
+        };
+
+        for (int i = 0; i < achivements.Length; i++)
+        {
+            data._isOwned[i] = achivements[i].isOwned;
+        }
+
+        return data;
+    }
+
+    private void Load2()
+    {
+        var data = SaveManager.Load<SaveData.AchivementsSave>(saveKey3);
+
+        for (int i = 0; i < achivements.Length; i++)
+        {
+            achivements[i].isOwned = data._isOwned[i];
+        }
     }
 }

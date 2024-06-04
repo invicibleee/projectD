@@ -51,6 +51,7 @@ public class RedWeaponStyle : WeaponStyle
         {
             bleedDuration = originalBleedDuration;
             crimsonCarnage.ActivateCrimsonCarnage();
+           // player.anim.SetBool("CrimsonCarnage", true);
             isBleeding = true;
         }
         
