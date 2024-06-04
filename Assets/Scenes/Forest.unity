@@ -103592,9 +103592,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7476184738974682978, guid: 0fad89020b812aa42b578d385b9aac74, type: 3}
+      propertyPath: bleedDuration
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476184738974682978, guid: 0fad89020b812aa42b578d385b9aac74, type: 3}
+      propertyPath: bleedingDamage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7476184738974682978, guid: 0fad89020b812aa42b578d385b9aac74, type: 3}
       propertyPath: crimsonCarnage
       value: 
       objectReference: {fileID: 928992819}
+    - target: {fileID: 7476184738974682978, guid: 0fad89020b812aa42b578d385b9aac74, type: 3}
+      propertyPath: bleedTickPerSecond
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -103945,7 +103957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9134973802359527986, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9134973802359527986, guid: b172ebe76825c5a47acd20b457479386, type: 3}
       propertyPath: m_SortingOrder
