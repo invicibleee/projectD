@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 
 public class Player : Entity
 {
+    private RedWeaponStyle style;
 
     [Header("Attack details")]
     public Vector2[] attackMovement;
@@ -53,11 +54,14 @@ public class Player : Entity
     public PlayerAimScytheState aimScytheState { get; private set; }
     public PlayerCatchScytheState catchScytheState { get; private set; }
     public PlayerDeadState deadState { get; private set; }
+    public PlayerCrimsonCarnageState carnageState { get; private set; }
     #endregion
 
     protected override void Awake()
     {
         base.Awake();
+        style = FindAnyObjectByType<RedWeaponStyle>();
+
         stateMachine = new PlayerStateMachine();
 
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
@@ -67,13 +71,12 @@ public class Player : Entity
         dashState = new PlayerDashState(this, stateMachine, "Dash");
         wallSlideState = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "Jump");
-
         primaryAttackState = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttackState = new PlayerCounterAttackState(this, stateMachine, "CounterAttack");
         chronoState = new PlayerChronoState(this, stateMachine, "Jump");
         aimScytheState = new PlayerAimScytheState(this, stateMachine, "AimScythe");
         catchScytheState = new PlayerCatchScytheState(this, stateMachine, "CatchScythe");
-
+        carnageState = new PlayerCrimsonCarnageState(this, stateMachine, "CrimsonCarnage",style);
         deadState = new PlayerDeadState(this, stateMachine, "Die");
     }
 
@@ -99,6 +102,10 @@ public class Player : Entity
         base.Update();
         stateMachine.currentState.Update();
         // Проверяем наличие "койот тайма" при нажатии прыжка
+        if (Input.GetKey(KeyCode.F) && style.isBaseActive && stats.currentUlt == stats.maxUlt.GetValue())
+        {
+            stateMachine.ChangeState(carnageState);
+        }
         if (IsGroundDetected())
         {
             coyoteTimeCounter = coyoteTime; // Устанавливаем счетчик койот тайма при нажатии кнопки прыжка

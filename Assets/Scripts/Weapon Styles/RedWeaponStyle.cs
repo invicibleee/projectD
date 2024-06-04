@@ -6,20 +6,20 @@ public class RedWeaponStyle : WeaponStyle
 {
 
     [Header("Base Upgrade")]
-    [SerializeField] private CrimsonCarnage crimsonCarnage;
+    [SerializeField] public CrimsonCarnage crimsonCarnage;
     [Header("First Upgrade")]
     [SerializeField] private float maxHealthIncrease;
     [SerializeField] private float vampirismPercentage;
     [Header("Second Upgrade")]
-    [SerializeField] private float bleedingDamage;
-    [SerializeField] private float bleedTickPerSecond;
-    [SerializeField] private float bleedDuration;private float originalBleedDuration;
+    [SerializeField] public float bleedingDamage;
+    [SerializeField] public float bleedTickPerSecond;
+    [SerializeField] public float bleedDuration; public float originalBleedDuration;
     private float damageTimer = 0f;
-    private bool isBleeding;
+    public bool isBleeding;
 
-    private bool isBaseActive;
-    private bool isFirstActive;
-    private bool isSecondActive;
+    public bool isBaseActive;
+    public bool isFirstActive;
+    public bool isSecondActive;
 
 
 
@@ -47,13 +47,13 @@ public class RedWeaponStyle : WeaponStyle
                 isBleeding = false;
             }
         }
-        if (Input.GetKeyUp(KeyCode.F) && isBaseActive && playerStats.currentUlt == playerStats.maxUlt.GetValue())
-        {
-            bleedDuration = originalBleedDuration;
-            crimsonCarnage.ActivateCrimsonCarnage();
-           // player.anim.SetBool("CrimsonCarnage", true);
-            isBleeding = true;
-        }
+        //if (Input.GetKeyUp(KeyCode.F) && isBaseActive && playerStats.currentUlt == playerStats.maxUlt.GetValue())
+        //{
+        //    bleedDuration = originalBleedDuration;
+        //    crimsonCarnage.ActivateCrimsonCarnage();
+
+        //    isBleeding = true;
+        //}
         
     }
     public override void ActivateFirstUpgrade()

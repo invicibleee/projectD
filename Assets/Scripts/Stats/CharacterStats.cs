@@ -114,7 +114,7 @@ public class CharacterStats : MonoBehaviour
         float reducedDamage = _damage * (1f - damageReceivedReductionPercentage / 100f);
         DecreaseHealthBy(reducedDamage);
 
-        GetComponent<Entity>().DamageImpact();
+        //GetComponent<Entity>().DamageImpact();
         fx.StartCoroutine("FlashFX");
 
         if (currentHealth < 0 && !isDead)

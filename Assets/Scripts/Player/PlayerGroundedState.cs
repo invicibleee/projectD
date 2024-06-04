@@ -7,7 +7,9 @@ public class PlayerGroundedState : PlayerState
 {
     public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
+
     }
+
     public override void Enter()
     {
         base.Enter();
@@ -22,6 +24,7 @@ public class PlayerGroundedState : PlayerState
     public override void Update()
     {
         base.Update();
+
         if (Input.GetKeyDown(KeyCode.Mouse0) && !ConversationManager.Instance.IsConversationActive )
             stateMachine.ChangeState(player.primaryAttackState);
         if (Input.GetKeyDown(KeyCode.R) && HasNoScythe() && AbilitiesPanelScript.instance.abilities[1].isEquiped)//ThrowSkill
