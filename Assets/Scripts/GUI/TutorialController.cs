@@ -8,12 +8,15 @@ public class TutorialController : MonoBehaviour
     [SerializeField] private GameObject tutorial;
     [SerializeField] private GameObject map;
     private string saveKey = "tutorialSave";
+    private string saveKey2 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
     private bool status;
     // Start is called before the first frame update
 
     private void Awake()
     {
         Load();
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey2);
     }
 
     // Update is called once per frame
@@ -29,6 +32,7 @@ public class TutorialController : MonoBehaviour
     {
         tutorial.SetActive(false);
         map.SetActive(true);
+        MainMenu.instance.setAchivementOwned(1);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

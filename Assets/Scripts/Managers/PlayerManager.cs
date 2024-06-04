@@ -9,7 +9,9 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
     public int essenceAmount;
     private string saveKey = "playerMoneySave";
-
+    private string saveKey2 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
+  
     private void Awake()
     {
         if(instance != null)
@@ -23,6 +25,15 @@ public class PlayerManager : MonoBehaviour
     private void Start()
     {
         Load();
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey2);
+    }
+
+    private void Update()
+    {
+        if (essenceAmount >= 100 && !data2._isOwned[0])
+        {
+            MainMenu.instance.setAchivementOwned(0);
+        }
     }
 
     public void AddEssences(int amount)

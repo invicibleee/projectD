@@ -26,6 +26,8 @@ public class InventoryPanelScript : MonoBehaviour
     [SerializeField] private Text nameText;
 
    private string saveKey = "PlayerItems";
+    private string saveKey2 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
 
     private void Awake()
     {
@@ -37,6 +39,7 @@ public class InventoryPanelScript : MonoBehaviour
         {
             instance = this;
         }
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey2);
     }
 
     // Start is called before the first frame update
@@ -85,6 +88,23 @@ public class InventoryPanelScript : MonoBehaviour
             } else if (!items[i].isOwned)
             {
                 RemoveItemFromInventory(i);
+            }
+        }
+
+        if (!data2._isOwned[12])
+        {
+            int j = 0;
+            for(int i = 0;i < items.Length; i++)
+            {
+                if (items[i].isOwned)
+                {
+                    j++;
+                }
+
+            }
+           if (j == items.Length)
+            {
+                MainMenu.instance.setAchivementOwned(12);
             }
         }
     }

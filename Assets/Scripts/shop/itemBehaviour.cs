@@ -16,10 +16,13 @@ public class itemBehaviour : MonoBehaviour
     private bool amulet = false;
 
     private string saveKey = "itemsSave";
-
+    private string saveKey2 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
     public void Start()
     {
         Load();
+
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey2);
     }
     public void BuyInfuser(int amount)
     {
@@ -145,7 +148,13 @@ public class itemBehaviour : MonoBehaviour
     }
     public void DogQuestCompleted(int amount)
     {
+        if (!data2._isOwned[8])
+        {
+            MainMenu.instance.setAchivementOwned(8);
+        }
+
         dogQuestCompleted = true;
+
         PlayerManager.instance.AddEssences(amount);
         Save();
     }

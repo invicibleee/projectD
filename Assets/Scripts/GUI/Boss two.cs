@@ -30,7 +30,8 @@ public class Bosstwo : MonoBehaviour
 
     private string saveKey = "BossSave";
     private string saveKey2 = "IconsSave";
- 
+    private string saveKey3 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
 
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class Bosstwo : MonoBehaviour
 
         currentHP = maxHP;
         ResetHUDColors();
-
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey3);
     }
 
     void UpdateBar()
@@ -79,6 +80,8 @@ public class Bosstwo : MonoBehaviour
 
         if (currentHP <= 0 && HUD.activeSelf)
         {
+            MainMenu.instance.setAchivementOwned(10);
+            MainMenu.instance.setAchivementOwned(13);
             UpdateBar();
             isDead = true;
             Save();

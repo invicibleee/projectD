@@ -24,6 +24,8 @@ public class DeathController : MonoBehaviour
     private string saveKey3 = "StatueSave";
     private string saveKey4 = "playerPosition";
     private string saveKey5 = "camera";
+    private string saveKey6 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
     private void Start()
     {
         Load();
@@ -31,6 +33,7 @@ public class DeathController : MonoBehaviour
         barsController = FindAnyObjectByType<BarsController>();
         healthFlask = FindAnyObjectByType<HealthFlask>();
         moneyTrigger = FindAnyObjectByType<MoneyTrigger>();
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey6);
     }
 
     private void Update()
@@ -47,6 +50,10 @@ public class DeathController : MonoBehaviour
 
     public void Respawn()
     {
+        if (!data2._isOwned[2])
+        {
+            MainMenu.instance.setAchivementOwned(2);
+        }
         player.stats.isDead = false;
         lostCurrency = PlayerManager.instance.essenceAmount;
         PlayerManager.instance.RemoveEssences(lostCurrency);

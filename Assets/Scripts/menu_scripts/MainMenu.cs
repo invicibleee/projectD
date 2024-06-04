@@ -237,9 +237,28 @@ public class MainMenu : MonoBehaviour
 
     public void setAchivementOwned(int index)
     {
+
         achivements[index].isOwned = true;
         Save2();
-        //UpdateAchivementImages();
+
+        var data = SaveManager.Load<SaveData.AchivementsSave>(saveKey3);
+        if (!data._isOwned[11])
+        {
+            int j = 0;
+            for (int i = 0; i < achivements.Length; i++)
+            {
+                if (achivements[i].isOwned)
+                {
+                    j++;
+
+                }
+            }
+            if (j == achivements.Length - 1)
+            {
+                setAchivementOwned(11);
+            }
+        }
+
     }
     public void ExitGame()
     {
@@ -284,7 +303,7 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("NPCSave3");
         PlayerPrefs.DeleteKey("itemsSave");
         PlayerPrefs.DeleteKey("tutorialSave");
-        PlayerPrefs.DeleteKey("achivementsSave");
+       // PlayerPrefs.DeleteKey("achivementsSave");
         SceneManager.LoadScene(1);
     }
     public void ContinueGame()

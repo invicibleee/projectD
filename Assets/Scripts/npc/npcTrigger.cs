@@ -18,13 +18,15 @@ public class npcTrigger : MonoBehaviour
     private int index;
     public float moveSpeed;
     private string saveKey = "NPCSave";
+    private string saveKey2 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
     // Start is called before the first frame update
     void Start()
     {
         player= FindAnyObjectByType<Player>();
         Load();
         index = SceneManager.GetActiveScene().buildIndex;
-
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey2);
         switch (index)
         {
             case 2:
@@ -56,6 +58,10 @@ public class npcTrigger : MonoBehaviour
     {
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
+            if (!data2._isOwned[4])
+            {
+                MainMenu.instance.setAchivementOwned(4);
+            }
             message.text = "";
             ConversationManager.Instance.StartConversation(dialogue);
             isFirstDialogue = false;

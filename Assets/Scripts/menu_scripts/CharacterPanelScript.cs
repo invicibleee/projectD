@@ -35,11 +35,15 @@ public class CharacterPanelScript : MonoBehaviour
     private int selectedSkillIndex = -1;
     bool allRequiredSkillsPurchased;
     private string saveKey = "PlayerWeaponSkills";
+    private string saveKey2 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
+
     private int isEqiped;
     private void Awake()
     {
         weaponStyles = FindObjectsOfType<WeaponStyle>();
         sphereGUI = FindAnyObjectByType<SphereGUI>();
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey2);
 
     }
     private void Start()
@@ -227,6 +231,21 @@ public class CharacterPanelScript : MonoBehaviour
             }
             UpdateSkillImages();
             Save();
+        }
+
+        if (!data2._isOwned[7])
+        {
+            if (skills[2].isPurchased || skills[5].isPurchased || skills[8].isPurchased)
+            {
+                MainMenu.instance.setAchivementOwned(7);
+            }
+        }
+        if (!data2._isOwned[9])
+        {
+            if (skills[2].isPurchased && skills[5].isPurchased && skills[8].isPurchased)
+            {
+                MainMenu.instance.setAchivementOwned(9);
+            }
         }
     }
 

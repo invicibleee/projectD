@@ -32,6 +32,8 @@ public class BossGUI : MonoBehaviour
 
     private string saveKey = "BossSave";
     private string saveKey2 = "IconsSave";
+    private string saveKey3 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
 
     private void Awake()
     {
@@ -43,6 +45,7 @@ public class BossGUI : MonoBehaviour
             bossOne = FindAnyObjectByType<EnemyBossOne>();
         }
         abilitiesPanelScript = FindAnyObjectByType<AbilitiesPanelScript>();
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey3);
     }
     void Start()
     {
@@ -79,6 +82,10 @@ public class BossGUI : MonoBehaviour
 
         if (currentHP <= 0 && HUD.activeSelf)
         {
+            if (!data2._isOwned[3])
+            {
+                MainMenu.instance.setAchivementOwned(3);
+            }
             UpdateBar();
             isDead = true;
             Save();
@@ -89,7 +96,7 @@ public class BossGUI : MonoBehaviour
             await FadeOutHUD(displayTime);
             abilitiesPanelScript.SetAbilityOwned(1);
             HUD.SetActive(false);
-
+      
         }
 
     }

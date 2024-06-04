@@ -5653,7 +5653,7 @@ MonoBehaviour:
     name: Reaper's Apprentice
   - image: {fileID: 965558869}
     isOwned: 1
-    description: Talk to the NPC in the hub.
+    description: Talk to the NPC.
     name: Friends ?
   - image: {fileID: 1810067449}
     isOwned: 1
@@ -5661,7 +5661,7 @@ MonoBehaviour:
     name: Nightfall's Apprentice
   - image: {fileID: 1812316740}
     isOwned: 1
-    description: Discover your first talent.
+    description: Discover your first talant.
     name: I am talent
   - image: {fileID: 636954656}
     isOwned: 1

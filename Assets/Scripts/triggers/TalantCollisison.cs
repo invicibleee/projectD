@@ -11,18 +11,26 @@ public class TalantCollisison : MonoBehaviour
     [SerializeField] private Text message;
     [SerializeField] private string text;
     private string saveKey = "PlayerTalants";
+    private string saveKey2 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
+
     private bool isPlayerNearby = false;
     private bool status;
 
     private void Start()
     {
         talantsPanelScript = TalantsPanelScript.instance;
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey2);
         Load();
     }
     private void Update()
     {
         if (!status && isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
+            if (!data2._isOwned[6])
+            {
+                MainMenu.instance.setAchivementOwned(6);
+            }
             talantsPanelScript.SetTalantOwned(talantIndex);
             StartCoroutine(DisplayMessageCoroutine("Found talant \"" + talantsPanelScript.talants[talantIndex].name + "\""));
            

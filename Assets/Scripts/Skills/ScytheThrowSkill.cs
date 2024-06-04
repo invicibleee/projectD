@@ -47,6 +47,8 @@ public class ScytheThrowSkill : Skill
 
     private GameObject[] dots;
 
+    private string saveKey2 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
     protected override void Start()
     {
         base.Start();
@@ -54,6 +56,7 @@ public class ScytheThrowSkill : Skill
         GenerateDots();
 
         SetupGravity();
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey2);
     }
 
     private void SetupGravity()
@@ -82,6 +85,11 @@ public class ScytheThrowSkill : Skill
 
     public void CreateScythe()
     {
+        if (!data2._isOwned[5])
+        {
+            MainMenu.instance.setAchivementOwned(5);
+        }
+
         GameObject newScythe = Instantiate(scythePrefab, player.transform.position, transform.rotation);
         ScytheSkillController newScytheScript = newScythe.GetComponent<ScytheSkillController>();
 

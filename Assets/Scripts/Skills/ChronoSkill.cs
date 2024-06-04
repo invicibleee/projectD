@@ -15,9 +15,13 @@ public class ChronoSkill : Skill
 
 
     ChronofistSkillController currentChrono;
+
+    private string saveKey2 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
     protected override void Start()
     {
         base.Start();
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey2);
     }
     public override bool CanUseSkill()
     {
@@ -33,6 +37,10 @@ public class ChronoSkill : Skill
         currentChrono = newChrono.GetComponent<ChronofistSkillController>();
 
         currentChrono.SetupChrono(maxSize, growSpeed, shrinkSpeed, amountOfAttacks, cloneCooldown, chronoDuration);
+        if (!data2._isOwned[5])
+        {
+            MainMenu.instance.setAchivementOwned(5);
+        }
     }
 
     protected override void Update()

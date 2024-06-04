@@ -22,10 +22,12 @@ public class npcFirstDialogueStart : MonoBehaviour
     private string saveKey = "NPCSave2";
     private string saveKey2 = "IconsSave";
     private string saveKey3 = "NPCSave3";
-
+    private string saveKey5 = "achivementsSave";
+    private SaveData.AchivementsSave data2;
     // Start is called before the first frame update
     void Start()
     {
+        data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey5);
         player = FindAnyObjectByType<Player>();
         Load2();
         if(SceneManager.GetActiveScene().buildIndex == 3)
@@ -46,6 +48,10 @@ public class npcFirstDialogueStart : MonoBehaviour
 
             if (isFirstDialogue)
             {
+                if (!data2._isOwned[4])
+                {
+                    MainMenu.instance.setAchivementOwned(4);
+                }
                 message.text = "";
                 ConversationManager.Instance.StartConversation(dialogue);
                 isFirstDialogue = false;
