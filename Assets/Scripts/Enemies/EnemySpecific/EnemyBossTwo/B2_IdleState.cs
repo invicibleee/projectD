@@ -5,6 +5,7 @@ using UnityEngine;
 public class B2_IdleState : IdleState
 {
     private EnemyBossTwo bossTwo;
+    private bool playerDetected = false;
     public B2_IdleState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_IdleState stateData, EnemyBossTwo bossTwo) : base(stateMashine, enemy, animBoolName, stateData)
     {
         this.bossTwo = bossTwo;
@@ -30,9 +31,10 @@ public class B2_IdleState : IdleState
         base.LogicUpdate();
         if (isPlayerInMinAgroRange)
         {
+            playerDetected = true;
             stateMashine.ChangeState(bossTwo.playerDetectedState);
         }
-        else if (isIdleTimeOver)
+        else if (isIdleTimeOver && playerDetected)
         {
             stateMashine.ChangeState(bossTwo.moveState);
         }

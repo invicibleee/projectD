@@ -32,7 +32,14 @@ public class B2_ShieldState : BossShieldState
         base.LogicUpdate();
         if (isShieldTimeOver)
         {
-            stateMashine.ChangeState(bossTwo.idleState);
+            if (performCloseRangePosition)
+            {
+                stateMashine.ChangeState(bossTwo.meleeAttackState);
+            }
+            else
+            {
+                stateMashine.ChangeState(bossTwo.lookForPlayerState);
+            }
         }
         
     }

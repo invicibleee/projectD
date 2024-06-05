@@ -4,7 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newTeleportStateData", menuName = "Data/State Data/Teleport State")]
 public class D_BackTeleportState : ScriptableObject
 {
-    public float teleportSpeed = 10f;
     public float teleportTime = 0.5f;
     public float teleportCooldown = 3.0f;
     public float distanceBehindPlayer = 3.0f;

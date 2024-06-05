@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBossTwo : Enemy
 {
+    protected Player player;
+
     public B2_ChargeState chargeState {  get; private set; }
 
     public B2_DeathState deathState { get; private set;}
@@ -20,6 +22,8 @@ public class EnemyBossTwo : Enemy
 
     public B2_ShieldState shieldState { get; private set; }
 
+    public B2_BackTeleportState backTeleportState { get; private set; }
+
     [SerializeField] private D_IdleState idleStateData;
     [SerializeField] private D_MoveState moveStateData;
     [SerializeField] private D_DeathState deathStateData;
@@ -27,10 +31,13 @@ public class EnemyBossTwo : Enemy
     [SerializeField] private D_MeleeAttack meleeAttackData;
     [SerializeField] private D_ChargeState chargeStateData;
     [SerializeField] private D_LookForPlayer lookForPlayerData;
-    [SerializeField] private D_BossShieldState shieldStateData;
+    [SerializeField] public D_BossShieldState shieldStateData;
+    [SerializeField] public D_BackTeleportState backTeleportStateData;
     protected override void Start()
     {
         base.Start();
+        player = Transform.FindAnyObjectByType<Player>();
+
 
         chargeState = new B2_ChargeState(stateMashine, this, "charge", chargeStateData, this);
 
@@ -48,7 +55,9 @@ public class EnemyBossTwo : Enemy
 
         shieldState = new B2_ShieldState(stateMashine,this,"shield",shieldStateData, this);
 
-        stateMashine.Initialize(shieldState);
+        backTeleportState = new B2_BackTeleportState(stateMashine, this, "backTeleport", backTeleportStateData, player, this);
+
+        stateMashine.Initialize(idleState);
 
     }
     protected override void OnDrawGizmos()
