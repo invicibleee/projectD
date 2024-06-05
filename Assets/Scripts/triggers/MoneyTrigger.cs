@@ -35,7 +35,7 @@ public class MoneyTrigger : MonoBehaviour
     }
     private void Update()
     {
-        if (status && isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        if (status && isPlayerNearby && Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_use)))
         {
             PlayerManager.instance.AddEssences(money);
             status = false;

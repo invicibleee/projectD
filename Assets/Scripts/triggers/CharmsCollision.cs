@@ -19,7 +19,7 @@ public class CharmsCollision : MonoBehaviour
     }
     private void Update()
     {
-        if (!status && isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        if (!status && isPlayerNearby && Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_use)))
         {
             CharmsPanelScript.instance.SetCharmOwned(charmIndex);
             StartCoroutine(DisplayMessageCoroutine("Found charm \"" + CharmsPanelScript.instance.charms[charmIndex].name + "\""));

@@ -283,6 +283,23 @@ namespace SaveData
             }
         }
     }
+
+    [System.Serializable]
+    public class ButtonsSave
+    {
+        public string[] _keyCode = new string[8];
+        public ButtonsSave()
+        {
+            _keyCode[0] = "R";
+            _keyCode[1] = "S";
+            _keyCode[2] = "Space";
+            _keyCode[3] = "F";
+            _keyCode[4] = "LM";
+            _keyCode[5] = "LeftShift";
+            _keyCode[6] = "C";
+            _keyCode[7] = "E";
+        }
+    }
 }
 
 

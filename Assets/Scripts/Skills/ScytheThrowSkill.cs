@@ -71,10 +71,10 @@ public class ScytheThrowSkill : Skill
 
     protected override void Update()
     {
-        if (Input.GetKeyUp(KeyCode.R))
+        if (Input.GetKeyUp(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_ult)))
             finalDirection = new Vector2(AimDirection().normalized.x * launchForce.x, AimDirection().normalized.y * launchForce.y);
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_ult)))
         {
             for (int i = 0; i < dots.Length; i++)
             {

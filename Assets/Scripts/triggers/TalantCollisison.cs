@@ -25,7 +25,7 @@ public class TalantCollisison : MonoBehaviour
     }
     private void Update()
     {
-        if (!status && isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        if (!status && isPlayerNearby && Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_use)))
         {
             if (!data2._isOwned[6])
             {

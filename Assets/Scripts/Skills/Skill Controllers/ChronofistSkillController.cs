@@ -51,7 +51,7 @@ public class ChronofistSkillController : MonoBehaviour
                 FinishChronoAbility();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_ult)))
         {
             ReleaseCloneAttack();
         }

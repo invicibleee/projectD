@@ -29,7 +29,7 @@ public class OneWayPlatform : MonoBehaviour
     {
         if (collision.collider.CompareTag("Player"))
         {
-            if ((Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) && !isDropping)
+            if ((Input.GetKey(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_s)) || Input.GetKey(KeyCode.DownArrow)) && !isDropping)
             {
                 effector.rotationalOffset = 180f;
                 timer = waitTime;

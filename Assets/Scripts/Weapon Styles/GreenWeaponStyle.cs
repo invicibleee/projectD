@@ -26,7 +26,7 @@ public class GreenWeaponStyle : WeaponStyle
     }
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.F) && isBaseActive && playerStats.currentUlt == playerStats.maxUlt.GetValue())
+        if (Input.GetKeyUp(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_ability)) && isBaseActive && playerStats.currentUlt == playerStats.maxUlt.GetValue())
         {
             miracleMirage.ActivateMirage();
         }

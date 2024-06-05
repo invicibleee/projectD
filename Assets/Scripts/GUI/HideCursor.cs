@@ -31,7 +31,7 @@ public class HideCursor : MonoBehaviour
                 SetCursorState(cursorVisible);
             }
         }
-        else if (!pauseMenu.activeSelf && !ConversationManager.Instance.IsConversationActive && !Input.GetKey(KeyCode.R))
+        else if (!pauseMenu.activeSelf && !ConversationManager.Instance.IsConversationActive && !Input.GetKey(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_ult)))
         {
             if (cursorVisible)
             {
@@ -40,7 +40,7 @@ public class HideCursor : MonoBehaviour
             }
         }
 
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_ult)) && !pauseMenu.activeSelf && !ConversationManager.Instance.IsConversationActive && tutorial != null && !tutorial.activeSelf && !player.stats.isDead)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = false;

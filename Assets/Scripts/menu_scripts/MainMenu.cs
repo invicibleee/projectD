@@ -303,6 +303,8 @@ public class MainMenu : MonoBehaviour
         PlayerPrefs.DeleteKey("NPCSave3");
         PlayerPrefs.DeleteKey("itemsSave");
         PlayerPrefs.DeleteKey("tutorialSave");
+        PlayerPrefs.DeleteKey("KeyBindings");
+        
        // PlayerPrefs.DeleteKey("achivementsSave");
         SceneManager.LoadScene(1);
     }

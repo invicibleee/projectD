@@ -102,7 +102,7 @@ public class Player : Entity
         base.Update();
         stateMachine.currentState.Update();
         // Проверяем наличие "койот тайма" при нажатии прыжка
-        if (Input.GetKey(KeyCode.F) && style.isBaseActive && stats.currentUlt == stats.maxUlt.GetValue())
+        if (Input.GetKey(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_ability)) && style.isBaseActive && stats.currentUlt == stats.maxUlt.GetValue())
         {
             stateMachine.ChangeState(carnageState);
         }
@@ -114,7 +114,7 @@ public class Player : Entity
         {
             coyoteTimeCounter -= Time.deltaTime; // Уменьшаем счетчик койот тайма
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_jump)))
         {
             jumpBufferCounter = jumpBufferTime;
         }
@@ -129,7 +129,7 @@ public class Player : Entity
             jumpBufferCounter = 0;
         }
         // Проверяем возможность прыжка во время койот тайма
-        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0)
+        if (Input.GetKeyUp(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_jump)) && rb.velocity.y > 0)
         {
             coyoteTimeCounter = 0;
         }
@@ -180,7 +180,7 @@ public class Player : Entity
         if (IsWallDetected())
             return;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
+        if (Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_dash)) && SkillManager.instance.dash.CanUseSkill())
         {
             dashDirection = Input.GetAxisRaw("Horizontal");
 

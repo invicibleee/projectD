@@ -25,9 +25,9 @@ public class PlayerGroundedState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.Mouse0) && !ConversationManager.Instance.IsConversationActive )
+        if (Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_attack)) && !ConversationManager.Instance.IsConversationActive )
             stateMachine.ChangeState(player.primaryAttackState);
-        if (Input.GetKeyDown(KeyCode.R) && HasNoScythe() && AbilitiesPanelScript.instance.abilities[1].isEquiped)//ThrowSkill
+        if (Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_ult)) && HasNoScythe() && AbilitiesPanelScript.instance.abilities[1].isEquiped)//ThrowSkill
             if (player.GetStats().TryUseMana(SkillManager.instance.scytheThrow.ManaCost))
             {
                 stateMachine.ChangeState(player.aimScytheState);
@@ -36,7 +36,7 @@ public class PlayerGroundedState : PlayerState
         if (!player.IsGroundDetected())
             stateMachine.ChangeState(player.airState);
 
-        if (Input.GetKeyDown(KeyCode.R) && AbilitiesPanelScript.instance.abilities[0].isEquiped)
+        if (Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_ult)) && AbilitiesPanelScript.instance.abilities[0].isEquiped)
             if (player.GetStats().TryUseMana(SkillManager.instance.chrono.ManaCost))// ChronoSKill
                 stateMachine.ChangeState(player.chronoState);
     }

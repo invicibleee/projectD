@@ -24,7 +24,7 @@ public class HealthFlask : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && canUseFlasks)
+        if (Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_heal)) && canUseFlasks)
         {
             UseFlask();
         }

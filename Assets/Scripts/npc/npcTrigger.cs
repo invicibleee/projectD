@@ -56,7 +56,7 @@ public class npcTrigger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerNearby && Input.GetKeyDown(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_use)))
         {
             if (!data2._isOwned[4])
             {

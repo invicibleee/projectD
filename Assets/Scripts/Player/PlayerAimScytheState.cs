@@ -28,7 +28,7 @@ public class PlayerAimScytheState : PlayerState
 
         player.ZeroVelocity();
 
-        if(Input.GetKeyUp(KeyCode.R))
+        if(Input.GetKeyUp(InputSettings.Instance.GetKeyForAction(InputSettings.Instance.Button_ult)))
         {
             stateMachine.ChangeState(player.idleState);
         }
