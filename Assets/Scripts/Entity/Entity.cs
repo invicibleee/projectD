@@ -75,7 +75,7 @@ public class Entity : MonoBehaviour
         //StartCoroutine("HitKnockback");
         
     }
-    public virtual void DamageImpact() => StartCoroutine("HitKnockback");
+    //public virtual void DamageImpact() => StartCoroutine("HitKnockback");
     protected virtual IEnumerator HitKnockback()
     {
         isKnocked = true;
