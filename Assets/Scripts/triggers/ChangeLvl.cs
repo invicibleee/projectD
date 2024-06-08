@@ -10,12 +10,14 @@ public class ChangeLvl : MonoBehaviour
     [SerializeField] int scene;
     [SerializeField] private ScreenFade screenFade;
     [SerializeField] GameObject ui;
-
+    [SerializeField] private int precentage;
+    private CharacterPanelScript characterPanel;
     private string saveKey = "playerPosition";
 
     private void Start()
     {
         ui.SetActive(false);
+        characterPanel = FindObjectOfType<CharacterPanelScript>();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -25,6 +27,10 @@ public class ChangeLvl : MonoBehaviour
             {
                 Save();
                 ui.SetActive(true);
+                if(characterPanel.completionPercentage < precentage)
+                {
+                    characterPanel.SetProgress(precentage);
+                }
                 screenFade.FadeOutAndChangeScene(scene); 
             }
 

@@ -282,6 +282,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         PlayerPrefs.DeleteKey("playerPosition");
+        PlayerPrefs.DeleteKey("stats");
         PlayerPrefs.DeleteKey("playerMoneySave");
         PlayerPrefs.DeleteKey("playerSave");
         PlayerPrefs.DeleteKey("flasks");

@@ -34,8 +34,11 @@ public class CharacterPanelScript : MonoBehaviour
     private int currentStyle;
     private int selectedSkillIndex = -1;
     bool allRequiredSkillsPurchased;
+    public int completionPercentage;
+
     private string saveKey = "PlayerWeaponSkills";
     private string saveKey2 = "achivementsSave";
+    private string saveKey3 = "stats";
     private SaveData.AchivementsSave data2;
 
     private int isEqiped;
@@ -44,6 +47,7 @@ public class CharacterPanelScript : MonoBehaviour
         weaponStyles = FindObjectsOfType<WeaponStyle>();
         sphereGUI = FindAnyObjectByType<SphereGUI>();
         data2 = SaveManager.Load<SaveData.AchivementsSave>(saveKey2);
+        Load2();
 
     }
     private void Start()
@@ -60,14 +64,14 @@ public class CharacterPanelScript : MonoBehaviour
         descriptionText.text = "select weapon";
         Prompt.text = "";
         UpdateSkillImages();
-        SetStats(playerStats.currentHealth, playerStats.GetMaxHealthValue());
+        SetStats(playerStats.currentHealth, playerStats.GetMaxHealthValue(), completionPercentage);
 
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SetStats(playerStats.currentHealth, playerStats.GetMaxHealthValue());
+            SetStats(playerStats.currentHealth, playerStats.GetMaxHealthValue(), completionPercentage);
             descriptionText.text = "select weapon";
             Prompt.text = "";
         }
@@ -391,14 +395,14 @@ public class CharacterPanelScript : MonoBehaviour
         }
     }
 
-    private void SetStats(float _currentHealth, float _maxHealth/*/, int _currentMana, 
-        int _maxMana, int _collectedCollectibles, int _maxCollectibles, int _completionPercentage/*/)
+    private void SetStats(float _currentHealth, float _maxHealth, int _completionPercentage/*/, int _currentMana, 
+        int _maxMana, int _collectedCollectibles, int _maxCollectibles, /*/)
     {
 
         SetStatTextFloat(0, _currentHealth, _maxHealth); // Health
         //SetStatTextFloat(1, currentMana, maxMana); // Mana
         //SetStatTextInt(2, collectedCollectibles, maxCollectibles); // Completion Percentage
-        //SetStatTextInt(3, completionPercentage, 100); // Completion Percentage
+        SetStatTextInt(3, completionPercentage, 100); // Completion Percentage
     }
 
     private void SetStatTextFloat(int index, float currentValue, float maxValue)
@@ -414,7 +418,7 @@ public class CharacterPanelScript : MonoBehaviour
         if (index >= 0 && index < statTextsFloat.Length)
         {
 
-            if (index == 4)
+            if (index == 3)
             {
                 statTextsFloat[index].text = $"{value}%";
             }
@@ -424,6 +428,12 @@ public class CharacterPanelScript : MonoBehaviour
             }
         }
 
+    }
+
+    public void SetProgress(int procent)
+    {
+        completionPercentage = procent;
+        Save2();
     }
     public void Save()
     {
@@ -468,4 +478,27 @@ public class CharacterPanelScript : MonoBehaviour
 
         return data;
     }
+
+    private void Load2()
+    {
+        var data = SaveManager.Load<SaveData.StatsSave>(saveKey3);
+        completionPercentage = data._procents;
+    }
+
+    public void Save2()
+    {
+        SaveManager.Save(saveKey3, GetData2());
+
+    }
+
+    private SaveData.StatsSave GetData2()
+    {
+        var data = new SaveData.StatsSave()
+        {
+            _procents = completionPercentage,
+        };
+
+        return data;
+    }
+
 }

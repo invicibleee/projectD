@@ -27,6 +27,7 @@ public class Bosstwo : MonoBehaviour
 
     [SerializeField] private GameObject bossIcon;
     private bool isBossOpened;
+    private CharacterPanelScript characterPanel;
 
     private string saveKey = "BossSave";
     private string saveKey2 = "IconsSave";
@@ -43,7 +44,7 @@ public class Bosstwo : MonoBehaviour
             bossTwo = FindAnyObjectByType<EnemyBossTwo>();
         }
         abilitiesPanelScript = FindAnyObjectByType<AbilitiesPanelScript>();
-
+        characterPanel = FindObjectOfType<CharacterPanelScript>();
     }
     void Start()
     {
@@ -82,6 +83,7 @@ public class Bosstwo : MonoBehaviour
         {
             MainMenu.instance.setAchivementOwned(10);
             MainMenu.instance.setAchivementOwned(13);
+            characterPanel.SetProgress(100);
             UpdateBar();
             isDead = true;
             Save();

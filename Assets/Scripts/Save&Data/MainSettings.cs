@@ -300,6 +300,16 @@ namespace SaveData
             _keyCode[7] = "E";
         }
     }
+
+    [System.Serializable]
+    public class StatsSave
+    {
+        public int _procents;
+        public StatsSave()
+        {
+            _procents = 0;
+        }
+    }
 }
 
 
