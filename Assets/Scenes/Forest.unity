@@ -131638,7 +131638,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb88ad32ca4655419d10c7920097046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  position: {x: 80, y: 0}
+  position: {x: 78.5, y: 0}
   scene: 2
   screenFade: {fileID: 1765942374}
   ui: {fileID: 1325229662}
@@ -138763,7 +138763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &2186959309287685581
 GameObject:
   m_ObjectHideFlags: 0
