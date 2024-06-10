@@ -33,6 +33,7 @@ public class TutorialController : MonoBehaviour
         tutorial.SetActive(false);
         map.SetActive(true);
         MainMenu.instance.setAchivementOwned(1);
+        Time.timeScale = 1f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -43,6 +44,7 @@ public class TutorialController : MonoBehaviour
             tutorial.SetActive(true);
             map.SetActive(false);
             Save();
+            Time.timeScale = 0f;
         }
     }
     public void Save()

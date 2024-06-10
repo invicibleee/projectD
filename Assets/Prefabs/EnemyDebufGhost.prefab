@@ -348,7 +348,7 @@ MonoBehaviour:
   damageReceivedReductionPercentage: 0
   isDead: 0
   damaged: 0
-  essenceDropAmount: 0
+  essenceDropAmount: 50
 --- !u!114 &7737966359550104803
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -123,7 +123,14 @@ namespace SaveData
         {
             for (int i = 0; i < _isOwned.Length; i++)
             {
-                _isOwned[i] = false;
+                if(i == 1)
+                {
+                    _isOwned[i] = true;
+                }
+                else
+                {
+                    _isOwned[i] = false;
+                }
             }
         }
     }

@@ -179,7 +179,7 @@ MonoBehaviour:
   damageReceivedReductionPercentage: 0
   isDead: 0
   damaged: 0
-  essenceDropAmount: 0
+  essenceDropAmount: 50
 --- !u!70 &2228319088359511788
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
