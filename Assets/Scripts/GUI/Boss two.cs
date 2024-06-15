@@ -89,8 +89,9 @@ public class Bosstwo : MonoBehaviour
             Save();
             victoryText.SetActive(true);
             walls[0].SetActive(false);
-            await FadeOutHUD(displayTime);
             abilitiesPanelScript.SetAbilityOwned(0);
+            await FadeOutHUD(displayTime);
+     
 
             HUD.SetActive(false);
 

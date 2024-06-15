@@ -93,8 +93,9 @@ public class BossGUI : MonoBehaviour
             walls[0].SetActive(false);
             walls[1].SetActive(false);
             exitTrigger.SetActive(true);
-            await FadeOutHUD(displayTime);
             abilitiesPanelScript.SetAbilityOwned(1);
+            await FadeOutHUD(displayTime);
+           
             HUD.SetActive(false);
       
         }
