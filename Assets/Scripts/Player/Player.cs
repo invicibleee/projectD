@@ -33,6 +33,8 @@ public class Player : Entity
     public float jumpBufferTime;
     private float jumpBufferCounter;
 
+    public int maxJumps = 2; // Максимальное количество прыжков
+    private int currentJumps; // Текущее количество прыжков
     private PlayerStats playerStats;
     public float dashDirection { get; private set; }
 
@@ -89,6 +91,8 @@ public class Player : Entity
         defaultMoveSpeed = moveSpeed;
         defaultJumpForce = jumpForce;
         defaultDashSpeed = dashSpeed;
+
+        currentJumps = maxJumps;
     }
     protected override void OnDrawGizmos()
     {
@@ -136,7 +140,19 @@ public class Player : Entity
 
         CheckForDashInput();
     }
+    public void ResetJumps()
+    {
+        currentJumps = maxJumps;
+    }
+    public bool CanJump()
+    {
+        return currentJumps > 0;
+    }
 
+    public void DecreaseJumpCount()
+    {
+        currentJumps--;
+    }
     public PlayerStats GetStats()
     {
         return playerStats = GetComponent<PlayerStats>();
