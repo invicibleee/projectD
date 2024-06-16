@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class EnemyBossTwo : Enemy
 {
-    public B2_ChargeState chargeState {  get; private set; }
+    protected Player player;
 
-    public B2_DeathState deathState { get; private set;}
+    public B2_ChargeState chargeState { get; private set; }
+
+    public B2_DeathState deathState { get; private set; }
 
     public B2_IdleState idleState { get; private set; }
 
@@ -20,6 +22,8 @@ public class EnemyBossTwo : Enemy
 
     public B2_ShieldState shieldState { get; private set; }
 
+    public B2_BackTeleportState backTeleportState { get; private set; }
+
     [SerializeField] private D_IdleState idleStateData;
     [SerializeField] private D_MoveState moveStateData;
     [SerializeField] private D_DeathState deathStateData;
@@ -27,28 +31,33 @@ public class EnemyBossTwo : Enemy
     [SerializeField] private D_MeleeAttack meleeAttackData;
     [SerializeField] private D_ChargeState chargeStateData;
     [SerializeField] private D_LookForPlayer lookForPlayerData;
-    [SerializeField] private D_BossShieldState shieldStateData;
+    [SerializeField] public D_BossShieldState shieldStateData;
+    [SerializeField] public D_BackTeleportState backTeleportStateData;
     protected override void Start()
     {
         base.Start();
+        player = Transform.FindAnyObjectByType<Player>();
+
 
         chargeState = new B2_ChargeState(stateMashine, this, "charge", chargeStateData, this);
 
-        idleState = new B2_IdleState(stateMashine,this, "idle", idleStateData, this);
+        idleState = new B2_IdleState(stateMashine, this, "idle", idleStateData, this);
 
-        deathState = new B2_DeathState(stateMashine,this, "death", deathStateData, this);
+        deathState = new B2_DeathState(stateMashine, this, "death", deathStateData, this);
 
-        moveState = new B2_MoveState(stateMashine,this, "move", moveStateData, this);
+        moveState = new B2_MoveState(stateMashine, this, "move", moveStateData, this);
 
-        playerDetectedState = new B2_PlayerDetected(stateMashine,this, "playerDetected", playerDetectedData, this);
+        playerDetectedState = new B2_PlayerDetected(stateMashine, this, "playerDetected", playerDetectedData, this);
 
-        lookForPlayerState = new B2_LookForPlayerState(stateMashine,this, "lookForPlayer", lookForPlayerData, this);
+        lookForPlayerState = new B2_LookForPlayerState(stateMashine, this, "lookForPlayer", lookForPlayerData, this);
 
-        meleeAttackState = new B2_MeleeAttackState(stateMashine,this, "meleeAttack", attackCheck,meleeAttackData,this);
+        meleeAttackState = new B2_MeleeAttackState(stateMashine, this, "meleeAttack", attackCheck, meleeAttackData, this);
 
-        shieldState = new B2_ShieldState(stateMashine,this,"shield",shieldStateData, this);
+        shieldState = new B2_ShieldState(stateMashine, this, "shield", shieldStateData, this);
 
-        stateMashine.Initialize(shieldState);
+        backTeleportState = new B2_BackTeleportState(stateMashine, this, "backTeleport", backTeleportStateData, player, this);
+
+        stateMashine.Initialize(idleState);
 
     }
     protected override void OnDrawGizmos()

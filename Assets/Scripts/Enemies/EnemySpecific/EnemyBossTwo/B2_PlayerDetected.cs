@@ -30,11 +30,26 @@ public class B2_PlayerDetected : PlayerDetectedState
         base.LogicUpdate();
         if (performCloseRangeAction)
         {
-            stateMashine.ChangeState(bossTwo.meleeAttackState);
+            if (Time.time >= bossTwo.shieldState.startTime + bossTwo.shieldStateData.shieldCooldown && bossTwo.stats.damaged && bossTwo.stats.currentHealth <= bossTwo.stats.maxHealth.GetValue() / 2)
+            {
+                stateMashine.ChangeState(bossTwo.shieldState);
+            }
+            else
+            {
+                stateMashine.ChangeState(bossTwo.meleeAttackState);
+            }
         }
         else if (performLongRangeAction)
         {
-            stateMashine.ChangeState(bossTwo.chargeState);
+            if (Time.time >= bossTwo.backTeleportState.startTime + bossTwo.backTeleportStateData.teleportCooldown && bossTwo.stats.currentHealth <= bossTwo.stats.maxHealth.GetValue() / 2)
+            {
+                stateMashine.ChangeState(bossTwo.backTeleportState);
+            }
+            else
+            {
+                stateMashine.ChangeState(bossTwo.chargeState);
+
+            }
         }
         else if (!isPlayerInMaxAgroRange)
         {

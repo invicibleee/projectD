@@ -19,7 +19,7 @@ public class B2_ShieldState : BossShieldState
     public override void Enter()
     {
         base.Enter();
-        
+
     }
 
     public override void Exit()
@@ -32,9 +32,16 @@ public class B2_ShieldState : BossShieldState
         base.LogicUpdate();
         if (isShieldTimeOver)
         {
-            stateMashine.ChangeState(bossTwo.idleState);
+            if (performCloseRangeAction)
+            {
+                stateMashine.ChangeState(bossTwo.meleeAttackState);
+            }
+            else
+            {
+                stateMashine.ChangeState(bossTwo.lookForPlayerState);
+            }
         }
-        
+
     }
 
     public override void PhysicsUpdate()

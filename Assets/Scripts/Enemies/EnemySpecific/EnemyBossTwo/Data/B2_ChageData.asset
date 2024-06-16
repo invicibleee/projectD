@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba84d04a0d665e240b89a8f67ebf4da6, type: 3}
   m_Name: B2_ChageData
   m_EditorClassIdentifier: 
-  chargeSpeed: 6
-  chargeTime: 2
+  chargeSpeed: 10
+  chargeTime: 3

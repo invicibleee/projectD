@@ -8,12 +8,17 @@ public class BossShieldState : EnemyState
     private D_BossShieldState stateData;
     protected float shieldTime;
     protected bool isShieldTimeOver;
+    protected bool performCloseRangeAction;
     protected float armor;
     public BossShieldState(EnemyStateMashine stateMashine, Enemy enemy, string animBoolName, D_BossShieldState stateData) : base(stateMashine, enemy, animBoolName)
     {
         this.stateData = stateData;
     }
-
+    public override void DoChecks()
+    {
+        base.DoChecks();
+        performCloseRangeAction = enemy.CheckPlayerInCloseRangeAction();
+    }
     public override void Enter()
     {
         base.Enter();
@@ -44,10 +49,7 @@ public class BossShieldState : EnemyState
         base.PhysicsUpdate();
     }
 
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
+
     public void SetRandomShieldTime()
     {
         shieldTime = Random.Range(stateData.minShieldTime, stateData.maxShieldTime);

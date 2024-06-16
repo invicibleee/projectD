@@ -7,4 +7,5 @@ public class D_BossShieldState : ScriptableObject
     public float minShieldTime = 1f;
     public float maxShieldTime = 5f;
     public float armotboost = 10.0f;
+    public float shieldCooldown = 8f;
 }
